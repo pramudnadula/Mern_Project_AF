@@ -13,7 +13,7 @@ const { Header, Content, Footer, Sider } = Layout;
 const { SubMenu } = Menu;
 
 const navbar = () => (
-    <Navbar bg="dark" variant="dark">
+    <Navbar className='headerNavBar'>
         <Container>
             <Navbar.Brand href="#home">Navbar</Navbar.Brand>
             {/* <Nav className="me-auto">
@@ -84,7 +84,7 @@ function Layout1(props) {
     return (
         <>
             {navbar()}
-            <Layout style={{ minHeight: '100vh' }}>
+            <Layout style={{ minHeight: '93vh' }}>
 
                 {slider()}
                 <Layout className="site-layout">
