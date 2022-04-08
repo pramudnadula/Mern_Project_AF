@@ -23,3 +23,11 @@
     background: #0157a8 !important;
 
 }
+.ant-menu-inline, .ant-menu-vertical, .ant-menu-vertical-left {
+    border-right: 0px !important;
+}
+
+
+.headerNavBar{
+    background-color: #0157a8 !important;
+}
