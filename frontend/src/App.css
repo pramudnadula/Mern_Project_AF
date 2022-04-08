@@ -1,0 +1,25 @@
+#components-layout-demo-side .logo {
+    height: 32px;
+    margin: 16px;
+    background: rgba(255, 255, 255, 0.3);
+}
+
+.site-layout .site-layout-background {
+    background: #fff;
+}
+
+.ant-layout-sider {
+
+    background: #0157a8 !important;
+}
+
+.ant-menu {
+
+    color: rgba(255, 255, 255, 0.65);
+    background: #0157a8 !important;
+}
+
+.ant-layout-sider-trigger {
+    background: #0157a8 !important;
+
+}
