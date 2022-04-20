@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Layout, Menu, Breadcrumb } from 'antd';
-import { Navbar, Container, Nav, NavDropdown, Form, Button, FormControl } from 'react-bootstrap'
+import NavBar from '../Components/Home/NavBar'
 import {
     DesktopOutlined,
     PieChartOutlined,
@@ -12,27 +12,7 @@ import {
 const { Header, Content, Footer, Sider } = Layout;
 const { SubMenu } = Menu;
 
-const navbar = () => (
-    <Navbar className='headerNavBar'>
-        <Container>
-            <Navbar.Brand href="#home">Navbar</Navbar.Brand>
-            {/* <Nav className="me-auto">
-                <Nav.Link href="#home">Home</Nav.Link>
-                <Nav.Link href="#features">Features</Nav.Link>
-                <Nav.Link href="#pricing">Pricing</Nav.Link>
-            </Nav> */}
-            <Form className="d-flex">
-                <FormControl
-                    type="search"
-                    placeholder="Search"
-                    className="me-2"
-                    aria-label="Search"
-                />
-                <Button variant="outline-success">Search</Button>
-            </Form>
-        </Container>
-    </Navbar>
-)
+
 
 
 
@@ -83,7 +63,7 @@ function Layout1(props) {
 
     return (
         <>
-            {navbar()}
+            <NavBar />
             <Layout style={{ minHeight: '93vh' }}>
 
                 {slider()}
