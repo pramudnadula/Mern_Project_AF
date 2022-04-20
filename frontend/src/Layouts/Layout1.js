@@ -1,13 +1,8 @@
 import React, { useState } from 'react';
 import { Layout, Menu, Breadcrumb } from 'antd';
-import NavBar from '../Components/Home/NavBar'
-import {
-    DesktopOutlined,
-    PieChartOutlined,
-    FileOutlined,
-    TeamOutlined,
-    UserOutlined,
-} from '@ant-design/icons';
+import { DesktopOutlined, PieChartOutlined, FileOutlined, TeamOutlined, UserOutlined, } from '@ant-design/icons';
+import '../Assets/Styles/Layout1.css'
+import NavBar_DashBoard from '../Components/Home/NavBar_DashBoard';
 
 const { Header, Content, Footer, Sider } = Layout;
 const { SubMenu } = Menu;
@@ -63,7 +58,7 @@ function Layout1(props) {
 
     return (
         <>
-            <NavBar />
+            <NavBar_DashBoard />
             <Layout style={{ minHeight: '93vh' }}>
 
                 {slider()}
