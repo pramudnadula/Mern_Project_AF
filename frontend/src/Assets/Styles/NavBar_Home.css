@@ -1,8 +1,14 @@
+*{
+    margin: 0;
+    padding: 0;
+}
 .home1 {
     background-image: url('../../Assets/Images/test.png');
+    height: 100vh;
+    width: 100vw;
 }
 
-.headerNavBar {
+.headerNavBar_home {
     background-color: transparent !important;
 }
 
@@ -13,8 +19,6 @@
     padding-bottom: 60px;
 
 }
-
-.home_row1 {}
 
 .home_nav {
     margin-right: 40px;
