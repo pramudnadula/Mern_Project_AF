@@ -2,12 +2,19 @@ import './App.css';
 import "antd/dist/antd.css";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Layout1 from './Layouts/Layout1';
+import { BrowserRouter, Route } from 'react-router-dom';
+import Home from './Pages/Home';
+import Home2 from './Pages/Home2';
 
 function App() {
   return (
-    <Layout1>
-      MERN Project
-    </Layout1>
+
+    <BrowserRouter>
+      <Route path='/' exact component={Home} />
+      <Route path='/home' exact component={Home2} />
+    </BrowserRouter>
+
+
   );
 }
 
