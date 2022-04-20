@@ -1,14 +1,13 @@
 import React from 'react';
-import NavBar from '../Components/Home/NavBar';
-import '../Assets/CSS/test.css'
 import homeimage from '../Assets/Images/2.png';
+import NavBar_Home from '../Components/Home/NavBar_Home';
 
 function Home(props) {
     return (
         <>
 
             <div className='container-fluid home1'>
-                <NavBar />
+                <NavBar_Home />
                 <div className='row'>
                     <div className='col-6'>
                         <div className='row justify-content-center'>

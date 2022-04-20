@@ -28,10 +28,6 @@
 }
 
 
-.headerNavBar{
-    background-color: #0157a8 !important;
-}
-
 .ant-menu-inline .ant-menu-item, .ant-menu-inline .ant-menu-submenu-title {
     width: calc(100% + 0px) !important;
     border-radius: 50px 0px 0px 50px !important;
