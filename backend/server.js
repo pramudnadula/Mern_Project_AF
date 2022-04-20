@@ -6,6 +6,7 @@ const app = express();
 require('dotenv').config();
 const PORT = process.env.PORT || 8070;
 const URL = process.env.MONGODB_URL;
+const studentGroup = require('./Routes/StudentGroup')
 
 // const cors = require('cors');
 // const bodyparser = require('body-parser');
@@ -34,7 +35,7 @@ mongoose.connect(URL, (err) => {
 // });
 
 // const studentRouter = require('./routes/students.js');
-// app.use('/student', studentRouter);
+app.use("/api", studentGroup);
 
 
 
