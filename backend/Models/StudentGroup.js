@@ -1,9 +1,23 @@
 const mongoose = require('mongoose')
-const schema = mongoose.Schema;
+var ObjectId = require('bson').ObjectId;
 
-const studentGroupModel = ({
+const studentGroupModel = new mongoose.Schema({
     topic: { type: String },
-    groupName: { type: String }
+    groupName: { type: String },
+    supervisor: {
+        type: ObjectId,
+        ref: 'supervisor'
+    },
+    cosupervisor: {
+        type: ObjectId,
+        ref: 'supervisor'
+    },
+    members: [{ type: ObjectId, ref: 'student' }],
+    area: {
+        type: ObjectId,
+        ref: "researcharea"
+    }
+
 }, { timestamps: true })
 
 const studentGroup = mongoose.model("studentGroup", studentGroupModel);

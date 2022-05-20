@@ -1,11 +1,12 @@
 import React from 'react';
 import { Navbar, Container, Nav, NavDropdown, Form, Button, FormControl } from 'react-bootstrap'
 import '../../Assets/Styles/NavBar_DashBoard.css'
-
+import { Link, useLocation } from 'react-router-dom'
 function NavBar_DashBoard(props) {
+    const location = useLocation();
     return (
         <>
-             <Navbar  className='headerNavBar'>
+            <Navbar className={location.pathname === '/' ? "block" : "headerNavBar"}>
                 <Container>
                     <Navbar.Brand href="#home">RMS</Navbar.Brand>
                     {/* <Nav className="me-auto">

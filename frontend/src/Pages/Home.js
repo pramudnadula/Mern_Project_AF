@@ -1,13 +1,24 @@
-import React from 'react';
+import React, { useEffect } from 'react';
+import { getareas } from '../Actions/ResearchAreaActions';
 import homeimage from '../Assets/Images/2.png';
 import NavBar_Home from '../Components/Home/NavBar_Home';
+import { useSelector, useDispatch } from 'react-redux'
+
 
 function Home(props) {
+    const dispatch = useDispatch()
+    const { rareas } = useSelector(state => state.areas);
+    useEffect(() => {
+        dispatch(getareas())
+        // LoadfilterResults(myFilters.filters)
+    }, [])
+
     return (
         <>
 
             <div className='container-fluid home1'>
                 <NavBar_Home />
+
                 <div className='row'>
                     <div className='col-6'>
                         <div className='row justify-content-center'>
