@@ -1,6 +1,10 @@
 const router = require('express').Router();
-let studentGroup = require('../Models/StudentGroup');
+const { creategroup, getstudentgroup, addmember, existmember } = require('../Controllers/StudentGroup')
 
-router.post("/studentGroups", (req, res) => {
+router.post("/", creategroup);
+router.get("/:id", getstudentgroup);
+router.get("/:id/add/:sid", addmember)
+router.get("/:id/isexist/:sid", existmember)
 
-})
+
+module.exports = router;
