@@ -8,12 +8,12 @@ const PORT = process.env.PORT || 8070;
 const URL = process.env.MONGODB_URL;
 const studentGroup = require('./Routes/StudentGroup')
 
-// const cors = require('cors');
-// const bodyparser = require('body-parser');
+const cors = require('cors');
+const bodyparser = require('body-parser');
 
 
-// app.use(cors());
-// app.use(bodyparser.json());
+app.use(cors());
+app.use(bodyparser.json());
 
 
 ////connect to mongoDB
@@ -36,6 +36,11 @@ mongoose.connect(URL, (err) => {
 
 // const studentRouter = require('./routes/students.js');
 app.use("/api", studentGroup);
+
+
+const userRouter = require('./Routes/users.js');
+app.use('/user', userRouter);
+
 
 
 
