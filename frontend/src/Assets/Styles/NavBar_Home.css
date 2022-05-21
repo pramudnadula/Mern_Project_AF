@@ -1,7 +1,8 @@
-*{
+* {
     margin: 0;
     padding: 0;
 }
+
 .home1 {
     background-image: url('../../Assets/Images/test.png');
     height: 100vh;

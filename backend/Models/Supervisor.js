@@ -1,3 +1,4 @@
+
 const mongoose = require('mongoose');
 var ObjectId = require('bson').ObjectId;
 
@@ -25,7 +26,6 @@ const supervisorSchema = new Schema({
 
     },
 
-
     area: [{ type: ObjectId, ref: 'researcharea' }],
     groups: {
         type: Number
@@ -34,13 +34,11 @@ const supervisorSchema = new Schema({
         type: Boolean
     },
 
-
     username: {
         type: String,
         required: true
 
     },
-
 
     password: {
         type: String,

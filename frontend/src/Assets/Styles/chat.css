@@ -1,0 +1,166 @@
+.messanger {
+    height: 100vh;
+    display: flex;
+}
+
+.chatmenu {
+    flex: 3.5;
+}
+
+.chatbox {
+    flex: 5.5;
+    background-image: url('../../Assets/Images/se.png');
+}
+
+.chatOnline {
+    flex: 3;
+}
+
+.cmwrapper,
+.cbwrapper,
+.cowrapper {
+    padding: 10px;
+    height: 100%;
+}
+
+.chatmenuinput {
+    width: 90%;
+    padding: 10px 0;
+    border: none;
+    border-bottom: 1px solid grey;
+}
+
+.conversation {
+    display: flex;
+    align-items: center;
+    padding: 10px;
+    cursor: pointer;
+    margin-top: 20px;
+}
+
+.conversation:hover {
+    background-color: rgb(222, 222, 222);
+    border-radius: 20px;
+}
+
+.conversation_img {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    margin-right: 20px;
+}
+
+.msg {
+    display: flex;
+    flex-direction: column;
+    margin-top: 20px;
+}
+
+.msgtop {
+    display: flex;
+}
+
+.msgimg {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-right: 10px;
+}
+
+.msgtext {
+    padding: 10px;
+    border-radius: 20px;
+    background-color: #1877f2;
+    color: white;
+    max-width: 300px;
+
+}
+
+.msgbottom {
+    font-size: 12px;
+
+}
+
+.msg.own {
+    align-items: flex-end;
+}
+
+.msg.own .msgtext {
+    background-color: rgb(202, 202, 202);
+    color: black;
+}
+
+.chatboxbottom {
+    margin-top: 5px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.msgwrite {
+    width: 80%;
+    height: 90px;
+}
+
+.chatsend {
+    width: 70px;
+    height: 40px;
+    border: none;
+    border-radius: 5px;
+    background-color: teal;
+    cursor: pointer;
+    color: white;
+}
+
+.cbwrapper {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    position: relative;
+}
+
+.chatboxtop {
+    height: 100%;
+    overflow-y: scroll;
+    padding-right: 10px;
+}
+
+.onlinefriend {
+    display: flex;
+    align-items: center;
+    font-weight: 500;
+    cursor: pointer;
+    margin-top: 10px;
+}
+
+.onlineimg {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 1px solid white;
+}
+
+.onlineimgcon {
+    position: relative;
+    margin-right: 10px;
+}
+
+.onlinebadge {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background-color: limegreen;
+    position: absolute;
+    top: 0;
+    right: 0;
+}
+
+.nocon {
+    position: absolute;
+    top: 10%;
+    font-size: 50px;
+    color: rgb(173, 171, 171);
+
+}
