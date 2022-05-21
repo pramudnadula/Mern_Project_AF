@@ -1,9 +1,11 @@
 import React from 'react';
 import { Navbar, Container, Nav, NavDropdown, Form, Button, FormControl } from 'react-bootstrap'
-function NavBar(props) {
+import '../../Assets/Styles/NavBar_Home.css'
+
+function NavBar_Home(props) {
     return (
         <>
-            <Navbar className='headerNavBar'>
+            <Navbar className='headerNavBar_home'>
                 <Container>
                     <Navbar.Brand className='nav_icon' href="#home">RMS</Navbar.Brand>
                     <Nav className="me-auto">
@@ -29,4 +31,4 @@ function NavBar(props) {
     );
 }
 
-export default NavBar;
+export default NavBar_Home;

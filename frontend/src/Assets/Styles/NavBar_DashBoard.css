@@ -1,0 +1,17 @@
+.headerNavBar {
+    background-color: #0157a8 !important;
+}
+
+.navbar {
+    position: relative;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    padding-top: 0rem;
+    padding-bottom: 0rem;
+}
+
+.block {
+    display: none;
+}
