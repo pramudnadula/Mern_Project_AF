@@ -13,6 +13,7 @@ import Login from './Components/User/Login';
 import Register from './Components/User/Register';
 import UserProfile from './Components/User/UserProfile';
 import Update from './Components/User/Update';
+import CreateGroup from './Components/GroupManagement/CreateGroup';
 import AdminLogin from './Components/Admin/AdminLogin';
 import AdminDashboard from './Components/Admin/AdminDashboard';
 import StaffRegister from './Components/User/StaffRegister';
@@ -47,6 +48,9 @@ function App() {
         <Route path='/req' exact component={() => (<RequestSupervisor isSupervisor={true} stype="Supervisors" />)} />
         <Route path='/creq' exact component={() => (<RequestSupervisor isSupervisor={false} stype="Co-Supervisors" />)} />
         <Route path='/msg' exact component={Chat} />
+        <Route path='/c' exact component={CreateGroup} />
+
+
       </Layout1>
     </BrowserRouter>
 

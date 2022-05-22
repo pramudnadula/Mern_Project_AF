@@ -19,6 +19,7 @@ const Conversation = require("./Routes/Conversations")
 const Message = require("./Routes/Messages");
 const GroupConversation = require('./Routes/GroupConversation');
 const userRouter = require('./Routes/users.js');
+const RequestRouter = require('./Routes/Request')
 
 app.use(cors());
 app.use(bodyparser.json());
@@ -51,6 +52,8 @@ app.use("/api/conversation", Conversation);
 app.use("/api/groupconversation", GroupConversation);
 app.use("/api/message", Message);
 app.use('/user', userRouter); //user login & Registration
+app.use("/api/request", RequestRouter);
+
 
 
 

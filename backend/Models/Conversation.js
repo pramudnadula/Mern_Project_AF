@@ -8,6 +8,9 @@ const Conversationschema = new schema({
     receiver: {
         type: String
     },
+    names: {
+        type: Array,
+    },
 
 }, { timestamps: true })
 

@@ -40,12 +40,18 @@ function Login() {
                     console.log(res)
 
                 }
+
+               
+                
+
                 if (type === "stu") {
                     localStorage.setItem("user", (res.data.userId))
                     localStorage.setItem("token", res.data.token)
+                    localStorage.setItem("gid", res.data.gid)
                 }
                 else {
                     localStorage.setItem("staff", (res.data.UId))
+
 
                 }
                 setUserId(res.data.userId)

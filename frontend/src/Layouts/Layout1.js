@@ -66,7 +66,7 @@ function Layout1(props) {
     return (
         <>
             <NavBar_DashBoard />
-            <Layout style={{ minHeight: '93vh' }} className={location.pathname === '/' ? "block" : ""}>
+            <Layout style={{ minHeight: '93vh' }} className={(location.pathname === '/') || (location.pathname === '/login') || (location.pathname === '/register') ? "block" : ""}>
 
                 {slider()}
                 <Layout className="site-layout">

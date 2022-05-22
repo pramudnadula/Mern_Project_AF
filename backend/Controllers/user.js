@@ -73,7 +73,7 @@ exports.getUser = async (req, res, next) => {
     const userId = req.params.userId;
 
     try {
-        const user = await User.findById(userId);
+        const user = await User.findById(userId).populate("groupid");
         if (!user) {
             const error = new Error("Could not find user.");
             error.statusCode = 404;
@@ -127,7 +127,14 @@ exports.login = async (req, res, next) => {
             "somesupersecretsecret",
             { expiresIn: "1h" },
         );
-        res.status(200).json({ token: token, userId: user._id.toString() });
+        let gid;
+        if (!user.groupid) {
+            gid = ""
+        } else {
+            gid = user.groupid
+        }
+
+        res.status(200).json({ token: token, userId: user._id.toString(), gid });
     } catch (err) {
         if (!err.statusCode) {
             err.statusCode = 500;
@@ -157,3 +164,32 @@ exports.delete = async (req, res, next) => {
         });
 };
 
+
+exports.getstudents = async (req, res, next) => {
+    let gid = req.params.id;
+
+    await User.find({ groupid: gid }).then((users) => {
+
+        res.send(users)
+    }).catch((err) => {
+        res
+            .status(500)
+            .send({ status: "Error", error: err.message });
+    })
+};
+
+
+exports.notassigendstudents = async (req, res, next) => {
+
+
+    await User.find({ groupid: null }).then((users) => {
+
+        res.send(users)
+
+    }).catch((err) => {
+
+        res
+            .status(500)
+            .send({ status: "Error", error: err.message });
+    })
+};
