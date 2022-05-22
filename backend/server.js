@@ -6,7 +6,8 @@ const app = express();
 require("dotenv").config();
 const PORT = process.env.PORT || 8070;
 const URL = process.env.MONGODB_URL;
-const studentGroup = require("./Routes/StudentGroup");
+
+const studentGroup = require('./Routes/StudentGroup');
 const ResearchArea = require("./Routes/ResearchArea");
 const Supervisor = require("./Routes/Supervisor");
 const Student = require("./Routes/Student");
@@ -15,9 +16,14 @@ const bodyparser = require("body-parser");
 const student = require("./Routes/Student");
 const Conversation = require("./Routes/Conversations");
 const Message = require("./Routes/Messages");
-const GroupConversation = require("./Routes/GroupConversation");
+
+
 const MarkingScheme = require("./Routes/MarkingScheme");
 const MarkingMarkingScheme = require("./Routes/MarkingMarkingScheme");
+const GroupConversation = require('./Routes/GroupConversation');
+const userRouter = require('./Routes/users.js');
+const RequestRouter = require('./Routes/Request')
+
 
 app.use(cors());
 app.use(bodyparser.json());
@@ -47,8 +53,15 @@ app.use("/api", student);
 app.use("/api/conversation", Conversation);
 app.use("/api/groupconversation", GroupConversation);
 app.use("/api/message", Message);
+
 app.use("/api/markingscheme", MarkingScheme);
 app.use("/api/evoluate", MarkingMarkingScheme);
+
+app.use('/user', userRouter); //user login & Registration
+app.use("/api/request", RequestRouter);
+
+
+
 
 ////create server with port numebr
 app.listen(PORT, () => {

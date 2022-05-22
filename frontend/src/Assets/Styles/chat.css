@@ -36,6 +36,7 @@
     padding: 10px;
     cursor: pointer;
     margin-top: 20px;
+    position: relative;
 }
 
 .conversation:hover {
@@ -163,4 +164,9 @@
     font-size: 50px;
     color: rgb(173, 171, 171);
 
+}
+
+.sb {
+    position: absolute;
+    right: 0px;
 }

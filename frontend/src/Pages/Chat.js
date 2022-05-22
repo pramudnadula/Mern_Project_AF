@@ -11,22 +11,38 @@ import Divider from '@mui/material/Divider';
 import IconButton from '@mui/material/IconButton';
 import MenuIcon from '@mui/icons-material/Menu';
 import SearchIcon from '@mui/icons-material/Search';
+import Conversation from '../Components/GroupManagement/Conversation';
 
 function Chat(props) {
     const [conversations, setConversations] = useState([])
+    const [gconversation, setgconversation] = useState()
     const [currentchat, setcurrentchat] = useState(null)
     const [messages, setmessages] = useState([])
     const [newmessage, setnewmessage] = useState('')
     const [arrivalmsg, setarrivalmsg] = useState('')
     const [onlineusers, setonlineusers] = useState([])
+    const [members, setmembers] = useState([])
     const [input, setinput] = useState("")
     const socket = useRef()
 
     const scrollRef = useRef()
-    // const user = JSON.parse(localStorage.getItem("user"))
+    const userid = localStorage.getItem("user")
+    const gid = localStorage.getItem("gid")
     const user = {
-        _id: "626c3d7400515963c30d7f2b"
+        _id: userid
     }
+    useEffect(() => {
+        axios.get(`http://localhost:8070/user/getstudnets/${gid}`).then((data) => {
+            var users = data.data;
+            users = users.filter(f => f._id != userid)
+            setmembers(users)
+
+
+
+        }).catch((err) => {
+            console.log(err)
+        })
+    }, [])
 
 
     useEffect(() => {
@@ -110,6 +126,18 @@ function Chat(props) {
             } catch (error) {
                 console.log(error)
             }
+
+
+            try {
+                const res = await axios.get("http://localhost:8070/api/conversation/" + gid)
+                setgconversation(res.data)
+
+
+
+            } catch (error) {
+                console.log(error)
+            }
+
 
         }
         getcon()
@@ -196,7 +224,8 @@ function Chat(props) {
 
             <div className='chatOnline'>
                 <div className='cowrapper'>
-                    {/* <Chatonline onlineusers={onlineusers} cuserid={user._id} setcurrentchat={setcurrentchat} /> */}
+
+
                 </div>
             </div>
 

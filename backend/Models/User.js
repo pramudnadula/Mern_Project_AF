@@ -1,10 +1,8 @@
-
 const mongoose = require('mongoose');
 var ObjectId = require('bson').ObjectId;
-
 const Schema = mongoose.Schema;
 
-const supervisorSchema = new Schema({
+const userSchema = new Schema({
 
     fname: {
         type: String,
@@ -20,14 +18,12 @@ const supervisorSchema = new Schema({
         required: true
     },
 
+    type: {
+        type: String,
+        required: true
 
-    area: [{ type: ObjectId, ref: 'researcharea' }],
-    groups: {
-        type: Number
     },
-    isSupervisor: {
-        type: Boolean
-    },
+
 
     username: {
         type: String,
@@ -35,15 +31,20 @@ const supervisorSchema = new Schema({
 
     },
 
+
     password: {
         type: String,
         required: true
 
+    },
+    groupid: {
+        type: ObjectId,
+        ref: "studentGroup"
     }
 
 
 })
 
-const Supervisor = mongoose.model("Supervisor", supervisorSchema);
+const User = mongoose.model("User", userSchema);
 
-module.exports = Supervisor;
+module.exports = User;
