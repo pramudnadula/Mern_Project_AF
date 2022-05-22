@@ -1,5 +1,6 @@
-import '../src/Assets/Styles/App.css';
+import "../src/Assets/Styles/App.css";
 import "antd/dist/antd.css";
+
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { BrowserRouter, Route } from 'react-router-dom';
 import Home from './Pages/Home';
@@ -18,7 +19,10 @@ import AdminLogin from './Components/Admin/AdminLogin';
 import AdminDashboard from './Components/Admin/AdminDashboard';
 import StaffRegister from './Components/User/StaffRegister';
 import StaffProfile from './Components/User/StaffProfile';
-
+import AddMarkingScheme from "./Components/MarkingScheme/AddMarkingScheme";
+import ViewAllMarkingSchemes from "./Components/MarkingScheme/VeiwAllMarkingSchemes";
+import ViewMarkingScheme from "./Components/MarkingScheme/ViewMarkingScheme";
+import Evaluate from "./Components/MarkingScheme/Evaluate";
 
 function App() {
   const user = (localStorage.getItem("user"))
@@ -49,12 +53,13 @@ function App() {
         <Route path='/creq' exact component={() => (<RequestSupervisor isSupervisor={false} stype="Co-Supervisors" />)} />
         <Route path='/msg' exact component={Chat} />
         <Route path='/c' exact component={CreateGroup} />
-
-
+        <Route path="/markingscheme/add" exact component={AddMarkingScheme} />
+        <Route path="/markingscheme/" exact component={ViewAllMarkingSchemes} />
+        <Route path="/markingscheme/view/:id" exact component={ViewMarkingScheme}/>
+        <Route path="/evaluate/" exact component={Evaluate} />
       </Layout1>
+
     </BrowserRouter>
-
-
   );
 }
 
