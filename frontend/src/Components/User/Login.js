@@ -14,31 +14,44 @@ function Login() {
     const [password, setpassword] = useState("")
     const [test, setTest] = useState(false)
     const [userId, setUserId] = useState('')
-
+    const [type, settype] = useState('')
 
     function sendData(e) {
         e.preventDefault();
+        let url
+        if (type === "stu") {
+            url = 'http://localhost:8070/user/login'
+
+        }
+        else {
+            url = 'http://localhost:8070/api/supervisors/login'
+        }
         const newUser = {
             //userName:userName,
             email: email,
             password
+            // type
         };
 
         axios
-            .post('http://localhost:8070/user/login', newUser)
+            .post(url, newUser)
             .then((res) => {
                 if (res.status !== 200) {
                     console.log(res)
 
                 }
-                localStorage.setItem("user", (res.data.userId))
-                localStorage.setItem("token", res.data.token)
+                if (type === "stu") {
+                    localStorage.setItem("user", (res.data.userId))
+                    localStorage.setItem("token", res.data.token)
+                }
+                else {
+                    localStorage.setItem("staff", (res.data.UId))
 
-                console.log(res.data.token)
+                }
                 setUserId(res.data.userId)
                 setTest(!test)
 
-                window.location.href = '/userprofile';
+                window.location.href = '/home';
                 // , { replace: true }
             })
             .catch((err) => {
@@ -74,6 +87,20 @@ function Login() {
                                 </div>
                                 {/* <form action="#" method="post"> */}
                                 <form onSubmit={sendData}>
+
+                                    {/* login different users */}
+                                    <div className="control has-text-white has-text-centered mb-4">
+                                        <label className="radio" >
+                                            <input type="radio" required value="stu" name="rad" onChange={(e) => { settype(e.target.value) }} />
+                                            Student
+                                        </label>
+                                        <label className="radio">
+                                            <input type="radio" required value="stf" name="rad" onChange={(e) => { settype(e.target.value) }} />
+                                            Staff
+                                        </label>
+                                    </div>
+
+
 
                                     {/* <div class="form-group first">
                                         <label for="username">Username</label>

@@ -1,3 +1,4 @@
+const Supervisor = require('../Models/Supervisor');
 const User = require('../Models/Supervisor')
 var ObjectId = require('bson').ObjectId;
 //method that used to filter supervisors according to user selection
@@ -66,6 +67,7 @@ exports.listbysearch = (req, res) => {
 
 //method that use to add new supervisor
 exports.addSupervisor = (req, res) => {
+    console.log(req.body)
     const supervisor = new User(req.body)
     supervisor.save((err, data) => {
         if (err) {
@@ -78,3 +80,51 @@ exports.addSupervisor = (req, res) => {
         }
     })
 }
+
+
+
+//get one user 
+exports.getSupervisor = async (req, res, next) => {
+    const userId = req.params.userId;
+
+    try {
+        const user = await User.findById(userId);
+        if (!user) {
+            const error = new Error("Could not find supervisor");
+            error.statusCode = 404;
+            throw error;
+        }
+        res.status(200).json({ message: "user fetched.", user: user });
+    } catch (err) {
+        if (!err.statusCode) {
+            err.statusCode = 500;
+        }
+        next(err);
+    }
+};
+
+//login
+exports.loginSupervisor = async (req, res, next) => {
+    const { email, password } = req.body
+    console.log(email)
+    console.log(password)
+
+
+
+    try {
+        const user = await Supervisor.find({ email, password });
+        console.log(user)
+        if (!user) {
+            const error = new Error("Could not find supervisor");
+            error.statusCode = 404;
+            throw error;
+        }
+        res.status(200).json({ message: "user fetched.", UId: user[0]._id.toString() });
+    } catch (err) {
+        if (!err.statusCode) {
+            err.statusCode = 500;
+        }
+        next(err);
+    }
+};
+

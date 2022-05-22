@@ -13,6 +13,11 @@ import Login from './Components/User/Login';
 import Register from './Components/User/Register';
 import UserProfile from './Components/User/UserProfile';
 import Update from './Components/User/Update';
+import AdminLogin from './Components/Admin/AdminLogin';
+import AdminDashboard from './Components/Admin/AdminDashboard';
+import StaffRegister from './Components/User/StaffRegister';
+import StaffProfile from './Components/User/StaffProfile';
+
 
 function App() {
   const user = (localStorage.getItem("user"))
@@ -25,11 +30,16 @@ function App() {
 
     <BrowserRouter>
       <Route path='/' exact component={Home} />
-    
+
       <Route path="/login" exact component={Login} />
       <Route path="/register" exact component={Register} />
       <Route path="/userprofile" exact component={UserProfile} />
       <Route path="/update/:id" exact component={Update} />
+
+      <Route path="/adminlogin" exact component={AdminLogin} />
+      <Route path="/admindashboard" exact component={AdminDashboard} />
+      <Route path="/staffregister" exact component={StaffRegister} />
+      <Route path="/staffprofile" exact component={StaffProfile} />
 
       <Layout1>
         <Route path='/home' exact component={Home2} />
@@ -37,7 +47,7 @@ function App() {
         <Route path='/req' exact component={() => (<RequestSupervisor isSupervisor={true} stype="Supervisors" />)} />
         <Route path='/creq' exact component={() => (<RequestSupervisor isSupervisor={false} stype="Co-Supervisors" />)} />
         <Route path='/msg' exact component={Chat} />
-      </Layout1>      
+      </Layout1>
     </BrowserRouter>
 
 
