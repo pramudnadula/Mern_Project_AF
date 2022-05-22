@@ -128,7 +128,15 @@ function NavBar_DashBoard(props) {
                         <button class="btn btn-warning btn-circle btn-circle-sm m-1 cbtn" onClick={(e) => { setmodalvisible(true) }}><i class="fa fa-bell"></i></button>
                     </>}
 
-
+                    <div className="">	
+							<hr className="navbar-divider" />
+							<a className="navbar-item" onClick={(e) => {
+								localStorage.clear();
+								window.location.href="/"
+							}}>
+								<b> Sign Out </b>
+							</a>
+						</div>
                 </Container>
             </Navbar>
         </>
