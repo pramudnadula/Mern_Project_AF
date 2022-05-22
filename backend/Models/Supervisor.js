@@ -20,11 +20,6 @@ const supervisorSchema = new Schema({
         required: true
     },
 
-    type: {
-        type: String,
-        required: true
-
-    },
 
     area: [{ type: ObjectId, ref: 'researcharea' }],
     groups: {

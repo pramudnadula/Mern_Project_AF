@@ -14,6 +14,11 @@ import Register from './Components/User/Register';
 import UserProfile from './Components/User/UserProfile';
 import Update from './Components/User/Update';
 import CreateGroup from './Components/GroupManagement/CreateGroup';
+import AdminLogin from './Components/Admin/AdminLogin';
+import AdminDashboard from './Components/Admin/AdminDashboard';
+import StaffRegister from './Components/User/StaffRegister';
+import StaffProfile from './Components/User/StaffProfile';
+
 
 function App() {
   const user = (localStorage.getItem("user"))
@@ -32,6 +37,11 @@ function App() {
       <Route path="/userprofile" exact component={UserProfile} />
       <Route path="/update/:id" exact component={Update} />
 
+      <Route path="/adminlogin" exact component={AdminLogin} />
+      <Route path="/admindashboard" exact component={AdminDashboard} />
+      <Route path="/staffregister" exact component={StaffRegister} />
+      <Route path="/staffprofile" exact component={StaffProfile} />
+
       <Layout1>
         <Route path='/home' exact component={Home2} />
         <Route path='/group' exact component={StudentGroup} />
@@ -39,6 +49,8 @@ function App() {
         <Route path='/creq' exact component={() => (<RequestSupervisor isSupervisor={false} stype="Co-Supervisors" />)} />
         <Route path='/msg' exact component={Chat} />
         <Route path='/c' exact component={CreateGroup} />
+
+
       </Layout1>
     </BrowserRouter>
 
