@@ -8,7 +8,8 @@ const studentModel = new mongoose.Schema({
         type: ObjectId,
         ref: "studentGroup",
         default: null
-    }
+    },
+
 
 
 }, { timestamps: true })

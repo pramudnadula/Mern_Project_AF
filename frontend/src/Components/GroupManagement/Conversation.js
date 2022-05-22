@@ -1,32 +1,48 @@
 import axios from 'axios';
+import { message } from 'antd';
 import React, { useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
 import defpic from '../../Assets/Images/user1.png';
 import { SendOutlined } from '@ant-design/icons';
 import { checkstudent } from '../../Actions/StudentActions';
-function Conversations({ conversation, curentuserid, send }) {
-    const [student, setStudent] = useState(null)
-    const dispatch = useDispatch()
+function Conversation({ user, send, gid }) {
+    // const [student, setStudent] = useState(null)
+    // const dispatch = useDispatch()
 
-    const hanldechek = () => {
-        if (send) {
-            dispatch(checkstudent("626cec367390cfb0c996cf1c", "626c3d7400515963c30d7f2b"))
+    // const hanldechek = () => {
+    //     if (send) {
+    //         dispatch(checkstudent("626cec367390cfb0c996cf1c", "626c3d7400515963c30d7f2b"))
 
+    //     }
+    // }
+
+    const sendrequest = (id) => {
+        const ob = {
+            group: gid,
+            reciever: id
         }
+        axios.post('http://localhost:8070/api/request/', ob).then((data) => {
+            message.success("Request Send")
+        }).catch((err) => {
+            console.log(err)
+        })
     }
 
 
 
 
     return (
-        <div className='conversation' onClick={hanldechek}>
+        <div className='conversation'>
             <img className='conversation_img' src={defpic} />
             <span className='conversation_name'>
-                Kavindu chamith
+                {user?.fname}
             </span>
-            {send ? (<SendOutlined className='sendicon mr-4' />) : ''}
+            <div className='sb'>
+                {send ? (<button onClick={(e) => { sendrequest(user._id) }} class="btn btn-info btn-circle btn-circle-sm m-1"><i class="fa fa-paper-plane"></i></button>) : ''}
+            </div>
+
         </div>
     );
 }
 
-export default Conversations;
+export default Conversation;

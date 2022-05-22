@@ -33,6 +33,11 @@ function Login() {
                 }
                 localStorage.setItem("user", (res.data.userId))
                 localStorage.setItem("token", res.data.token)
+                var d = res.data.gid;
+                if (d === "") {
+                    alert("naaa")
+                }
+                localStorage.setItem("gid", res.data.gid)
 
                 console.log(res.data.token)
                 setUserId(res.data.userId)

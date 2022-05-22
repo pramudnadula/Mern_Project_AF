@@ -9,18 +9,25 @@ import Divider from '@mui/material/Divider';
 import IconButton from '@mui/material/IconButton';
 import MenuIcon from '@mui/icons-material/Menu';
 import SearchIcon from '@mui/icons-material/Search';
+import { message } from 'antd';
 
 import { Card } from 'antd';
 import { getstudents } from '../../Actions/StudentActions';
 import SearchList from './SearchList';
-function Wall(props) {
+import axios from 'axios';
+function Wall({ group, uid }) {
     const [add, setadd] = useState(false)
     const [input, setinput] = useState("")
+    const [memebers, setmemebers] = useState([])
     const [allstudents, setallstudents] = useState([])
     const [topic, settopic] = useState(false)
     const { students } = useSelector(state => state.stu);
     const dispatch = useDispatch()
     const chnagebox = (e) => {
+        if ((memebers.length === 3) && (!add)) {
+            message.error("Already have 4 members")
+            return;
+        }
         setadd(!add);
         settopic(!topic)
 
@@ -28,8 +35,23 @@ function Wall(props) {
 
     useEffect(() => {
         dispatch(getstudents())
+    }, [students])
+    var memcount = 0;
+    useEffect(() => {
+        dispatch(getstudents())
+        axios.get(`http://localhost:8070/user/getstudnets/${group._id}`).then((data) => {
+            var users = data.data;
+            memcount = users.length
+            users = users.filter(f => f._id != uid)
+            setmemebers(users)
 
-    }, [])
+
+
+        }).catch((err) => {
+            console.log(err)
+        })
+
+    }, [memebers])
 
 
 
@@ -69,10 +91,10 @@ function Wall(props) {
                 <div className="col-md-8 col-lg-8">
                     <div className="d-flex flex-column">
                         <div className="d-flex flex-row justify-content-between align-items-center p-5 toparea text-white">
-                            <h3 className="display-5 topic">SLIIT_WE_SE3030</h3>
+                            <h3 className="display-5 topic">{group.groupName}</h3>
                         </div>
                         <div className="p-4 resarea text-white">
-                            <h6 className='res_topic'>TOPIC</h6>
+                            <h6 className='res_topic'>{group.topic}</h6>
                         </div>
 
                     </div>
@@ -85,13 +107,20 @@ function Wall(props) {
                             <h3 className='text-center mt-2'>Supervisors</h3>
                             <div className='row justify-content-center pb-4'>
                                 <div className='col-xl-5 col-lg-5 col-md-5 col-sm-8 col-10'>
+
                                     <Card title="Supervisor" className='sup_crad mb-3' bordered={false}>
-                                        <Conversation />
+
+                                        {group.supervisor ? <><Conversation /></> : <>
+                                            <h6>No supervisor Allocated yet</h6>
+                                        </>}
+
                                     </Card>
                                 </div>
                                 <div className='col-xl-5 col-lg-5 col-md-5 col-sm-8 col-10'>
                                     <Card title="Co-Supervisor" className='sup_crad' bordered={false}>
-                                        <Conversation />
+                                        {group.cosupervisor ? <><Conversation /></> : <>
+                                            <h6>No Co-supervisor Allocated yet</h6>
+                                        </>}
                                     </Card>
                                 </div>
                             </div>
@@ -112,14 +141,16 @@ function Wall(props) {
 
                         </div> */}
                         <div className='resbox mt-3'>
-                            <SearchList datas={students} inp={input} />
+                            <SearchList datas={students} inp={input} gid={group._id} />
                         </div>
                     </>
 
 
-                    ) : (<><Conversation />
-                        <Conversation />
-                        <Conversation /></>)}
+                    ) : (<>
+                        {memebers.map((m, i) => (
+                            <Conversation user={m} send={false} />
+                        ))}
+                    </>)}
                 </div>
             </div>
         </div >

@@ -11,6 +11,8 @@ router.put("/update/:userId", authController.update);
 router.get("/getuser/:userId", authController.getUser);
 
 router.delete("/delete/:userId", authController.delete);
+router.get("/getstudnets/:id", authController.getstudents);
+router.get("/getnotassigend", authController.notassigendstudents);
 
 
 

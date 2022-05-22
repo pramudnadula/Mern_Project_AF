@@ -1,5 +1,5 @@
 const mongoose = require('mongoose');
-
+var ObjectId = require('bson').ObjectId;
 const Schema = mongoose.Schema;
 
 const userSchema = new Schema({
@@ -36,6 +36,10 @@ const userSchema = new Schema({
         type: String,
         required: true
 
+    },
+    groupid: {
+        type: ObjectId,
+        ref: "studentGroup"
     }
 
 

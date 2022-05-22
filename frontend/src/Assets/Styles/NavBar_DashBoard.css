@@ -15,3 +15,7 @@
 .block {
     display: none;
 }
+
+.cbtn {
+    border-radius: 50% !important;
+}
