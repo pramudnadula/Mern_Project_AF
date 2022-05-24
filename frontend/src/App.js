@@ -24,6 +24,7 @@ import ViewAllMarkingSchemes from "./Components/MarkingScheme/VeiwAllMarkingSche
 import ViewMarkingScheme from "./Components/MarkingScheme/ViewMarkingScheme";
 import Evaluate from "./Components/MarkingScheme/Evaluate";
 import EvaluateResult from "./Components/MarkingScheme/EvaluateResult";
+import UploadDocument from "./Components/SubmitionManagement/UploadDocument";
 
 function App() {
   const user = (localStorage.getItem("user"))
@@ -59,6 +60,8 @@ function App() {
         <Route path="/markingscheme/view/:id" exact component={ViewMarkingScheme} />
         <Route path="/evaluate/" exact component={Evaluate} />
         <Route path="/evaluate/result/:id" exact component={EvaluateResult} />
+        <Route path="/UploadDocument" exact component={UploadDocument}/>
+
       </Layout1>
 
     </BrowserRouter>
