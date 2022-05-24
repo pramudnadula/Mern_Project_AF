@@ -41,8 +41,8 @@ function Login() {
 
                 }
 
-               
-                
+
+
 
                 if (type === "stu") {
                     localStorage.setItem("user", (res.data.userId))
@@ -77,17 +77,17 @@ function Login() {
     return (<div>
 
 
-        <div class="content">
-            <div class="container rounded bg-white mt-5 mb-5">
-                <div class="row">
-                    <div class="col-md-6">
+        <div className="content">
+            <div className="container rounded bg-white">
+                <div className="row">
+                    <div className="col-md-6">
                         <br></br>
-                        <img src={Loginpic} alt="Image" class="img-fluid" />
+                        <img src={Loginpic} alt="Image" className="img-fluid" />
                     </div>
-                    <div class="col-md-6 contents">
-                        <div class="row justify-content-center">
-                            <div class="col-md-8">
-                                <div class="mb-4">
+                    <div className="col-md-6 contents">
+                        <div className="row justify-content-center">
+                            <div className="col-md-8 mt-6 pt-6">
+                                <div className="mb-4">
                                     <h3>Sign In</h3>
 
                                 </div>
@@ -95,7 +95,7 @@ function Login() {
                                 <form onSubmit={sendData}>
 
                                     {/* login different users */}
-                                    <div className="control has-text-white has-text-centered mb-4">
+                                    <div className="control has-text-centered mb-4">
                                         <label className="radio" >
                                             <input type="radio" required value="stu" name="rad" onChange={(e) => { settype(e.target.value) }} />
                                             Student
@@ -108,52 +108,52 @@ function Login() {
 
 
 
-                                    {/* <div class="form-group first">
+                                    {/* <div className="form-group first">
                                         <label for="username">Username</label>
-                                        <input type="text" class="form-control" id="username" />
+                                        <input type="text" className="form-control" id="username" />
                                     </div> */}
 
-                                    <div class="form-group first">
-                                        <label for="username">Username</label>
-                                        <input type="email" class="form-control" id="email" onChange={(e) => { setemail(e.target.value) }} required />
+                                    <div className="form-group first">
+                                       <label htmlFor="username">Username</label>
+                                        <input type="email" className="form-control" id="email" onChange={(e) => { setemail(e.target.value) }} required />
                                     </div>
 
 
 
-                                    <div class="form-group last mb-4">
-                                        <label for="password">Password</label>
-                                        <input type="password" class="form-control" id="password" onChange={(e) => { setpassword(e.target.value) }} required />
+                                    <div className="form-group last mb-4">
+                                        <label htmlFor="password">Password</label>
+                                        <input type="password" className="form-control" id="password" onChange={(e) => { setpassword(e.target.value) }} required />
                                     </div>
 
-                                    <input type="submit" value="Log In" class="btn btn-block btn-primary" />
+                                    <input type="submit" value="Log In" className="btn btn-block btn-primary" />
 
-                                    {/* <div class="d-flex mb-5 align-items-center">
-                                        <label class="control control--checkbox mb-0"><span class="caption">Remember me</span>
+                                    {/* <div className="d-flex mb-5 align-items-center">
+                                        <label className="control control--checkbox mb-0"><span className="caption">Remember me</span>
                                             <input type="checkbox" checked="checked" />
-                                            <div class="control__indicator"></div>
+                                            <div className="control__indicator"></div>
                                         </label>
-                                        <span class="ml-auto"><a href="#" class="forgot-pass">Forgot Password</a></span>
+                                        <span className="ml-auto"><a href="#" className="forgot-pass">Forgot Password</a></span>
                                     </div>
 
-                                    <input type="submit" value="Log In" class="btn btn-block btn-primary" />
+                                    <input type="submit" value="Log In" className="btn btn-block btn-primary" />
 
-                                    <span class="d-block text-left my-4 text-muted">&mdash; or login with &mdash;</span>
+                                    <span className="d-block text-left my-4 text-muted">&mdash; or login with &mdash;</span>
 
-                                    <div class="social-login">
-                                        <a href="#" class="facebook">
-                                            <span class="icon-facebook mr-3"></span>
+                                    <div className="social-login">
+                                        <a href="#" className="facebook">
+                                            <span className="icon-facebook mr-3"></span>
                                         </a>
-                                        <a href="#" class="twitter">
-                                            <span class="icon-twitter mr-3"></span>
+                                        <a href="#" className="twitter">
+                                            <span className="icon-twitter mr-3"></span>
                                         </a>
-                                        <a href="#" class="google">
-                                            <span class="icon-google mr-3"></span>
+                                        <a href="#" className="google">
+                                            <span className="icon-google mr-3"></span>
                                         </a>
                                     </div>
 
-                                    <div class="row">
-                                        <span class="d-block text-left my-4 text-muted"> Don't Have an Account?  </span >
-                                        <span class="ml-auto"><a href="#" class="create-one">Create One</a></span>
+                                    <div className="row">
+                                        <span className="d-block text-left my-4 text-muted"> Don't Have an Account?  </span >
+                                        <span className="ml-auto"><a href="#" className="create-one">Create One</a></span>
                                     </div> */}
 
                                 </form>

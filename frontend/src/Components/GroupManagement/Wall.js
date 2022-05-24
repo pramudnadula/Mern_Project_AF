@@ -147,7 +147,7 @@ function Wall({ group, uid }) {
                     </div>
                 </div>
                 <div className='col-xl-4 col-lg-4 col-md-6 col-sm-8 col-10 mt-3 p-3  memberbox'>
-                    <span className='ic'>{add ? (<i class="fa fa-times-circle closebox" onClick={(e) => { chnagebox() }} aria-hidden="true"></i>) : (<i class="fa fa-plus-circle addmember" onClick={(e) => { chnagebox() }} aria-hidden="true"></i>)}</span><h3 className='text-center'>{topic ? "Add Members" : "Team Members"}</h3>
+                    <span className='ic'>{add ? (<i className="fa fa-times-circle closebox" onClick={(e) => { chnagebox() }} aria-hidden="true"></i>) : (<i className="fa fa-plus-circle addmember" onClick={(e) => { chnagebox() }} aria-hidden="true"></i>)}</span><h3 className='text-center'>{topic ? "Add Members" : "Team Members"}</h3>
                     {add ? (<>
                         {searchbar()}
                         {/* <div className='resbox mt-3'>

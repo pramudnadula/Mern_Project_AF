@@ -38,7 +38,7 @@ function Conversation({ user, send, gid }) {
                 {user?.fname}
             </span>
             <div className='sb'>
-                {send ? (<button onClick={(e) => { sendrequest(user._id) }} class="btn btn-info btn-circle btn-circle-sm m-1"><i class="fa fa-paper-plane"></i></button>) : ''}
+                {send ? (<button onClick={(e) => { sendrequest(user._id) }} className="btn btn-info btn-circle btn-circle-sm m-1"><i className="fa fa-paper-plane"></i></button>) : ''}
             </div>
 
         </div>
