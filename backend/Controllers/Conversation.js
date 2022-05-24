@@ -17,6 +17,34 @@ exports.getConversation = async (req, res) => {
     try {
         const conversations = await Conversation.find({
             members: { $in: [req.params.userId] },
+
+        })
+        res.status(200).json(conversations)
+    } catch (error) {
+        res.status(500).json(err)
+    }
+}
+
+// exports.gettypecon = async (req, res) => {
+//     try {
+//         const conversations = await Conversation.find({
+//             members: { $in: [req.params.userId] },
+//             type: "staff"
+//         })
+//         res.status(200).json(conversations)
+//     } catch (error) {
+//         res.status(500).json(err)
+//     }
+// }
+
+
+exports.getConversationgroup = async (req, res) => {
+    const { gid, uid } = req.body
+    try {
+        const conversations = await Conversation.find({
+            members: { $in: [uid] },
+            gid: gid
+
         })
         res.status(200).json(conversations)
     } catch (error) {

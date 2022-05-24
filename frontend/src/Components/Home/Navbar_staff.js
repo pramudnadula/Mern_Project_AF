@@ -1,16 +1,18 @@
 import React, { useEffect, useState } from 'react';
 import { Navbar, Container, Nav, NavDropdown, Form, Button, FormControl } from 'react-bootstrap'
 import '../../Assets/Styles/NavBar_DashBoard.css'
-import '../../Assets/Styles/Layout1.css'
+
 import { Link, useLocation } from 'react-router-dom'
 import { Badge, Avatar, Modal, message } from 'antd';
 import dpic from '../../Assets/Images/ff.webp'
 import axios from 'axios';
-function NavBar_DashBoard(props) {
-    const userid = localStorage.getItem("user");
+
+function Navbar_staff(props) {
+    const userid = localStorage.getItem("staff");
     const [modalvisible, setmodalvisible] = useState(false)
     const [request, setrequest] = useState([])
     const location = useLocation();
+
 
     useEffect(() => {
         if (userid) {
@@ -20,6 +22,7 @@ function NavBar_DashBoard(props) {
                 console.log(err)
             })
         }
+
 
     }, [request])
 
@@ -35,7 +38,7 @@ function NavBar_DashBoard(props) {
             rid,
             sta: res
         }
-        axios.post('http://localhost:8070/api/request/response', ob).then((data) => {
+        axios.post('http://localhost:8070/api/request/responsesupervisor', ob).then((data) => {
             if (res) {
                 localStorage.setItem("gid", gid)
                 message.success("suceessfully Joined")
@@ -46,9 +49,10 @@ function NavBar_DashBoard(props) {
         })
 
     }
+
     return (
         <>
-            <Navbar className={(location.pathname === '/') || (location.pathname === '/login') || (location.pathname === '/register') || (location.pathname === '/staffregister') ? "block" : "headerNavBar"} >
+            <Navbar className={(location.pathname === '/') || (location.pathname === '/login') || (location.pathname === '/register') || (location.pathname === '/staffregister') ? "block" : "hb"}>
 
                 <Modal
                     title=""
@@ -131,40 +135,26 @@ function NavBar_DashBoard(props) {
                     {/* <button className='btn btn-light login_home pt-2 pb-2 p-4' >Login</button> */}
                     {(request.length > 0) ? <>
                         <Badge count={request.length}>
-                            <button className="btn btn-warning btn-circle btn-circle-sm m-1 cbtn" onClick={(e) => { setmodalvisible(true) }}><i className="fa fa-bell"></i></button>
+                            <button class="btn btn-warning btn-circle btn-circle-sm m-1 cbtn" onClick={(e) => { setmodalvisible(true) }}><i class="fa fa-bell"></i></button>
                         </Badge>
                     </> : <>
-                        <button className="btn btn-warning btn-circle btn-circle-sm m-1 cbtn" onClick={(e) => { setmodalvisible(true) }}><i className="fa fa-bell"></i></button>
+                        <button class="btn btn-warning btn-circle btn-circle-sm m-1 cbtn" onClick={(e) => { setmodalvisible(true) }}><i class="fa fa-bell"></i></button>
                     </>}
 
-                    {/* profile  start*/}
-
-                    <div className="navbar-dropdown">
-
-                        {(localStorage.getItem) && (<>
-                            <Link to="/staffprofile" className="navbar-item"> <i className="fa fa-user mr-2"></i>My Account </Link>
-                        </>
-                        )}
-                        {(localStorage.getItem('token')) && (<>
-                            <Link to="/userprofile" className="navbar-item"> <i className="fa fa-user mr-2"></i>My Account </Link>
-                        </>
-                        )}
-                        {/* profile  end*/}
-
-                     <div className="">	
-							         <a className="navbar-item" onClick={(e) => {
-								           localStorage.clear();
-								           window.location.href="/"
-							            }}>
-								          <b> Sign Out </b>
-							        </a>
-						        </div>    
+                    <div className="">
+                        <hr className="navbar-divider" />
+                        <a className="navbar-item" onClick={(e) => {
+                            localStorage.clear();
+                            window.location.href = "/"
+                        }}>
+                            <b> Sign Out </b>
+                        </a>
                     </div>
-
                 </Container>
             </Navbar>
+
         </>
     );
 }
 
-export default NavBar_DashBoard;
+export default Navbar_staff;

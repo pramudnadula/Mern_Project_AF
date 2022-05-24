@@ -47,6 +47,7 @@ function StaffRegister() {
             lname,
             email,
             isSupervisor: false,
+            groups: 0,
             area,
             username,
             password

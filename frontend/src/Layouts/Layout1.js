@@ -4,6 +4,7 @@ import { DesktopOutlined, PieChartOutlined, WechatOutlined, TeamOutlined, UserOu
 import '../Assets/Styles/Layout1.css'
 import NavBar_DashBoard from '../Components/Home/NavBar_DashBoard';
 import { Link, useLocation } from 'react-router-dom'
+import Navbar_staff from '../Components/Home/Navbar_staff';
 
 const { Header, Content, Footer, Sider } = Layout;
 const { SubMenu } = Menu;
@@ -23,9 +24,9 @@ function Layout1(props) {
 
 
     const slider = () => (
-        <Sider collapsible collapsed={collapsed} onCollapse={onCollapse}>
+        <Sider collapsible collapsed={collapsed} onCollapse={onCollapse} style={{ backgroundColor: "#0157a8" }}>
             <div className="logo" />
-            <Menu theme="light" defaultSelectedKeys={page} mode="inline">
+            <Menu theme="light" defaultSelectedKeys={page} mode="inline" style={{ backgroundColor: "#0157a8" }}>
                 <Menu.Item key="1" icon={<PieChartOutlined />}>
                     Option 1
                 </Menu.Item>
@@ -55,6 +56,38 @@ function Layout1(props) {
         </Sider>
     )
 
+
+
+    const slider2 = () => (
+        <Sider collapsible collapsed={collapsed} onCollapse={onCollapse} style={{ backgroundColor: "rgb(231, 55, 55)" }}>
+            <div className="logo" />
+            <Menu theme="light" defaultSelectedKeys={page} mode="inline" style={{ backgroundColor: "rgb(231, 55, 55)" }}>
+                <Menu.Item key="1" icon={<PieChartOutlined />}>
+                    Option 1
+                </Menu.Item>
+                <Menu.Item key="2" icon={<DesktopOutlined />}>
+                    Option 2
+                </Menu.Item>
+                <SubMenu key="sub1" icon={<UserOutlined />} title="User">
+                    <Menu.Item key="3">Tom</Menu.Item>
+                    <Menu.Item key="4">Bill</Menu.Item>
+                    <Menu.Item key="5">Alex</Menu.Item>
+                </SubMenu>
+                <SubMenu key="sub2" icon={<UserOutlined />} title="Supervisors">
+                    <Menu.Item key="6"><Link to='/req' className='links'>Supervisor</Link></Menu.Item>
+                    <Menu.Item key="8"><Link to='/creq' className='links'>Co-supervisor</Link></Menu.Item>
+                </SubMenu>
+                <Menu.Item key="9" icon={<TeamOutlined />}>
+                    <Link to='/allocatedgroups' className='links'> Group</Link>
+                </Menu.Item>
+                <Menu.Item key="10" icon={<WechatOutlined />}>
+                    <Link to='/msg' className='links'> Chat</Link>
+                </Menu.Item>
+
+            </Menu>
+        </Sider>
+    )
+
     const breadcrumb = () => (
         <Breadcrumb style={{ margin: '16px 0' }}>
             <Breadcrumb.Item>User</Breadcrumb.Item>
@@ -68,21 +101,40 @@ function Layout1(props) {
 
     return (
         <>
-            <NavBar_DashBoard />
-            <Layout style={{ minHeight: '93vh' }} className={(location.pathname === '/') || (location.pathname === '/login') || (location.pathname === '/register') ? "block" : ""}>
+            {localStorage.getItem("user") ? <>
+                <NavBar_DashBoard />
+                <Layout style={{ minHeight: '93vh', backgroundColor: "green" }} className={(location.pathname === '/') || (location.pathname === '/login') || (location.pathname === '/register') || (location.pathname === '/staffregister') ? "block" : ""}>
 
-                {slider()}
-                <Layout className="site-layout">
-
-
-                    {/* {breadcrumb()} */}
-
-                    {props.children}
+                    {slider()}
+                    <Layout className="site-layout" >
 
 
+                        {/* {breadcrumb()} */}
 
+                        {props.children}
+
+
+
+                    </Layout>
                 </Layout>
-            </Layout>
+            </> : <>
+                <Navbar_staff />
+                <Layout style={{ minHeight: '93vh' }} className={(location.pathname === '/') || (location.pathname === '/login') || (location.pathname === '/register') || (location.pathname === '/staffregister') ? "block" : ""}>
+
+                    {slider2()}
+                    <Layout className="site-layout">
+
+
+                        {/* {breadcrumb()} */}
+
+                        {props.children}
+
+
+
+                    </Layout>
+                </Layout>
+            </>}
+
         </>
 
     );

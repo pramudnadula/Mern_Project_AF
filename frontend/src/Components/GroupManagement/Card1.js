@@ -7,10 +7,24 @@ import Typography from '@mui/material/Typography';
 import { Button, CardActionArea, CardActions } from '@mui/material';
 import { SendOutlined } from '@ant-design/icons';
 import SendIcon from '@mui/icons-material/Send';
-
+import { message } from 'antd';
+import axios from 'axios';
+const gid = localStorage.getItem("gid")
 
 function Card1({ supervisor }) {
     const { Meta } = Card;
+
+    const sendrequest = (id) => {
+        const ob = {
+            group: gid,
+            reciever: id
+        }
+        axios.post('http://localhost:8070/api/request/', ob).then((data) => {
+            message.success("Request Send")
+        }).catch((err) => {
+            console.log(err)
+        })
+    }
     return (
 
         <Card sx={{ maxWidth: 345 }}>
@@ -33,11 +47,11 @@ function Card1({ supervisor }) {
             </CardActionArea>
             <CardActions>
                 {supervisor.groups == 4 ? (
-                    <Button variant="contained" disabled endIcon={<SendIcon />}>
+                    <Button variant="contained" onClick={(e) => { sendrequest(supervisor._id) }} disabled endIcon={<SendIcon />}>
 
                     </Button>
                 ) : (
-                    <Button variant="contained" endIcon={<SendIcon />}>
+                    <Button variant="contained" onClick={(e) => { sendrequest(supervisor._id) }} endIcon={<SendIcon />}>
 
                     </Button>
                 )}

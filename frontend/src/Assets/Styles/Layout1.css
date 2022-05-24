@@ -6,9 +6,10 @@
 
 .site-layout .site-layout-background {
     background: #fff;
+
 }
 
-.ant-layout-sider {
+/* .ant-layout-sider {
 
     background: #0157a8 !important;
 }
@@ -22,6 +23,10 @@
 .ant-layout-sider-trigger {
     background: #0157a8 !important;
 
+} */
+
+.ant-layout-sider-trigger {
+    background-color: transparent;
 }
 
 .ant-menu-inline,

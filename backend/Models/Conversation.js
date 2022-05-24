@@ -1,4 +1,5 @@
 const mongoose = require('mongoose');
+var ObjectId = require('bson').ObjectId;
 const schema = mongoose.Schema;
 const Conversationschema = new schema({
 
@@ -11,6 +12,13 @@ const Conversationschema = new schema({
     names: {
         type: Array,
     },
+    type: {
+        type: Number
+    },
+    gid: {
+        type: ObjectId,
+        ref: "studentGroup"
+    }
 
 }, { timestamps: true })
 

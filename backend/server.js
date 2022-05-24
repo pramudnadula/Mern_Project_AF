@@ -6,7 +6,7 @@ const app = express();
 require("dotenv").config();
 const PORT = process.env.PORT || 8070;
 const URL = process.env.MONGODB_URL;
-
+app.use('/uploads', express.static('uploads'));
 const studentGroup = require('./Routes/StudentGroup');
 const ResearchArea = require("./Routes/ResearchArea");
 const Supervisor = require("./Routes/Supervisor");
@@ -16,6 +16,7 @@ const bodyparser = require("body-parser");
 const student = require("./Routes/Student");
 const Conversation = require("./Routes/Conversations");
 const Message = require("./Routes/Messages");
+const Stage = require('./Routes/Groupstage')
 
 
 const MarkingScheme = require("./Routes/MarkingScheme");
@@ -78,6 +79,7 @@ app.use("/api", student);
 app.use("/api/conversation", Conversation);
 app.use("/api/groupconversation", GroupConversation);
 app.use("/api/message", Message);
+app.use("/api/stages", Stage);
 
 app.use("/api/markingscheme", MarkingScheme);
 app.use("/api/evoluate", MarkingMarkingScheme);

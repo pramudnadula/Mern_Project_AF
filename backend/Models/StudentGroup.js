@@ -6,16 +6,19 @@ const studentGroupModel = new mongoose.Schema({
     groupName: { type: String },
     supervisor: {
         type: ObjectId,
-        ref: 'supervisor'
+        ref: 'Supervisor'
     },
     cosupervisor: {
         type: ObjectId,
-        ref: 'supervisor'
+        ref: 'Supervisor'
     },
     members: [{ type: ObjectId, ref: 'student' }],
     area: {
         type: ObjectId,
         ref: "researcharea"
+    },
+    image: {
+        type: String
     }
 
 }, { timestamps: true })
