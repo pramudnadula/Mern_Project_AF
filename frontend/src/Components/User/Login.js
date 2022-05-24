@@ -41,8 +41,8 @@ function Login() {
 
                 }
 
-               
-                
+
+
 
                 if (type === "stu") {
                     localStorage.setItem("user", (res.data.userId))
