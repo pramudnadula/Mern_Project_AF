@@ -23,6 +23,7 @@ import AddMarkingScheme from "./Components/MarkingScheme/AddMarkingScheme";
 import ViewAllMarkingSchemes from "./Components/MarkingScheme/VeiwAllMarkingSchemes";
 import ViewMarkingScheme from "./Components/MarkingScheme/ViewMarkingScheme";
 import Evaluate from "./Components/MarkingScheme/Evaluate";
+import EvaluateResult from "./Components/MarkingScheme/EvaluateResult";
 
 function App() {
   const user = (localStorage.getItem("user"))
@@ -55,8 +56,9 @@ function App() {
         <Route path='/c' exact component={CreateGroup} />
         <Route path="/markingscheme/add" exact component={AddMarkingScheme} />
         <Route path="/markingscheme/" exact component={ViewAllMarkingSchemes} />
-        <Route path="/markingscheme/view/:id" exact component={ViewMarkingScheme}/>
+        <Route path="/markingscheme/view/:id" exact component={ViewMarkingScheme} />
         <Route path="/evaluate/" exact component={Evaluate} />
+        <Route path="/evaluate/result/:id" exact component={EvaluateResult} />
       </Layout1>
 
     </BrowserRouter>
