@@ -72,74 +72,74 @@ function Register() {
 
     return (<div>
 
-        <div class="container rounded bg-white mt-5 mb-5">
-            <div class="row ">
-                <div class="col-md-6">
+        <div className="container rounded bg-white mt-5 mb-5">
+            <div className="row ">
+                <div className="col-md-6">
                     <br></br>
                     <br></br>
                     <br></br>
-                    <img src={Registerpic} alt="Image" class="img-fluid" />
+                    <img src={Registerpic} alt="Image" className="img-fluid" />
                 </div>
-                <div class="col-12 col-md-8 col-lg-6 col-xl-5">
-                    {/* <div class="card py-3 px-2"> */}
+                <div className="col-12 col-md-8 col-lg-6 col-xl-5">
+                    {/* <div className="card py-3 px-2"> */}
                     <h3>Create an Account</h3>
-                    {/* <p class="text-center mb-3 mt-2">Get started with your free account</p> */}
+                    {/* <p className="text-center mb-3 mt-2">Get started with your free account</p> */}
 
-                    {/* <div class="row mx-auto ">
-                            <div class="col-4"> <i class="fab fa-twitter"></i> </div>
-                            <div class="col-4"> <i class="fab fa-facebook"></i> </div>
-                            <div class="col-4"> <i class="fab fa-google"></i> </div>
+                    {/* <div className="row mx-auto ">
+                            <div className="col-4"> <i className="fab fa-twitter"></i> </div>
+                            <div className="col-4"> <i className="fab fa-facebook"></i> </div>
+                            <div className="col-4"> <i className="fab fa-google"></i> </div>
                         </div> */}
 
-                    {/* <div class="division">
-                            <div class="row">
-                                <div class="col-3">
-                                    <div class="line l"></div>
+                    {/* <div className="division">
+                            <div className="row">
+                                <div className="col-3">
+                                    <div className="line l"></div>
                                 </div>
-                                <div class="col-6"><span>OR</span></div>
-                                <div class="col-3">
-                                    <div class="line r"></div>
+                                <div className="col-6"><span>OR</span></div>
+                                <div className="col-3">
+                                    <div className="line r"></div>
                                 </div>
                             </div>
                         </div> */}
 
 
-                    <form onSubmit={sendData} class="myform">
-                        <div class="form-group">
-                            <span class="input-group-addon"><i class="fa fa-user"></i></span>
-                            <input type="fname" class="form-control fc" placeholder="First Name" onChange={(e) => { setfname(e.target.value) }} required />
+                    <form onSubmit={sendData} className="myform">
+                        <div className="form-group">
+                            <span className="input-group-addon"><i className="fa fa-user"></i></span>
+                            <input type="fname" className="form-control fc" placeholder="First Name" onChange={(e) => { setfname(e.target.value) }} required />
                         </div>
 
 
-                        <div class="form-group">
-                            <span class="input-group-addon"><i class="fa fa-user"></i></span>
-                            <input type="lname" class="form-control fc" placeholder="Last Name" onChange={(e) => { setlname(e.target.value) }} required />
+                        <div className="form-group">
+                            <span className="input-group-addon"><i className="fa fa-user"></i></span>
+                            <input type="lname" className="form-control fc" placeholder="Last Name" onChange={(e) => { setlname(e.target.value) }} required />
                         </div>
 
 
-                        <div class="form-group">
-                            <span class="input-group-addon"><i class="fa fa-user"></i></span>
-                            <input type="email" class="form-control fc" placeholder="Email" onChange={(e) => { setemail(e.target.value) }} required />
+                        <div className="form-group">
+                            <span className="input-group-addon"><i className="fa fa-user"></i></span>
+                            <input type="email" className="form-control fc" placeholder="Email" onChange={(e) => { setemail(e.target.value) }} required />
                         </div>
 
-                        <div class="form-group">
-                            <span class="input-group-addon"><i class="fa fa-user"></i></span>
-                            <input type="type" class="form-control fc" placeholder="User Type" onChange={(e) => { settype(e.target.value) }} required />
-                        </div>
-
-
-                        <div class="form-group">
-                            <span class="input-group-addon"><i class="fa fa-user"></i></span>
-                            <input type="username" class="form-control fc" placeholder="User Name" onChange={(e) => { setusername(e.target.value) }} required />
+                        <div className="form-group">
+                            <span className="input-group-addon"><i className="fa fa-user"></i></span>
+                            <input type="type" className="form-control fc" placeholder="User Type" onChange={(e) => { settype(e.target.value) }} required />
                         </div>
 
 
-                        <div class="form-group">
-                            <input type="password" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" class="form-control fc" placeholder="Password" onChange={(e) => { setpassword(e.target.value) }} required />
+                        <div className="form-group">
+                            <span className="input-group-addon"><i className="fa fa-user"></i></span>
+                            <input type="username" className="form-control fc" placeholder="User Name" onChange={(e) => { setusername(e.target.value) }} required />
                         </div>
 
-                        <div class="form-group">
-                            <input type="password" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" class="form-control fc" placeholder=" Confirm Password" onChange={(e) => { setconfpassword(e.target.value) }} required />
+
+                        <div className="form-group">
+                            <input type="password" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" className="form-control fc" placeholder="Password" onChange={(e) => { setpassword(e.target.value) }} required />
+                        </div>
+
+                        <div className="form-group">
+                            <input type="password" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" className="form-control fc" placeholder=" Confirm Password" onChange={(e) => { setconfpassword(e.target.value) }} required />
                         </div>
 
                         <PasswordChecklist
@@ -150,10 +150,10 @@ function Register() {
                             onChange={(isValid) => { }}
                         />
 
-                        <div class="form-group mt-3"> <button type="submit" class="btn btn-block btn-primary btn-lg"><small><i class="far fa-user pr-2"></i>Create Your Account</small></button> </div>
+                        <div className="form-group mt-3"> <button type="submit" className="btn btn-block btn-primary btn-lg"><small><i className="far fa-user pr-2"></i>Create Your Account</small></button> </div>
 
-                        <div class="row">
-                            <div class="col-md-6 col-12"> Already you have an account</div><div class="col-md-6 col-12 bn">Login</div>
+                        <div className="row">
+                            <div className="col-md-6 col-12"> Already you have an account</div><div className="col-md-6 col-12 bn">Login</div>
                         </div>
 
                     </form>
