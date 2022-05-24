@@ -12,3 +12,14 @@ exports.createMarkingMarkingScheme = (req, res) => {
     }
   });
 };
+
+exports.getMarkingMarkingScheme = async (req, res) => {
+  try {
+    const markingMarkingScheme = await MarkingMarkingScheme.findById({
+      _id: req.params.id,
+    });
+    res.status(200).json(markingMarkingScheme);
+  } catch (err) {
+    res.status(500).json(err);
+  }
+};
