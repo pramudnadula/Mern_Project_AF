@@ -85,10 +85,11 @@ exports.addSupervisor = (req, res) => {
 
 //get one user 
 exports.getSupervisor = async (req, res, next) => {
-    const userId = req.params.userId;
+    const staffId = req.params.staffId;
 
     try {
-        const user = await User.findById(userId);
+        const user = await Supervisor.findById(staffId);
+
         if (!user) {
             const error = new Error("Could not find supervisor");
             error.statusCode = 404;

@@ -3,37 +3,38 @@ import { Link } from 'react-router-dom';
 import './../../Assets/Styles/UserProfile.css';
 import axios from 'axios';
 
-function StaffProfile() {
-    // function StaffProfile({ setTest }) {
-    //     const user = (localStorage.getItem("user"))
-    //     //setTest(user)
-    //     const [currentUser, setcurrentUser] = useState("")
+
+
+function StaffProfile({ setTest }) {
+    const user = (localStorage.getItem("user"))
+    //setTest(user)
+    const [currentUser, setcurrentUser] = useState("")
 
     //     const token = localStorage.getItem("stoken");
-    //     const userId = localStorage.getItem("user");
+    const staffId = localStorage.getItem("staff");
 
 
 
 
 
 
-    //     useEffect(() => {
-    //         const token = localStorage.getItem("stoken");
-    //         try {
-    //             axios({
-    //                 method: "get",
-    //                 baseURL: `http://localhost:8070/api/supervisors/${userId}`,
-    //                 headers: {
-    //                     Authorization: "Bearer " + token
-    //                 },
-    //             }).then(res => {
-    //                 setcurrentUser(res.data.user)
-    //                 console.log(res.data)
-    //             })
-    //         } catch (err) {
-    //             throw err;
-    //         }
-    //     }, [])
+    useEffect(() => {
+        //         const token = localStorage.getItem("stoken");
+        try {
+            axios({
+                method: "get",
+                baseURL: `http://localhost:8070/api/supervisors/${staffId}`,
+                headers: {
+                    //Authorization: "Bearer " + token
+                },
+            }).then(res => {
+                setcurrentUser(res.data.user)
+                console.log(res.data)
+            })
+        } catch (err) {
+            throw err;
+        }
+    }, [])
 
 
 
@@ -62,18 +63,18 @@ function StaffProfile() {
                         </div>
                         <div className="row mt-2">
 
-                            <div className="col-md-6"><label className="labels">First Name</label><input type="text" className="form-control" placeholder="first name" readOnly /></div>
-                            <div className="col-md-6"><label className="labels">Last Name</label><input type="text" className="form-control" placeholder="last name" readOnly /></div>
+                            <div className="col-md-6"><label className="labels">First Name</label><input type="text" className="form-control" placeholder="first name" value={currentUser.fname} readOnly /></div>
+                            <div className="col-md-6"><label className="labels">Last Name</label><input type="text" className="form-control" placeholder="last name" value={currentUser.lname} readOnly /></div>
                         </div>
                         <div className="row mt-3">
                             {/* <div className="col-md-12"><label className="labels">PhoneNumber</label><input type="text" className="form-control" placeholder="enter phone number" value="" /></div>
                             <div className="col-md-12"><label className="labels">Address</label><input type="text" className="form-control" placeholder="enter address" value="" /></div> */}
-                            <div className="col-md-12"><label className="labels">Email </label><input type="text" className="form-control" placeholder="enter email " readOnly /></div>
+                            <div className="col-md-12"><label className="labels">Email </label><input type="text" className="form-control" placeholder="enter email " value={currentUser.email} readOnly /></div>
                             <div className="col-md-12"><label className="labels">Area</label><input type="text" className="form-control" placeholder="enter user type" readOnly /></div>
                         </div>
                         <div className="row mt-3">
-                            <div className="col-md-6"><label className="labels">Username</label><input type="text" className="form-control" placeholder="enter username" readOnly /></div>
-                            <div className="col-md-6"><label className="labels">Password</label><input type="text" className="form-control" placeholder="enter password" readOnly /></div>
+                            <div className="col-md-6"><label className="labels">Username</label><input type="text" className="form-control" placeholder="enter username" value={currentUser.username} readOnly /></div>
+                            <div className="col-md-6"><label className="labels">Password</label><input type="text" className="form-control" placeholder="enter password" value={currentUser.password} readOnly /></div>
                         </div>
                         {/* <div className="mt-5 text-center"><button className="btn btn-primary profile-button" type="submit">Save Profile</button></div> */}
                     </div>

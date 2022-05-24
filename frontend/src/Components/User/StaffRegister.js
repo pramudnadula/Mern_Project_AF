@@ -2,6 +2,10 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios'
 import PasswordChecklist from "react-password-checklist"
+import Checkbox from './Checkbox';
+import { useSelector, useDispatch } from 'react-redux'
+import { getareas } from '../../Actions/ResearchAreaActions';
+
 
 function StaffRegister() {
 
@@ -15,11 +19,18 @@ function StaffRegister() {
     const [password, setpassword] = useState("")
     const [confpassword, setconfpassword] = useState("")
     const [users, setUsers] = useState([])
+
+    const [ida, setida] = useState([])
+
+    let arry = []
+    const { areas } = useSelector(state => state.areas);
+
+    const dispatch = useDispatch()
+
     useEffect(() => {
+        dispatch(getareas())
 
     }, [])
-
-
 
 
     function sendData(e) {
@@ -36,7 +47,7 @@ function StaffRegister() {
             lname,
             email,
             isSupervisor: false,
-
+            area,
             username,
             password
         };
@@ -60,6 +71,19 @@ function StaffRegister() {
                 console.log(err)
             });
     }
+
+
+
+
+    ///////////////////////////////
+    const handleFilters = (id) => {
+
+        arry = id;
+        setida(arry)
+    }
+
+
+    ///////////////////////////////////////
 
     return (<div>
 
@@ -97,8 +121,13 @@ function StaffRegister() {
                                         <input type="email" className="input is-primary" placeholder="Email" onChange={(e) => { setemail(e.target.value) }} aria-describedby="basic-addon1" required />
                                     </div>
 
-                                    <div className="mb-3">
+                                    {/* <div className="mb-3">
                                         <input type="area" className="input is-primary" placeholder="Area" onChange={(e) => { setarea(e.target.value) }} aria-describedby="basic-addon1" />
+                                    </div> */}
+
+                                    <div className=" " style={{ display: 'contents !important' }}>
+                                        <Checkbox className="" areas={areas}
+                                            handleFilters={filters => handleFilters(filters, 'area')} />
                                     </div>
 
                                     <div className="mb-3">
