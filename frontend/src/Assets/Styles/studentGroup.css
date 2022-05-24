@@ -75,21 +75,22 @@
     }
 }
 
-.addmember {
-    font-size: 46px;
-    color: rgb(90, 90, 237);
-    cursor: pointer;
-
-}
+.addmember {}
 
 .resbox {
     height: 200px;
     overflow-y: scroll;
 }
 
-.closebox {
-    font-size: 46px;
+.fa-times-circle:before {
+    font-size: 50px;
     color: rgb(251, 7, 7);
+    cursor: pointer;
+}
+
+.fa-plus-circle:before {
+    font-size: 46px;
+    color: rgb(90, 90, 237);
     cursor: pointer;
 }
 
@@ -109,4 +110,13 @@ body {
     color: rgb(40, 164, 57);
     font-size: 20px;
     margin-left: 60px;
+}
+
+.group_img {
+    height: 220px;
+
+}
+
+.fu {
+    font-size: 25px !important;
 }

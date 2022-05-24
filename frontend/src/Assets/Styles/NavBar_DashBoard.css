@@ -2,6 +2,10 @@
     background-color: #0157a8 !important;
 }
 
+.hb {
+    background-color: rgb(231, 55, 55);
+}
+
 .navbar {
     position: relative;
     display: flex;
@@ -18,4 +22,8 @@
 
 .cbtn {
     border-radius: 50% !important;
+}
+
+.no_request {
+    background-color: rgb(202, 198, 198);
 }

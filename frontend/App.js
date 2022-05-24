@@ -1,28 +1,29 @@
-import "../src/Assets/Styles/App.css";
+import "./src/Assets/Styles/App.css";
 import "antd/dist/antd.css";
 
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { BrowserRouter, Route } from 'react-router-dom';
-import Home from './Pages/Home';
-import Home2 from './Pages/Home2';
-import RequestSupervisor from './Components/GroupManagement/RequestSupervisor';
-import Layout1 from './Layouts/Layout1';
-import StudentGroup from './Pages/StudentGroup';
-import Chat from './Pages/Chat';
+import Home from './src/Pages/Home';
+import Home2 from './src/Pages/Home2';
+import RequestSupervisor from './src/Components/GroupManagement/RequestSupervisor';
+import Layout1 from './src/Layouts/Layout1';
+import StudentGroup from './src/Pages/StudentGroup';
+import Chat from './src/Pages/Chat';
 import React, { useState } from 'react';
-import Login from './Components/User/Login';
-import Register from './Components/User/Register';
-import UserProfile from './Components/User/UserProfile';
-import Update from './Components/User/Update';
-import CreateGroup from './Components/GroupManagement/CreateGroup';
-import AdminLogin from './Components/Admin/AdminLogin';
-import AdminDashboard from './Components/Admin/AdminDashboard';
-import StaffRegister from './Components/User/StaffRegister';
-import StaffProfile from './Components/User/StaffProfile';
-import AddMarkingScheme from "./Components/MarkingScheme/AddMarkingScheme";
-import ViewAllMarkingSchemes from "./Components/MarkingScheme/VeiwAllMarkingSchemes";
-import ViewMarkingScheme from "./Components/MarkingScheme/ViewMarkingScheme";
-import Evaluate from "./Components/MarkingScheme/Evaluate";
+import Login from './src/Components/User/Login';
+import Register from './src/Components/User/Register';
+import UserProfile from './src/Components/User/UserProfile';
+import Update from './src/Components/User/Update';
+import CreateGroup from './src/Components/GroupManagement/CreateGroup';
+import AdminLogin from './src/Components/Admin/AdminLogin';
+import AdminDashboard from './src/Components/Admin/AdminDashboard';
+import StaffRegister from './src/Components/User/StaffRegister';
+import StaffProfile from './src/Components/User/StaffProfile';
+import AddMarkingScheme from "./src/Components/MarkingScheme/AddMarkingScheme";
+import ViewAllMarkingSchemes from "./src/Components/MarkingScheme/VeiwAllMarkingSchemes";
+import ViewMarkingScheme from "./src/Components/MarkingScheme/ViewMarkingScheme";
+import Evaluate from "./src/Components/MarkingScheme/Evaluate";
+import AllocatedGroups from "./src/Components/Group_supervisor/AllocatedGroups";
 
 function App() {
   const user = (localStorage.getItem("user"))
@@ -52,11 +53,13 @@ function App() {
         <Route path='/req' exact component={() => (<RequestSupervisor isSupervisor={true} stype="Supervisors" />)} />
         <Route path='/creq' exact component={() => (<RequestSupervisor isSupervisor={false} stype="Co-Supervisors" />)} />
         <Route path='/msg' exact component={Chat} />
-        <Route path='/c' exact component={CreateGroup} />
         <Route path="/markingscheme/add" exact component={AddMarkingScheme} />
         <Route path="/markingscheme/" exact component={ViewAllMarkingSchemes} />
-        <Route path="/markingscheme/view/:id" exact component={ViewMarkingScheme}/>
+        <Route path="/markingscheme/view/:id" exact component={ViewMarkingScheme} />
         <Route path="/evaluate/" exact component={Evaluate} />
+
+        <Route path="/allocatedgroups" exact component={AllocatedGroups} />
+
       </Layout1>
 
     </BrowserRouter>

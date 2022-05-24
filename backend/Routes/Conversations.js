@@ -1,4 +1,4 @@
-const { getConversation, createConveration } = require("../Controllers/Conversation");
+const { getConversation, createConveration, getConversationgroup } = require("../Controllers/Conversation");
 const router = require("express").Router();
 
 
@@ -6,6 +6,7 @@ const router = require("express").Router();
 router.post("/", createConveration)
 //get con of user
 router.get("/:userId", getConversation)
+router.post("/group", getConversationgroup)
 
 
 

@@ -6,15 +6,18 @@ import Conversations from '../Components/GroupManagement/Conversations';
 import Message from '../Components/GroupManagement/Message';
 import { io, Socket } from 'socket.io-client';
 import Paper from '@mui/material/Paper';
+import { TextLoop } from 'react-text-loop-next';
 import InputBase from '@mui/material/InputBase';
 import Divider from '@mui/material/Divider';
 import IconButton from '@mui/material/IconButton';
 import MenuIcon from '@mui/icons-material/Menu';
 import SearchIcon from '@mui/icons-material/Search';
 import Conversation from '../Components/GroupManagement/Conversation';
+import { Alert } from 'antd';
 
 function Chat(props) {
     const [conversations, setConversations] = useState([])
+    const [sconversations, setsConversations] = useState([])
     const [gconversation, setgconversation] = useState()
     const [currentchat, setcurrentchat] = useState(null)
     const [messages, setmessages] = useState([])
@@ -22,13 +25,23 @@ function Chat(props) {
     const [arrivalmsg, setarrivalmsg] = useState('')
     const [onlineusers, setonlineusers] = useState([])
     const [members, setmembers] = useState([])
+    const [supergroups, setsupergroups] = useState([])
     const [input, setinput] = useState("")
     const socket = useRef()
 
     const scrollRef = useRef()
-    const userid = localStorage.getItem("user")
-    const gid = localStorage.getItem("gid")
-    const user = {
+    let ind = false;
+    if (localStorage.getItem("user")) {
+        ind = true;
+    }
+    let ngid;
+    const userid = localStorage.getItem("user") || localStorage.getItem("staff")
+    const [gid, setgid] = useState()
+    if (ind) {
+        ngid = localStorage.getItem("gid")
+    }
+
+    let user = {
         _id: userid
     }
     useEffect(() => {
@@ -42,6 +55,14 @@ function Chat(props) {
         }).catch((err) => {
             console.log(err)
         })
+        if (!ind) {
+            axios.get(`http://localhost:8070/api/studentGroups/groups/${userid}`).then((data) => {
+                setsupergroups(data.data)
+            }).catch((err) => {
+                console.log(err)
+            })
+        }
+
     }, [])
 
 
@@ -55,7 +76,7 @@ function Chat(props) {
                 createdAt: Date.now(),
             })
         })
-    }, [])
+    }, [gid])
 
     const hanldechange = (e) => {
         e.preventDefault()
@@ -73,6 +94,12 @@ function Chat(props) {
             return el.receiver.toLowerCase().includes(input)
         }
     })
+
+    const handlec = (id) => {
+        setgid(id)
+        console.log(id)
+        get
+    }
 
     const searchbar = () => {
         return (
@@ -98,6 +125,20 @@ function Chat(props) {
         )
     }
 
+    const dropdown = () => {
+        return (
+            <>
+                <select onChange={(e) => { handlec(e.target.value) }}>
+                    <option >select group</option>
+                    {supergroups?.map((ma, i) => (
+                        <option value={ma._id}>{ma.groupName}</option>
+                    ))}
+
+                </select>
+            </>
+        )
+    }
+
 
     useEffect(() => {
         arrivalmsg && currentchat?.members.includes(arrivalmsg.sender) && setmessages((prev) => [...prev, arrivalmsg])
@@ -117,31 +158,51 @@ function Chat(props) {
 
 
     useEffect(() => {
+
         const getcon = async () => {
-            try {
-                const res = await axios.get("http://localhost:8070/api/conversation/" + user._id)
-                setConversations(res.data)
+            if (ind) {
+                try {
+                    const res = await axios.get("http://localhost:8070/api/conversation/" + user._id)
+                    setConversations(res.data)
 
 
-            } catch (error) {
-                console.log(error)
+                } catch (error) {
+                    console.log(error)
+                }
+            } else if (gid) {
+                try {
+                    const ob = {
+                        uid: user._id,
+                        gid
+                    }
+                    const res = await axios.post("http://localhost:8070/api/conversation/group", ob)
+                    console.log(res.data)
+                    setConversations(res.data)
+
+
+                } catch (error) {
+                    console.log(error)
+                }
             }
 
+            if (ind && ngid) {
+                try {
+                    const res = await axios.get("http://localhost:8070/api/conversation/" + ngid)
 
-            try {
-                const res = await axios.get("http://localhost:8070/api/conversation/" + gid)
-                setgconversation(res.data)
+                    setgconversation(res.data)
 
 
 
-            } catch (error) {
-                console.log(error)
+                } catch (error) {
+                    console.log(error)
+                }
             }
+
 
 
         }
         getcon()
-    }, [user])
+    }, [gid])
     useEffect(() => {
         const getmessages = async () => {
             try {
@@ -188,10 +249,15 @@ function Chat(props) {
         <div className='messanger'>
             <div className='chatmenu'>
                 <div className='cmwrapper'>
-                    {searchbar()}
+                    {/* {searchbar()} */}
+                    {ind ? <>
+
+                    </> : <>
+                        {dropdown()}
+                    </>}
                     {filteredData.map((c) => (
                         <div onClick={(e) => setcurrentchat(c)}>
-                            <Conversations conversation={c} curentuserid={user._id} />
+                            <Conversations conversation={c} curentuserid={user._id} type={c.type} ind={ind} />
                         </div>
 
                     ))}
@@ -218,7 +284,18 @@ function Chat(props) {
                                 placeholder='write something' className='msgwrite'></textarea>
                             <button className='chatsend' onClick={hanldesumbit}>send</button>
 
-                        </div></> : <span className='nocon'>Open a conversation to start a chat</span>}
+                        </div></> : <Alert
+                        banner
+                        type='success'
+                        message={
+                            <TextLoop mask>
+                                <div>Select conversation for chat</div>
+                                <div>Dont have conversations ?</div>
+                                <div>Then joined a group</div>
+                                <div>Select conversation for chat</div>
+                            </TextLoop>
+                        }
+                    />}
                 </div>
             </div>
 

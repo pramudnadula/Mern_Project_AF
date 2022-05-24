@@ -10,17 +10,20 @@ import IconButton from '@mui/material/IconButton';
 import MenuIcon from '@mui/icons-material/Menu';
 import SearchIcon from '@mui/icons-material/Search';
 import { message } from 'antd';
-
 import { Card } from 'antd';
 import { getstudents } from '../../Actions/StudentActions';
 import SearchList from './SearchList';
 import axios from 'axios';
+import TimeLine from './TimeLine';
+import Chart from './Chart';
 function Wall({ group, uid }) {
     const [add, setadd] = useState(false)
     const [input, setinput] = useState("")
     const [memebers, setmemebers] = useState([])
     const [allstudents, setallstudents] = useState([])
+    const [actualgroup, setactualgroup] = useState()
     const [topic, settopic] = useState(false)
+    const [groupstage, setgroupstage] = useState()
     const { students } = useSelector(state => state.stu);
     const dispatch = useDispatch()
     const chnagebox = (e) => {
@@ -32,6 +35,20 @@ function Wall({ group, uid }) {
         settopic(!topic)
 
     }
+    useEffect(() => {
+        axios.get(`http://localhost:8070/api/studentGroups/${group._id}`).then((data) => {
+            setactualgroup(data.data)
+        }).catch((err) => {
+            console.log(err)
+        })
+
+
+        axios.get(`http://localhost:8070/api/stages/${group._id}`).then((data) => {
+            setgroupstage(data.data)
+        }).catch((err) => {
+            console.log(err)
+        })
+    }, [])
 
     useEffect(() => {
         dispatch(getstudents())
@@ -87,8 +104,8 @@ function Wall({ group, uid }) {
     return (
         <div className="container-fluid mt-5 mb-5">
             <div className="row no-gutters justify-content-center">
-                <div className="col-md-6 col-lg-4 col-sm-12 col-12 mb-4"><img src={defwall} className='img-fluid d-block' /></div>
-                <div className="col-md-8 col-lg-8">
+                <div className="col-xl-4 col-lg-4 col-md-6 col-sm-10 col-12 mb-4"><img src={"http://localhost:8070/" + group.image} className='img-fluid mx-auto d-block group_img' /></div>
+                <div className="col-xl-8 col-lg-8 col-md-10 col-sm-10 col-12">
                     <div className="d-flex flex-column">
                         <div className="d-flex flex-row justify-content-between align-items-center p-5 toparea text-white">
                             <h3 className="display-5 topic">{group.groupName}</h3>
@@ -110,7 +127,7 @@ function Wall({ group, uid }) {
 
                                     <Card title="Supervisor" className='sup_crad mb-3' bordered={false}>
 
-                                        {group.supervisor ? <><Conversation /></> : <>
+                                        {actualgroup?.supervisor ? <><Conversation user={actualgroup.supervisor} send={false} /></> : <>
                                             <h6>No supervisor Allocated yet</h6>
                                         </>}
 
@@ -118,7 +135,7 @@ function Wall({ group, uid }) {
                                 </div>
                                 <div className='col-xl-5 col-lg-5 col-md-5 col-sm-8 col-10'>
                                     <Card title="Co-Supervisor" className='sup_crad' bordered={false}>
-                                        {group.cosupervisor ? <><Conversation /></> : <>
+                                        {actualgroup?.cosupervisor ? <><Conversation /></> : <>
                                             <h6>No Co-supervisor Allocated yet</h6>
                                         </>}
                                     </Card>
@@ -147,10 +164,19 @@ function Wall({ group, uid }) {
 
 
                     ) : (<>
-                        {memebers.map((m, i) => (
+                        {memebers?.map((m, i) => (
                             <Conversation user={m} send={false} />
                         ))}
                     </>)}
+                </div>
+            </div>
+            <div className='row mt-5'>
+                <div className='col-xl-5 col-lg-5 col-md-8 col-sm-10 col-12'>
+                    <h2 className='text-center'>Research Milestones</h2>
+                    <TimeLine stage={groupstage} />
+                </div>
+                <div className='col-7 mt-5'>
+                    <Chart />
                 </div>
             </div>
         </div >
