@@ -41,6 +41,7 @@ mongoose.connect(URL, (err) => {
 });
 
 
+
 app.use("/api/studentGroups", studentGroup);
 app.use("/api", ResearchArea);
 app.use("/api", Supervisor);
