@@ -1,6 +1,7 @@
 const Supervisor = require('../Models/Supervisor');
 const User = require('../Models/Supervisor')
 var ObjectId = require('bson').ObjectId;
+
 //method that used to filter supervisors according to user selection
 exports.listbysearch = (req, res) => {
     let order = req.query.order ? req.query.order : 'desc'
@@ -68,7 +69,7 @@ exports.listbysearch = (req, res) => {
 //method that use to add new supervisor
 exports.addSupervisor = (req, res) => {
     console.log(req.body)
-    const supervisor = new User(req.body)
+    const supervisor = new Supervisor(req.body)
     supervisor.save((err, data) => {
         if (err) {
             return res.status(400).json({
@@ -120,7 +121,7 @@ exports.loginSupervisor = async (req, res, next) => {
             error.statusCode = 404;
             throw error;
         }
-        res.status(200).json({ message: "user fetched.", UId: user[0]._id.toString() });
+        res.status(200).json({ message: "user fetched.", UId: user[0]._id.toString(), type: user[0].isSupervisor });
     } catch (err) {
         if (!err.statusCode) {
             err.statusCode = 500;
@@ -129,3 +130,32 @@ exports.loginSupervisor = async (req, res, next) => {
     }
 };
 
+
+//update Supervisor
+exports.updateSupervisor = async (req, res, next) => {
+
+    let staffID = req.params.staffId;
+    const { fname, lname, email, area, username, password } = req.body;
+    // const hashedPw = await bcrypt.hash(password, 12);
+
+    const updateSupervisor = {
+        fname,
+        lname,
+        email,
+        area,
+        username,
+        password,
+        // password: hashedPw,
+    };
+
+    const update = await Supervisor.findByIdAndUpdate(staffID, updateSupervisor)
+        .then(() => {
+            res.status(200).send({ status: 'Supervisor Updated' });
+        })
+        .catch((err) => {
+            console.log(err);
+            res
+                .status(500)
+                .send({ status: 'Error with updating data', error: message });
+        });
+};

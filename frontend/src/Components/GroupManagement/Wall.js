@@ -9,12 +9,14 @@ import Divider from '@mui/material/Divider';
 import IconButton from '@mui/material/IconButton';
 import MenuIcon from '@mui/icons-material/Menu';
 import SearchIcon from '@mui/icons-material/Search';
-import { message } from 'antd';
+import { message, Modal } from 'antd';
 import { Card } from 'antd';
 import { getstudents } from '../../Actions/StudentActions';
 import SearchList from './SearchList';
 import axios from 'axios';
 import TimeLine from './TimeLine';
+import { Select } from 'antd';
+const { Option } = Select;
 import Chart from './Chart';
 function Wall({ group, uid }) {
     const [add, setadd] = useState(false)
@@ -24,7 +26,13 @@ function Wall({ group, uid }) {
     const [actualgroup, setactualgroup] = useState()
     const [topic, settopic] = useState(false)
     const [groupstage, setgroupstage] = useState()
+    const [areas, setareas] = useState([])
+    const [aid, setaid] = useState()
+    const [links, setlinks] = useState([])
+    const [name, setname] = useState('')
+
     const { students } = useSelector(state => state.stu);
+    const [modal3, setModal3Visible] = useState(false)
     const dispatch = useDispatch()
     const chnagebox = (e) => {
         if ((memebers.length === 3) && (!add)) {
@@ -45,6 +53,12 @@ function Wall({ group, uid }) {
 
         axios.get(`http://localhost:8070/api/stages/${group._id}`).then((data) => {
             setgroupstage(data.data)
+        }).catch((err) => {
+            console.log(err)
+        })
+
+        axios.get(`http://localhost:8070/api/researchareas/list`).then((data) => {
+            setareas(data.data)
         }).catch((err) => {
             console.log(err)
         })
@@ -70,7 +84,27 @@ function Wall({ group, uid }) {
 
     }, [memebers])
 
+    const sendRequesttopic = async (e) => {
+        e.preventDefault()
 
+
+        let ob = {
+            gid: group._id,
+            sid: actualgroup.supervisor._id,
+            cid: actualgroup.cosupervisor._id,
+            name: name,
+            areas: aid,
+            links
+
+        }
+        axios.post(`http://localhost:8070/api/trequest`, ob).then((data) => {
+            message.success("Request send Successfully")
+        }).catch((err) => {
+            console.log(err)
+        })
+        window.location.reload(false)
+
+    }
 
     const hanldechange = (e) => {
         e.preventDefault()
@@ -78,6 +112,51 @@ function Wall({ group, uid }) {
 
     }
 
+    const getTrequest = () => {
+        axios.get(`http://localhost:8070/api/trequest/getone/${group._id}`).then((data) => {
+
+        }).catch((err) => {
+            console.log(err)
+        })
+    }
+
+    let ss = []
+    const addlink = () => {
+        let link = document.getElementById("link").value
+        if (link === "") {
+            return message.warning("Please Enter a Link")
+        }
+        ss = [...links]
+        ss.push(link)
+        setlinks(ss)
+        document.getElementById("link").value = ""
+        message.success((links.length + 1) + " Link Added to list")
+        console.log(ss)
+
+    }
+    const setmodal = async () => {
+        try {
+            if (!group.supervisor) {
+                message.warning("No supervisor Allocated Yet")
+                return
+            }
+            else if (!group.cosupervisor) {
+                message.warning("No Co-supervisor Allocated Yet")
+                return
+            }
+            const re = await axios.get(`http://localhost:8070/api/trequest/check/${group._id}`)
+            if (re.data) {
+                message.warning("You have send a Request Already")
+                return
+            }
+            else {
+                setModal3Visible(true)
+            }
+        } catch (err) {
+            console.log(err)
+        }
+
+    }
     const searchbar = () => {
         return (
             <Paper
@@ -104,14 +183,14 @@ function Wall({ group, uid }) {
     return (
         <div className="container-fluid mt-5 mb-5">
             <div className="row no-gutters justify-content-center">
-                <div className="col-xl-4 col-lg-4 col-md-6 col-sm-10 col-12 mb-4"><img src={"http://localhost:8070/" + group.image} className='img-fluid mx-auto d-block group_img' /></div>
+                <div className="col-xl-4 col-lg-4 col-md-6 col-sm-10 col-12 mb-4"><img src={group.image ? "http://localhost:8070/" + group.image : defwall} className='img-fluid mx-auto d-block group_img' /></div>
                 <div className="col-xl-8 col-lg-8 col-md-10 col-sm-10 col-12">
                     <div className="d-flex flex-column">
                         <div className="d-flex flex-row justify-content-between align-items-center p-5 toparea text-white">
                             <h3 className="display-5 topic">{group.groupName}</h3>
                         </div>
                         <div className="p-4 resarea text-white">
-                            <h6 className='res_topic'>{group.topic}</h6>
+                            <h6 className='res_topic'>{(group.topic) ? <>{group.topic}</> : <><button className='btn btn-warning' onClick={(e) => { setmodal() }}>Register Topic</button></>}</h6>
                         </div>
 
                     </div>
@@ -135,7 +214,7 @@ function Wall({ group, uid }) {
                                 </div>
                                 <div className='col-xl-5 col-lg-5 col-md-5 col-sm-8 col-10'>
                                     <Card title="Co-Supervisor" className='sup_crad' bordered={false}>
-                                        {actualgroup?.cosupervisor ? <><Conversation /></> : <>
+                                        {actualgroup?.cosupervisor ? <><Conversation user={actualgroup.cosupervisor} send={false} /></> : <>
                                             <h6>No Co-supervisor Allocated yet</h6>
                                         </>}
                                     </Card>
@@ -179,6 +258,51 @@ function Wall({ group, uid }) {
                     <Chart />
                 </div>
             </div>
+
+            <Modal
+
+                style={{
+                    top: 20,
+                }}
+                visible={modal3}
+                onOk={() => setModal3Visible(false)}
+                onCancel={() => setModal3Visible(false)}
+                footer={null}
+            >
+                <div className='row justify-content-center'>
+                    <h2 className='text-center'>Topic Registration</h2>
+                    <div className='col-10'>
+                        <form className='req_form p-4' onSubmit={sendRequesttopic}>
+                            <label>Select your Research Area</label><br /><br />
+
+                            <select required onChange={(e) => { setaid(e.target.value) }}>
+                                <option>Select one</option>
+                                {areas?.map((m, i) => (
+                                    <option key={i} value={m._id}>{m?.name}</option>
+                                ))}
+                            </select><br /><br />
+                            <div class="input-group mb-3">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text" id="basic-addon1">Topic Name</span>
+                                </div>
+                                <input type="text" onChange={(e) => { setname(e.target.value) }} required className="form-control" placeholder="Username" aria-label="Username" aria-describedby="basic-addon1" />
+
+                            </div>
+
+                            <div className="input-group mb-3">
+                                <input type="text" id='link' className="form-control" placeholder="Add a Link" aria-label="Recipient's username" aria-describedby="basic-addon2" />
+                                <div className="input-group-append">
+                                    <button type='button' onClick={(e) => { addlink() }} className="btn "><i class="fa fa-plus-circle" aria-hidden="true"></i></button>
+                                </div>
+                            </div>
+
+                            <h2 className='text-center'> <input type='submit' className='btn btn-warning' value="Send Request" /></h2>
+
+                        </form>
+
+                    </div>
+                </div>
+            </Modal >
         </div >
 
     );

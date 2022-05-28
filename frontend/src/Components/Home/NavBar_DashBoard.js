@@ -59,15 +59,15 @@ function NavBar_DashBoard(props) {
                     footer={null}
                 >
                     <div className='row justify-content-center'>
-                        <h4 className='text-center'>Requests</h4>
+                        <h2 className='text-center'>Requests</h2>
                         <div className='col-12'>
                             {(request.length > 0) ? <>
                                 {request.map((re, i) => (
-                                    <div className='row reqrow'>
+                                    <div className='row reqrow p-2 mb-2'>
                                         <div className='col-3'>
                                             <img src={dpic} width={80} className="img-fluid d-block" />
                                         </div>
-                                        <div className='col-6'>
+                                        <div className='col-6 mt-2'>
                                             <div className='row'>
                                                 <div className='col-10'>
                                                     <h4>Group Invitation</h4>
@@ -80,16 +80,16 @@ function NavBar_DashBoard(props) {
                                                 </div>
                                             </div>
                                         </div>
-                                        <div className='col-3'>
+                                        <div className='col-3 mt-2'>
                                             <div className='row justify-content-center'>
                                                 <div className='col-10'>
-                                                    <button className='btn btn-success' onClick={(e) => { sendresponse(true, re.group._id, re.reciever, re._id) }}>Accept</button>
+                                                    <button className='btn btn-success' onClick={(e) => { sendresponse(true, re.group._id, re.reciever, re._id) }}><i class="fa fa-check" aria-hidden="true"></i></button>
                                                 </div>
                                             </div>
 
                                             <div className='row mt-2 justify-content-center'>
                                                 <div className='col-10'>
-                                                    <button className='btn btn-danger' onClick={(e) => { sendresponse(false, re.group._id, re.reciever, re._id) }}>Reject</button>
+                                                    <button className='btn btn-danger' onClick={(e) => { sendresponse(false, re.group._id, re.reciever, re._id) }}><i class="fa fa-times" aria-hidden="true"></i></button>
                                                 </div>
                                             </div>
                                         </div>
@@ -151,14 +151,14 @@ function NavBar_DashBoard(props) {
                         )}
                         {/* profile  end*/}
 
-                     <div className="">	
-							         <a className="navbar-item" onClick={(e) => {
-								           localStorage.clear();
-								           window.location.href="/"
-							            }}>
-								          <b> Sign Out </b>
-							        </a>
-						        </div>    
+                        <div className="">
+                            <a className="navbar-item" onClick={(e) => {
+                                localStorage.clear();
+                                window.location.href = "/"
+                            }}>
+                                <b> Sign Out </b>
+                            </a>
+                        </div>
                     </div>
 
                 </Container>

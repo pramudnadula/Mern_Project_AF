@@ -27,3 +27,9 @@
 .no_request {
     background-color: rgb(202, 198, 198);
 }
+
+.reqrow {
+    background-color: rgb(225, 225, 225);
+    border-radius: 10px;
+    font-family: 'Roboto', sans-serif;
+}

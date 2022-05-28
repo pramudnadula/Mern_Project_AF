@@ -18,6 +18,14 @@ function CreateGroup(props) {
 
     const hanldedata = (e) => {
         e.preventDefault()
+        if (name === "") {
+            message.error("Please Enter a Name")
+            return
+        }
+        else if (data["imgname"] === "") {
+            message.error("Please Select an Image")
+            return
+        }
         data.append("uid", uid)
         data.append("name", name)
 

@@ -18,10 +18,14 @@ function ViewMarkingScheme(props) {
   }, []);
   return (
     <div>
-      <table>
+      <table class="table table-secondary table-bordered">
         <thead>
           <tr>
-            <h2>{markingScheme?.name}</h2>
+            <th colSpan="2"><h2>{markingScheme?.name}</h2></th>
+
+          </tr>
+          <tr>
+            <th colSpan="2">Submission Type: </th>
           </tr>
           <tr>
             <th>Feature</th>
@@ -32,15 +36,18 @@ function ViewMarkingScheme(props) {
           {markingScheme &&
             markingScheme?.features.map((featuresElement, index) => (
               <tr key={index}>
-                <td>{featuresElement.feature}</td>
-                <td>{featuresElement.marks}</td>
+                <td>{featuresElement.criterion}</td>
+                <td>{featuresElement.allocatedMark}</td>
               </tr>
             ))}
         </tbody>
         <tfoot>
           <tr>
             <th>Total Marks</th>
-            <td>{markingScheme?.total}</td>
+            <td>{markingScheme?.fullAllocatedMarks}</td>
+          </tr>
+          <tr>
+            <th colSpan="2">Created By: {markingScheme?.creator}</th>
           </tr>
         </tfoot>
       </table>

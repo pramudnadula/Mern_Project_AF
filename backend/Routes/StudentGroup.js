@@ -2,9 +2,10 @@ const router = require('express').Router();
 const fs = require('fs')
 const path = require('path')
 const multer = require('multer')
-const { creategroup, getstudentgroup, addmember, existmember, getallocatedgroups } = require('../Controllers/StudentGroup');
+const { creategroup, getstudentgroup, addmember, existmember, getallocatedgroups, getgroupstage } = require('../Controllers/StudentGroup');
 const studentGroup = require('../Models/StudentGroup');
 const User = require('../Models/User')
+const Stage = require('../Models/Groupstage')
 
 const storage = multer.diskStorage({
 
@@ -35,8 +36,15 @@ router.route("/").post(upload.single('studentImage'), async (req, res) => {
 
     const newgroup = new studentGroup({
         groupName,
-        image
+        image,
+        members: 1
     })
+    let nstage = new Stage({
+        group: newgroup._id,
+        stage: 1
+    })
+
+    await nstage.save()
     user.groupid = newgroup._id;
     await user.save()
     newgroup.save().then(() => {
@@ -55,5 +63,6 @@ router.get("/:id", getstudentgroup);
 router.get("/:id/add/:sid", addmember);
 router.get("/:id/isexist/:sid", existmember);
 router.get("/groups/:sid", getallocatedgroups);
+router.get("/groupstage/:gid", getgroupstage);
 
 module.exports = router;

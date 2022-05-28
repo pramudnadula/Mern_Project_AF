@@ -1,18 +1,24 @@
 const studentGroup = require('../Models/StudentGroup');
 const Supervisor = require('../Models/Supervisor')
+const Stage = require('../Models/Groupstage')
 //create new student group
-exports.creategroup = (req, res) => {
-    const group = new studentGroup(req.body)
-    group.save((err, data) => {
-        if (err) {
-            return res.status(400).json({
-                error: "group allready Exists"
-            })
+exports.creategroup = async (req, res) => {
+
+    try {
+        const group = new studentGroup(req.body)
+        await group.save()
+        let nstage = new Stage()
+        nstage = {
+            group: group._id,
+            stage: 1
         }
-        else {
-            res.json({ data })
-        }
-    })
+        await nstage.save()
+        res.json({ data })
+    } catch (err) {
+        res.status(500).send({ status: "error in fetching", error: err.message });
+    }
+
+
 }
 
 //get a student group
@@ -73,4 +79,14 @@ exports.getallocatedgroups = async (req, res) => {
         })
     }
 
+}
+
+exports.getgroupstage = async (req, res) => {
+    let gid = req.params.gid;
+    try {
+        const stage = await Stage.findOne({ group: gid })
+        res.send(stage)
+    } catch (e) {
+        res.status(500).send({ status: "error in fetching", error: err.message });
+    }
 }

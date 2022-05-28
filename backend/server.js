@@ -17,6 +17,7 @@ const student = require("./Routes/Student");
 const Conversation = require("./Routes/Conversations");
 const Message = require("./Routes/Messages");
 const Stage = require('./Routes/Groupstage')
+const Trequest = require('./Routes/Topic_Request')
 
 
 const MarkingScheme = require("./Routes/MarkingScheme");
@@ -26,6 +27,9 @@ const userRouter = require('./Routes/users.js');
 const RequestRouter = require('./Routes/Request')
 const DocumentUpload = require('./Routes/SubmissionManagement/DocumentUpload')
 const SubmissionType = require('./Routes/SubmissionManagement/SubmissionType')
+const adminRouter = require('./Routes/admins.js');
+
+
 
 app.use(cors());
 app.use(bodyparser.json());
@@ -36,17 +40,6 @@ mongoose.connect(URL, (err) => {
   console.log("connected to MongoDB");
 });
 
-// mongoose.connect(URL, {
-//   useCreateIndex: true,
-//   useNewUrlParser: true,
-//   useUnifiedTopologyL: true,
-//   useFindAndModify: false,
-// });
-
-// const connection = mongoose.connection;
-// connection.once('open', () => {
-//   console.log('mongodb connection is success!!!');
-// });
 
 app.use("/api/studentGroups", studentGroup);
 app.use("/api", ResearchArea);
@@ -56,6 +49,7 @@ app.use("/api/conversation", Conversation);
 app.use("/api/groupconversation", GroupConversation);
 app.use("/api/message", Message);
 app.use("/api/stages", Stage);
+app.use("/api/trequest", Trequest);
 
 app.use("/api/markingscheme", MarkingScheme);
 app.use("/api/evoluate", MarkingMarkingScheme);
@@ -63,6 +57,7 @@ app.use("/api/evoluate", MarkingMarkingScheme);
 app.use('/user', userRouter); //user login & Registration
 app.use("/api/request", RequestRouter);
 
+app.use('/admin', adminRouter);
 
 app.use("/api/document", DocumentUpload);//Document Upload Route
 app.use("/api/submissiontype", SubmissionType);//Document Upload Route

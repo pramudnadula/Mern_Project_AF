@@ -22,26 +22,24 @@ function AdminLogin() {
             //userName:userName,
             email: email,
             password,
-            type
+            //type
 
         };
 
         axios
-            .post('http://localhost:8070/user/login', newUser)
+            .post('http://localhost:8070/admin/login', newUser)
             .then((res) => {
-                if (res.status !== 200) {
-                    console.log(res)
 
-                }
-                localStorage.setItem("admin", JSON.stringify(res.data.userId))
-                localStorage.setItem("atoken", res.data.token)
+                //---------------------
+                // localStorage.setItem("admin", JSON.stringify(res.data.userId))
 
-                console.log(res.data.token)
-                setUserId(res.data.userId)
+
+                console.log(res.data)
+                // setUserId(res.data.userId)
                 // console.log(userId)
                 setTest(!test)
 
-                window.location.href = '/home'
+                window.location.href = '/admindashboard'
 
             })
             .catch((err) => {

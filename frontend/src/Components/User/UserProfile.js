@@ -3,16 +3,14 @@ import { Link } from 'react-router-dom';
 import './../../Assets/Styles/UserProfile.css';
 import axios from 'axios';
 
+
 function UserProfile({ setTest }) {
     const user = (localStorage.getItem("user"))
     //setTest(user)
     const [currentUser, setcurrentUser] = useState("")
-
     const token = localStorage.getItem("token");
     const userId = localStorage.getItem("user");
-
-
-
+    const [profileDate, setProfileDate] = useState()
 
 
 
@@ -34,8 +32,31 @@ function UserProfile({ setTest }) {
         }
     }, [])
 
+    //upload image
+    const fileChangeHandler = (e) => {
+        setProfileDate(e.target.files[0]);
+    }
+
+    const onSubmitHandler = (e) => {
+        e.preventDefault()
+
+        const data = new FormData();
+        data.append('proimage', profileDate)
 
 
+        fetch("http://localhost:8070/user/profileimage", {
+            method: "POST",
+            mode: 'no-cors',
+            body: data,
+
+        })
+            .then(() => {
+                console.log("File Sent Successfull")
+            })
+            .catch((err) => {
+                console.log(err.message)
+            })
+    }
 
     return (<div>
 
@@ -43,9 +64,25 @@ function UserProfile({ setTest }) {
             <div className="row">
 
                 <div className="col-md-3 border-right">
-                    <div className="d-flex flex-column align-items-center text-center p-3 py-5"><img className="rounded-circle mt-5" src="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcQF2psCzfbB611rnUhxgMi-lc2oB78ykqDGYb4v83xQ1pAbhPiB&usqp=CAU" /><span className="font-weight-bold">Amelly</span><span className="text-black-50">amelly12@bbb.com</span><span> </span>
+                    <div className="d-flex flex-column align-items-center text-center p-3 py-5">
+                        <img className="rounded-circle mt-5" src="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcQF2psCzfbB611rnUhxgMi-lc2oB78ykqDGYb4v83xQ1pAbhPiB&usqp=CAU" /><span className="font-weight-bold">Amelly</span><span className="text-black-50">amelly12@bbb.com</span><span> </span>
+                        <form onSubmit={onSubmitHandler}>
+                            <div className="field has-addons m-3 pt-3">
+                                <div className="control is-expanded">
+                                    <div className="is-fullwidth">
+                                        <input className="input" type="file" name="proimage" onChange={fileChangeHandler} />
+                                    </div>
+                                </div>
 
-                        {/* <div className="mt-5 text-center"><button className="btn btn-primary profile-button" type="button">Upload New Picture </button></div> */}
+                                <div className=" has-background-danger-light pt-1 pb-2">
+                                    <div className=" mt-5 mr-3 ml-3 pb-3 ">
+                                        <button className="button is-danger is-fullwidth " type='submit' value="Create" >upload profile</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+
+
                         <div className="mt-5 text-center"><button className="btn btn-primary profile-button" type="button">Remove</button></div>
                         <div className="mt-5 text-center"> <Link to={"/update/" + currentUser._id}><button className="btn btn-primary profile-button" type="submit">Update</button></Link></div>
 
@@ -76,6 +113,8 @@ function UserProfile({ setTest }) {
                         {/* <div className="mt-5 text-center"><button className="btn btn-primary profile-button" type="submit">Save Profile</button></div> */}
                     </div>
                 </div>
+
+
                 {/* 
                 <div className="col-md-4">
                     <div className="p-3 py-5">
