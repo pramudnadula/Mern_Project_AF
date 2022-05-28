@@ -15,6 +15,8 @@ function AllocatedGroups(props) {
     const [stage, setstage] = useState()
     const sid = localStorage.getItem("staff")
     let type = localStorage.getItem("type")
+    const token = localStorage.getItem("token");
+
     if (type == "true") {
         type = true
     } else {
@@ -22,9 +24,16 @@ function AllocatedGroups(props) {
     }
 
     useEffect(() => {
-        axios.get(`http://localhost:8070/api/studentGroups/groups/${sid}`).then((data) => {
-            setgroups(data.data)
-        }).catch((err) => {
+    
+        axios({
+            method: "get",
+            baseURL: `http://localhost:8070/api/studentGroups/groups/${sid}`, 
+            headers: {
+              Authorization: "Bearer " + token
+        },
+      }).then((data) => {
+        setgroups(data.data)
+      }).catch((err) => {
             console.log(err)
         })
     }, [])
@@ -73,11 +82,20 @@ function AllocatedGroups(props) {
 
     const displaymilestones = async (id) => {
         try {
-            const res = await axios.get(`http://localhost:8070/api/studentGroups/groupstage/${id}`)
+            const res =  await axios({
+                method: "get",
+                baseURL: `http://localhost:8070/api/studentGroups/groupstage/${id}`, 
+                headers: {
+                  Authorization: "Bearer " + token
+            },
+          }).then((res) => {
+            
             setstage(res.data)
             setshow(false)
             setshow3(false)
             setshow2(true)
+          })
+            
         } catch (err) {
             console.log(err)
         }
