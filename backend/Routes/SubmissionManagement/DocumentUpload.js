@@ -1,4 +1,5 @@
 const { UploadFileSingle, UploadFileMultiple } = require('../../Controllers/SubmissionManagement/DocumentUpload');
+const isAuth = require("../../middleware/auth");//pass the middleware
 
 const router = require('express').Router();
 // //!File Upload 
@@ -16,8 +17,8 @@ const router = require('express').Router();
  const upload = multer({ storage: fileStorageEngine })//pass the fileStorageEngine variable to storage
 
 //! Routes
-router.post("/single", upload.single('image'), UploadFileSingle) //single file uploading 
-router.post("/multiple",upload.array('images', 5), UploadFileMultiple) //multiple file uploading
+router.post("/single", upload.single('image'), isAuth, UploadFileSingle) //single file uploading 
+router.post("/multiple",upload.array('images', 5), isAuth, UploadFileMultiple) //multiple file uploading
 
 
 module.exports = router;

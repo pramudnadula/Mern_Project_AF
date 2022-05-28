@@ -1,5 +1,6 @@
 import axios from 'axios'
 import React, { useEffect, useState } from 'react'
+import { GET, PUT } from '../../Helper/httpHelper'
 
 function EditSubmission(props) {
     const [submissionStartDate, setSubmissionStartDate] = useState("")
@@ -15,14 +16,14 @@ function EditSubmission(props) {
 
     //! Implement Get All Submission Function 
     const GetAllSubmissionType = () => {
-        axios.get(`http://localhost:8070/api/submissiontype/${props.match.params.id}`).then((data) => {
-            console.log(data.data)
+        GET(`api/submissiontype/${props.match.params.id}`).then((data) => {
+            console.log(data)
             //set data 
-            setSubmissionStartDate(data.data.submissionStartDate)
-            setSubmissionEndDate(data.data.submissionEndDate)
-            setSubmissionType(data.data.submissionType)
-            setSubject(data.data.subject)
-            setDescription(data.data.description)
+            setSubmissionStartDate(data.submissionStartDate)
+            setSubmissionEndDate(data.submissionEndDate)
+            setSubmissionType(data.submissionType)
+            setSubject(data.subject)
+            setDescription(data.description)
         }).catch((err) => {
 
         })
@@ -40,7 +41,7 @@ function EditSubmission(props) {
             description
         }
 
-        axios.put(`http://localhost:8070/api/submissiontype/${props.match.params.id}`, submission).then((da) => {
+        PUT(`api/submissiontype/${props.match.params.id}`, submission).then((da) => {
             alert("Movie Updated")
             window.location.href = "/CreateSubmission"
 

@@ -1,6 +1,7 @@
 import axios from 'axios'
 import React, { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
+import { DELETE, GET, POST } from '../../Helper/httpHelper'
 function CreateSubmission() {
     const [submissionStartDate, setSubmissionStartDate] = useState("")
     const [submissionEndDate, setSubmissionEndDate] = useState("")
@@ -17,9 +18,9 @@ function CreateSubmission() {
 
     //! Implement Get All Submission Function 
     const GetAllSubmissionType = () => {
-        axios.get('http://localhost:8070/api/submissiontype/').then((data) => {
-            setAllSubmission(data.data)
-            console.log(data.data)
+        GET('api/submissiontype/').then((data) => {
+            setAllSubmission(data)
+            console.log(data)
         }).catch((err) => {
 
         })
@@ -39,7 +40,7 @@ function CreateSubmission() {
         }
         console.log(submission)
 
-        axios.post('http://localhost:8070/api/submissiontype/', submission).then((data) => {
+        POST('api/submissiontype/', submission).then((data) => {
             console.log("created")
             GetAllSubmissionType();//call fuction again
             alert("submission added");
@@ -51,7 +52,7 @@ function CreateSubmission() {
     }
     //! Delete One Submition
     const DeleteSubmissionType = (id) => {
-        axios.delete(`http://localhost:8070/api/submissiontype/${id}`).then((dat) => {
+        DELETE(`api/submissiontype/${id}`).then((dat) => {
             GetAllSubmissionType();//call fuction again
             alert("submission Deleted");
         }).catch((err) => {
