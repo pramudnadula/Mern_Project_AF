@@ -120,7 +120,7 @@ exports.loginSupervisor = async (req, res, next) => {
             error.statusCode = 404;
             throw error;
         }
-        res.status(200).json({ message: "user fetched.", UId: user[0]._id.toString() });
+        res.status(200).json({ message: "user fetched.", UId: user[0]._id.toString(), type: user[0].isSupervisor });
     } catch (err) {
         if (!err.statusCode) {
             err.statusCode = 500;
