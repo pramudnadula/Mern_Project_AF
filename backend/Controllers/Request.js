@@ -72,6 +72,10 @@ exports.requestresponsesupervisor = async (req, res) => {
             let sup;
             const group = await Group.findById({ _id: gid }).populate("cosupervisor").populate("supervisor")
             const stage = await Stage.findOne({ group: gid })
+            if (stage.stage == 1) {
+                stage.stage = 2;
+                await stage.save()
+            }
             if (user.isSupervisor) {
                 sup = true;
                 if (group.cosupervisor) {

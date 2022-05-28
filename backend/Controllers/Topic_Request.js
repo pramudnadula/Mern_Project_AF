@@ -2,6 +2,7 @@ const TopicRequest = require('../Models/Topic_Request')
 const Topic = require('../Models/Topic')
 const ResearchArea = require('../Models/ResearchArea')
 const Group = require('../Models/StudentGroup')
+const Stage = require('../Models/Groupstage')
 var ObjectId = require('bson').ObjectId;
 exports.addrequest = async (req, res) => {
     try {
@@ -86,7 +87,11 @@ exports.responsefromstaff = async (req, res) => {
             if (re.cview) {
                 if (re.cstat) {
                     if (stat) {
-
+                        let stage = await Stage.findOne({ group: re.group })
+                        if (stage.stage == 2) {
+                            stage.stage = 3
+                            await stage.save()
+                        }
                         let group = await Group.findById({ _id: re.group })
                         group.topic = re.name
                         group.area = re.areas
@@ -112,9 +117,14 @@ exports.responsefromstaff = async (req, res) => {
             if (re.sview) {
                 if (re.sstat) {
                     if (stat) {
-
+                        let stage = await Stage.findOne({ group: re.group })
+                        if (stage.stage == 2) {
+                            stage.stage = 3
+                            await stage.save()
+                        }
                         let group = await Group.findById({ _id: re.group })
                         group.topic = re.name
+                        group.area = re.areas
                         console.log(group)
                         await group.save()
                         await Topic.findByIdAndDelete({ _id: re._id })
