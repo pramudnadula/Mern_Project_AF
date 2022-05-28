@@ -24,6 +24,7 @@ const MarkingMarkingScheme = require("./Routes/MarkingMarkingScheme");
 const GroupConversation = require('./Routes/GroupConversation');
 const userRouter = require('./Routes/users.js');
 const RequestRouter = require('./Routes/Request')
+const adminRouter = require('./Routes/admins.js');
 
 //!File Upload 
 const multer = require('multer')//import npm package multer
@@ -32,20 +33,20 @@ const fileStorageEngine = multer.diskStorage({ //function about file destination
   destination: (req, file, cb) => {
     cb(null, './Documents')//file destination
   },
-  filename:(req, file, cb)=>{
-    cb(null, Date.now() + '--' +file.originalname)//file save date + file original extention name(.pdf/.png /.jpeg)
+  filename: (req, file, cb) => {
+    cb(null, Date.now() + '--' + file.originalname)//file save date + file original extention name(.pdf/.png /.jpeg)
   },
 })
 
 const upload = multer({ storage: fileStorageEngine })//pass the fileStorageEngine variable to storage
 
 //!Single File Uploading
-app.post("/single", upload.single('image'), (req, res)=>{//pass route in middlware  //! upload.single mean pass the single file and 'image' is a key value
+app.post("/single", upload.single('image'), (req, res) => {//pass route in middlware  //! upload.single mean pass the single file and 'image' is a key value
   console.log(req.file);
   res.send("Single File Upload Success")
 })
 //!Multiple File Uploading
-app.post("/multiple", upload.array('images', 5), (req, res)=>{//pass route in middlware  //! upload.array mean pass the multiple file and 'images' is a key value and ,5 mean  maximum file count
+app.post("/multiple", upload.array('images', 5), (req, res) => {//pass route in middlware  //! upload.array mean pass the multiple file and 'images' is a key value and ,5 mean  maximum file count
   console.log(req.files);
   res.send("Multiple File Upload Success")
 })
@@ -86,6 +87,8 @@ app.use("/api/evoluate", MarkingMarkingScheme);
 
 app.use('/user', userRouter); //user login & Registration
 app.use("/api/request", RequestRouter);
+
+app.use('/admin', adminRouter);
 
 
 

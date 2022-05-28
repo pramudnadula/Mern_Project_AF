@@ -24,6 +24,7 @@ import ViewAllMarkingSchemes from "./src/Components/MarkingScheme/VeiwAllMarking
 import ViewMarkingScheme from "./src/Components/MarkingScheme/ViewMarkingScheme";
 import Evaluate from "./src/Components/MarkingScheme/Evaluate";
 import AllocatedGroups from "./src/Components/Group_supervisor/AllocatedGroups";
+import StaffUpdate from "./src/Components/User/StaffUpdate";
 
 function App() {
   const user = (localStorage.getItem("user"))
@@ -46,6 +47,7 @@ function App() {
       <Route path="/admindashboard" exact component={AdminDashboard} />
       <Route path="/staffregister" exact component={StaffRegister} />
       <Route path="/staffprofile" exact component={StaffProfile} />
+      <Route path="/staffupdate" exact component={StaffUpdate} />
 
       <Layout1>
         <Route path='/home' exact component={Home2} />

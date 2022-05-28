@@ -40,6 +40,10 @@ const userSchema = new Schema({
     groupid: {
         type: ObjectId,
         ref: "studentGroup"
+    },
+
+    image: {
+        type: String
     }
 
 
