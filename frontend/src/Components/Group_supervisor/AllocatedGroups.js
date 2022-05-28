@@ -5,6 +5,7 @@ import '../../Assets/Styles/sup.css'
 import Chart from '../GroupManagement/Chart';
 import TimeLine from '../GroupManagement/TimeLine';
 import { Result } from 'antd';
+import { GET, POST, DELETE, PUT } from '../../Helper/httpHelper'
 function AllocatedGroups(props) {
     const [groups, setgroups] = useState([])
     const [req, setreq] = useState([])
@@ -24,16 +25,10 @@ function AllocatedGroups(props) {
     }
 
     useEffect(() => {
-    
-        axios({
-            method: "get",
-            baseURL: `http://localhost:8070/api/studentGroups/groups/${sid}`, 
-            headers: {
-              Authorization: "Bearer " + token
-        },
-      }).then((data) => {
-        setgroups(data.data)
-      }).catch((err) => {
+
+        GET(`api/studentGroups/groups/${sid}`).then((data) => {
+            setgroups(data)
+        }).catch((err) => {
             console.log(err)
         })
     }, [])
@@ -82,20 +77,14 @@ function AllocatedGroups(props) {
 
     const displaymilestones = async (id) => {
         try {
-            const res =  await axios({
-                method: "get",
-                baseURL: `http://localhost:8070/api/studentGroups/groupstage/${id}`, 
-                headers: {
-                  Authorization: "Bearer " + token
-            },
-          }).then((res) => {
-            
-            setstage(res.data)
+            const res = await GET(`api/studentGroups/groupstage/${id}`)
+
+            setstage(res)
             setshow(false)
             setshow3(false)
             setshow2(true)
-          })
-            
+
+
         } catch (err) {
             console.log(err)
         }
@@ -111,6 +100,22 @@ function AllocatedGroups(props) {
         message.info("No Topic Registration Requests")
         setshow2(false)
         setshow3(false)
+    }
+
+    const fun = async () => {
+        const ob = {
+            name: "new"
+        }
+        try {
+            const res = await POST(`api/researchareas/create`, ob)
+            if (res) {
+                alert("aded")
+            }
+
+        } catch (err) {
+            console.log(err)
+        }
+
     }
 
     return (
@@ -264,6 +269,7 @@ function AllocatedGroups(props) {
                     </div>
                 </div>
             </div>
+            <button onClick={(e) => { fun() }}>sss</button>
         </div>
     );
 }
