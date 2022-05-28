@@ -45,16 +45,16 @@ function App() {
 
       <Route path="/login" exact component={Login} />
       <Route path="/register" exact component={Register} />
-      <Route path="/userprofile" exact component={UserProfile} />
-      <Route path="/update/:id" exact component={Update} />
 
       <Route path="/adminlogin" exact component={AdminLogin} />
-      <Route path="/admindashboard" exact component={AdminDashboard} />
       <Route path="/staffregister" exact component={StaffRegister} />
-      <Route path="/staffprofile" exact component={StaffProfile} />
-      <Route path="/staffupdate" exact component={StaffUpdate} />
 
       <Layout1>
+        <Route path="/admindashboard" exact component={AdminDashboard} />
+        <Route path="/staffprofile" exact component={StaffProfile} />
+        <Route path="/staffupdate/:id" exact component={StaffUpdate} />
+        <Route path="/userprofile" exact component={UserProfile} />
+        <Route path="/update/:id" exact component={Update} />
         <Route path='/home' exact component={Home2} />
         <Route path='/group' exact component={StudentGroup} />
         <Route path='/req' exact component={() => (<RequestSupervisor isSupervisor={true} stype="Supervisors" />)} />
@@ -65,7 +65,7 @@ function App() {
         <Route path="/markingscheme/" exact component={ViewAllMarkingSchemes} />
         <Route path="/markingscheme/view/:id" exact component={ViewMarkingScheme} />
         <Route path="/evaluate/" exact component={Evaluate} />
-          
+
         <Route path="/evaluate/view/:id" exact component={EvaluateResult} />
         <Route path="/UploadDocument" exact component={UploadDocument} />
         <Route path="/CreateSubmission" exact component={CreateSubmission} />

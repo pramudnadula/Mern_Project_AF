@@ -52,7 +52,7 @@ function Navbar_staff(props) {
 
     return (
         <>
-            <Navbar className={(location.pathname === '/') || (location.pathname === '/login') || (location.pathname === '/register') || (location.pathname === '/staffregister') ? "block" : "hb"}>
+            <Navbar className={(location.pathname === '/') || (location.pathname === '/login') || (location.pathname === '/register') || (location.pathname === '/staffregister') || (location.pathname === '/adminlogin') ? "block" : "hb"}>
 
                 <Modal
                     title=""

@@ -107,7 +107,7 @@ function Layout1(props) {
         <>
             {localStorage.getItem("user") ? <>
                 <NavBar_DashBoard />
-                <Layout style={{ minHeight: '93vh', backgroundColor: "green" }} className={(location.pathname === '/') || (location.pathname === '/login') || (location.pathname === '/register') || (location.pathname === '/staffregister') ? "block" : ""}>
+                <Layout style={{ minHeight: '93vh', backgroundColor: "green" }} className={(location.pathname === '/') || (location.pathname === '/login') || (location.pathname === '/register') || (location.pathname === '/staffregister') || (location.pathname === '/staffprofile') || (location.pathname === '/staffupdate') || (location.pathname === '/userprofile') ? "block" : ""}>
 
                     {slider()}
                     <Layout className="site-layout" >
@@ -123,7 +123,7 @@ function Layout1(props) {
                 </Layout>
             </> : <>
                 <Navbar_staff />
-                <Layout style={{ minHeight: '93vh' }} className={(location.pathname === '/') || (location.pathname === '/login') || (location.pathname === '/register') || (location.pathname === '/staffregister') ? "block" : ""}>
+                <Layout style={{ minHeight: '93vh' }} className={(location.pathname === '/') || (location.pathname === '/adminlogin') || (location.pathname === '/login') || (location.pathname === '/register') || (location.pathname === '/staffregister') ? "block" : ""}>
 
                     {slider2()}
                     <Layout className="site-layout">
