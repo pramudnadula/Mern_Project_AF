@@ -2,35 +2,82 @@ import axios from "axios";
 import React, { useEffect, useState } from "react";
 
 function Evaluate(props) {
-    const [markingScheme, setMarkingScheme] = useState();
+    // const [markingScheme, setMarkingScheme] = useState();
     const [studentGroup, setStudentGroup] = useState();
-    const [totalMarks, setTotalMarks] = useState();
-    const [individualMark, setIndividualMark] = useState([]);
+    // const [individualMark, setIndividualMark] = useState([]);
     const [remark, setRemark] = useState();
-    const updateIndividualMark = (index, value) => {
+    // const updateIndividualMark = (index, value) => {
 
-        let newArray = [...individualMark];
-        newArray[index] = value;
-        setIndividualMark(newArray);
+    //     let newArray = [...individualMark];
+    //     newArray[index] = value;
+    //     setIndividualMark(newArray);
 
-    };
+    // };
+
+    const [markingScheme, setMarkingScheme] = useState();
+    const [criteriaMarks, setCriteriaMarks] = useState([]);
+
+    // const setCriteria = () => {
+
+    //     console.log(markingScheme);
+    //     if (markingScheme) {
+    //         console.log(markingScheme);
+    //         console.log(markingScheme?.features.length);
+
+    //         for (let i = 0; i < markingScheme?.features.length; i++) {
+    //             let newArray = [...criteriaMarks];
+    //             console.log(markingScheme?.features[i].criterion);
+    //             console.log(markingScheme?.features[i].allocatedMark);
+
+    //             newArray.criterion = markingScheme?.features[i].criterion;
+    //             newArray.allocatedMark = markingScheme?.features[i].allocatedMark;
+    //             newArray.givenMark = "";
+    //             setCriteriaMarks(newArray);
+
+    //         }
+    //     }
+    // }
+
+
 
 
 
     useEffect(() => {
         axios
             .get(
-                `http://localhost:8070/api/markingscheme/view/6288fb93ae5365b142d65e08`
+                `http://localhost:8070/api/markingscheme/view/6291cb82541b675281c67b9b`
             )
             .then((res) => {
+                console.log(res.data);
                 setMarkingScheme(res.data);
+                var arr = [];
+                for (let i = 0; i < res.data.features.length; i++) {
+                    let newArray = { criterion: "", allocatedMark: "", givenMark: "", };
+
+
+                    console.log(res.data.features[i].criterion);
+                    console.log(res.data.features[i].allocatedMark);
+
+                    newArray.criterion = res.data.features[i].criterion;
+                    newArray.allocatedMark = res.data.features[i].allocatedMark;
+                    newArray.givenMark = "";
+                    console.log(newArray);
+
+                    arr.push(newArray);
+
+                }
+                console.log(criteriaMarks);
+                setCriteriaMarks(arr);
+
             })
             .catch((err) => {
                 console.log(err);
             });
 
+
+
         axios
-            .get(`http://localhost:8070/api/studentGroups/626cec367390cfb0c996cf1c`)
+            .get(`http://localhost:8070/api/studentGroups/6291eb500921479d2fabaeb3`)
             .then((res) => {
                 setStudentGroup(res.data);
             })
@@ -40,18 +87,17 @@ function Evaluate(props) {
     }, []);
 
     const submit = (e) => {
-        let total = 0;
-        for (let i = 0; i < individualMark.length; i++) {
-            total += Number(individualMark[i]);
-        }
-        console.log(individualMark)
-        console.log(total)
-        //setTotalMarks(total);
+        // let total = 0;
+        // for (let i = 0; i < criteriaMarks.length; i++) {
+        //     total += Number(criteriaMarks.individualMark[i].givenMark);
+        // }
+        // console.log(individualMark)
+        // console.log(total)
         const ob = {
-            markingSchemeId: "6288fb93ae5365b142d65e08",
-            groupId: "626cec367390cfb0c996cf1c",
-            individualMark,
-            totalMarks: total,
+            markingSchemeId: "6291cb82541b675281c67b9b",
+            groupId: "6291eb500921479d2fabaeb3",
+            criteriaMarks,
+            totalMarks: 20,
             remark,
         };
         console.log(ob);
@@ -69,10 +115,15 @@ function Evaluate(props) {
 
     return (
         <div>
-            <table>
+
+            <table class="table table-secondary table-bordered">
                 <thead>
                     <tr>
-                        <th><h2>{markingScheme?.name}</h2></th></tr>
+                        <th colSpan="3"><h2>{markingScheme?.name}</h2></th>
+                    </tr>
+                    <tr>
+                        <th colSpan="3"><h3>Student Group: {studentGroup?.groupName}</h3></th>
+                    </tr>
                     <tr>
                         <th>Feature</th>
                         <th>Allocated Mark</th>
@@ -80,18 +131,19 @@ function Evaluate(props) {
                     </tr>
                 </thead>
                 <tbody>
-                    {markingScheme &&
-                        markingScheme?.features.map((featuresElement, index) => (
+                    {criteriaMarks &&
+                        criteriaMarks?.map((featuresElement, index) => (
                             <tr key={index}>
-                                <td>{featuresElement.feature}</td>
-                                <td>{featuresElement.marks}</td>
+                                <td>{featuresElement?.criterion}</td>
+                                <td>{featuresElement?.allocatedMark}</td>
                                 <td>
                                     <input
                                         type="number"
-                                        name="individualMark"
+                                        name="givenMark"
                                         required
+
                                         onChange={(e) => {
-                                            updateIndividualMark(index, e.target.value);
+                                            featuresElement.givenMark = e.target.value;
                                         }}
                                     />
                                 </td>
@@ -99,15 +151,15 @@ function Evaluate(props) {
                         ))}
                 </tbody>
                 <tfoot>
-                    <tr>
+                    {/* <tr>
                         <th>Total Marks</th>
                         <td>{markingScheme?.total}</td>
                         <td></td>
-                    </tr>
+                    </tr> */}
                     <tr>
                         <th>Remark</th>
-                        <td></td>
-                        <td>
+
+                        <td colSpan="2">
                             <input
                                 name="remark"
                                 placeholder="Remark"
@@ -119,16 +171,13 @@ function Evaluate(props) {
                     </tr>
                 </tfoot>
             </table>
-            <button
+            <button type="button" class="btn btn-secondary btn-sm"
                 onClick={(e) => {
                     submit();
                 }}
             >
                 Save
             </button>
-            <h2>Group Details</h2>
-            Group Name: {studentGroup?.groupName} <br />
-            Topic: {studentGroup?.topic} <br />
         </div>
     );
 }

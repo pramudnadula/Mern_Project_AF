@@ -25,6 +25,7 @@ const MarkingMarkingScheme = require("./Routes/MarkingMarkingScheme");
 const GroupConversation = require('./Routes/GroupConversation');
 const userRouter = require('./Routes/users.js');
 const RequestRouter = require('./Routes/Request')
+const adminRouter = require('./Routes/admins.js');
 
 //!File Upload 
 const multer = require('multer');//import npm package multer
@@ -89,6 +90,8 @@ app.use("/api/evoluate", MarkingMarkingScheme);
 
 app.use('/user', userRouter); //user login & Registration
 app.use("/api/request", RequestRouter);
+
+app.use('/admin', adminRouter);
 
 
 

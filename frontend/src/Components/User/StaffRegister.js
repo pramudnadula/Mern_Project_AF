@@ -19,19 +19,35 @@ function StaffRegister() {
     const [password, setpassword] = useState("")
     const [confpassword, setconfpassword] = useState("")
     const [users, setUsers] = useState([])
-    const [type, settype] = useState()
 
+    const [type, settype] = useState()
+    const [areas, setareas] = useState([])
     const [ida, setida] = useState([])
 
-    let arry = []
-    const { areas } = useSelector(state => state.areas);
+    // let arry = []
+    // const { areas } = useSelector(state => state.areas);
 
-    const dispatch = useDispatch()
+    // const dispatch = useDispatch()
+
+    // useEffect(() => {
+    //     dispatch(getareas())
+
+    // }, [])
+
 
     useEffect(() => {
-        dispatch(getareas())
+        axios
+            .get('http://localhost:8070/api/researchareas/list')
+            .then((data) => {
 
-    }, [])
+                setareas(data.data)
+            })
+
+    })
+
+
+
+
 
 
     function sendData(e) {
@@ -56,7 +72,7 @@ function StaffRegister() {
             email,
             isSupervisor: ty,
             groups: 0,
-            area,
+            // area,
             username,
             password
         };
@@ -80,6 +96,8 @@ function StaffRegister() {
                 console.log(err)
             });
     }
+
+
 
 
 
