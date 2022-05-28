@@ -120,3 +120,7 @@ body {
 .fu {
     font-size: 25px !important;
 }
+
+.req_form {
+    background-color: rgb(222, 221, 221);
+}

@@ -56,8 +56,8 @@ function Conversations({ conversation, curentuserid, type, ind }) {
             <span className='conversation_name'>
                 {conversation.names[rindex]}
             </span>
-            {(inf == 1) || (inf == 3) ? <><span class=" m-2 badge bg-success">Student</span></> : ""}
-            {(inf == 2) || (inf == 4) ? <> <span class=" m-2 badge bg-danger">Staff</span></> : ""}
+            {(inf == 1) || (inf == 3) ? <><span className=" m-2 badge bg-success">Student</span></> : ""}
+            {(inf == 2) || (inf == 4) ? <> <span className=" m-2 badge bg-danger">Staff</span></> : ""}
         </div>
     );
 }

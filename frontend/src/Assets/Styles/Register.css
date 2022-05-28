@@ -1,15 +1,4 @@
 
-/* body {
-    background-color: #19123B
-} */
-
-/* .card {
-    border: none;
-   border-top: 5px solid rgb(176, 106, 252); 
-     background: #212042;  
-   background: #f1f1f7;
-    color: #e6e6ea
-} */
 
 p {
     font-weight: 600;
@@ -42,22 +31,6 @@ p {
     color: #CB5048
 }
 
-/* .division {
-    float: none;
-    position: relative;
-    margin: 30px auto 20px;
-    text-align: center;
-    width: 100%;
-    box-sizing: border-box
-}
-
-.division .line {
-    border-top: 1.5px solid #57557A;
-    ;
-    position: absolute;
-    top: 13px;
-    width: 85%
-} */
 
 .line.l {
     left: 52px

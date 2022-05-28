@@ -1,54 +1,42 @@
 const mongoose = require('mongoose');
-var ObjectId = require('bson').ObjectId;
 const Schema = mongoose.Schema;
+const ObjectId = require('bson').ObjectId;
 
-const userSchema = new Schema({
+const DocumentSchema = new Schema({
 
-    fname: {
+    submissionStartDate: {
         type: String,
         required: true
     },
-    lname: {
-        type: String,
-        required: true
-    },
-
-    email: {
+    submissionEndDate: {
         type: String,
         required: true
     },
 
-    type: {
+    submissionType: {
         type: String,
         required: true
-
     },
 
-
-    username: {
+    subject: {
         type: String,
         required: true
 
     },
 
-
-    password: {
+    description: {
         type: String,
         required: true
 
     },
-    groupid: {
+    staffID:{
         type: ObjectId,
-        ref: "studentGroup"
-    },
-
-    image: {
-        type: String
+        ref:"Supervisor",
+        required:true
     }
-
 
 })
 
-const User = mongoose.model("User", userSchema);
+const Document = mongoose.model("Document", DocumentSchema);
 
-module.exports = User;
+module.exports = Document;

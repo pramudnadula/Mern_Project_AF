@@ -1,3 +1,12 @@
 .group_card {
     border-radius: 20px;
 }
+
+.req_col {
+    background-color: rgb(222, 222, 222);
+}
+
+.link_div {
+    background-color: white;
+    margin: 10px;
+}

@@ -18,6 +18,14 @@ function CreateGroup(props) {
 
     const hanldedata = (e) => {
         e.preventDefault()
+        if (name === "") {
+            message.error("Please Enter a Name")
+            return
+        }
+        else if (data["imgname"] === "") {
+            message.error("Please Select an Image")
+            return
+        }
         data.append("uid", uid)
         data.append("name", name)
 
@@ -48,11 +56,11 @@ function CreateGroup(props) {
                         <br />
 
 
-                        <div class="input-group mb-3 px-2 py-2 rounded-pill bg-white shadow-sm">
-                            <input required id="upload" type="file" onChange={upload} class="form-control border-0" />
-                            <label id="upload-label" for="upload" class="font-weight-light text-muted">Choose Group Image</label>
-                            <div class="input-group-append">
-                                <label for="upload" class="btn btn-light m-0 rounded-pill px-4"> <i class="fa fa-cloud-upload mr-2 text-muted"></i><small class="text-uppercase font-weight-bold text-muted">Choose file</small></label>
+                        <div className="input-group mb-3 px-2 py-2 rounded-pill bg-white shadow-sm">
+                            <input required id="upload" type="file" onChange={upload} className="form-control border-0" />
+                            <label id="upload-label" for="upload" className="font-weight-light text-muted">Choose Group Image</label>
+                            <div className="input-group-append">
+                                <label for="upload" className="btn btn-light m-0 rounded-pill px-4"> <i className="fa fa-cloud-upload mr-2 text-muted"></i><small className="text-uppercase font-weight-bold text-muted">Choose file</small></label>
 
                             </div>
                         </div>

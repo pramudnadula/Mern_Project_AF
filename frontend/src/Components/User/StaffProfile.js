@@ -49,7 +49,7 @@ function StaffProfile({ setTest }) {
 
                         {/* <div className="mt-5 text-center"><button className="btn btn-primary profile-button" type="button">Upload New Picture </button></div> */}
                         <div className="mt-5 text-center"><button className="btn btn-primary profile-button" type="button">Remove</button></div>
-                        {/* <div className="mt-5 text-center"> <Link to={"/update/" + currentUser._id}><button className="btn btn-primary profile-button" type="submit">Update</button></Link></div> */}
+
 
 
                     </div>
@@ -76,6 +76,12 @@ function StaffProfile({ setTest }) {
                             <div className="col-md-6"><label className="labels">Username</label><input type="text" className="form-control" placeholder="enter username" value={currentUser.username} readOnly /></div>
                             <div className="col-md-6"><label className="labels">Password</label><input type="text" className="form-control" placeholder="enter password" value={currentUser.password} readOnly /></div>
                         </div>
+                        <br></br>
+                        <div className="text-center ">
+                            {/* <input type="submit" value="Edit Profile" className="btn btn-success form-control" /> */}
+                            <Link to={"/staffupdate/" + currentUser._id}><button className="btn btn-success form-control" type="submit">Edit profile</button></Link>
+                        </div>
+
                         {/* <div className="mt-5 text-center"><button className="btn btn-primary profile-button" type="submit">Save Profile</button></div> */}
                     </div>
                 </div>

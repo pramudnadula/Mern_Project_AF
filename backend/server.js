@@ -1,4 +1,4 @@
-////Declare the variables
+//! Declare the variables
 const express = require("express");
 const mongoose = require("mongoose");
 const dotenv = require("dotenv");
@@ -17,6 +17,7 @@ const student = require("./Routes/Student");
 const Conversation = require("./Routes/Conversations");
 const Message = require("./Routes/Messages");
 const Stage = require('./Routes/Groupstage')
+const Trequest = require('./Routes/Topic_Request')
 
 
 const MarkingScheme = require("./Routes/MarkingScheme");
@@ -24,31 +25,10 @@ const MarkingMarkingScheme = require("./Routes/MarkingMarkingScheme");
 const GroupConversation = require('./Routes/GroupConversation');
 const userRouter = require('./Routes/users.js');
 const RequestRouter = require('./Routes/Request')
-
-//!File Upload 
-const multer = require('multer')//import npm package multer
-
-const fileStorageEngine = multer.diskStorage({ //function about file destination and file type and date of save
-  destination: (req, file, cb) => {
-    cb(null, './Documents')//file destination
-  },
-  filename:(req, file, cb)=>{
-    cb(null, Date.now() + '--' +file.originalname)//file save date + file original extention name(.pdf/.png /.jpeg)
-  },
-})
-
-const upload = multer({ storage: fileStorageEngine })//pass the fileStorageEngine variable to storage
-
-//!Single File Uploading
-app.post("/single", upload.single('image'), (req, res)=>{//pass route in middlware  //! upload.single mean pass the single file and 'image' is a key value
-  console.log(req.file);
-  res.send("Single File Upload Success")
-})
-//!Multiple File Uploading
-app.post("/multiple", upload.array('images', 5), (req, res)=>{//pass route in middlware  //! upload.array mean pass the multiple file and 'images' is a key value and ,5 mean  maximum file count
-  console.log(req.files);
-  res.send("Multiple File Upload Success")
-})
+const DocumentUpload = require('./Routes/SubmissionManagement/DocumentUpload')
+const SubmissionType = require('./Routes/SubmissionManagement/SubmissionType')
+const adminRouter = require('./Routes/admins.js');
+const isAuth = require("./middleware/auth");//pass the middleware
 
 
 app.use(cors());
@@ -60,19 +40,8 @@ mongoose.connect(URL, (err) => {
   console.log("connected to MongoDB");
 });
 
-// mongoose.connect(URL, {
-//   useCreateIndex: true,
-//   useNewUrlParser: true,
-//   useUnifiedTopologyL: true,
-//   useFindAndModify: false,
-// });
 
-// const connection = mongoose.connection;
-// connection.once('open', () => {
-//   console.log('mongodb connection is success!!!');
-// });
-
-app.use("/api/studentGroups", studentGroup);
+app.use("/api/studentGroups",isAuth, studentGroup);
 app.use("/api", ResearchArea);
 app.use("/api", Supervisor);
 app.use("/api", student);
@@ -80,6 +49,7 @@ app.use("/api/conversation", Conversation);
 app.use("/api/groupconversation", GroupConversation);
 app.use("/api/message", Message);
 app.use("/api/stages", Stage);
+app.use("/api/trequest", Trequest);
 
 app.use("/api/markingscheme", MarkingScheme);
 app.use("/api/evoluate", MarkingMarkingScheme);
@@ -87,7 +57,10 @@ app.use("/api/evoluate", MarkingMarkingScheme);
 app.use('/user', userRouter); //user login & Registration
 app.use("/api/request", RequestRouter);
 
+app.use('/admin', adminRouter);
 
+app.use("/api/document", DocumentUpload);//Document Upload Route
+app.use("/api/submissiontype", SubmissionType);//Document Upload Route
 
 
 ////create server with port numebr

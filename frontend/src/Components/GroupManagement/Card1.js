@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom'
 import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
@@ -11,19 +11,56 @@ import { message } from 'antd';
 import axios from 'axios';
 const gid = localStorage.getItem("gid")
 
-function Card1({ supervisor }) {
+function Card1({ supervisor, type, group }) {
     const { Meta } = Card;
 
-    const sendrequest = (id) => {
-        const ob = {
-            group: gid,
-            reciever: id
-        }
-        axios.post('http://localhost:8070/api/request/', ob).then((data) => {
-            message.success("Request Send")
-        }).catch((err) => {
+
+    const sendrequest = async (id) => {
+        try {
+            if (group?.members < 4) {
+                message.warning("Must Have 4 members in the Group")
+                return;
+            }
+
+            if (type) {
+                if (group?.supervisor) {
+                    message.warning("Already have a Supervisor")
+
+                    return
+                }
+            } else {
+
+                if (group?.cosupervisor) {
+                    message.warning("Already have a Co-Supervisor")
+                    return
+                }
+            }
+            const reqob = {
+                gid,
+                reciever: id
+            }
+            const res = await axios.post('http://localhost:8070/api/request/checkexist', reqob)
+            let exsist = res.data.st
+            if (exsist) {
+                message.warning("You Already Send an Request")
+                return
+            }
+
+            const ob = {
+                group: gid,
+                reciever: id
+            }
+            axios.post('http://localhost:8070/api/request/', ob).then((data) => {
+                message.success("Request Send")
+            }).catch((err) => {
+                console.log(err)
+            })
+        } catch (err) {
             console.log(err)
-        })
+        }
+
+
+
     }
     return (
 
@@ -46,15 +83,22 @@ function Card1({ supervisor }) {
                 </CardContent>
             </CardActionArea>
             <CardActions>
-                {supervisor.groups == 4 ? (
-                    <Button variant="contained" onClick={(e) => { sendrequest(supervisor._id) }} disabled endIcon={<SendIcon />}>
+                {(localStorage.getItem("staff")) ? <>
+                </> : <>
 
-                    </Button>
-                ) : (
-                    <Button variant="contained" onClick={(e) => { sendrequest(supervisor._id) }} endIcon={<SendIcon />}>
 
-                    </Button>
-                )}
+                    {(supervisor.groups == 4) ? (
+                        <Button variant="contained" onClick={(e) => { sendrequest(supervisor._id) }} disabled endIcon={<SendIcon />}>
+
+                        </Button>
+                    ) : (
+                        <Button variant="contained" onClick={(e) => { sendrequest(supervisor._id) }} endIcon={<SendIcon />}>
+
+                        </Button>
+                    )}
+                </>}
+
+
 
             </CardActions>
         </Card>

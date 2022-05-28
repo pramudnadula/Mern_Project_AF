@@ -90,7 +90,7 @@ function TimeLine({ stage }) {
                     </TimelineOppositeContent>
                     <TimelineSeparator>
                         <TimelineConnector />
-                        <TimelineDot color={checkcomplete(4)}>
+                        <TimelineDot color={checkcomplete(3)}>
                             <PlusSquareOutlined style={{ fontSize: "25px" }} />
                         </TimelineDot>
                         <TimelineConnector />
@@ -115,7 +115,7 @@ function TimeLine({ stage }) {
                     </TimelineOppositeContent>
                     <TimelineSeparator>
                         <TimelineConnector />
-                        <TimelineDot color={checkcomplete(5)}>
+                        <TimelineDot color={checkcomplete(4)}>
                             <FileDoneOutlined style={{ fontSize: "25px" }} />
                         </TimelineDot>
                         <TimelineConnector />
@@ -139,7 +139,7 @@ function TimeLine({ stage }) {
                     </TimelineOppositeContent>
                     <TimelineSeparator>
                         <TimelineConnector />
-                        <TimelineDot color={checkcomplete(6)}>
+                        <TimelineDot color={checkcomplete(5)}>
                             <FileWordOutlined style={{ fontSize: "25px" }} />
                         </TimelineDot>
                         <TimelineConnector />
@@ -164,7 +164,7 @@ function TimeLine({ stage }) {
                     </TimelineOppositeContent>
                     <TimelineSeparator>
                         <TimelineConnector />
-                        <TimelineDot color={checkcomplete(7)}>
+                        <TimelineDot color={checkcomplete(6)}>
                             <FilePptOutlined style={{ fontSize: "25px" }} />
                         </TimelineDot>
                         <TimelineConnector />
@@ -189,7 +189,7 @@ function TimeLine({ stage }) {
                     </TimelineOppositeContent>
                     <TimelineSeparator>
                         <TimelineConnector />
-                        <TimelineDot color={checkcomplete(8)}>
+                        <TimelineDot color={checkcomplete(7)}>
                             <FileProtectOutlined style={{ fontSize: "25px" }} />
                         </TimelineDot>
                         <TimelineConnector />
