@@ -6,7 +6,7 @@ const { creategroup, getstudentgroup, addmember, existmember, getallocatedgroups
 const studentGroup = require('../Models/StudentGroup');
 const User = require('../Models/User')
 const Stage = require('../Models/Groupstage')
-
+const isAuth = require("../middleware/auth");//pass the middleware
 const storage = multer.diskStorage({
 
     destination: function (req, file, cb) {
@@ -59,10 +59,10 @@ router.route("/").post(upload.single('studentImage'), async (req, res) => {
 
 
 
-router.get("/:id", getstudentgroup);
-router.get("/:id/add/:sid", addmember);
-router.get("/:id/isexist/:sid", existmember);
-router.get("/groups/:sid", getallocatedgroups);
-router.get("/groupstage/:gid", getgroupstage);
+router.get("/:id",isAuth, getstudentgroup);
+router.get("/:id/add/:sid",isAuth, addmember);
+router.get("/:id/isexist/:sid",isAuth, existmember);
+router.get("/groups/:sid",isAuth, getallocatedgroups);
+router.get("/groupstage/:gid",isAuth, getgroupstage);
 
 module.exports = router;
