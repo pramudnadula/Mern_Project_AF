@@ -3,7 +3,11 @@ var ObjectId = require("bson").ObjectId;
 const markingMarkingSchemeModel = new mongoose.Schema({
   markingSchemeId: { type: ObjectId, ref: "MarkingScheme" },
   groupId: { type: ObjectId, ref: "studentGroup" },
-  individualMark: [{ type: Number }],
+  criteriaMarks: [{
+    criterion: String,
+    allocatedMark: Number,
+    givenMark: Number,
+  }],
   totalMarks: { type: Number },
   remark: { type: String },
 });
