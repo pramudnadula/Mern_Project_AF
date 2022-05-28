@@ -23,6 +23,7 @@ import AddMarkingScheme from "./src/Components/MarkingScheme/AddMarkingScheme";
 import ViewAllMarkingSchemes from "./src/Components/MarkingScheme/VeiwAllMarkingSchemes";
 import ViewMarkingScheme from "./src/Components/MarkingScheme/ViewMarkingScheme";
 import Evaluate from "./src/Components/MarkingScheme/Evaluate";
+import EvaluateResult from "./src/Components/MarkingScheme/EvaluateResult";
 import AllocatedGroups from "./src/Components/Group_supervisor/AllocatedGroups";
 import UploadDocument from "./src/Components/SubmissionManagement/UploadDocument";
 import CreateSubmission from "./src/Components/SubmissionManagement/CreateSubmission";
@@ -59,13 +60,17 @@ function App() {
         <Route path='/req' exact component={() => (<RequestSupervisor isSupervisor={true} stype="Supervisors" />)} />
         <Route path='/creq' exact component={() => (<RequestSupervisor isSupervisor={false} stype="Co-Supervisors" />)} />
         <Route path='/msg' exact component={Chat} />
+
         <Route path="/markingscheme/add" exact component={AddMarkingScheme} />
         <Route path="/markingscheme/" exact component={ViewAllMarkingSchemes} />
         <Route path="/markingscheme/view/:id" exact component={ViewMarkingScheme} />
         <Route path="/evaluate/" exact component={Evaluate} />
+          
+        <Route path="/evaluate/view/:id" exact component={EvaluateResult} />
         <Route path="/UploadDocument" exact component={UploadDocument} />
         <Route path="/CreateSubmission" exact component={CreateSubmission} />
         <Route path="/EditSubmission/:id" exact component={EditSubmission} />
+
         <Route path="/allocatedgroups" exact component={AllocatedGroups} />
 
       </Layout1>

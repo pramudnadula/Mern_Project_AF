@@ -10,6 +10,7 @@ const markingMarkingSchemeModel = new mongoose.Schema({
   }],
   totalMarks: { type: Number },
   remark: { type: String },
+  marker: { type: String },
 });
 const markingMarkingScheme = mongoose.model(
   "MarkingMarkingScheme",

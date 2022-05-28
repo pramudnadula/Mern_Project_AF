@@ -1,46 +1,14 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
+import { Button, Form, Input, Space } from 'antd';
 
 function Evaluate(props) {
-    // const [markingScheme, setMarkingScheme] = useState();
+
     const [studentGroup, setStudentGroup] = useState();
-    // const [individualMark, setIndividualMark] = useState([]);
     const [remark, setRemark] = useState();
-    // const updateIndividualMark = (index, value) => {
-
-    //     let newArray = [...individualMark];
-    //     newArray[index] = value;
-    //     setIndividualMark(newArray);
-
-    // };
-
+    const [marker, setMarker] = useState();
     const [markingScheme, setMarkingScheme] = useState();
     const [criteriaMarks, setCriteriaMarks] = useState([]);
-
-    // const setCriteria = () => {
-
-    //     console.log(markingScheme);
-    //     if (markingScheme) {
-    //         console.log(markingScheme);
-    //         console.log(markingScheme?.features.length);
-
-    //         for (let i = 0; i < markingScheme?.features.length; i++) {
-    //             let newArray = [...criteriaMarks];
-    //             console.log(markingScheme?.features[i].criterion);
-    //             console.log(markingScheme?.features[i].allocatedMark);
-
-    //             newArray.criterion = markingScheme?.features[i].criterion;
-    //             newArray.allocatedMark = markingScheme?.features[i].allocatedMark;
-    //             newArray.givenMark = "";
-    //             setCriteriaMarks(newArray);
-
-    //         }
-    //     }
-    // }
-
-
-
-
 
     useEffect(() => {
         axios
@@ -87,18 +55,18 @@ function Evaluate(props) {
     }, []);
 
     const submit = (e) => {
-        // let total = 0;
-        // for (let i = 0; i < criteriaMarks.length; i++) {
-        //     total += Number(criteriaMarks.individualMark[i].givenMark);
-        // }
-        // console.log(individualMark)
-        // console.log(total)
+        let total = 0;
+        for (let i = 0; i < criteriaMarks.length; i++) {
+            total += Number(criteriaMarks[i].givenMark);
+        }
+        console.log(total)
         const ob = {
             markingSchemeId: "6291cb82541b675281c67b9b",
             groupId: "6291eb500921479d2fabaeb3",
             criteriaMarks,
-            totalMarks: 20,
+            totalMarks: total,
             remark,
+            marker,
         };
         console.log(ob);
         axios
@@ -110,7 +78,7 @@ function Evaluate(props) {
                 console.log(err);
             });
 
-        // window.location.href = "http://localhost:3000/";
+        //window.location.href = "http://localhost:3000/";
     };
 
     return (
@@ -137,36 +105,53 @@ function Evaluate(props) {
                                 <td>{featuresElement?.criterion}</td>
                                 <td>{featuresElement?.allocatedMark}</td>
                                 <td>
-                                    <input
-                                        type="number"
-                                        name="givenMark"
-                                        required
+                                    <Form.Item label=" " required tooltip="This is a required field"
+                                    >
+                                        <input
+                                            type="number"
+                                            name="givenMark"
+                                            required
 
-                                        onChange={(e) => {
-                                            featuresElement.givenMark = e.target.value;
-                                        }}
-                                    />
+                                            onChange={(e) => {
+                                                featuresElement.givenMark = e.target.value;
+                                            }}
+                                        />
+                                    </Form.Item>
                                 </td>
                             </tr>
                         ))}
                 </tbody>
                 <tfoot>
-                    {/* <tr>
-                        <th>Total Marks</th>
-                        <td>{markingScheme?.total}</td>
-                        <td></td>
-                    </tr> */}
                     <tr>
                         <th>Remark</th>
 
                         <td colSpan="2">
-                            <input
-                                name="remark"
-                                placeholder="Remark"
-                                onChange={(e) => {
-                                    setRemark(e.target.value);
-                                }}
-                            />
+                            <Form.Item label=" " required tooltip="This is a required field"
+                            >
+                                <input
+                                    name="remark"
+                                    placeholder="Remark"
+                                    onChange={(e) => {
+                                        setRemark(e.target.value);
+                                    }}
+                                />
+                            </Form.Item>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>Marked By:</th>
+
+                        <td colSpan="2">
+                            <Form.Item label=" " required tooltip="This is a required field"
+                            >
+                                <input
+                                    name="marker"
+                                    placeholder="Marked By"
+                                    onChange={(e) => {
+                                        setMarker(e.target.value);
+                                    }}
+                                />
+                            </Form.Item>
                         </td>
                     </tr>
                 </tfoot>

@@ -44,70 +44,51 @@ function EvaluateResult(props) {
 
   return (
     <div>
-      <table>
+      <table class="table table-secondary table-bordered">
         <thead>
           <tr>
-            <th><h2>{markingScheme?.name}</h2></th></tr>
+            <th colSpan="3"><h2>{markingScheme?.name}</h2></th>
+          </tr>
+          <tr>
+            <th>Group Name: </th>
+            <td colSpan="2">{studentGroup?.groupName}</td>
+          </tr>
+          <tr>
+            <th>Full Allocated Marks:</th>
+            <td colSpan="2">{markingScheme?.fullAllocatedMarks}</td>
+          </tr>
           <tr>
             <th>Feature</th>
             <th>Allocated Mark</th>
+            <th>Given Mark</th>
+
           </tr>
         </thead>
         <tbody>
 
-          {markingScheme?.features.map((markingSchemeElement, index) => (
-            <tr>
-              <td >{markingSchemeElement.feature}</td>
-              <td >{markingSchemeElement.marks}</td>
-            </tr>
-          ))}
-
-
-
-
-        </tbody>
-        <tfoot>
-          <tr>
-            <th>Total Marks</th>
-            <td>{markingScheme?.total}</td>
-          </tr>
-          <tr>
-            <th>Remark</th>
-            <td></td>
-          </tr>
-        </tfoot>
-      </table>
-      <table>
-        <thead>
-          <tr>
-            <th></th>
-          </tr>
-          <tr>
-            <th>Given Marks</th>
-          </tr>
-        </thead>
-        <tbody>
-          {markingMarkingScheme?.individualMark.map((markingMarkingSchemeElement, index) => (
+          {markingMarkingScheme?.criteriaMarks.map((element, index) => (
             <tr key={index}>
-              <td>{markingMarkingSchemeElement}</td>
+              <td >{element.criterion}</td>
+              <td >{element.allocatedMark}</td>
+              <td >{element.givenMark}</td>
             </tr>
           ))}
-
-
-
         </tbody>
         <tfoot>
           <tr>
-            <td>{markingMarkingScheme?.totalMarks}</td>
+            <th>Total Given Marks:</th>
+            <td colSpan="2">{markingMarkingScheme?.totalMarks}</td>
           </tr>
           <tr>
-            {markingMarkingScheme?.remark}
+            <th>Remark: </th>
+            <td colSpan="2">{markingMarkingScheme?.remark}</td>
+          </tr>
+          <tr>
+            <th>Marked By: </th>
+            <td colSpan="2">{markingMarkingScheme?.marker}</td>
           </tr>
         </tfoot>
       </table>
-      <h2>Group Details</h2>
-      Group Name: {studentGroup?.groupName} <br />
-      Topic: {studentGroup?.topic} <br />
     </div >
   );
 }
