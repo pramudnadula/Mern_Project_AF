@@ -13,7 +13,7 @@ function UploadDocument() {
 
     //Handle File Data from the state Before Sending
     const data = new FormData();
-    
+
     data.append('image', fileDate)
 
     // axios.post("http://localhost:8070/single", data).then(() => {
@@ -21,18 +21,18 @@ function UploadDocument() {
     // }).catch((err) => {
     //   alert(err);
     // })
-    fetch("http://localhost:8070/single",{
+    fetch("http://localhost:8070/api/document/single", {
       method: "POST",
       mode: 'no-cors',
       body: data,
 
     })
-    .then(() =>{
-      console.log("File Sent Successfull")
-    })
-    .catch((err) =>{
-      console.log(err.message)
-    })
+      .then(() => {
+        console.log("File Sent Successfull")
+      })
+      .catch((err) => {
+        console.log(err.message)
+      })
   }
 
   return (

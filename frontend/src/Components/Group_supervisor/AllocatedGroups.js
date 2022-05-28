@@ -111,9 +111,9 @@ function AllocatedGroups(props) {
                                                 <h5 className="card-title">{m?.groupName}</h5>
                                                 <p className="card-text">{m.topic ? m.topic : "Topic Not Yet Allocated"}</p>
                                                 {m.area ? <>
-                                                    <span class="badge bg-success">{m.area.name}</span>
+                                                    <span className="badge bg-success">{m.area.name}</span>
                                                 </> : <>
-                                                    <span class="badge bg-warning">Research area Not Disided</span>
+                                                    <span className="badge bg-warning">Research area Not Disided</span>
                                                 </>}
 
                                             </div>
@@ -122,14 +122,14 @@ function AllocatedGroups(props) {
 
                                                 {checkcount(m._id) > 0 ? <>
                                                     <Badge count={checkcount(m._id)}>
-                                                        <button onClick={(e) => { displayreq(m._id) }} class="btn btn-success"><i class="fa fa-arrow-down" aria-hidden="true"></i></button>
+                                                        <button onClick={(e) => { displayreq(m._id) }} className="btn btn-success"><i className="fa fa-arrow-down" aria-hidden="true"></i></button>
                                                     </Badge>
                                                 </> : <>
-                                                    <button onClick={(e) => { diplayInfo() }} class="btn btn-success"><i class="fa fa-arrow-down" aria-hidden="true"></i></button>
+                                                    <button onClick={(e) => { diplayInfo() }} className="btn btn-success"><i className="fa fa-arrow-down" aria-hidden="true"></i></button>
                                                 </>}
                                             </div>
-                                            <div className='col-2'><button onClick={(e) => { displaymilestones(m._id) }} class="btn btn-warning m-2"><i class="fa fa-trophy"></i></button></div>
-                                            <div className='col-2'><button onClick={(e) => { displaychart() }} class="btn btn-info m-2"><i class="fa fa-line-chart" aria-hidden="true"></i></button></div>
+                                            <div className='col-2'><button onClick={(e) => { displaymilestones(m._id) }} className="btn btn-warning m-2"><i className="fa fa-trophy"></i></button></div>
+                                            <div className='col-2'><button onClick={(e) => { displaychart() }} className="btn btn-info m-2"><i className="fa fa-line-chart" aria-hidden="true"></i></button></div>
                                         </div>
                                     </div>
                                 </div>

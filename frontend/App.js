@@ -24,7 +24,11 @@ import ViewAllMarkingSchemes from "./src/Components/MarkingScheme/VeiwAllMarking
 import ViewMarkingScheme from "./src/Components/MarkingScheme/ViewMarkingScheme";
 import Evaluate from "./src/Components/MarkingScheme/Evaluate";
 import AllocatedGroups from "./src/Components/Group_supervisor/AllocatedGroups";
+import UploadDocument from "./src/Components/SubmissionManagement/UploadDocument";
+import CreateSubmission from "./src/Components/SubmissionManagement/CreateSubmission";
+import EditSubmission from "./src/Components/SubmissionManagement/EditSubmission";
 import StaffUpdate from "./src/Components/User/StaffUpdate";
+
 
 function App() {
   const user = (localStorage.getItem("user"))
@@ -59,7 +63,9 @@ function App() {
         <Route path="/markingscheme/" exact component={ViewAllMarkingSchemes} />
         <Route path="/markingscheme/view/:id" exact component={ViewMarkingScheme} />
         <Route path="/evaluate/" exact component={Evaluate} />
-
+        <Route path="/UploadDocument" exact component={UploadDocument} />
+        <Route path="/CreateSubmission" exact component={CreateSubmission} />
+        <Route path="/EditSubmission/:id" exact component={EditSubmission} />
         <Route path="/allocatedgroups" exact component={AllocatedGroups} />
 
       </Layout1>

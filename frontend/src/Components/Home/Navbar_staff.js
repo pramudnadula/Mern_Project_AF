@@ -135,10 +135,10 @@ function Navbar_staff(props) {
                     {/* <button className='btn btn-light login_home pt-2 pb-2 p-4' >Login</button> */}
                     {(request.length > 0) ? <>
                         <Badge count={request.length}>
-                            <button class="btn btn-warning btn-circle btn-circle-sm m-1 cbtn" onClick={(e) => { setmodalvisible(true) }}><i class="fa fa-bell"></i></button>
+                            <button className="btn btn-warning btn-circle btn-circle-sm m-1 cbtn" onClick={(e) => { setmodalvisible(true) }}><i className="fa fa-bell"></i></button>
                         </Badge>
                     </> : <>
-                        <button class="btn btn-warning btn-circle btn-circle-sm m-1 cbtn" onClick={(e) => { setmodalvisible(true) }}><i class="fa fa-bell"></i></button>
+                        <button className="btn btn-warning btn-circle btn-circle-sm m-1 cbtn" onClick={(e) => { setmodalvisible(true) }}><i className="fa fa-bell"></i></button>
                     </>}
 
                     <div className="">

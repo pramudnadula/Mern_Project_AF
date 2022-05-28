@@ -75,12 +75,16 @@ function Layout1(props) {
                 </SubMenu>
                 <SubMenu key="sub2" icon={<UserOutlined />} title="Supervisors">
                     <Menu.Item key="6"><Link to='/req' className='links'>Supervisor</Link></Menu.Item>
-                    <Menu.Item key="8"><Link to='/creq' className='links'>Co-supervisor</Link></Menu.Item>
+                    <Menu.Item key="7"><Link to='/creq' className='links'>Co-supervisor</Link></Menu.Item>
                 </SubMenu>
-                <Menu.Item key="9" icon={<TeamOutlined />}>
+                <SubMenu key="sub3" icon={<FilePdfOutlined />} title="Documentation">
+                    <Menu.Item key="8"><Link to='/CreateSubmission' className='links'>Create Submission</Link></Menu.Item>
+                    <Menu.Item key="9"><Link to='/UploadDocument' className='links'>Document</Link></Menu.Item>
+                </SubMenu>
+                <Menu.Item key="10" icon={<TeamOutlined />}>
                     <Link to='/allocatedgroups' className='links'> Group</Link>
                 </Menu.Item>
-                <Menu.Item key="10" icon={<WechatOutlined />}>
+                <Menu.Item key="11" icon={<WechatOutlined />}>
                     <Link to='/msg' className='links'> Chat</Link>
                 </Menu.Item>
 
