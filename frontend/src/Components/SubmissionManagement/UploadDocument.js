@@ -1,5 +1,6 @@
 import axios from 'axios';
 import React, { useState } from 'react'
+import { POST } from '../../Helper/httpHelper'
 
 function UploadDocument() {
 
@@ -16,23 +17,12 @@ function UploadDocument() {
 
     data.append('image', fileDate)
 
-    // axios.post("http://localhost:8070/single", data).then(() => {
-    //   alert("movie added");
-    // }).catch((err) => {
-    //   alert(err);
-    // })
-    fetch("http://localhost:8070/api/document/single", {
-      method: "POST",
-      mode: 'no-cors',
-      body: data,
-
+    POST("api/document/single", data).then(() => {
+      alert("movie added");
+      console.log("File Sent Successfull")
+    }).catch((err) => {
+      alert(err);
     })
-      .then(() => {
-        console.log("File Sent Successfull")
-      })
-      .catch((err) => {
-        console.log(err.message)
-      })
   }
 
   return (

@@ -147,7 +147,7 @@ function Navbar_staff(props) {
                         </Dropdown.Toggle>
 
                         <Dropdown.Menu>
-                            {(localStorage.getItem('staff-token')) && (
+                            {(localStorage.getItem('token')) && (
                                 <>
                                     <Dropdown.Item href="#/action-1"><Link to="/staffprofile" className="navbar-item"> <i className="fa fa-user mr-2"></i>My Account </Link></Dropdown.Item>
                                 </>
