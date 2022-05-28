@@ -3,6 +3,7 @@ import React, { useState } from 'react';
 import '../../Assets/Styles/addgroup.css';
 import Marquee from 'react-fast-marquee';
 import axios from 'axios';
+import { POST } from '../../Helper/httpHelper';
 function CreateGroup(props) {
     const uid = localStorage.getItem("user")
     let data = new FormData()
@@ -29,9 +30,9 @@ function CreateGroup(props) {
         data.append("uid", uid)
         data.append("name", name)
 
-        axios.post('http://localhost:8070/api/studentGroups/', data).then((res) => {
+        POST('api/studentGroups/', data).then((res) => {
             message.success("group created successfully")
-            localStorage.setItem("gid", res.data.gid)
+            localStorage.setItem("gid", res.gid)
             window.location.reload(false)
 
         }).catch((err) => {

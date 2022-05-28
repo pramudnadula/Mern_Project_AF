@@ -9,6 +9,7 @@ import { SendOutlined } from '@ant-design/icons';
 import SendIcon from '@mui/icons-material/Send';
 import { message } from 'antd';
 import axios from 'axios';
+import { GET, POST } from '../../Helper/httpHelper'
 const gid = localStorage.getItem("gid")
 
 function Card1({ supervisor, type, group }) {
@@ -39,8 +40,8 @@ function Card1({ supervisor, type, group }) {
                 gid,
                 reciever: id
             }
-            const res = await axios.post('http://localhost:8070/api/request/checkexist', reqob)
-            let exsist = res.data.st
+            const res = await POST('api/request/checkexist', reqob)
+            let exsist = res.st
             if (exsist) {
                 message.warning("You Already Send an Request")
                 return
@@ -50,7 +51,7 @@ function Card1({ supervisor, type, group }) {
                 group: gid,
                 reciever: id
             }
-            axios.post('http://localhost:8070/api/request/', ob).then((data) => {
+            POST('api/request/', ob).then((data) => {
                 message.success("Request Send")
             }).catch((err) => {
                 console.log(err)

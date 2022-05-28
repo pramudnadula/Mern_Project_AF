@@ -14,6 +14,7 @@ import MenuIcon from '@mui/icons-material/Menu';
 import SearchIcon from '@mui/icons-material/Search';
 import Conversation from '../Components/GroupManagement/Conversation';
 import { Alert } from 'antd';
+import { GET, POST } from '../Helper/httpHelper';
 
 function Chat(props) {
     const [conversations, setConversations] = useState([])
@@ -45,8 +46,8 @@ function Chat(props) {
         _id: userid
     }
     useEffect(() => {
-        axios.get(`http://localhost:8070/user/getstudnets/${gid}`).then((data) => {
-            var users = data.data;
+        GET(`user/getstudnets/${gid}`).then((data) => {
+            var users = data;
             users = users.filter(f => f._id != userid)
             setmembers(users)
 
@@ -56,8 +57,8 @@ function Chat(props) {
             console.log(err)
         })
         if (!ind) {
-            axios.get(`http://localhost:8070/api/studentGroups/groups/${userid}`).then((data) => {
-                setsupergroups(data.data)
+            GET(`api/studentGroups/groups/${userid}`).then((data) => {
+                setsupergroups(data)
             }).catch((err) => {
                 console.log(err)
             })
@@ -162,8 +163,8 @@ function Chat(props) {
         const getcon = async () => {
             if (ind) {
                 try {
-                    const res = await axios.get("http://localhost:8070/api/conversation/" + user._id)
-                    setConversations(res.data)
+                    const res = await GET("api/conversation/" + user._id)
+                    setConversations(res)
 
 
                 } catch (error) {
@@ -175,9 +176,9 @@ function Chat(props) {
                         uid: user._id,
                         gid
                     }
-                    const res = await axios.post("http://localhost:8070/api/conversation/group", ob)
-                    console.log(res.data)
-                    setConversations(res.data)
+                    const res = await POST("api/conversation/group", ob)
+                    console.log(res)
+                    setConversations(res)
 
 
                 } catch (error) {
@@ -187,9 +188,9 @@ function Chat(props) {
 
             if (ind && ngid) {
                 try {
-                    const res = await axios.get("http://localhost:8070/api/conversation/" + ngid)
+                    const res = await GET("api/conversation/" + ngid)
 
-                    setgconversation(res.data)
+                    setgconversation(res)
 
 
 
@@ -206,8 +207,8 @@ function Chat(props) {
     useEffect(() => {
         const getmessages = async () => {
             try {
-                const res = await axios.get('http://localhost:8070/api/message/' + currentchat?._id)
-                setmessages(res.data)
+                const res = await GET('api/message/' + currentchat?._id)
+                setmessages(res)
             } catch (error) {
                 console.log(error)
             }
@@ -230,8 +231,8 @@ function Chat(props) {
             text: newmessage,
         })
         try {
-            const res = await axios.post('http://localhost:8070/api/message', message);
-            setmessages([...messages, res.data])
+            const res = await POST('api/message', message);
+            setmessages([...messages, res])
             setnewmessage("")
 
         } catch (error) {

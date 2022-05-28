@@ -5,6 +5,7 @@ import { useDispatch } from 'react-redux';
 import defpic from '../../Assets/Images/user1.png';
 import { SendOutlined } from '@ant-design/icons';
 import { checkstudent } from '../../Actions/StudentActions';
+import { POST } from '../../Helper/httpHelper';
 function Conversation({ user, send, gid }) {
     // const [student, setStudent] = useState(null)
     // const dispatch = useDispatch()
@@ -21,7 +22,7 @@ function Conversation({ user, send, gid }) {
             group: gid,
             reciever: id
         }
-        axios.post('http://localhost:8070/api/request/', ob).then((data) => {
+        POST('api/request/', ob).then((data) => {
             message.success("Request Send")
         }).catch((err) => {
             console.log(err)

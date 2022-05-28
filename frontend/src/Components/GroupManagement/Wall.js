@@ -18,6 +18,7 @@ import TimeLine from './TimeLine';
 import { Select } from 'antd';
 const { Option } = Select;
 import Chart from './Chart';
+import { GET, POST } from '../../Helper/httpHelper';
 function Wall({ group, uid }) {
     const [add, setadd] = useState(false)
     const [input, setinput] = useState("")
@@ -44,21 +45,21 @@ function Wall({ group, uid }) {
 
     }
     useEffect(() => {
-        axios.get(`http://localhost:8070/api/studentGroups/${group._id}`).then((data) => {
-            setactualgroup(data.data)
+        GET(`api/studentGroups/${group._id}`).then((data) => {
+            setactualgroup(data)
         }).catch((err) => {
             console.log(err)
         })
 
 
-        axios.get(`http://localhost:8070/api/stages/${group._id}`).then((data) => {
-            setgroupstage(data.data)
+        GET(`api/stages/${group._id}`).then((data) => {
+            setgroupstage(data)
         }).catch((err) => {
             console.log(err)
         })
 
-        axios.get(`http://localhost:8070/api/researchareas/list`).then((data) => {
-            setareas(data.data)
+        GET(`api/researchareas/list`).then((data) => {
+            setareas(data)
         }).catch((err) => {
             console.log(err)
         })
@@ -70,8 +71,8 @@ function Wall({ group, uid }) {
     var memcount = 0;
     useEffect(() => {
         dispatch(getstudents())
-        axios.get(`http://localhost:8070/user/getstudnets/${group._id}`).then((data) => {
-            var users = data.data;
+        GET(`user/getstudnets/${group._id}`).then((data) => {
+            var users = data;
             memcount = users.length
             users = users.filter(f => f._id != uid)
             setmemebers(users)
@@ -97,7 +98,7 @@ function Wall({ group, uid }) {
             links
 
         }
-        axios.post(`http://localhost:8070/api/trequest`, ob).then((data) => {
+        POST(`api/trequest`, ob).then((data) => {
             message.success("Request send Successfully")
         }).catch((err) => {
             console.log(err)
@@ -113,7 +114,7 @@ function Wall({ group, uid }) {
     }
 
     const getTrequest = () => {
-        axios.get(`http://localhost:8070/api/trequest/getone/${group._id}`).then((data) => {
+        GET(`api/trequest/getone/${group._id}`).then((data) => {
 
         }).catch((err) => {
             console.log(err)
@@ -144,8 +145,8 @@ function Wall({ group, uid }) {
                 message.warning("No Co-supervisor Allocated Yet")
                 return
             }
-            const re = await axios.get(`http://localhost:8070/api/trequest/check/${group._id}`)
-            if (re.data) {
+            const re = await GET(`api/trequest/check/${group._id}`)
+            if (re) {
                 message.warning("You have send a Request Already")
                 return
             }

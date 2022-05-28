@@ -1,14 +1,15 @@
 const { addrequest, getspecificrequest, requestresponse, requestresponsesupervisor, checkexistrequest } = require('../Controllers/Request');
+const isAuth = require("../middleware/auth");//pass the middleware
 
 const router = require('express').Router();
 
 
 
-router.post('/', addrequest)
-router.get("/all/:id", getspecificrequest)
-router.get("/reject", getspecificrequest)
-router.post("/response", requestresponse)
-router.post("/responsesupervisor", requestresponsesupervisor)
-router.post("/checkexist", checkexistrequest)
+router.post('/', isAuth, addrequest)
+router.get("/all/:id", isAuth, getspecificrequest)
+router.get("/reject", isAuth, getspecificrequest)
+router.post("/response", isAuth, requestresponse)
+router.post("/responsesupervisor", isAuth, requestresponsesupervisor)
+router.post("/checkexist", isAuth, checkexistrequest)
 
 module.exports = router;

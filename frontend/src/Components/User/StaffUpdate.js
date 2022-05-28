@@ -3,6 +3,7 @@ import { Link, useParams } from 'react-router-dom';
 import './../../Assets/Styles/UserProfile.css';
 import PasswordChecklist from "react-password-checklist"
 import axios from 'axios';
+import { GET, PUT } from '../../Helper/httpHelper';
 
 function StaffUpdate(props) {
 
@@ -22,21 +23,15 @@ function StaffUpdate(props) {
     }, [])
     //get data from profile page
     function getData() {
-        axios({
-            method: "get",
-            baseURL: `http://localhost:8070/api/supervisors/${staffId}`,
-            headers: {
-                // Authorization: "Bearer " + token
-            }
-        })
+        GET(`api/supervisors/${staffId}`)
             .then((res) => {
-                setfname(res.data.user.fname)
-                setlname(res.data.user.lname)
-                setemail(res.data.user.email)
-                setusername(res.data.user.username)
+                setfname(res.user.fname)
+                setlname(res.user.lname)
+                setemail(res.user.email)
+                setusername(res.user.username)
                 // setarea(res.data.user.area)
-                setpassword(res.data.user.password)
-                setconfpassword(res.data.user.password)
+                setpassword(res.user.password)
+                setconfpassword(res.user.password)
             }).catch((err) => {
                 alert(err.message);
             })
@@ -60,14 +55,7 @@ function StaffUpdate(props) {
             password
         };
 
-        axios({
-            method: "put",
-            baseURL: `http://localhost:8070/api/supervisors/update/${staffId}`,
-            data: newUser,
-            // headers: {
-            //     // Authorization: "Bearer " + token
-            // }
-        })
+        PUT(`api/supervisors/update/${staffId}`, newUser)
             .then(() => {
                 alert('User Updated, Click ok');
                 window.location.href = '/staffprofile';

@@ -107,7 +107,7 @@ function Layout1(props) {
         <>
             {localStorage.getItem("user") ? <>
                 <NavBar_DashBoard />
-                <Layout style={{ minHeight: '93vh', backgroundColor: "green" }} className={(location.pathname === '/') || (location.pathname === '/login') || (location.pathname === '/register') || (location.pathname === '/staffregister') || (location.pathname === '/staffprofile') || (location.pathname === '/staffupdate') || (location.pathname === '/userprofile') ? "block" : ""}>
+                <Layout style={{ minHeight: '93vh', backgroundColor: "green" }} className={(location.pathname === '/') || (location.pathname === '/login') || (location.pathname === '/register') || (location.pathname === '/staffregister') ? "block" : ""}>
 
                     {slider()}
                     <Layout className="site-layout" >

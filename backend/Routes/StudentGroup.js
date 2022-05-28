@@ -26,7 +26,7 @@ const filefilter = (req, file, cb) => {
 
 const upload = multer({ storage: storage, fileFilter: filefilter });
 
-router.route("/").post(upload.single('studentImage'), async (req, res) => {
+router.route("/").post(upload.single('studentImage'), isAuth, async (req, res) => {
     const uid = req.body.uid
     const groupName = req.body.name;
     const image = req.file?.path;
@@ -59,10 +59,10 @@ router.route("/").post(upload.single('studentImage'), async (req, res) => {
 
 
 
-router.get("/:id",isAuth, getstudentgroup);
-router.get("/:id/add/:sid",isAuth, addmember);
-router.get("/:id/isexist/:sid",isAuth, existmember);
-router.get("/groups/:sid",isAuth, getallocatedgroups);
-router.get("/groupstage/:gid",isAuth, getgroupstage);
+router.get("/:id", isAuth, getstudentgroup);
+router.get("/:id/add/:sid", isAuth, addmember);
+router.get("/:id/isexist/:sid", isAuth, existmember);
+router.get("/groups/:sid", isAuth, getallocatedgroups);
+router.get("/groupstage/:gid", isAuth, getgroupstage);
 
 module.exports = router;

@@ -3,6 +3,7 @@ import { Link, useParams } from 'react-router-dom';
 import './../../Assets/Styles/UserProfile.css';
 import PasswordChecklist from "react-password-checklist"
 import axios from 'axios';
+import { GET, PUT } from '../../Helper/httpHelper';
 
 function Update(props) {
 
@@ -22,21 +23,15 @@ function Update(props) {
 	}, [])
 	//get data from profile page
 	function getData() {
-		axios({
-			method: "get",
-			baseURL: `http://localhost:8070/user/getuser/${userId}`,
-			headers: {
-				Authorization: "Bearer " + token
-			}
-		})
+		GET(`user/getuser/${userId}`)
 			.then((res) => {
-				setfname(res.data.user.fname)
-				setlname(res.data.user.lname)
-				setemail(res.data.user.email)
-				settype(res.data.user.type)
-				setusername(res.data.user.username)
-				setpassword(res.data.user.password)
-				setconfpassword(res.data.user.password)
+				setfname(res.user.fname)
+				setlname(res.user.lname)
+				setemail(res.user.email)
+				settype(res.user.type)
+				setusername(res.user.username)
+				setpassword(res.user.password)
+				setconfpassword(res.user.password)
 			}).catch((err) => {
 				alert(err.message);
 			})
@@ -61,14 +56,7 @@ function Update(props) {
 			password
 		};
 
-		axios({
-			method: "put",
-			baseURL: `http://localhost:8070/user/update/${userId}`,
-			data: newUser,
-			headers: {
-				Authorization: "Bearer " + token
-			}
-		})
+		PUT(`user/update/${userId}`, newUser)
 			.then(() => {
 				alert('User Updated, Click ok');
 				window.location.href = '/userprofile';
