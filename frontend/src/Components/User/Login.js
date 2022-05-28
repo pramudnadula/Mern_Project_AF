@@ -3,12 +3,7 @@ import Loginpic from './../../Assets/Images/pic1.svg';
 import './../../Assets/Styles/Register.css';
 import axios from 'axios';
 
-
-
 function Login() {
-
-
-
     const [username, setusername] = useState("")
     const [email, setemail] = useState("")
     const [password, setpassword] = useState("")
@@ -27,10 +22,8 @@ function Login() {
             url = 'http://localhost:8070/api/supervisors/login'
         }
         const newUser = {
-            //userName:userName,
             email: email,
             password
-            // type
         };
 
         axios
@@ -40,10 +33,6 @@ function Login() {
                     console.log(res)
 
                 }
-
-
-
-
                 if (type === "stu") {
                     localStorage.setItem("user", (res.data.userId))
                     localStorage.setItem("token", res.data.token)
@@ -52,27 +41,19 @@ function Login() {
                 else {
                     localStorage.setItem("staff", (res.data.UId))
                     localStorage.setItem("type", (res.data.type))
-
+                    localStorage.setItem("staff-token", res.data.token)
                 }
                 setUserId(res.data.userId)
                 setTest(!test)
 
                 window.location.href = '/home';
-                // , { replace: true }
+
             })
             .catch((err) => {
                 alert("Email or Password is worng");
                 console.log(err)
             });
     }
-
-
-
-
-
-
-
-
 
     return (<div>
 

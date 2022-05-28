@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Navbar, Container, Nav, NavDropdown, Form, Button, FormControl } from 'react-bootstrap'
+import { Navbar, Container, Nav, NavDropdown, Form, Button, FormControl, Dropdown } from 'react-bootstrap'
 import '../../Assets/Styles/NavBar_DashBoard.css'
 
 import { Link, useLocation } from 'react-router-dom'
@@ -141,15 +141,20 @@ function Navbar_staff(props) {
                         <button className="btn btn-warning btn-circle btn-circle-sm m-1 cbtn" onClick={(e) => { setmodalvisible(true) }}><i className="fa fa-bell"></i></button>
                     </>}
 
-                    <div className="">
-                        <hr className="navbar-divider" />
-                        <a className="navbar-item" onClick={(e) => {
-                            localStorage.clear();
-                            window.location.href = "/"
-                        }}>
-                            <b> Sign Out </b>
-                        </a>
-                    </div>
+                    <Dropdown>
+                        <Dropdown.Toggle variant="success" id="dropdown-basic">
+                            Profile
+                        </Dropdown.Toggle>
+
+                        <Dropdown.Menu>
+                            {(localStorage.getItem('staff-token')) && (
+                                <>
+                                    <Dropdown.Item href="#/action-1"><Link to="/staffprofile" className="navbar-item"> <i className="fa fa-user mr-2"></i>My Account </Link></Dropdown.Item>
+                                </>
+                            )}
+                            <Dropdown.Item href="#/action-2"><a className="navbar-item" onClick={(e) => { localStorage.clear(); window.location.href = "/" }}><b> Sign Out </b></a></Dropdown.Item>
+                        </Dropdown.Menu>
+                    </Dropdown>
                 </Container>
             </Navbar>
 
