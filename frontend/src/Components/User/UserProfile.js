@@ -108,7 +108,7 @@ function UserProfile({ setTest }) {
                         </div>
                         <div className="row mt-3">
                             <div className="col-md-6"><label className="labels">Username</label><input type="text" className="form-control" placeholder="enter username" value={currentUser.username} readOnly /></div>
-                            <div className="col-md-6"><label className="labels">Password</label><input type="text" className="form-control" value={currentUser.password} placeholder="enter password" readOnly /></div>
+                            <div className="col-md-6"><label className="labels">Password</label><input type="password" className="form-control" value={currentUser.password} placeholder="enter password" readOnly /></div>
                         </div>
                         {/* <div className="mt-5 text-center"><button className="btn btn-primary profile-button" type="submit">Save Profile</button></div> */}
                     </div>

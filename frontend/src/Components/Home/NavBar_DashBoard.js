@@ -48,7 +48,7 @@ function NavBar_DashBoard(props) {
     }
     return (
         <>
-            <Navbar className={(location.pathname === '/') || (location.pathname === '/login') || (location.pathname === '/register') || (location.pathname === '/staffregister') ? "block" : "headerNavBar"} >
+            <Navbar className={(location.pathname === '/') || (location.pathname === '/login') || (location.pathname === '/register') || (location.pathname === '/staffregister') || (location.pathname === '/adminlogin') ? "block" : "headerNavBar"} >
 
                 <Modal
                     title=""

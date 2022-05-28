@@ -74,7 +74,7 @@ function StaffProfile({ setTest }) {
                         </div>
                         <div className="row mt-3">
                             <div className="col-md-6"><label className="labels">Username</label><input type="text" className="form-control" placeholder="enter username" value={currentUser.username} readOnly /></div>
-                            <div className="col-md-6"><label className="labels">Password</label><input type="text" className="form-control" placeholder="enter password" value={currentUser.password} readOnly /></div>
+                            <div className="col-md-6"><label className="labels">Password</label><input type="password" className="form-control" placeholder="enter password" value={currentUser.password} readOnly /></div>
                         </div>
                         <br></br>
                         <div className="text-center ">
