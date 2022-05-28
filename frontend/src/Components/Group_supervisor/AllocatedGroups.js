@@ -20,7 +20,7 @@ function AllocatedGroups(props) {
                         <div className="card-body">
                             <h5 className="card-title">{m?.groupName}</h5>
                             <p className="card-text">{m.topic ? m.topic : "Topic Not Yet Allocated"}</p>
-                            <span class="badge bg-success">{m.area ? m.area.name : "Research area Not Disigned"}</span>
+                            <span className="badge bg-success">{m.area ? m.area.name : "Research area Not Disigned"}</span>
 
                         </div>
                     </div>

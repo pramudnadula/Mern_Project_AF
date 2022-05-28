@@ -1,4 +1,4 @@
-////Declare the variables
+//! Declare the variables
 const express = require("express");
 const mongoose = require("mongoose");
 const dotenv = require("dotenv");
@@ -24,32 +24,8 @@ const MarkingMarkingScheme = require("./Routes/MarkingMarkingScheme");
 const GroupConversation = require('./Routes/GroupConversation');
 const userRouter = require('./Routes/users.js');
 const RequestRouter = require('./Routes/Request')
-
-//!File Upload 
-const multer = require('multer')//import npm package multer
-
-const fileStorageEngine = multer.diskStorage({ //function about file destination and file type and date of save
-  destination: (req, file, cb) => {
-    cb(null, './Documents')//file destination
-  },
-  filename:(req, file, cb)=>{
-    cb(null, Date.now() + '--' +file.originalname)//file save date + file original extention name(.pdf/.png /.jpeg)
-  },
-})
-
-const upload = multer({ storage: fileStorageEngine })//pass the fileStorageEngine variable to storage
-
-//!Single File Uploading
-app.post("/single", upload.single('image'), (req, res)=>{//pass route in middlware  //! upload.single mean pass the single file and 'image' is a key value
-  console.log(req.file);
-  res.send("Single File Upload Success")
-})
-//!Multiple File Uploading
-app.post("/multiple", upload.array('images', 5), (req, res)=>{//pass route in middlware  //! upload.array mean pass the multiple file and 'images' is a key value and ,5 mean  maximum file count
-  console.log(req.files);
-  res.send("Multiple File Upload Success")
-})
-
+const DocumentUpload = require('./Routes/SubmissionManagement/DocumentUpload')
+const SubmissionType = require('./Routes/SubmissionManagement/SubmissionType')
 
 app.use(cors());
 app.use(bodyparser.json());
@@ -88,6 +64,8 @@ app.use('/user', userRouter); //user login & Registration
 app.use("/api/request", RequestRouter);
 
 
+app.use("/api/document", DocumentUpload);//Document Upload Route
+app.use("/api/submissiontype", SubmissionType);//Document Upload Route
 
 
 ////create server with port numebr
