@@ -28,7 +28,7 @@ const RequestRouter = require('./Routes/Request')
 const DocumentUpload = require('./Routes/SubmissionManagement/DocumentUpload')
 const SubmissionType = require('./Routes/SubmissionManagement/SubmissionType')
 const adminRouter = require('./Routes/admins.js');
-
+const isAuth = require("./middleware/auth");//pass the middleware
 
 
 app.use(cors());
@@ -41,7 +41,7 @@ mongoose.connect(URL, (err) => {
 });
 
 
-app.use("/api/studentGroups", studentGroup);
+app.use("/api/studentGroups",isAuth, studentGroup);
 app.use("/api", ResearchArea);
 app.use("/api", Supervisor);
 app.use("/api", student);
@@ -54,7 +54,7 @@ app.use("/api/trequest", Trequest);
 app.use("/api/markingscheme", MarkingScheme);
 app.use("/api/evoluate", MarkingMarkingScheme);
 
-app.use('/user', userRouter); //user login & Registration
+app.use('/user',isAuth, userRouter); //user login & Registration
 app.use("/api/request", RequestRouter);
 
 app.use('/admin', adminRouter);
