@@ -23,3 +23,7 @@ exports.getMarkingMarkingScheme = async (req, res) => {
     res.status(500).json(err);
   }
 };
+
+exports.getMarkingMarkingSchemeByGroupId = async (req, res) => {
+
+}
