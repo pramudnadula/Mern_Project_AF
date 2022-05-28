@@ -12,7 +12,7 @@ const studentGroupModel = new mongoose.Schema({
         type: ObjectId,
         ref: 'Supervisor'
     },
-    members: [{ type: ObjectId, ref: 'student' }],
+    members: { type: Number },
     area: {
         type: ObjectId,
         ref: "researcharea"

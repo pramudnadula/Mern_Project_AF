@@ -51,7 +51,7 @@ function Login() {
                 }
                 else {
                     localStorage.setItem("staff", (res.data.UId))
-
+                    localStorage.setItem("type", (res.data.type))
 
                 }
                 setUserId(res.data.userId)
@@ -114,7 +114,7 @@ function Login() {
                                     </div> */}
 
                                     <div className="form-group first">
-                                       <label htmlFor="username">Username</label>
+                                        <label htmlFor="username">Username</label>
                                         <input type="email" className="form-control" id="email" onChange={(e) => { setemail(e.target.value) }} required />
                                     </div>
 

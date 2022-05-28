@@ -19,6 +19,8 @@ function StaffRegister() {
     const [password, setpassword] = useState("")
     const [confpassword, setconfpassword] = useState("")
     const [users, setUsers] = useState([])
+
+    const [type, settype] = useState()
     const [areas, setareas] = useState([])
     const [ida, setida] = useState([])
 
@@ -57,11 +59,18 @@ function StaffRegister() {
         else {
             return (alert("Password Doesn't match"))
         }
+        let ty
+        if (type == "Su") {
+            ty = true
+        }
+        else {
+            ty = false
+        }
         const newUser = {
             fname,
             lname,
             email,
-            isSupervisor: false,
+            isSupervisor: ty,
             groups: 0,
             // area,
             username,
@@ -119,11 +128,11 @@ function StaffRegister() {
                                     <div className="control has-text-white has-text-centered mb-4">
 
                                         <label className="radio" >
-                                            <input type="radio" required value="Su" name="rad" />
+                                            <input onChange={(e) => { settype(e.target.value) }} type="radio" required value="Su" name="rad" />
                                             Supervisor
                                         </label>
                                         <label className="radio">
-                                            <input type="radio" required value="Co" name="rad" />
+                                            <input onChange={(e) => { settype(e.target.value) }} type="radio" required value="Co" name="rad" />
                                             Co-Supervisor
                                         </label>
                                     </div>

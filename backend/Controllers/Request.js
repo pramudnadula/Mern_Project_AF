@@ -3,6 +3,7 @@ const User = require('../Models/User')
 const Conversation = require('../Models/Conversation')
 const Supervisor = require('../Models/Supervisor');
 const Group = require('../Models/StudentGroup')
+const Stage = require('../Models/Groupstage')
 exports.addrequest = async (req, res) => {
     const newrequest = new Request(req.body)
     await newrequest.save((err, data) => {
@@ -42,7 +43,9 @@ exports.requestresponse = async (req, res) => {
                 })
                 await newcon.save()
             }
-
+            const gr = await Group.findById({ _id: gid })
+            gr.members = gr.members + 1;
+            await gr.save()
             user.groupid = gid;
             await user.save()
             await Request.findByIdAndDelete({ _id: rid })
@@ -68,6 +71,7 @@ exports.requestresponsesupervisor = async (req, res) => {
             const user = await Supervisor.findById({ _id: uid })
             let sup;
             const group = await Group.findById({ _id: gid }).populate("cosupervisor").populate("supervisor")
+            const stage = await Stage.findOne({ group: gid })
             if (user.isSupervisor) {
                 sup = true;
                 if (group.cosupervisor) {
@@ -124,5 +128,23 @@ exports.requestresponsesupervisor = async (req, res) => {
             error: "errors"
         })
     }
+}
+
+exports.checkexistrequest = async (req, res) => {
+    try {
+        const { gid, reciever } = req.body
+        const re = await Request.findOne({ group: gid, reciever })
+        if (re) {
+            res.send({ st: true })
+        }
+        else {
+            res.send({ st: false })
+        }
+    } catch (err) {
+        res.status(400).json({
+            error: "errors"
+        })
+    }
+
 }
 

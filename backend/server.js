@@ -17,6 +17,7 @@ const student = require("./Routes/Student");
 const Conversation = require("./Routes/Conversations");
 const Message = require("./Routes/Messages");
 const Stage = require('./Routes/Groupstage')
+const Trequest = require('./Routes/Topic_Request')
 
 
 const MarkingScheme = require("./Routes/MarkingScheme");
@@ -27,7 +28,8 @@ const RequestRouter = require('./Routes/Request')
 const adminRouter = require('./Routes/admins.js');
 
 //!File Upload 
-const multer = require('multer')//import npm package multer
+const multer = require('multer');//import npm package multer
+
 
 const fileStorageEngine = multer.diskStorage({ //function about file destination and file type and date of save
   destination: (req, file, cb) => {
@@ -81,6 +83,7 @@ app.use("/api/conversation", Conversation);
 app.use("/api/groupconversation", GroupConversation);
 app.use("/api/message", Message);
 app.use("/api/stages", Stage);
+app.use("/api/trequest", Trequest);
 
 app.use("/api/markingscheme", MarkingScheme);
 app.use("/api/evoluate", MarkingMarkingScheme);

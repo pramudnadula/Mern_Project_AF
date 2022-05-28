@@ -16,6 +16,7 @@ import IconButton from '@mui/material/IconButton';
 import MenuIcon from '@mui/icons-material/Menu';
 import SearchIcon from '@mui/icons-material/Search';
 import DirectionsIcon from '@mui/icons-material/Directions';
+import axios from 'axios';
 import { Switch } from 'antd';
 
 function RequestSupervisor({ isSupervisor, stype }) {
@@ -24,16 +25,26 @@ function RequestSupervisor({ isSupervisor, stype }) {
     const [skip, setskip] = useState(0)
     const [type, settype] = useState(false);
     const [size, setsize] = useState(0)
+    const [dgroup, setdgroup] = useState()
     const [filterResults, setfilterResults] = useState(0)
     const [myFilters, setmyFilters] = useState({
         filters: { area: [], groups: [] }
     })
     const { rareas } = useSelector(state => state.areas);
     const dispatch = useDispatch()
+    const gid = localStorage.getItem("gid")
 
     useEffect(() => {
         dispatch(getareas())
         LoadfilterResults(myFilters.filters)
+        if (gid) {
+            axios.get(`http://localhost:8070/api/studentGroups/${gid}`).then((data) => {
+                setdgroup(data.data)
+
+            }).catch((err) => {
+                console.log(err)
+            })
+        }
     }, [])
     const handleFilters = (filters, filterby) => {
         const newfilter = { ...myFilters }
@@ -152,7 +163,7 @@ function RequestSupervisor({ isSupervisor, stype }) {
                         <div className='row justify-content-center'>
                             {filterResults ? (filterResults.map((supervisor, i) => (
                                 <div className='col-xl-4 col-lg-5 col-md-6 col-sm-8 col-8 mb-4'>
-                                    <Card1 supervisor={supervisor} />
+                                    <Card1 supervisor={supervisor} type={isSupervisor} group={dgroup ? dgroup : ""} />
                                 </div>
 
                             ))) : ''}
