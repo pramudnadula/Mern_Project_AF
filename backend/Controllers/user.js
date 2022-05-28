@@ -125,7 +125,7 @@ exports.login = async (req, res, next) => {
                 userId: user._id.toString(),
             },
             "somesupersecretsecret",
-            { expiresIn: "1h" },
+            { expiresIn: "10h" },
         );
         let gid;
         if (!user.groupid) {

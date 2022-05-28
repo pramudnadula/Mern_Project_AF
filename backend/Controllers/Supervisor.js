@@ -165,7 +165,7 @@ exports.loginSupervisor = async (req, res, next) => {
                 userId: user._id.toString(),
             },
             "somesupersecretsecret",
-            { expiresIn: "1h" },
+            { expiresIn: "10h" },
         );
 
         
