@@ -4,6 +4,7 @@ import { useSelector } from 'react-redux';
 import CreateGroup from '../Components/GroupManagement/CreateGroup';
 import Spinner from '../Components/GroupManagement/Spinner';
 import Wall from '../Components/GroupManagement/Wall';
+import { GET } from '../Helper/httpHelper';
 
 function StudentGroup(props) {
 
@@ -18,10 +19,10 @@ function StudentGroup(props) {
     }
 
     useEffect(() => {
-        axios.get(`http://localhost:8070/user/getuser/${userid}`).then((data) => {
-            setuser(data.data)
-            console.log(data.data.user)
-            setgroupid(data.data.user.groupid)
+        GET(`user/getuser/${userid}`).then((data) => {
+            setuser(data)
+            console.log(data.user)
+            setgroupid(data.user.groupid)
         }).catch((err) => {
             console.log(err)
         })

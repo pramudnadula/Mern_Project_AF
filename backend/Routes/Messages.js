@@ -1,10 +1,11 @@
 const { addmessage, getmessages } = require("../Controllers/Messages");
 const router = require("express").Router();
+const isAuth = require("../middleware/auth");//pass the middleware
 
 
 //add
-router.post("/", addmessage)
+router.post("/", isAuth, addmessage)
 //get
-router.get("/:conversationId", getmessages)
+router.get("/:conversationId", isAuth, getmessages)
 
 module.exports = router;

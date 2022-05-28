@@ -1,12 +1,13 @@
 const { getConversation, createConveration, getConversationgroup } = require("../Controllers/Conversation");
 const router = require("express").Router();
+const isAuth = require("../middleware/auth");//pass the middleware
 
 
 //new con
-router.post("/", createConveration)
+router.post("/", isAuth, createConveration)
 //get con of user
-router.get("/:userId", getConversation)
-router.post("/group", getConversationgroup)
+router.get("/:userId", isAuth, getConversation)
+router.post("/group", isAuth, getConversationgroup)
 
 
 

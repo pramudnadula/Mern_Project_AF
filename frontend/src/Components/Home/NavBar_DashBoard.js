@@ -6,6 +6,7 @@ import { Link, useLocation } from 'react-router-dom'
 import { Badge, Avatar, Modal, message } from 'antd';
 import dpic from '../../Assets/Images/ff.webp'
 import axios from 'axios';
+import { GET, POST } from '../../Helper/httpHelper';
 function NavBar_DashBoard(props) {
     const userid = localStorage.getItem("user");
     const [modalvisible, setmodalvisible] = useState(false)
@@ -14,8 +15,8 @@ function NavBar_DashBoard(props) {
 
     useEffect(() => {
         if (userid) {
-            axios.get(`http://localhost:8070/api/request/all/${userid}`).then((data) => {
-                setrequest(data.data)
+            GET(`api/request/all/${userid}`).then((data) => {
+                setrequest(data)
             }).catch((err) => {
                 console.log(err)
             })
@@ -35,7 +36,7 @@ function NavBar_DashBoard(props) {
             rid,
             sta: res
         }
-        axios.post('http://localhost:8070/api/request/response', ob).then((data) => {
+        POST('api/request/response', ob).then((data) => {
             if (res) {
                 localStorage.setItem("gid", gid)
                 message.success("suceessfully Joined")

@@ -31,6 +31,7 @@ const adminRouter = require('./Routes/admins.js');
 
 
 
+
 app.use(cors());
 app.use(bodyparser.json());
 

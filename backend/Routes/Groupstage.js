@@ -1,10 +1,11 @@
 const { getstage } = require("../Controllers/Groupstage");
+const isAuth = require("../middleware/auth");//pass the middleware
 
 const router = require("express").Router();
 
 
 
-router.get("/:id", getstage)
+router.get("/:id", isAuth, getstage)
 
 
 

@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import './../../Assets/Styles/UserProfile.css';
 import axios from 'axios';
+import { GET } from '../../Helper/httpHelper';
 
 
 
@@ -21,15 +22,9 @@ function StaffProfile({ setTest }) {
     useEffect(() => {
         //         const token = localStorage.getItem("stoken");
         try {
-            axios({
-                method: "get",
-                baseURL: `http://localhost:8070/api/supervisors/${staffId}`,
-                headers: {
-                    //Authorization: "Bearer " + token
-                },
-            }).then(res => {
-                setcurrentUser(res.data.user)
-                console.log(res.data)
+            GET(`api/supervisors/${staffId}`).then(res => {
+                setcurrentUser(res.user)
+                console.log(res)
             })
         } catch (err) {
             throw err;

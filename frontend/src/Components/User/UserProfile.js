@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import './../../Assets/Styles/UserProfile.css';
 import axios from 'axios';
+import { GET, POST } from '../../Helper/httpHelper';
 
 
 function UserProfile({ setTest }) {
@@ -17,15 +18,9 @@ function UserProfile({ setTest }) {
     useEffect(() => {
         const token = localStorage.getItem("token");
         try {
-            axios({
-                method: "get",
-                baseURL: `http://localhost:8070/user/getuser/${userId}`,
-                headers: {
-                    Authorization: "Bearer " + token
-                },
-            }).then(res => {
-                setcurrentUser(res.data.user)
-                console.log(res.data)
+            GET(`user/getuser/${userId}`).then(res => {
+                setcurrentUser(res.user)
+                console.log(res)
             })
         } catch (err) {
             throw err;
@@ -44,15 +39,15 @@ function UserProfile({ setTest }) {
         data.append('proimage', profileDate)
 
 
-        fetch("http://localhost:8070/user/profileimage", {
-            method: "POST",
-            mode: 'no-cors',
-            body: data,
+        // fetch("http://localhost:8070/user/profileimage", {
+        //     method: "POST",
+        //     mode: 'no-cors',
+        //     body: data,
 
+        // })
+        POST(`user/profileimage`, data).then(() => {
+            console.log("File Sent Successfull")
         })
-            .then(() => {
-                console.log("File Sent Successfull")
-            })
             .catch((err) => {
                 console.log(err.message)
             })

@@ -38,9 +38,9 @@ function AllocatedGroups(props) {
         const ob = {
             type
         }
-        axios.post(`http://localhost:8070/api/trequest/checkbyuser/${sid}`, ob).then((data) => {
-            setreq(data.data)
-            console.log(data.data)
+        POST(`api/trequest/checkbyuser/${sid}`, ob).then((data) => {
+            setreq(data)
+
         }).catch((err) => {
             console.log(err)
         })
@@ -66,7 +66,7 @@ function AllocatedGroups(props) {
             tid
         }
         try {
-            const res = await axios.post(`http://localhost:8070/api/trequest/response`, ob)
+            const res = await POST(`api/trequest/response`, ob)
             message.success("success")
             window.location.reload(false)
         } catch (err) {
@@ -102,21 +102,7 @@ function AllocatedGroups(props) {
         setshow3(false)
     }
 
-    const fun = async () => {
-        const ob = {
-            name: "new"
-        }
-        try {
-            const res = await POST(`api/researchareas/create`, ob)
-            if (res) {
-                alert("aded")
-            }
 
-        } catch (err) {
-            console.log(err)
-        }
-
-    }
 
     return (
         <div className='container-fluid'>
@@ -269,7 +255,7 @@ function AllocatedGroups(props) {
                     </div>
                 </div>
             </div>
-            <button onClick={(e) => { fun() }}>sss</button>
+
         </div>
     );
 }

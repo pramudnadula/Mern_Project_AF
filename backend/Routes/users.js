@@ -1,5 +1,6 @@
 const router = require('express').Router();
 const authController = require("../Controllers/user");
+const isAuth = require("../middleware/auth");//pass the middleware
 
 const multer = require('multer')
 const path = require("path");
@@ -9,14 +10,14 @@ const fs = require('fs')
 
 router.post("/login", authController.login);
 router.post("/signup", authController.signup);
-router.put("/update/:userId", authController.update);
+router.put("/update/:userId", isAuth, authController.update);
 
 // get one user for update
-router.get("/getuser/:userId", authController.getUser);
+router.get("/getuser/:userId", isAuth, authController.getUser);
 
-router.delete("/delete/:userId", authController.delete);
-router.get("/getstudnets/:id", authController.getstudents);
-router.get("/getnotassigend", authController.notassigendstudents);
+router.delete("/delete/:userId", isAuth, authController.delete);
+router.get("/getstudnets/:id", isAuth, authController.getstudents);
+router.get("/getnotassigend", isAuth, authController.notassigendstudents);
 
 //upload image
 const storages = multer.diskStorage({

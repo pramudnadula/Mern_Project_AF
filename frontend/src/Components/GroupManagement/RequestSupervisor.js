@@ -18,6 +18,7 @@ import SearchIcon from '@mui/icons-material/Search';
 import DirectionsIcon from '@mui/icons-material/Directions';
 import axios from 'axios';
 import { Switch } from 'antd';
+import { GET } from '../../Helper/httpHelper';
 
 function RequestSupervisor({ isSupervisor, stype }) {
 
@@ -38,8 +39,8 @@ function RequestSupervisor({ isSupervisor, stype }) {
         dispatch(getareas())
         LoadfilterResults(myFilters.filters)
         if (gid) {
-            axios.get(`http://localhost:8070/api/studentGroups/${gid}`).then((data) => {
-                setdgroup(data.data)
+            GET(`api/studentGroups/${gid}`).then((data) => {
+                setdgroup(data)
 
             }).catch((err) => {
                 console.log(err)
