@@ -54,7 +54,7 @@ app.use("/api/trequest", Trequest);
 app.use("/api/markingscheme", MarkingScheme);
 app.use("/api/evoluate", MarkingMarkingScheme);
 
-app.use('/user',isAuth, userRouter); //user login & Registration
+app.use('/user', userRouter); //user login & Registration
 app.use("/api/request", RequestRouter);
 
 app.use('/admin', adminRouter);

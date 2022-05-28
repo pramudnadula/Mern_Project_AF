@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Navbar, Container, Nav, NavDropdown, Form, Button, FormControl } from 'react-bootstrap'
+import { Navbar, Container, Nav, NavDropdown, Form, Button, FormControl, Dropdown } from 'react-bootstrap'
 import '../../Assets/Styles/NavBar_DashBoard.css'
 import '../../Assets/Styles/Layout1.css'
 import { Link, useLocation } from 'react-router-dom'
@@ -137,30 +137,20 @@ function NavBar_DashBoard(props) {
                         <button className="btn btn-warning btn-circle btn-circle-sm m-1 cbtn" onClick={(e) => { setmodalvisible(true) }}><i className="fa fa-bell"></i></button>
                     </>}
 
-                    {/* profile  start*/}
+                    <Dropdown>
+                        <Dropdown.Toggle variant="success" id="dropdown-basic">
+                            Profile
+                        </Dropdown.Toggle>
 
-                    <div className="navbar-dropdown">
-
-                        {(localStorage.getItem) && (<>
-                            <Link to="/staffprofile" className="navbar-item"> <i className="fa fa-user mr-2"></i>My Account </Link>
-                        </>
-                        )}
-                        {(localStorage.getItem('token')) && (<>
-                            <Link to="/userprofile" className="navbar-item"> <i className="fa fa-user mr-2"></i>My Account </Link>
-                        </>
-                        )}
-                        {/* profile  end*/}
-
-                        <div className="">
-                            <a className="navbar-item" onClick={(e) => {
-                                localStorage.clear();
-                                window.location.href = "/"
-                            }}>
-                                <b> Sign Out </b>
-                            </a>
-                        </div>
-                    </div>
-
+                        <Dropdown.Menu>
+                            {(localStorage.getItem('token')) && (
+                                <>
+                                    <Dropdown.Item href="#/action-1"><Link to="/userprofile" className="navbar-item"> <i className="fa fa-user mr-2"></i>My Account </Link></Dropdown.Item>
+                                </>
+                            )}
+                            <Dropdown.Item href="#/action-2"><a className="navbar-item" onClick={(e) => { localStorage.clear(); window.location.href = "/" }}><b> Sign Out </b></a></Dropdown.Item>
+                        </Dropdown.Menu>
+                    </Dropdown>
                 </Container>
             </Navbar>
         </>
