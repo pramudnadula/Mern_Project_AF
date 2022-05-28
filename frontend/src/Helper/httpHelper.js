@@ -1,5 +1,5 @@
 import axios from "axios";
-// import { TokenExpired } from "../components/rediraction";
+ import { TokenExpired } from "../Helper/rediractionHellper";
 
 export const GET = async (path) => {
     path = `http://localhost:8070/${path}`;
@@ -12,8 +12,8 @@ export const GET = async (path) => {
         return response.data;
     }
     catch (error) {
-        if (error.response.status === 401) {
-            //TokenExpired();
+        if (error.response.status === 401 || error.response.status === 500) {
+            TokenExpired();
         } else {
             console.log(error);
             return error.response.data;
@@ -32,8 +32,8 @@ export const POST = async (path, data) => {
         return response.data;
     }
     catch (error) {
-        if (error.response.status === 401) {
-            // TokenExpired();
+        if (error.response.status === 401 || error.response.status === 500) {
+            TokenExpired();
         } else {
             console.log(error);
             return error.response.data;
@@ -53,8 +53,8 @@ export const DELETE = async (path, data) => {
         return response.data;
     }
     catch (error) {
-        if (error.response.status === 401) {
-            // TokenExpired();
+        if (error.response.status === 401 || error.response.status === 500) {
+            TokenExpired();
         } else {
             console.log(error);
             return error.response.data;
@@ -73,8 +73,8 @@ export const PUT = async (path, data) => {
         return response.data;
     }
     catch (error) {
-        if (error.response.status === 401) {
-            //   TokenExpired();
+       if (error.response.status === 401 || error.response.status === 500) {
+           TokenExpired();
         } else {
             console.log(error);
             return error.response.data;
