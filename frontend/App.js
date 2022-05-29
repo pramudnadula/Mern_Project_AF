@@ -29,6 +29,7 @@ import UploadDocument from "./src/Components/SubmissionManagement/UploadDocument
 import CreateSubmission from "./src/Components/SubmissionManagement/CreateSubmission";
 import EditSubmission from "./src/Components/SubmissionManagement/EditSubmission";
 import StaffUpdate from "./src/Components/User/StaffUpdate";
+import AllSubmission from "./src/Components/SubmissionManagement/AllSubmission";
 
 
 function App() {
@@ -70,6 +71,7 @@ function App() {
         <Route path="/UploadDocument" exact component={UploadDocument} />
         <Route path="/CreateSubmission" exact component={CreateSubmission} />
         <Route path="/EditSubmission/:id" exact component={EditSubmission} />
+        <Route path="/AllSubmission" exact component={AllSubmission} />
 
         <Route path="/allocatedgroups" exact component={AllocatedGroups} />
 
