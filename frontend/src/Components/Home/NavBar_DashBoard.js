@@ -106,7 +106,7 @@ function NavBar_DashBoard(props) {
 
 
 
-                <Container>
+                <Container fluid>
                     <Navbar.Brand href="#home">RMS</Navbar.Brand>
                     {/* <Nav className="me-auto">
                         <Nav.Link href="#home">Home</Nav.Link>
@@ -117,41 +117,32 @@ function NavBar_DashBoard(props) {
 
 
 
+                    <Nav className="justify-content-end flex-grow-1 pe-3">
 
-
-                    <Form className="d-flex m-4">
-                        <FormControl
-                            type="search"
-                            placeholder="Search"
-                            className="me-2"
-                            aria-label="Search"
-                        />
-                        <Button variant="outline-success">Search</Button>
-
-                    </Form>
-                    {/* <button className='btn btn-light login_home pt-2 pb-2 p-4' >Login</button> */}
-                    {(request.length > 0) ? <>
-                        <Badge count={request.length}>
+ 
+                        {/* <button className='btn btn-light login_home pt-2 pb-2 p-4' >Login</button> */}
+                        {(request.length > 0) ? <>
+                            <Badge count={request.length}>
+                                <button className="btn btn-warning btn-circle btn-circle-sm m-1 cbtn" onClick={(e) => { setmodalvisible(true) }}><i className="fa fa-bell"></i></button>
+                            </Badge>
+                        </> : <>
                             <button className="btn btn-warning btn-circle btn-circle-sm m-1 cbtn" onClick={(e) => { setmodalvisible(true) }}><i className="fa fa-bell"></i></button>
-                        </Badge>
-                    </> : <>
-                        <button className="btn btn-warning btn-circle btn-circle-sm m-1 cbtn" onClick={(e) => { setmodalvisible(true) }}><i className="fa fa-bell"></i></button>
-                    </>}
+                        </>}
 
-                    <Dropdown>
-                        <Dropdown.Toggle variant="success" id="dropdown-basic">
-                            Profile
-                        </Dropdown.Toggle>
+                        <Dropdown className="d-flex m-2">
+                            <Dropdown.Toggle variant="success" id="dropdown-basic">
+                                Profile
+                            </Dropdown.Toggle>
 
-                        <Dropdown.Menu>
-                            {(localStorage.getItem('token')) && (
-                                <>
-                                    <Dropdown.Item href="#/action-1"><Link to="/userprofile" className="navbar-item"> <i className="fa fa-user mr-2"></i>My Account </Link></Dropdown.Item>
-                                </>
-                            )}
-                            <Dropdown.Item href="#/action-2"><a className="navbar-item" onClick={(e) => { localStorage.clear(); window.location.href = "/" }}><b> Sign Out </b></a></Dropdown.Item>
-                        </Dropdown.Menu>
-                    </Dropdown>
+                            <Dropdown.Menu>
+                                {(localStorage.getItem('token')) && (
+                                      <Link to="/userprofile">   <Dropdown.Item href="/userprofile"><i className="fa fa-user mr-2"></i>My Account</Dropdown.Item> </Link>
+                                )}
+                                <NavDropdown.Divider />
+                                <Dropdown.Item onClick={(e) => { localStorage.clear(); window.location.href = "/" }}><b> Sign Out </b></Dropdown.Item>
+                            </Dropdown.Menu>
+                        </Dropdown>
+                    </Nav>
                 </Container>
             </Navbar>
         </>

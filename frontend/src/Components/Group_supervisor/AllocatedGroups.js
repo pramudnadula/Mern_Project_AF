@@ -107,7 +107,7 @@ function AllocatedGroups(props) {
     return (
         <div className='container-fluid'>
             <div className='row justify-content-center'>
-                <div className={groups.length > 0 ? "col-7" : "col-12"}>
+                <div className={groups.length > 0 ? "col-xl-7 col-lg-7 col-md-8 col-sm-10 col-12 mb-4" : "col-12"}>
                     <div className='row justify-content-center'>
                         {groups.length > 0 ? <>
 
@@ -160,20 +160,20 @@ function AllocatedGroups(props) {
 
                     </div>
                 </div>
-                <div className='col-5'>
+                <div className='col-xl-5 col-lg-5 col-md-7 col-sm-10 col-12 mt-4'>
                     <div className='row justify-content-center'>
                         {show ? <>
-                            <h2>Topic Selection Request</h2>
+                            <h2 className='text-center mt-3'>Topic Selection Request</h2>
 
-                            <div className='col-10 req_col'>
+                            <div className='col-11 req_col p-5'>
                                 <div className='row'>
-                                    <div className='col-12'>
-                                        Topic Name : {onereq?.topic.name}
+                                    <div className='col-12 mb-2' >
+                                        Topic Name :<span style={{ fontWeight: "bold" }}> {onereq?.topic.name}</span>
                                     </div>
-                                    <div className='col-12'>
-                                        Researcharea : {onereq?.topic.rname}
+                                    <div className='col-12 mb-2' >
+                                        Researcharea : <span style={{ fontWeight: "bold" }}>{onereq?.topic.rname}</span>
                                     </div>
-                                    <div className='col-12'>
+                                    <div className='col-12 mb-3'>
                                         Supervisor State : {onereq?.topic.sview ? <>
                                             {onereq?.topic.sstat ? <><span className='badge bg-success'>Approved</span></> : <><span className='badge bg-danger'>Rejected</span></>}
                                         </> : <>
@@ -182,7 +182,7 @@ function AllocatedGroups(props) {
                                         </>}
                                     </div>
 
-                                    <div className='col-12'>
+                                    <div className='col-12 mb-3'>
                                         Co-Supervisor State : {onereq?.topic.cview ? <>
                                             {onereq?.topic.cstat ? <><span className='badge bg-success'>Approved</span></> : <><span className='badge bg-danger'>Rejected</span></>}
                                         </> : <>
@@ -190,14 +190,24 @@ function AllocatedGroups(props) {
                                             <span className='badge bg-warning'>Not Viewed yet</span>
                                         </>}
                                     </div>
-                                    <div className='col-12'>
-                                        <h4>Links</h4>
-                                    </div>
-                                    {onereq?.topic.links.map((m, i) => (
-                                        <div className='col-12 mb-4' key={i}>
-                                            <a href={m} target='_blank' className="link_div p-2">{m}</a>
-                                        </div>
-                                    ))}
+
+                                    <table className='table table-hover bg-light'>
+                                        <tr>
+                                            <th>No</th>
+                                            <th>Link</th>
+
+                                        </tr>
+                                        <tbody>
+
+
+                                            {onereq?.topic.links.map((m, i) => (
+                                                <tr className='mb-4' key={i}>
+                                                    <td>{(i + 1)}</td>
+                                                    <td><a href={m} target='_blank' className="p-2">{m}</a></td>
+                                                </tr>
+                                            ))}
+                                        </tbody>
+                                    </table>
 
                                     {type ? <>
                                         {onereq.topic.sview ? <></> : <>
@@ -241,13 +251,14 @@ function AllocatedGroups(props) {
 
                         {show2 ? <>
                             <div className='col-12'>
-
+                                <h3 className='text-center'>Group Milestones</h3>
                                 <TimeLine stage={stage} />
                             </div>
 
                         </> : <></>}
 
                         {show3 ? <>
+                            <h3 className='text-center'>Group Mark Analysis</h3>
                             <Chart />
                         </> : <></>}
 
@@ -256,7 +267,7 @@ function AllocatedGroups(props) {
                 </div>
             </div>
 
-        </div>
+        </div >
     );
 }
 

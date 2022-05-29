@@ -21,7 +21,7 @@ function NavBar_Home(props) {
 
                     </Nav>
 
-                    <Form className="d-flex m-4">
+                    <Form className="d-flex m-2">
                         <FormControl
                             type="search"
                             placeholder="Search"

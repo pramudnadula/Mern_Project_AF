@@ -1,11 +1,9 @@
 .messanger {
     height: 100vh;
-    display: flex;
+
 }
 
-.chatmenu {
-    flex: 3.5;
-}
+.chatmenu {}
 
 .chatbox {
     flex: 5.5;
