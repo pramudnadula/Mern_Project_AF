@@ -43,7 +43,7 @@ function Layout1(props) {
                     <Menu.Item key="7"><Link to='/creq' className='links'>Co-supervisor</Link></Menu.Item>
                 </SubMenu>
                 <SubMenu key="sub3" icon={<FilePdfOutlined />} title="Documentation">
-                    <Menu.Item key="8"><Link to='/UploadDocument' className='links'>Documentation</Link></Menu.Item>
+                    <Menu.Item key="8"><Link to='/AllSubmission' className='links'>Submissions</Link></Menu.Item>
                     <Menu.Item key="9"><Link to='/UploadDocument' className='links'>Document</Link></Menu.Item>
                 </SubMenu>
                 <Menu.Item key="10" icon={<TeamOutlined />}>
