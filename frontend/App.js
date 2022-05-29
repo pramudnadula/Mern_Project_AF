@@ -29,7 +29,9 @@ import UploadDocument from "./src/Components/SubmissionManagement/UploadDocument
 import CreateSubmission from "./src/Components/SubmissionManagement/CreateSubmission";
 import EditSubmission from "./src/Components/SubmissionManagement/EditSubmission";
 import StaffUpdate from "./src/Components/User/StaffUpdate";
+import AllUsers from "./src/Components/Admin/AllUsers";
 import AllSubmission from "./src/Components/SubmissionManagement/AllSubmission";
+
 
 
 function App() {
@@ -56,6 +58,8 @@ function App() {
         <Route path="/staffupdate/:id" exact component={StaffUpdate} />
         <Route path="/userprofile" exact component={UserProfile} />
         <Route path="/update/:id" exact component={Update} />
+        <Route path="/allusers" exact component={AllUsers} />
+              
         <Route path='/home' exact component={Home2} />
         <Route path='/group' exact component={StudentGroup} />
         <Route path='/req' exact component={() => (<RequestSupervisor isSupervisor={true} stype="Supervisors" />)} />
@@ -66,14 +70,16 @@ function App() {
         <Route path="/markingscheme/" exact component={ViewAllMarkingSchemes} />
         <Route path="/markingscheme/view/:id" exact component={ViewMarkingScheme} />
         <Route path="/evaluate/" exact component={Evaluate} />
-
         <Route path="/evaluate/view/:id" exact component={EvaluateResult} />
+          
         <Route path="/UploadDocument" exact component={UploadDocument} />
         <Route path="/CreateSubmission" exact component={CreateSubmission} />
         <Route path="/EditSubmission/:id" exact component={EditSubmission} />
         <Route path="/AllSubmission" exact component={AllSubmission} />
 
         <Route path="/allocatedgroups" exact component={AllocatedGroups} />
+
+      
 
       </Layout1>
 

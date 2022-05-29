@@ -88,7 +88,6 @@ exports.getUser = async (req, res, next) => {
     }
 };
 
-
 //login check validatons
 exports.login = async (req, res, next) => {
     //const email = req.body.email;
@@ -193,3 +192,22 @@ exports.notassigendstudents = async (req, res, next) => {
             .send({ status: "Error", error: err.message });
     })
 };
+
+
+
+//get all students
+// exports.getallusers = async (req, res) => {
+
+//     await User.find().then((users) => {
+//         res.json(users)
+
+
+//     }).catch((error) => {
+//         res.status(400).json({
+//             error: String(err)
+
+//         })
+//     })
+
+// }
+
