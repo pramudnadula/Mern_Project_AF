@@ -181,6 +181,17 @@ function Wall({ group, uid }) {
             </Paper>
         )
     }
+
+    const removeLink = (index) => {
+        const arr = []
+        for (var i = 0; i < links.length; i++) {
+            if (!(i == index)) {
+                arr.push(links[i])
+            }
+        }
+        setlinks(arr)
+
+    }
     return (
         <div className="container-fluid mt-5 mb-5">
             <div className="row no-gutters justify-content-center">
@@ -301,6 +312,26 @@ function Wall({ group, uid }) {
 
                         </form>
 
+                    </div>
+                    <div className='col-10'>
+                        <table className='table table-hover'>
+                            <tr>
+                                <th>No</th>
+                                <th>Link</th>
+                                <th></th>
+                                <th></th>
+
+                            </tr>
+                            <tbody>
+                                {links?.map((m, i) => (
+                                    <tr key={i}>
+                                        <td>{(i + 1)}</td>
+                                        <td><a href={m}>{m}</a></td>
+                                        <td colSpan="2"><i class="fa fa-times-circle-o" aria-hidden="true" style={{ color: "red", cursor: "pointer" }} onClick={(e) => { removeLink(i) }}></i></td>
+                                    </tr>
+                                ))}
+                            </tbody>
+                        </table>
                     </div>
                 </div>
             </Modal >
