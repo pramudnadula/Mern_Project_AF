@@ -29,6 +29,7 @@ import UploadDocument from "./src/Components/SubmissionManagement/UploadDocument
 import CreateSubmission from "./src/Components/SubmissionManagement/CreateSubmission";
 import EditSubmission from "./src/Components/SubmissionManagement/EditSubmission";
 import StaffUpdate from "./src/Components/User/StaffUpdate";
+import AllUsers from "./src/Components/Admin/AllUsers";
 
 
 function App() {
@@ -72,6 +73,8 @@ function App() {
         <Route path="/EditSubmission/:id" exact component={EditSubmission} />
 
         <Route path="/allocatedgroups" exact component={AllocatedGroups} />
+
+        <Route path="/allusers" exact component={AllUsers} />
 
       </Layout1>
 

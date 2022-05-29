@@ -14,6 +14,7 @@ router.put("/update/:userId", isAuth, authController.update);
 
 // get one user for update
 router.get("/getuser/:userId", isAuth, authController.getUser);
+// router.get("/all", isAuth, authController.getallusers);
 
 router.delete("/delete/:userId", isAuth, authController.delete);
 router.get("/getstudnets/:id", isAuth, authController.getstudents);
