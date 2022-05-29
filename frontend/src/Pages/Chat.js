@@ -46,16 +46,18 @@ function Chat(props) {
         _id: userid
     }
     useEffect(() => {
-        GET(`user/getstudnets/${gid}`).then((data) => {
-            var users = data;
-            users = users.filter(f => f._id != userid)
-            setmembers(users)
+        if (gid) {
+            GET(`user/getstudnets/${gid}`).then((data) => {
+                var users = data;
+                users = users.filter(f => f._id != userid)
+                setmembers(users)
 
 
 
-        }).catch((err) => {
-            console.log(err)
-        })
+            }).catch((err) => {
+                console.log(err)
+            })
+        }
         if (!ind) {
             GET(`api/studentGroups/groups/${userid}`).then((data) => {
                 setsupergroups(data)
@@ -99,7 +101,7 @@ function Chat(props) {
     const handlec = (id) => {
         setgid(id)
         console.log(id)
-        get
+
     }
 
     const searchbar = () => {
@@ -130,7 +132,7 @@ function Chat(props) {
         return (
             <>
                 <select onChange={(e) => { handlec(e.target.value) }}>
-                    <option >select group</option>
+                    <option >select a Group To Chat</option>
                     {supergroups?.map((ma, i) => (
                         <option value={ma._id}>{ma.groupName}</option>
                     ))}
@@ -247,8 +249,8 @@ function Chat(props) {
     }, [messages])
 
     return (
-        <div className='messanger'>
-            <div className='chatmenu'>
+        <div className='messanger row'>
+            <div className='chatmenu col-xl-3 col-lg-3 col-md-5 col-sm-10 col-12'>
                 <div className='cmwrapper'>
                     {/* {searchbar()} */}
                     {ind ? <>

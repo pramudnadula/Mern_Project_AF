@@ -11,7 +11,8 @@ const Topic = new mongoose.Schema({
     sstat: { type: Boolean },
     cstat: { type: Boolean },
     sview: { type: Boolean },
-    cview: { type: Boolean }
+    cview: { type: Boolean },
+    rname: { type: String }
 }, { timestamps: true })
 
 const TopicReq = mongoose.model("topic", Topic);

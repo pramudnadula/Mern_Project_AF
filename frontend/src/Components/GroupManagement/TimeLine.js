@@ -58,7 +58,7 @@ function TimeLine({ stage }) {
                         variant="body2"
                         color="text.secondary"
                     >
-                        9:30 am
+
                     </TimelineOppositeContent>
                     <TimelineSeparator>
                         <TimelineConnector />
@@ -86,7 +86,7 @@ function TimeLine({ stage }) {
                         variant="body2"
                         color="text.secondary"
                     >
-                        9:30 am
+
                     </TimelineOppositeContent>
                     <TimelineSeparator>
                         <TimelineConnector />
@@ -111,7 +111,7 @@ function TimeLine({ stage }) {
                         variant="body2"
                         color="text.secondary"
                     >
-                        9:30 am
+
                     </TimelineOppositeContent>
                     <TimelineSeparator>
                         <TimelineConnector />
@@ -135,7 +135,7 @@ function TimeLine({ stage }) {
                         variant="body2"
                         color="text.secondary"
                     >
-                        9:30 am
+
                     </TimelineOppositeContent>
                     <TimelineSeparator>
                         <TimelineConnector />
@@ -160,7 +160,7 @@ function TimeLine({ stage }) {
                         variant="body2"
                         color="text.secondary"
                     >
-                        9:30 am
+
                     </TimelineOppositeContent>
                     <TimelineSeparator>
                         <TimelineConnector />
@@ -185,7 +185,7 @@ function TimeLine({ stage }) {
                         variant="body2"
                         color="text.secondary"
                     >
-                        9:30 am
+
                     </TimelineOppositeContent>
                     <TimelineSeparator>
                         <TimelineConnector />
