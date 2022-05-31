@@ -12,7 +12,7 @@ export const getfiltersupervisors = (skip, limit, filters, isSupervisor) => {
         headers: {
             Accept: "application/json",
             "Content-Type": "application/json",
-            Authorization: "Bearer " + localStorage.getItem("token"),
+            Authorization: "Bearer " + (localStorage.getItem("token") || localStorage.getItem("staff-token")),
         },
         body: JSON.stringify(data)
     }).then(response => {

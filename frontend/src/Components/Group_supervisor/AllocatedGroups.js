@@ -21,7 +21,7 @@ function AllocatedGroups(props) {
     const [grid, setgrid] = useState("")
     const sid = localStorage.getItem("staff")
     let type = localStorage.getItem("type")
-    const token = localStorage.getItem("token");
+    //const token = localStorage.getItem("token");
 
     if (type == "true") {
         type = true

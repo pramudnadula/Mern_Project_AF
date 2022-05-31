@@ -41,7 +41,7 @@ function Login() {
                 else {
                     localStorage.setItem("staff", (res.data.UId))
                     localStorage.setItem("type", (res.data.type))
-                    localStorage.setItem("token", res.data.token)
+                    localStorage.setItem("staff-token", res.data.token)
                 }
                 setUserId(res.data.userId)
                 setTest(!test)

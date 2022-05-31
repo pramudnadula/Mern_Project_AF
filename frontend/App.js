@@ -31,6 +31,8 @@ import EditSubmission from "./src/Components/SubmissionManagement/EditSubmission
 import StaffUpdate from "./src/Components/User/StaffUpdate";
 import AllUsers from "./src/Components/Admin/AllUsers";
 import AllSubmission from "./src/Components/SubmissionManagement/AllSubmission";
+import AddSubmission from "./src/Components/SubmissionManagement/AddSubmission";
+import EditStudentSubmission from "./src/Components/SubmissionManagement/EditStudentSubmission";
 
 
 
@@ -74,9 +76,11 @@ function App() {
         <Route path="/evaluate/view/:id" exact component={EvaluateResult} />
 
         <Route path="/UploadDocument" exact component={UploadDocument} />
+        <Route path="/AddSubmission/:id" exact component={AddSubmission} />
         <Route path="/CreateSubmission" exact component={CreateSubmission} />
         <Route path="/EditSubmission/:id" exact component={EditSubmission} />
         <Route path="/AllSubmission" exact component={AllSubmission} />
+        <Route path="/EditStudentSubmission/:id" exact component={EditStudentSubmission} />
 
         <Route path="/allocatedgroups" exact component={AllocatedGroups} />
 
