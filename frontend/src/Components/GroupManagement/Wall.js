@@ -16,7 +16,7 @@ import SearchList from './SearchList';
 import axios from 'axios';
 import TimeLine from './TimeLine';
 import { Select } from 'antd';
-const { Option } = Select;
+import { Progress } from 'antd';
 import Chart from './Chart';
 import { GET, POST } from '../../Helper/httpHelper';
 function Wall({ group, uid }) {
@@ -36,7 +36,7 @@ function Wall({ group, uid }) {
     const [modal3, setModal3Visible] = useState(false)
     const dispatch = useDispatch()
     const chnagebox = (e) => {
-        if ((memebers.length === 3) && (!add)) {
+        if ((memebers?.length === 3) && (!add)) {
             message.error("Already have 4 members")
             return;
         }
@@ -73,7 +73,7 @@ function Wall({ group, uid }) {
         dispatch(getstudents())
         GET(`user/getstudnets/${group._id}`).then((data) => {
             var users = data;
-            memcount = users.length
+            memcount = users?.length
             users = users.filter(f => f._id != uid)
             setmemebers(users)
 
@@ -184,13 +184,31 @@ function Wall({ group, uid }) {
 
     const removeLink = (index) => {
         const arr = []
-        for (var i = 0; i < links.length; i++) {
+        for (var i = 0; i < links?.length; i++) {
             if (!(i == index)) {
                 arr.push(links[i])
             }
         }
         setlinks(arr)
 
+    }
+
+    const getprecentage = (stage) => {
+        if (stage === 1 || stage === 2) {
+            return 20
+        }
+        else if (stage === 3 || stage === 4) {
+            return 40
+        }
+        else if (stage === 5) {
+            return 60
+        }
+        else if (stage === 6) {
+            return 80
+        }
+        else if (stage === 7) {
+            return 100
+        }
     }
     return (
         <div className="container-fluid mt-5 mb-5">
@@ -261,13 +279,29 @@ function Wall({ group, uid }) {
                     </>)}
                 </div>
             </div>
-            <div className='row mt-5'>
+            <div className='row mt-5 justify-content-center'>
                 <div className='col-xl-5 col-lg-5 col-md-8 col-sm-10 col-12'>
                     <h2 className='text-center'>Research Milestones</h2>
                     <TimeLine stage={groupstage} />
                 </div>
-                <div className='col-7 mt-5'>
-                    <Chart />
+                <div className='col-xl-7 col-lg-7 col-md-9 col-sm-10 col-12'>
+                    <h2 className='text-center'>Marks Distribution</h2>
+                    <Chart gid={group._id} />
+                </div>
+            </div>
+            <div className='row justify-content-center'>
+
+                <div className='col-xl-4 col-lg-4 col-md-6 col-sm-10 col-10 comple p-4 m-xl-4 mt-5'>
+                    <h3 className='text-center'>Project Completion</h3>
+                    <div className='row justify-content-center'>
+                        <div className='col-6 mt-4'>
+                            <Progress type="circle" percent={getprecentage(groupstage?.stage)} />
+                        </div>
+                    </div>
+
+                </div>
+                <div className='col-7'>
+
                 </div>
             </div>
 

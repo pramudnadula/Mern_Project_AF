@@ -12,6 +12,9 @@ const Conversationschema = new schema({
     names: {
         type: Array,
     },
+    img: {
+        type: Array,
+    },
     type: {
         type: Number
     },

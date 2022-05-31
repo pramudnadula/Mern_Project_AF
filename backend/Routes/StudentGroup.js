@@ -2,7 +2,7 @@ const router = require('express').Router();
 const fs = require('fs')
 const path = require('path')
 const multer = require('multer')
-const { creategroup, getstudentgroup, addmember, existmember, getallocatedgroups, getgroupstage } = require('../Controllers/StudentGroup');
+const { creategroup, getstudentgroup, addmember, existmember, getallocatedgroups, getgroupstage, getmarksforGraph, gethomeanalytics, getMaxmarkGroup } = require('../Controllers/StudentGroup');
 const studentGroup = require('../Models/StudentGroup');
 const User = require('../Models/User')
 const Stage = require('../Models/Groupstage')
@@ -64,5 +64,8 @@ router.get("/:id/add/:sid", isAuth, addmember);
 router.get("/:id/isexist/:sid", isAuth, existmember);
 router.get("/groups/:sid", isAuth, getallocatedgroups);
 router.get("/groupstage/:gid", isAuth, getgroupstage);
+router.post("/marks", isAuth, getmarksforGraph);
+router.post("/analytics", isAuth, gethomeanalytics);
+router.post("/maxmarkgroup", isAuth, getMaxmarkGroup);
 
 module.exports = router;

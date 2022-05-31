@@ -28,7 +28,7 @@ function Layout1(props) {
             <div className="logo" />
             <Menu theme="light" defaultSelectedKeys={page} mode="inline" style={{ backgroundColor: "#0157a8" }}>
                 <Menu.Item key="1" icon={<PieChartOutlined />}>
-                    Option 1
+                    <Link to='/home'>Option 1</Link>
                 </Menu.Item>
                 <Menu.Item key="2" icon={<DesktopOutlined />}>
                     Option 2
@@ -92,6 +92,42 @@ function Layout1(props) {
         </Sider>
     )
 
+
+    const slider3 = () => (
+        <Sider collapsible collapsed={collapsed} onCollapse={onCollapse} style={{ backgroundColor: "#9932CC" }}>
+            <div className="logo" />
+            <Menu theme="light" defaultSelectedKeys={page} mode="inline" style={{ backgroundColor: "#9932CC" }}>
+                <Menu.Item key="1" icon={<PieChartOutlined />}>
+                    Option 1
+                </Menu.Item>
+                <Menu.Item key="2" icon={<DesktopOutlined />}>
+                    Option 2
+                </Menu.Item>
+                <SubMenu key="sub1" icon={<UserOutlined />} title="User">
+                    <Menu.Item key="3">Tom</Menu.Item>
+                    <Menu.Item key="4">Bill</Menu.Item>
+                    <Menu.Item key="5">Alex</Menu.Item>
+                </SubMenu>
+                <SubMenu key="sub2" icon={<UserOutlined />} title="Supervisors">
+                    <Menu.Item key="6"><Link to='/req' className='links'>Supervisor</Link></Menu.Item>
+                    <Menu.Item key="7"><Link to='/creq' className='links'>Co-supervisor</Link></Menu.Item>
+                </SubMenu>
+                <SubMenu key="sub3" icon={<FilePdfOutlined />} title="Documentation">
+                    <Menu.Item key="8"><Link to='/CreateSubmission' className='links'>Create Submission</Link></Menu.Item>
+                    <Menu.Item key="9"><Link to='/UploadDocument' className='links'>Document</Link></Menu.Item>
+                </SubMenu>
+                <Menu.Item key="10" icon={<TeamOutlined />}>
+                    <Link to='/allocatedgroups' className='links'> Group</Link>
+                </Menu.Item>
+                <Menu.Item key="11" icon={<WechatOutlined />}>
+                    <Link to='/msg' className='links'> Chat</Link>
+                </Menu.Item>
+
+            </Menu>
+        </Sider>
+    )
+
+
     const breadcrumb = () => (
         <Breadcrumb style={{ margin: '16px 0' }}>
             <Breadcrumb.Item>User</Breadcrumb.Item>
@@ -121,7 +157,10 @@ function Layout1(props) {
 
                     </Layout>
                 </Layout>
-            </> : <>
+            </> : <></>}
+            {localStorage.getItem("staff") ? <>
+
+
                 <Navbar_staff />
                 <Layout style={{ minHeight: '93vh' }} className={(location.pathname === '/') || (location.pathname === '/adminlogin') || (location.pathname === '/login') || (location.pathname === '/register') || (location.pathname === '/staffregister') ? "block" : ""}>
 
@@ -137,7 +176,9 @@ function Layout1(props) {
 
                     </Layout>
                 </Layout>
-            </>}
+            </> : <></>}
+
+
 
         </>
 
