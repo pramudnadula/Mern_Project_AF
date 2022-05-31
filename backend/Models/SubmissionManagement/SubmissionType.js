@@ -33,7 +33,11 @@ const SubmissionSchema = new Schema({
         type: ObjectId,
         ref:"Supervisor",
         required:true
-    }
+    },
+    documentName:[{
+        type: String,
+        // required: true
+    }],
 
 })
 

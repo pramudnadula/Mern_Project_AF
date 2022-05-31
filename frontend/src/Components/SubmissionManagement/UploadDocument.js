@@ -5,6 +5,8 @@ import { POST } from '../../Helper/httpHelper'
 function UploadDocument() {
 
   const [fileDate, setFileDate] = useState()
+  const GroupId = localStorage?.getItem('gid')
+  const SubmissionId = "629108695e986293cff3e0c0"
 
   const fileChangeHandler = (e) => {
     setFileDate(e.target.files[0]);
@@ -15,8 +17,11 @@ function UploadDocument() {
     //Handle File Data from the state Before Sending
     const data = new FormData();
 
+    data.append("gid", GroupId)
+    data.append("sid", SubmissionId)
     data.append('image', fileDate)
 
+    console.log(data)
     POST("api/document/single", data).then(() => {
       alert("movie added");
       console.log("File Sent Successfull")
