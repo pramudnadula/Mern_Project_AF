@@ -16,6 +16,10 @@ function UserProfile({ setTest }) {
 
 
     useEffect(() => {
+        Getoneuser();
+    }, [])
+
+    const Getoneuser = () => {
         //const token = localStorage.getItem("token");
         try {
             GET(`user/getuser/${userId}`).then(res => {
@@ -25,7 +29,7 @@ function UserProfile({ setTest }) {
         } catch (err) {
             throw err;
         }
-    }, [])
+    }
 
     //upload image
     const fileChangeHandler = (e) => {
@@ -36,17 +40,14 @@ function UserProfile({ setTest }) {
         e.preventDefault()
 
         const data = new FormData();
+        data.append("uid", userId)
         data.append('proimage', profileDate)
 
-
-        // fetch("http://localhost:8070/user/profileimage", {
-        //     method: "POST",
-        //     mode: 'no-cors',
-        //     body: data,
-
-        // })
+      
         POST(`user/profileimage`, data).then(() => {
+
             console.log("File Sent Successfull")
+            Getoneuser();
         })
             .catch((err) => {
                 console.log(err.message)
@@ -60,7 +61,7 @@ function UserProfile({ setTest }) {
 
                 <div className="col-md-3 border-right">
                     <div className="d-flex flex-column align-items-center text-center p-3 py-5">
-                        <img className="rounded-circle mt-5" src="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcQF2psCzfbB611rnUhxgMi-lc2oB78ykqDGYb4v83xQ1pAbhPiB&usqp=CAU" /><span className="font-weight-bold">Amelly</span><span className="text-black-50">amelly12@bbb.com</span><span> </span>
+                        <img className="rounded-circle mt-5" src={"http://localhost:8070/" + currentUser.image} /><span className="font-weight-bold">Amelly</span><span className="text-black-50">amelly12@bbb.com</span><span> </span>
                         <form onSubmit={onSubmitHandler}>
                             <div className="field has-addons m-3 pt-3">
                                 <div className="control is-expanded">
@@ -78,8 +79,8 @@ function UserProfile({ setTest }) {
                         </form>
 
 
-                        <div className="mt-5 text-center"><button className="btn btn-primary profile-button" type="button">Remove</button></div>
-                        <div className="mt-5 text-center"> <Link to={"/update/" + currentUser._id}><button className="btn btn-primary profile-button" type="submit">Update</button></Link></div>
+                        {/* <div className="mt-5 text-center"><button className="btn btn-primary profile-button" type="button">Remove</button></div> */}
+                        {/* <div className="mt-5 text-center"> <Link to={"/update/" + currentUser._id}><button className="btn btn-primary profile-button" type="submit">Update</button></Link></div> */}
 
 
                     </div>
@@ -105,7 +106,9 @@ function UserProfile({ setTest }) {
                             <div className="col-md-6"><label className="labels">Username</label><input type="text" className="form-control" placeholder="enter username" value={currentUser.username} readOnly /></div>
                             <div className="col-md-6"><label className="labels">Password</label><input type="password" className="form-control" value={currentUser.password} placeholder="enter password" readOnly /></div>
                         </div>
-                        {/* <div className="mt-5 text-center"><button className="btn btn-primary profile-button" type="submit">Save Profile</button></div> */}
+
+                        <div className="mt-5 text-center">
+                            <Link to={"/update/" + currentUser._id}><button className="btn btn-success form-control" type="submit">Update</button></Link></div>
                     </div>
                 </div>
 

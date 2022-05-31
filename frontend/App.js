@@ -31,8 +31,14 @@ import EditSubmission from "./src/Components/SubmissionManagement/EditSubmission
 import StaffUpdate from "./src/Components/User/StaffUpdate";
 import AllUsers from "./src/Components/Admin/AllUsers";
 import AllSubmission from "./src/Components/SubmissionManagement/AllSubmission";
+import AllSupervisors from "./src/Components/Admin/AllSupervisors";
+import AdminAddStudent from "./src/Components/Admin/AdminAddStudent";
+import AdminAddStaff from "./src/Components/Admin/AdminAddStaff";
+import AdminEditStudent from "./src/Components/Admin/AdminEditStudent";
+import AdminEditStaff from "./src/Components/Admin/AdminEditStaff";
 import AddSubmission from "./src/Components/SubmissionManagement/AddSubmission";
 import EditStudentSubmission from "./src/Components/SubmissionManagement/EditStudentSubmission";
+
 
 
 
@@ -51,9 +57,13 @@ function App() {
 
       <Route path="/login" exact component={Login} />
       <Route path="/register" exact component={Register} />
-
       <Route path="/adminlogin" exact component={AdminLogin} />
       <Route path="/staffregister" exact component={StaffRegister} />
+      <Route path="/addstudent" exact component={AdminAddStudent} />
+      <Route path="/addstaff" exact component={AdminAddStaff} />
+
+
+
 
       <Layout1>
         <Route path="/admindashboard" exact component={AdminDashboard} />
@@ -62,6 +72,11 @@ function App() {
         <Route path="/userprofile" exact component={UserProfile} />
         <Route path="/update/:id" exact component={Update} />
         <Route path="/allusers" exact component={AllUsers} />
+
+        <Route path="/allsupervisors" exact component={AllSupervisors} />
+        <Route path="/editstudent/:id" exact component={AdminEditStudent} />
+        <Route path="/editstaff/:id" exact component={AdminEditStaff} />
+
 
         <Route path='/home' exact component={Home2} />
         <Route path='/group' exact component={StudentGroup} />

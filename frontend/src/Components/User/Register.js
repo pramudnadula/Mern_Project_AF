@@ -1,10 +1,9 @@
-
-
 import React, { useState, useEffect } from 'react';
 import axios from 'axios'
 
 import Registerpic from './../../Assets/Images/illustration.svg';
 import './../../Assets/Styles/Register.css';
+// import './../../Assets/Styles/UserProfile.css';
 import PasswordChecklist from "react-password-checklist"
 
 function Register() {
@@ -83,53 +82,29 @@ function Register() {
                 <div className="col-12 col-md-8 col-lg-6 col-xl-5">
                     {/* <div className="card py-3 px-2"> */}
                     <h3>Create an Account</h3>
-                    {/* <p className="text-center mb-3 mt-2">Get started with your free account</p> */}
-
-                    {/* <div className="row mx-auto ">
-                            <div className="col-4"> <i className="fab fa-twitter"></i> </div>
-                            <div className="col-4"> <i className="fab fa-facebook"></i> </div>
-                            <div className="col-4"> <i className="fab fa-google"></i> </div>
-                        </div> */}
-
-                    {/* <div className="division">
-                            <div className="row">
-                                <div className="col-3">
-                                    <div className="line l"></div>
-                                </div>
-                                <div className="col-6"><span>OR</span></div>
-                                <div className="col-3">
-                                    <div className="line r"></div>
-                                </div>
-                            </div>
-                        </div> */}
 
 
                     <form onSubmit={sendData} className="myform">
                         <div className="form-group">
-                            <span className="input-group-addon"><i className="fa fa-user"></i></span>
                             <input type="fname" className="form-control fc" placeholder="First Name" onChange={(e) => { setfname(e.target.value) }} required />
                         </div>
 
 
                         <div className="form-group">
-                            <span className="input-group-addon"><i className="fa fa-user"></i></span>
                             <input type="lname" className="form-control fc" placeholder="Last Name" onChange={(e) => { setlname(e.target.value) }} required />
                         </div>
 
 
                         <div className="form-group">
-                            <span className="input-group-addon"><i className="fa fa-user"></i></span>
                             <input type="email" className="form-control fc" placeholder="Email" onChange={(e) => { setemail(e.target.value) }} required />
                         </div>
 
                         <div className="form-group">
-                            <span className="input-group-addon"><i className="fa fa-user"></i></span>
                             <input type="type" className="form-control fc" placeholder="User Type" onChange={(e) => { settype(e.target.value) }} required />
                         </div>
 
 
                         <div className="form-group">
-                            <span className="input-group-addon"><i className="fa fa-user"></i></span>
                             <input type="username" className="form-control fc" placeholder="User Name" onChange={(e) => { setusername(e.target.value) }} required />
                         </div>
 
@@ -150,7 +125,7 @@ function Register() {
                             onChange={(isValid) => { }}
                         />
 
-                        <div className="form-group mt-3"> <button type="submit" className="btn btn-block btn-primary btn-lg"><small><i className="far fa-user pr-2"></i>Create Your Account</small></button> </div>
+                        <div className="form-group mt-3"> <button type="submit" className="btn btn-block btn-primary btn-lg"><small>Create Your Account</small></button> </div>
 
                         <div className="row">
                             <div className="col-md-6 col-12"> Already you have an account</div><div className="col-md-6 col-12 bn">Login</div>

@@ -19,18 +19,6 @@ p {
     cursor: pointer
 }
 
-.fa-twitter {
-    color: #56ABEC
-}
-
-.fa-facebook {
-    color: #1775F1
-}
-
-.fa-google {
-    color: #CB5048
-}
-
 
 .line.l {
     left: 52px
@@ -52,7 +40,7 @@ p {
 .fc {
     border: 1px solid #57557A;
     border-radius: 3px;
-    background: #f3f3f6;
+    background: #fff;
    
 
     margin-bottom: 20px;
@@ -95,11 +83,9 @@ small {
     color: #F2CEFF
 }
 
-.far.fa-user {
-    font-size: 13px
-}
 
-@media(min-width: 767px) {
+
+/* @media(min-width: 767px) {
     .bn {
         text-align: right
     }
@@ -125,5 +111,5 @@ small {
     .division .line {
         width: 50%
     }
-}
+} */
 

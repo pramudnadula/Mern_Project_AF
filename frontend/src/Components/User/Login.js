@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import Loginpic from './../../Assets/Images/pic1.svg';
 import './../../Assets/Styles/Register.css';
 import axios from 'axios';
+import { Link } from 'react-router-dom';
 
 function Login() {
     const [username, setusername] = useState("")
@@ -95,7 +96,7 @@ function Login() {
                                     </div> */}
 
                                     <div className="form-group first">
-                                        <label htmlFor="username">Username</label>
+                                        <label htmlFor="username">Email</label>
                                         <input type="email" className="form-control" id="email" onChange={(e) => { setemail(e.target.value) }} required />
                                     </div>
 
@@ -107,6 +108,11 @@ function Login() {
                                     </div>
 
                                     <input type="submit" value="Log In" className="btn btn-block btn-primary" />
+
+                                    <Link to="/forgot-password" style={{ alignSelf: "flex-start" }}>
+                                        <p style={{ padding: "0 15px" }} >Forgot Password?</p>
+                                    </Link>
+
 
                                     {/* <div className="d-flex mb-5 align-items-center">
                                         <label className="control control--checkbox mb-0"><span className="caption">Remember me</span>
@@ -120,17 +126,7 @@ function Login() {
 
                                     <span className="d-block text-left my-4 text-muted">&mdash; or login with &mdash;</span>
 
-                                    <div className="social-login">
-                                        <a href="#" className="facebook">
-                                            <span className="icon-facebook mr-3"></span>
-                                        </a>
-                                        <a href="#" className="twitter">
-                                            <span className="icon-twitter mr-3"></span>
-                                        </a>
-                                        <a href="#" className="google">
-                                            <span className="icon-google mr-3"></span>
-                                        </a>
-                                    </div>
+                                    
 
                                     <div className="row">
                                         <span className="d-block text-left my-4 text-muted"> Don't Have an Account?  </span >

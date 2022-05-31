@@ -3,7 +3,7 @@ const jwt = require("jsonwebtoken");
 
 const User = require("../Models/User");
 
-//add
+//add student
 exports.signup = async (req, res, next) => {
 
     const email = req.body.email;
@@ -40,7 +40,7 @@ exports.signup = async (req, res, next) => {
 
 
 
-//update
+//update student
 exports.update = async (req, res, next) => {
 
     let userID = req.params.userId;
@@ -88,7 +88,7 @@ exports.getUser = async (req, res, next) => {
     }
 };
 
-//login check validatons
+//login check validations
 exports.login = async (req, res, next) => {
     //const email = req.body.email;
     let filter
@@ -144,14 +144,14 @@ exports.login = async (req, res, next) => {
 
 
 
-
+//delete student
 exports.delete = async (req, res, next) => {
 
     //router.route("/delete/:id").delete(async (req,res) =>{
-    let userid = req.params.userId;
+    let id = req.params.id;
 
 
-    await User.findByIdAndDelete(userid)
+    await User.findByIdAndDelete(id)
         .then(() => {
             res.status(200).send({ status: "User deleted" });
         })
@@ -195,8 +195,8 @@ exports.notassigendstudents = async (req, res, next) => {
 
 
 
-
-exports.getallusers = async (req, res) => {
+// get all students by admin
+exports.getallstudents = async (req, res) => {
 
     await User.find().then((users) => {
         res.json(users)
@@ -211,3 +211,78 @@ exports.getallusers = async (req, res) => {
 
 }
 
+//add student by admin
+exports.add = async (req, res, next) => {
+
+    const email = req.body.email;
+    const username = req.body.username;
+    const fname = req.body.fname;
+    const lname = req.body.lname;
+    const password = req.body.password;
+    try {
+        const checkuser = await User.findOne({ email: email });
+        if (checkuser) {
+            const error = new Error("Email exsisted");
+            error.statusCode = 500;
+            throw error;
+        }
+        const hashedPw = await bcrypt.hash(password, 12);
+        const user = new User({
+            email: email,
+            password: hashedPw,
+            username: username,
+            fname: fname,
+            lname: lname
+
+        });
+        const result = await user.save();
+        res.status(201).json({ message: "User created!", userId: result._id });
+    } catch (err) {
+        if (!err.statusCode) {
+            err.statusCode = 500;
+        }
+        next(err);
+    }
+};
+
+
+exports.getallusers = async (req, res) => {
+
+    await User.find().then((users) => {
+        res.json(users)
+    }).catch((error) => {
+        res.status(400).json({
+            error: String(err)
+
+        })
+    })
+
+}
+
+
+//update student profile by admin
+exports.edit = async (req, res, next) => {
+
+    let userID = req.params.userId;
+    const { fname, lname, email, type, username, password } = req.body;
+    const hashedPw = await bcrypt.hash(password, 12);
+
+    const updateUser = {
+        fname,
+        lname,
+        email,
+        username,
+        password: hashedPw,
+    };
+      
+    const update = await User.findByIdAndUpdate(userID, updateUser)
+        .then(() => {
+            res.status(200).send({ status: 'User Updated' });
+        })
+        .catch((err) => {
+            console.log(err);
+            res
+                .status(500)
+                .send({ status: 'Error with updating data', error: message });
+        });
+};
