@@ -11,16 +11,18 @@ const fs = require('fs')
 router.post("/login", authController.login);
 router.post("/signup", authController.signup);
 router.put("/update/:userId", isAuth, authController.update);
+router.post("/add", authController.add);
+router.put("/edit/:userId", isAuth, authController.edit);
 
 // get one user for update
 router.get("/getuser/:userId", isAuth, authController.getUser);
-// router.get("/all", isAuth, authController.getallusers);
+router.get("/all", isAuth, authController.getallstudents);
 
-router.delete("/delete/:userId", isAuth, authController.delete);
+router.delete("/delete/:id", isAuth, authController.delete);
 router.get("/getstudnets/:id", isAuth, authController.getstudents);
 router.get("/getnotassigend", isAuth, authController.notassigendstudents);
 
-//upload image
+//upload profile image
 const storages = multer.diskStorage({
     destination: function (req, file, cb) {
         cb(null, './uploads/');
@@ -33,35 +35,18 @@ const storages = multer.diskStorage({
 const upload = multer({ storage: storages })
 
 
-router.post("/profileimage", upload.single('proimage'), (req, res) => {
-    console.log(req.file);
-    res.send("Single File Upload Success")
+router.post("/profileimage", upload.single('proimage'), async (req, res) => {
+    try {
+        console.log(req.file);
+        const user = await User.findById({ _id: req.body.uid })
+        user.image = req.file.path
+        await user.save()
+        res.send("Single File Upload Success")
+    }
+    catch (err) {
+        res.send("Single File Upload fail")
+    }
 })
-// const filefilter = (req, file, cb) => {
-//     if (file.mimetype === 'image/jpeg' || file.mimetype === 'image/png') {
-//         cb(null, true);
-//     } else {
-//         cb(null, false)
-//     }
-// };
-
-// const upload = multer({ storage: storage, fileFilter: filefilter });
-// router.route("/upload").post(upload.single('studentImage'), (req, res) => {
-
-//     const image = req.file?.path;
-
-//     const newuserimg = new User({
-
-//         image,
-//     })
-
-//     newuserimg.save().then(() => {
-//         res.json("image added");
-//     }).catch(function (err) {
-//         // console.log(err);
-//     })
-// })
-
 
 
 module.exports = router;

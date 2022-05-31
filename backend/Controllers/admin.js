@@ -5,27 +5,47 @@ const Admin = require("../Models/Admin");
 
 
 //login check validatons
-exports.login = async (req, res, next) => {
+exports.loginAdmin = async (req, res, next) => {
     //const email = req.body.email;
+    let filter
+    if (req.body.email) {
+        filter = { email: req.body.email }
+    }
+    else {
+        filter = { username: req.body.username }
+    }
 
+
+    const password = req.body.password;
     try {
-        const { email, password } = req.body
-        const user = await Admin.findOne({ email, password })
-
-        if (user) {
-            res.send(user);
+        const user = await Admin.findOne(filter);
+        if (!user) {
+            const error = new Error("A user with this email could not be found.");
+            error.statusCode = 401;
+            throw error;
         }
-        else {
-            res.status(500).send({ status: "invaild login", error: "invalid login" });
+        const isEqual = await bcrypt.compare(password, user.password);
+        if (!isEqual) {
+            const error = new Error("Wrong password!");
+            error.statusCode = 401;
+            throw error;
         }
 
+        const token = jwt.sign(
+            {
+                email: user.email,
+                userId: user._id.toString(),
+            },
+            "somesupersecretsecret",
+            { expiresIn: "10h" },
+        );
+
+
+        res.status(200).json({ message: "user fetched.", token: token, userId: user._id.toString() });
     } catch (err) {
-        res.status(500).send({ status: "error", error: err.message });
+        if (!err.statusCode) {
+            err.statusCode = 500;
+        }
+        next(err);
     }
 };
-
-
-
-
-
-

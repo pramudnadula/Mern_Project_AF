@@ -5,41 +5,36 @@ import axios from 'axios';
 
 function AdminLogin() {
 
-
-
-
     const [userName, setuserName] = useState("")
     const [email, setemail] = useState("")
     const [password, setpassword] = useState("")
     const [test, setTest] = useState(false)
-    const [type, settype] = useState('')
     const [userId, setUserId] = useState('')
 
 
     function sendData(e) {
         e.preventDefault();
         const newUser = {
-            //userName:userName,
             email: email,
             password,
-            //type
-
         };
 
         axios
             .post('http://localhost:8070/admin/login', newUser)
             .then((res) => {
 
-                //---------------------
-                // localStorage.setItem("admin", JSON.stringify(res.data.userId))
+                if (res.status !== 200) {
+                    console.log(res)
 
+                }
+                localStorage.setItem("admin", JSON.stringify(res.data.userId))
+                localStorage.setItem("admin-token", res.data.token)
 
-                console.log(res.data)
-                // setUserId(res.data.userId)
-                // console.log(userId)
+                console.log(res.data.token)
+                setUserId(res.data.userId)
                 setTest(!test)
 
-                window.location.href = '/admindashboard'
+                window.location.href = '/allusers'
 
             })
             .catch((err) => {

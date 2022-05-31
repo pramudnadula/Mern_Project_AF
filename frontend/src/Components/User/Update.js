@@ -79,11 +79,8 @@ function Update(props) {
 			<div className="row">
 
 				<div className="col-md-3 border-right">
-					<div className="d-flex flex-column align-items-center text-center p-3 py-5"><img className="rounded-circle mt-5" src="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcQF2psCzfbB611rnUhxgMi-lc2oB78ykqDGYb4v83xQ1pAbhPiB&usqp=CAU" /><span className="font-weight-bold">Amelly</span><span className="text-black-50">amelly12@bbb.com</span><span> </span>
-						<div className="mt-5 text-center"><button className="btn btn-primary profile-button" type="button">Upload New Picture </button></div>
-						<div className="mt-5 text-center"><button className="btn btn-primary profile-button" type="button">Remove</button></div>
-						{/* <div className="mt-5 text-center"> <Link to={"/update/" + currentUser._id}><button className="btn btn-primary profile-button" type="button">Update</button></Link></div> */}
-					</div>
+					{/* <div className="d-flex flex-column align-items-center text-center p-3 py-5"><img className="rounded-circle mt-5" src="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcQF2psCzfbB611rnUhxgMi-lc2oB78ykqDGYb4v83xQ1pAbhPiB&usqp=CAU" /><span className="font-weight-bold">Amelly</span><span className="text-black-50">amelly12@bbb.com</span><span> </span>
+                    </div> */}
 				</div>
 
 

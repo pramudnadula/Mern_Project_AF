@@ -20,7 +20,7 @@ const userSchema = new Schema({
 
     type: {
         type: String,
-        required: true
+        // required: true
 
     },
 
@@ -52,3 +52,4 @@ const userSchema = new Schema({
 const User = mongoose.model("User", userSchema);
 
 module.exports = User;
+

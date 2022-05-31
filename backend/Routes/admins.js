@@ -3,7 +3,7 @@ const authController = require("../Controllers/admin");
 //const { login } = require("../Controllers/admin");
 
 
-router.post("/login", authController.login);
+router.post("/login", authController.loginAdmin);
 
 
-module.exports = router;
+module.exports = router; 

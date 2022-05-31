@@ -23,9 +23,6 @@ const adminSchema = new Schema({
 
     },
 
-    image: {
-        type: String
-    }
 
 
 })

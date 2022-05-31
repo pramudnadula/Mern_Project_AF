@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import './../../Assets/Styles/UserProfile.css';
 import axios from 'axios';
-import { GET } from '../../Helper/httpHelper';
+import { GET, POST } from '../../Helper/httpHelper';
 
 
 
@@ -10,17 +10,21 @@ function StaffProfile({ setTest }) {
     const user = (localStorage.getItem("user"))
     //setTest(user)
     const [currentUser, setcurrentUser] = useState("")
-
-    //     const token = localStorage.getItem("stoken");
+    //const token = localStorage.getItem("stoken");
     const staffId = localStorage.getItem("staff");
-
-
+    const [profileDate, setProfileDate] = useState()
 
 
 
 
     useEffect(() => {
-        //         const token = localStorage.getItem("stoken");
+
+
+        Getoneuser();
+
+    }, [])
+    //         const token = localStorage.getItem("stoken");
+    const Getoneuser = () => {
         try {
             GET(`api/supervisors/${staffId}`).then(res => {
                 setcurrentUser(res.user)
@@ -29,7 +33,31 @@ function StaffProfile({ setTest }) {
         } catch (err) {
             throw err;
         }
-    }, [])
+    }
+
+
+    //upload image
+    const fileChangeHandler = (e) => {
+        setProfileDate(e.target.files[0]);
+    }
+
+    const onSubmitHandler = (e) => {
+        e.preventDefault()
+
+        const data = new FormData();
+        data.append("sid", staffId)
+        data.append('supimage', profileDate)
+
+        POST(`api/supervisorimage`, data).then(() => {
+
+            console.log("File Sent Successfull")
+            Getoneuser();
+        })
+            .catch((err) => {
+                console.log(err.message)
+            })
+    }
+
 
 
 
@@ -40,7 +68,23 @@ function StaffProfile({ setTest }) {
             <div className="row">
 
                 <div className="col-md-3 border-right">
-                    <div className="d-flex flex-column align-items-center text-center p-3 py-5"><img className="rounded-circle mt-5" src="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcQF2psCzfbB611rnUhxgMi-lc2oB78ykqDGYb4v83xQ1pAbhPiB&usqp=CAU" /><span className="font-weight-bold">Amelly</span><span className="text-black-50">amelly12@bbb.com</span><span> </span>
+                    <div className="d-flex flex-column align-items-center text-center p-3 py-5">
+                        <img className="rounded-circle mt-5" src={"http://localhost:8070/" + currentUser.image} /><span className="font-weight-bold">Amelly</span><span className="text-black-50">amelly12@bbb.com</span><span> </span>
+                        <form onSubmit={onSubmitHandler}>
+                            <div className="field has-addons m-3 pt-3">
+                                <div className="control is-expanded">
+                                    <div className="is-fullwidth">
+                                        <input className="input" type="file" name="supimage" onChange={fileChangeHandler} />
+                                    </div>
+                                </div>
+
+                                <div className=" has-background-danger-light pt-1 pb-2">
+                                    <div className=" mt-5 mr-3 ml-3 pb-3 ">
+                                        <button className="button is-danger is-fullwidth " type='submit' value="Create" >upload profile</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
 
                         {/* <div className="mt-5 text-center"><button className="btn btn-primary profile-button" type="button">Upload New Picture </button></div> */}
                         <div className="mt-5 text-center"><button className="btn btn-primary profile-button" type="button">Remove</button></div>

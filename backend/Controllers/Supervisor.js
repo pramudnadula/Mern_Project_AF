@@ -109,7 +109,7 @@ exports.addSupervisor = async (req, res, next) => {
 
 
 
-//get one user 
+//method that use to get one user 
 exports.getSupervisor = async (req, res, next) => {
     const staffId = req.params.staffId;
 
@@ -130,7 +130,7 @@ exports.getSupervisor = async (req, res, next) => {
     }
 };
 
-//login
+//method that use to login supervisor
 exports.loginSupervisor = async (req, res, next) => {
     //const email = req.body.email;
     let filter
@@ -168,8 +168,8 @@ exports.loginSupervisor = async (req, res, next) => {
             { expiresIn: "10h" },
         );
 
-        
-        res.status(200).json({ message: "user fetched.", token: token, UId: user._id.toString(), type: user.isSupervisor});
+
+        res.status(200).json({ message: "user fetched.", token: token, UId: user._id.toString(), type: user.isSupervisor });
     } catch (err) {
         if (!err.statusCode) {
             err.statusCode = 500;
@@ -179,7 +179,7 @@ exports.loginSupervisor = async (req, res, next) => {
 };
 
 
-//update Supervisor
+//method that use to update Supervisor
 exports.updateSupervisor = async (req, res, next) => {
 
     let staffID = req.params.staffId;
@@ -203,5 +203,111 @@ exports.updateSupervisor = async (req, res, next) => {
             res
                 .status(500)
                 .send({ status: 'Error with updating data', error: message });
+        });
+};
+
+
+//method that use to  get all supervisors by admin
+exports.getallsupervisors = async (req, res) => {
+
+    await Supervisor.find().then((users) => {
+        res.json(users)
+
+
+    }).catch((error) => {
+        res.status(400).json({
+            error: String(err)
+
+        })
+    })
+
+}
+
+
+//method that use to add new supervisor by admin
+exports.addStaff = async (req, res, next) => {
+    const email = req.body.email;
+    const username = req.body.username;
+    const fname = req.body.fname;
+    const lname = req.body.lname;
+    const password = req.body.password;
+    const area = req.body.area;
+    const groups = req.body.groups;
+    const isSupervisor = req.body.isSupervisor;
+
+    try {
+        const checkuser = await Supervisor.findOne({ email: email });
+        if (checkuser) {
+            const error = new Error("Email exsisted");
+            error.statusCode = 500;
+            throw error;
+        }
+        const hashedPw = await bcrypt.hash(password, 12);
+        const user = new Supervisor({
+            email: email,
+            password: hashedPw,
+            username: username,
+            fname: fname,
+            lname: lname,
+            area: area,
+            groups: groups,
+            isSupervisor: isSupervisor,
+        });
+        const result = await user.save();
+        res.status(201).json({ message: "Supervisor created!", userId: result._id });
+    } catch (err) {
+        if (!err.statusCode) {
+            err.statusCode = 500;
+        }
+        next(err);
+    }
+}
+
+
+
+//method that use to edit Supervisor by admin
+exports.editSupervisor = async (req, res, next) => {
+
+    let staffID = req.params.staffId;
+    const { fname, lname, email, username, password } = req.body;
+    const hashedPw = await bcrypt.hash(password, 12);
+
+    const updateSupervisor = {
+        email: email,
+        username: username,
+        fname: fname,
+        lname: lname,
+        password: hashedPw,
+    };
+
+    const update = await Supervisor.findByIdAndUpdate(staffID, updateSupervisor)
+        .then(() => {
+            res.status(200).send({ status: 'Supervisor Updated' });
+        })
+        .catch((err) => {
+            console.log(err);
+            res
+                .status(500)
+                .send({ status: 'Error with updating data', error: message });
+        });
+};
+
+
+//method that use to delete student by admin
+exports.deleteSupervisor = async (req, res, next) => {
+
+    //router.route("/delete/:id").delete(async (req,res) =>{
+    let id = req.params.id;
+
+
+    await Supervisor.findByIdAndDelete(id)
+        .then(() => {
+            res.status(200).send({ status: "Supervisor deleted" });
+        })
+        .catch((err) => {
+            console.log(err.message);
+            res
+                .status(500)
+                .send({ status: "Error with delete supervisor", error: err.message });
         });
 };

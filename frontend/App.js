@@ -31,6 +31,12 @@ import EditSubmission from "./src/Components/SubmissionManagement/EditSubmission
 import StaffUpdate from "./src/Components/User/StaffUpdate";
 import AllUsers from "./src/Components/Admin/AllUsers";
 import AllSubmission from "./src/Components/SubmissionManagement/AllSubmission";
+import AllSupervisors from "./src/Components/Admin/AllSupervisors";
+import AdminAddStudent from "./src/Components/Admin/AdminAddStudent";
+import AdminAddStaff from "./src/Components/Admin/AdminAddStaff";
+import AdminEditStudent from "./src/Components/Admin/AdminEditStudent";
+import AdminEditStaff from "./src/Components/Admin/AdminEditStaff";
+
 
 
 
@@ -48,9 +54,13 @@ function App() {
 
       <Route path="/login" exact component={Login} />
       <Route path="/register" exact component={Register} />
-
       <Route path="/adminlogin" exact component={AdminLogin} />
       <Route path="/staffregister" exact component={StaffRegister} />
+      <Route path="/addstudent" exact component={AdminAddStudent} />
+      <Route path="/addstaff" exact component={AdminAddStaff} />
+
+
+
 
       <Layout1>
         <Route path="/admindashboard" exact component={AdminDashboard} />
@@ -59,7 +69,11 @@ function App() {
         <Route path="/userprofile" exact component={UserProfile} />
         <Route path="/update/:id" exact component={Update} />
         <Route path="/allusers" exact component={AllUsers} />
-              
+        <Route path="/allsupervisors" exact component={AllSupervisors} />
+        <Route path="/editstudent/:id" exact component={AdminEditStudent} />
+        <Route path="/editstaff/:id" exact component={AdminEditStaff} />
+
+
         <Route path='/home' exact component={Home2} />
         <Route path='/group' exact component={StudentGroup} />
         <Route path='/req' exact component={() => (<RequestSupervisor isSupervisor={true} stype="Supervisors" />)} />
@@ -71,7 +85,7 @@ function App() {
         <Route path="/markingscheme/view/:id" exact component={ViewMarkingScheme} />
         <Route path="/evaluate/" exact component={Evaluate} />
         <Route path="/evaluate/view/:id" exact component={EvaluateResult} />
-          
+
         <Route path="/UploadDocument" exact component={UploadDocument} />
         <Route path="/CreateSubmission" exact component={CreateSubmission} />
         <Route path="/EditSubmission/:id" exact component={EditSubmission} />
@@ -79,7 +93,7 @@ function App() {
 
         <Route path="/allocatedgroups" exact component={AllocatedGroups} />
 
-      
+
 
       </Layout1>
 
