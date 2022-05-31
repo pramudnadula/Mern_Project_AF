@@ -9,14 +9,14 @@ function UserProfile({ setTest }) {
     const user = (localStorage.getItem("user"))
     //setTest(user)
     const [currentUser, setcurrentUser] = useState("")
-    const token = localStorage.getItem("token");
+    //const token = localStorage.getItem("token");
     const userId = localStorage.getItem("user");
     const [profileDate, setProfileDate] = useState()
 
 
 
     useEffect(() => {
-        const token = localStorage.getItem("token");
+        //const token = localStorage.getItem("token");
         try {
             GET(`user/getuser/${userId}`).then(res => {
                 setcurrentUser(res.user)

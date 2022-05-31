@@ -9,12 +9,45 @@ function CreateSubmission() {
     const [subject, setSubject] = useState("")
     const [description, setDescription] = useState("")
     const [allSubmission, setAllSubmission] = useState([])
-
     const staffID = localStorage.getItem("staff")//get staff ID in localStorage
 
     useEffect(() => {
         GetAllSubmissionType();
     }, [])
+
+    const [fileDate, setFileDate] = useState()
+
+    const fileChangeHandler = (e) => {
+        setFileDate(e.target.files);
+    }
+
+    //! Implement adding Submission Function 
+    const onSubmitHandler = (e) => {
+        e.preventDefault()
+        //Handle File Data from the state Before Sending
+        const data = new FormData();
+         
+        data.append('staffID', staffID)
+        data.append('submissionStartDate', submissionStartDate)
+        data.append('submissionEndDate', submissionEndDate)
+        data.append('submissionType', submissionType)
+        data.append('subject', subject)
+        data.append('description', description)
+        
+        for(let i = 0; i<fileDate.length; i++)
+        {            
+            data.append('images', fileDate[i])
+        }
+
+        console.log(fileDate)
+        POST("api/submissiontype/multiple", data).then(() => {
+            alert("Files added");
+            GetAllSubmissionType();
+            console.log("File Sent Successfull")
+        }).catch((err) => {
+            alert(err);
+        })
+    }
 
     //! Implement Get All Submission Function 
     const GetAllSubmissionType = () => {
@@ -26,33 +59,9 @@ function CreateSubmission() {
         })
     }
 
-    //! Implement adding Submission Function 
-    const AddSubmission = (e) => {
-        e.preventDefault()
-
-        const submission = {
-            staffID,
-            submissionStartDate,
-            submissionEndDate,
-            submissionType,
-            subject,
-            description
-        }
-        console.log(submission)
-
-        POST('api/submissiontype/', submission).then((data) => {
-            console.log("created")
-            GetAllSubmissionType();//call fuction again
-            alert("submission added");
-            // window.location = "/allshow"
-        }).catch((err) => {
-            console.log(err)
-        })
-
-    }
     //! Delete One Submition
     const DeleteSubmissionType = (id) => {
-        DELETE(`api/submissiontype/${id}`).then((dat) => {
+        DELETE(`api/submissiontype/one/${id}`).then((dat) => {
             GetAllSubmissionType();//call fuction again
             alert("submission Deleted");
         }).catch((err) => {
@@ -72,14 +81,33 @@ function CreateSubmission() {
         return yyyy + "-" + mm + "-" + dd;
     }
 
-
     return (
         <>
+            {/* <form onSubmit={onSubmitHandler}>
+                <div className="field has-addons m-3 pt-3">
+                    <div className="control is-expanded">
+                        <div className="is-fullwidth">
+                            <input className="input" type="file" name="images" onChange={fileChangeHandler} id="inputGroupFile04" required multiple />
+                        </div>
+                    </div>
+                    <div className="button control is-static">
+                        <span className="icon is-left">
+                            <i className="fas fa-upload"></i>
+                        </span>
+                        <div type="submit" className=" is-primary is-static mr-3 pr-1">Choose a file…</div>
+                    </div>
+                </div>
+                <div className=" ">
+                    <div className="">
+                        <button className="button is-danger  " type="submit" value="create" >Upload</button>
+                    </div>
+                </div>
+            </form> */}
             <div className='container'>
                 <div className='card mt-2'>
                     <div className="row d-flex justify-content-center ">
                         <div className="col-6">
-                            <form onSubmit={AddSubmission}>
+                            <form onSubmit={onSubmitHandler}>
                                 {/* <input type="date" className="input" onChange={(e) => { setdate(e.target.value) }} required /> */}
                                 <div className="form-group">
                                     <i className="fa fa-calendar"></i>
@@ -112,7 +140,11 @@ function CreateSubmission() {
                                     Description
                                     <textarea type="text" onChange={(e) => { setDescription(e.target.value) }} className="form-control" required />
                                 </div>
-
+                                <div className="form-group">
+                                    <i className="fa fa-calendar"></i>
+                                    Description
+                                    <input className="form-control" type="file" name="images" onChange={fileChangeHandler} id="inputGroupFile04" required multiple />
+                                </div>
                                 <div className="">
                                     <button className="btn btn-danger" type="submit" value="create" >Create</button>
                                 </div>
