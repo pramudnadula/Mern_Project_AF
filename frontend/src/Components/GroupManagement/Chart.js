@@ -1,53 +1,46 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { Line } from '@ant-design/plots';
+import { GET, POST } from '../../Helper/httpHelper';
 
-function Chart(props) {
+function Chart({ gid }) {
+
+    const [marks, setmarks] = useState([])
+
+    useEffect(() => {
+
+        POST('api/studentGroups/marks', { gid }).then((data) => {
+
+            if (data?.length > 0) {
+                const display = {
+                    name: "",
+                    mark: 0
+                }
+                let arr = []
+                for (let i = 0; i < data?.length; i++) {
+                    let mar = Object.assign({}, display)
+
+                    mar.name = data[i]?.remark
+                    mar.mark = data[i]?.totalMarks
+                    arr.push(mar)
+                }
+                console.log(arr)
+                setmarks(arr)
+            }
+        }).catch((err) => {
+            console.log(err)
+        })
+    }, [])
 
 
-    const DemoLine = () => {
 
-        const data = [
-            {
-                year: '1991',
-                value: 3,
-            },
-            {
-                year: '1992',
-                value: 4,
-            },
-            {
-                year: '1993',
-                value: 3.5,
-            },
-            {
-                year: '1994',
-                value: 5,
-            },
-            {
-                year: '1995',
-                value: 4.9,
-            },
-            {
-                year: '1996',
-                value: 6,
-            },
-            {
-                year: '1997',
-                value: 7,
-            },
-            {
-                year: '1998',
-                value: 9,
-            },
-            {
-                year: '1999',
-                value: 13,
-            },
-        ];
+    const DemoLine = (data) => {
+
+
+
         const config = {
             data,
-            xField: 'year',
-            yField: 'value',
+            xField: 'name',
+            yField: 'mark',
             label: {},
             point: {
                 size: 5,
@@ -59,7 +52,7 @@ function Chart(props) {
                 },
             },
             tooltip: {
-                showMarkers: false,
+                showMarkers: true,
             },
             state: {
                 active: {
@@ -80,7 +73,10 @@ function Chart(props) {
     };
     return (
         <div>
-            {DemoLine()}
+            {marks?.length > 0 ? <>
+                {DemoLine(marks)}
+            </> : <></>}
+
         </div>
     );
 }

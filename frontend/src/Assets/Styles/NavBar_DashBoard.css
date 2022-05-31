@@ -6,6 +6,10 @@
     background-color: rgb(231, 55, 55);
 }
 
+.admin {
+    background-color: #9932CC;
+}
+
 .navbar {
     position: relative;
     display: flex;

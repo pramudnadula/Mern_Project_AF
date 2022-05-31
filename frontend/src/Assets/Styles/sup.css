@@ -12,3 +12,13 @@
     background-color: white;
     margin: 10px;
 }
+
+.det_card {
+    background-color: rgb(222, 222, 222);
+    border-radius: 20px;
+}
+
+.comple {
+    background-color: rgb(222, 222, 222);
+    border-radius: 20px;
+}

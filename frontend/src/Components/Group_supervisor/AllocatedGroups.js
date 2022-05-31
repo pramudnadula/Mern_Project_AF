@@ -6,14 +6,19 @@ import Chart from '../GroupManagement/Chart';
 import TimeLine from '../GroupManagement/TimeLine';
 import { Result } from 'antd';
 import { GET, POST, DELETE, PUT } from '../../Helper/httpHelper'
+import DetailsCard from '../GroupManagement/DetailsCard';
 function AllocatedGroups(props) {
     const [groups, setgroups] = useState([])
+    const [students, setstudents] = useState([])
     const [req, setreq] = useState([])
     const [onereq, setonereq] = useState()
     const [show, setshow] = useState(false)
     const [show2, setshow2] = useState(false)
     const [show3, setshow3] = useState(false)
+    const [show4, setshow4] = useState(false)
     const [stage, setstage] = useState()
+    const [group, setgroup] = useState()
+    const [grid, setgrid] = useState("")
     const sid = localStorage.getItem("staff")
     let type = localStorage.getItem("type")
     //const token = localStorage.getItem("token");
@@ -81,8 +86,10 @@ function AllocatedGroups(props) {
 
             setstage(res)
             setshow(false)
+            setshow2(false)
             setshow3(false)
             setshow2(true)
+
 
 
         } catch (err) {
@@ -90,9 +97,11 @@ function AllocatedGroups(props) {
         }
     }
 
-    const displaychart = () => {
+    const displaychart = (id) => {
+        setgrid(id)
         setshow(false)
         setshow2(false)
+        setshow4(false)
         setshow3(true)
     }
 
@@ -100,6 +109,21 @@ function AllocatedGroups(props) {
         message.info("No Topic Registration Requests")
         setshow2(false)
         setshow3(false)
+        setshow4(false)
+    }
+
+    const deisplayDetails = async (id, gr) => {
+        try {
+            const student = await GET(`user/getstudnets/${id}`)
+            setstudents(student)
+            setgroup(gr)
+            setshow2(false)
+            setshow3(false)
+            setshow4(true)
+        } catch (error) {
+            console.log(error)
+        }
+
     }
 
 
@@ -113,10 +137,10 @@ function AllocatedGroups(props) {
 
                             {groups?.map((m, i) => (
 
-                                <div className="card col-10 group_card mt-3">
+                                <div className="card col-11 group_card mt-3">
                                     <div className="card-body">
                                         <div className='row  align-items-center'>
-                                            <div className='col-5'>
+                                            <div className='col-12 mb-2'>
                                                 <h5 className="card-title">{m?.groupName}</h5>
                                                 <p className="card-text">{m.topic ? m.topic : "Topic Not Yet Allocated"}</p>
                                                 {m.area ? <>
@@ -127,7 +151,7 @@ function AllocatedGroups(props) {
 
                                             </div>
 
-                                            <div className='col-2'>
+                                            <div className='col-x1-1 col-lg-1 col-md-2 col-2 m-1 m-md-2 m-sm-2'>
 
                                                 {checkcount(m._id) > 0 ? <>
                                                     <Badge count={checkcount(m._id)}>
@@ -137,8 +161,11 @@ function AllocatedGroups(props) {
                                                     <button onClick={(e) => { diplayInfo() }} className="btn btn-success"><i className="fa fa-arrow-down" aria-hidden="true"></i></button>
                                                 </>}
                                             </div>
-                                            <div className='col-2'><button onClick={(e) => { displaymilestones(m._id) }} className="btn btn-warning m-2"><i className="fa fa-trophy"></i></button></div>
-                                            <div className='col-2'><button onClick={(e) => { displaychart() }} className="btn btn-info m-2"><i className="fa fa-line-chart" aria-hidden="true"></i></button></div>
+                                            <div className='col-x1-1 col-lg-1 col-md-2 col-2 m-1 m-md-2 m-sm-2'><button onClick={(e) => { displaymilestones(m._id) }} className="btn btn-warning "><i className="fa fa-trophy"></i></button></div>
+
+                                            <div className='col-x1-1 col-lg-1 col-md-2 col-2 m-1 m-md-2 m-sm-2'><button onClick={(e) => { displaychart(m._id) }} className="btn btn-info "><i className="fa fa-line-chart" aria-hidden="true"></i></button></div>
+                                            <div className='col-x1-1 col-lg-1 col-md-2 col-2 m-1 m-md-2 m-sm-2'><button onClick={(e) => { deisplayDetails(m._id, m) }} className="btn btn-secondary "><i class="fa fa-info-circle" aria-hidden="true"></i></button></div>
+
                                         </div>
                                     </div>
                                 </div>
@@ -259,8 +286,15 @@ function AllocatedGroups(props) {
 
                         {show3 ? <>
                             <h3 className='text-center'>Group Mark Analysis</h3>
-                            <Chart />
+                            <Chart gid={grid} />
                         </> : <></>}
+
+                        {show4 ? <>
+                            <DetailsCard stu={students.length > 0 ? students : ""} grp={group._id ? group : ""} />
+                        </> : <>
+                        </>
+
+                        }
 
 
                     </div>

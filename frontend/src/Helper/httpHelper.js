@@ -1,5 +1,5 @@
 import axios from "axios";
- import { TokenExpired } from "../Helper/rediractionHellper";
+import { TokenExpired } from "../Helper/rediractionHellper";
 
 export const GET = async (path) => {
     path = `http://localhost:8070/${path}`;
@@ -73,8 +73,10 @@ export const PUT = async (path, data) => {
         return response.data;
     }
     catch (error) {
+
        if (error.response.status === 401 || error.response.status === 502) {
            TokenExpired();
+
         } else {
             console.log(error);
             return error.response.data;

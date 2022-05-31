@@ -195,19 +195,19 @@ exports.notassigendstudents = async (req, res, next) => {
 
 
 
-//get all students
-// exports.getallusers = async (req, res) => {
 
-//     await User.find().then((users) => {
-//         res.json(users)
+exports.getallusers = async (req, res) => {
+
+    await User.find().then((users) => {
+        res.json(users)
 
 
-//     }).catch((error) => {
-//         res.status(400).json({
-//             error: String(err)
+    }).catch((error) => {
+        res.status(400).json({
+            error: String(err)
 
-//         })
-//     })
+        })
+    })
 
-// }
+}
 

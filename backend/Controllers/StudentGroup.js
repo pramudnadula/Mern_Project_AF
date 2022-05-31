@@ -1,6 +1,10 @@
 const studentGroup = require('../Models/StudentGroup');
 const Supervisor = require('../Models/Supervisor')
 const Stage = require('../Models/Groupstage')
+const MMschema = require('../Models/MarkingMarkingScheme')
+const User = require('../Models/User')
+const Areas = require('../Models/ResearchArea');
+const { populate } = require('../Models/StudentGroup');
 //create new student group
 exports.creategroup = async (req, res) => {
 
@@ -89,4 +93,53 @@ exports.getgroupstage = async (req, res) => {
     } catch (e) {
         res.status(500).send({ status: "error in fetching", error: err.message });
     }
+}
+
+exports.getmarksforGraph = async (req, res) => {
+    let { gid } = req.body
+    try {
+        const schemas = await MMschema.find({ groupId: gid })
+        res.send(schemas)
+    } catch (err) {
+        res.status(500).send({ status: "error in fetching", error: err.message });
+    }
+
+
+
+
+}
+
+exports.gethomeanalytics = async (req, res) => {
+    try {
+        const scount = await User.count()
+        const sucount = await Supervisor.count()
+        const gcount = await studentGroup.count()
+        const acount = await Areas.count()
+
+        const ob = {
+            scount,
+            sucount,
+            gcount,
+            acount
+        }
+        res.send(ob)
+
+    } catch (error) {
+        res.status(500).send({ status: "error in fetching", error: error.message });
+    }
+
+
+
+}
+
+
+exports.getMaxmarkGroup = async (req, res) => {
+    try {
+        const group = await MMschema.find().populate("groupId").populate("markingSchemeId").sort({ totalMarks: -1 }).limit(1)
+        const students = await User.find({ groupid: group[0].groupId._id })
+        res.send({ grp: group, stu: students })
+    } catch (error) {
+        res.status(500).send({ status: "error in fetching", error: error.message });
+    }
+
 }
