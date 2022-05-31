@@ -9,7 +9,7 @@ function UserProfile({ setTest }) {
     const user = (localStorage.getItem("user"))
     //setTest(user)
     const [currentUser, setcurrentUser] = useState("")
-    const token = localStorage.getItem("token");
+    //const token = localStorage.getItem("token");
     const userId = localStorage.getItem("user");
     const [profileDate, setProfileDate] = useState()
 
@@ -17,10 +17,10 @@ function UserProfile({ setTest }) {
 
     useEffect(() => {
         Getoneuser();
-
     }, [])
 
     const Getoneuser = () => {
+        //const token = localStorage.getItem("token");
         try {
             GET(`user/getuser/${userId}`).then(res => {
                 setcurrentUser(res.user)
@@ -43,14 +43,7 @@ function UserProfile({ setTest }) {
         data.append("uid", userId)
         data.append('proimage', profileDate)
 
-
-
-        // fetch("http://localhost:8070/user/profileimage", {
-        //     method: "POST",
-        //     mode: 'no-cors',
-        //     body: data,
-
-        // })
+      
         POST(`user/profileimage`, data).then(() => {
 
             console.log("File Sent Successfull")

@@ -1,6 +1,7 @@
 import React from 'react';
 import Conversation from './Conversation'
-function SearchList({ datas, inp, gid }) {
+import ConversationOut from './ConversationOut';
+function SearchListOut({ datas, inp, gid }) {
 
     const filteredData = datas.filter((el) => {
         //if no input the return the original
@@ -15,7 +16,7 @@ function SearchList({ datas, inp, gid }) {
     return (
         <>
             {filteredData.map((stu, i) => (
-                <Conversation send={true} user={stu} gid={gid} />
+                <ConversationOut send={true} user={stu} gid={gid} />
 
             ))}
 
@@ -23,4 +24,4 @@ function SearchList({ datas, inp, gid }) {
     );
 }
 
-export default SearchList;
+export default SearchListOut;

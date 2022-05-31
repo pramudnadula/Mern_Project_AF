@@ -7,6 +7,7 @@ require("dotenv").config();
 const PORT = process.env.PORT || 8070;
 const URL = process.env.MONGODB_URL;
 app.use('/uploads', express.static('uploads'));
+app.use('/Documents', express.static('Documents'));
 const studentGroup = require('./Routes/StudentGroup');
 const ResearchArea = require("./Routes/ResearchArea");
 const Supervisor = require("./Routes/Supervisor");

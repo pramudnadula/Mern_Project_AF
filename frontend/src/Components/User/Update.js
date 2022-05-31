@@ -15,7 +15,7 @@ function Update(props) {
 	const [password, setpassword] = useState("")
 	const [confpassword, setconfpassword] = useState("")
 	const params = useParams()
-	const token = localStorage.getItem("token");
+	//const token = localStorage.getItem("token");
 	const userId = localStorage.getItem("user");
 
 	useEffect(() => {

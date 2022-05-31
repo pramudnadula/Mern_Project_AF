@@ -38,6 +38,7 @@ exports.requestresponse = async (req, res) => {
                 const newcon = new Conversation({
                     members: [uid, mems[i]._id.toString()],
                     names: [user.fname, mems[i].fname],
+                    img: [user?.image, mems[i]?.image],
                     type: 1,
                     gid
                 })
@@ -82,6 +83,7 @@ exports.requestresponsesupervisor = async (req, res) => {
                     const newcon = new Conversation({
                         members: [uid, group.cosupervisor._id.toString()],
                         names: [user.fname, group.cosupervisor.fname],
+                        img: [user?.image, group?.cosupervisor.image],
                         type: 3,
                         gid
                     })
@@ -93,6 +95,7 @@ exports.requestresponsesupervisor = async (req, res) => {
                     const newcon = new Conversation({
                         members: [uid, group.supervisor._id.toString()],
                         names: [user.fname, group.supervisor.fname],
+                        img: [user?.image, group?.supervisor.image],
                         type: 3,
                         gid
                     })
@@ -105,6 +108,7 @@ exports.requestresponsesupervisor = async (req, res) => {
                 const newcon = new Conversation({
                     members: [uid, mems[i]._id.toString()],
                     names: [user.fname, mems[i].fname],
+                    img: [user?.image, mems[i]?.image],
                     type: 2,
                     gid
                 })

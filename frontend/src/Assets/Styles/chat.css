@@ -1,9 +1,11 @@
 .messanger {
-    height: 100vh;
-
+    height: 550px;
+    display: flex;
 }
 
-.chatmenu {}
+.chatmenu {
+    flex: 3.5;
+}
 
 .chatbox {
     flex: 5.5;
@@ -82,6 +84,10 @@
 }
 
 .msg.own {
+    align-items: flex-start;
+}
+
+.msg.nown {
     align-items: flex-end;
 }
 

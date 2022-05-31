@@ -6,18 +6,29 @@ import Conversations from '../Components/GroupManagement/Conversations';
 import Message from '../Components/GroupManagement/Message';
 import { io, Socket } from 'socket.io-client';
 import Paper from '@mui/material/Paper';
+import InputBase from '@mui/material/InputBase';
+import Divider from '@mui/material/Divider';
+import IconButton from '@mui/material/IconButton';
+import MenuIcon from '@mui/icons-material/Menu';
+import SearchIcon from '@mui/icons-material/Search';
+import Paper from '@mui/material/Paper';
 import { TextLoop } from 'react-text-loop-next';
 import InputBase from '@mui/material/InputBase';
 import Divider from '@mui/material/Divider';
 import IconButton from '@mui/material/IconButton';
 import MenuIcon from '@mui/icons-material/Menu';
 import SearchIcon from '@mui/icons-material/Search';
+import SearchListOut from '../Components/GroupManagement/SearchListOut';
 import Conversation from '../Components/GroupManagement/Conversation';
+import ConversationOut from '../Components/GroupManagement/ConversationOut';
 import { Alert } from 'antd';
 import { GET, POST } from '../Helper/httpHelper';
+import SearchList from '../Components/GroupManagement/SearchList';
 
 function Chat(props) {
     const [conversations, setConversations] = useState([])
+    const [students, setstudents] = useState([])
+    const [outconversations, setoutconversations] = useState([])
     const [sconversations, setsConversations] = useState([])
     const [gconversation, setgconversation] = useState()
     const [currentchat, setcurrentchat] = useState(null)
@@ -28,6 +39,7 @@ function Chat(props) {
     const [members, setmembers] = useState([])
     const [supergroups, setsupergroups] = useState([])
     const [input, setinput] = useState("")
+    const [input2, setinput2] = useState("")
     const socket = useRef()
 
     const scrollRef = useRef()
@@ -57,6 +69,7 @@ function Chat(props) {
             }).catch((err) => {
                 console.log(err)
             })
+
         }
         if (!ind) {
             GET(`api/studentGroups/groups/${userid}`).then((data) => {
@@ -67,6 +80,28 @@ function Chat(props) {
         }
 
     }, [])
+
+    useEffect(() => {
+        if (ind) {
+            getstudents()
+        }
+
+    }, [])
+
+
+    const getstudents = async () => {
+        const stu = await GET('user/all')
+        let arr = stu
+        arr = arr.filter(f => f._id != userid && f.groupid != ngid)
+        if (outconversations.length > 0) {
+            for (let i = 0; i < outconversations.length; i++) {
+                arr = arr.filter(s => s._id != outconversations[i].receiver)
+            }
+        }
+
+        setstudents(arr)
+
+    }
 
 
     useEffect(() => {
@@ -84,6 +119,11 @@ function Chat(props) {
     const hanldechange = (e) => {
         e.preventDefault()
         setinput(e.target.value)
+
+    }
+    const hanldechange2 = (e) => {
+        e.preventDefault()
+        setinput2(e.target.value)
 
     }
 
@@ -114,10 +154,10 @@ function Chat(props) {
 
                 <InputBase
                     sx={{ ml: 1, flex: 1 }}
-                    placeholder="Search chats"
+                    placeholder="Search outside people"
                     inputProps={{ 'aria-label': 'search google maps' }}
-                    onChange={hanldechange}
-                    value={input}
+                    onChange={hanldechange2}
+                    value={input2}
                 />
                 <IconButton type="submit" sx={{ p: '10px' }} aria-label="search">
                     <SearchIcon />
@@ -155,9 +195,18 @@ function Chat(props) {
 
     }, [user])
 
+    useEffect(() => {
 
+        method()
 
+    }, [outconversations])
 
+    const method = async () => {
+        const res = await GET("api/conversation/" + user._id)
+
+        let arr = res.filter(f => f.gid == null)
+        setoutconversations(arr)
+    }
 
 
     useEffect(() => {
@@ -167,6 +216,7 @@ function Chat(props) {
                 try {
                     const res = await GET("api/conversation/" + user._id)
                     setConversations(res)
+
 
 
                 } catch (error) {
@@ -254,26 +304,29 @@ function Chat(props) {
                 <div className='cmwrapper'>
                     {/* {searchbar()} */}
                     {ind ? <>
-
+                        <h4 className='text-center'>Group Chats</h4>
                     </> : <>
                         {dropdown()}
                     </>}
                     {filteredData.map((c) => (
                         <div onClick={(e) => setcurrentchat(c)}>
-                            <Conversations conversation={c} curentuserid={user._id} type={c.type} ind={ind} />
+                            {c.gid ? <>
+                                <Conversations conversation={c} curentuserid={user._id} type={c.type} ind={ind} />
+                            </> : <></>}
+
                         </div>
 
                     ))}
 
                 </div>
             </div>
-            <div className='chatbox'>
+            <div className='chatbox col-xl-5 col-lg-5 col-md-8 col-sm-10 col-12'>
                 <div className='cbwrapper'>
                     {currentchat ? <>
                         <div className='chatboxtop'>
                             {messages.map(m => (
                                 <div ref={scrollRef}>
-                                    <Message message={m} own={m.sender === user._id} />
+                                    <Message message={m} own={m.sender === user._id} chat={currentchat} uid={user._id} />
                                 </div>
 
                             ))}
@@ -304,9 +357,33 @@ function Chat(props) {
 
             <div className='chatOnline'>
                 <div className='cowrapper'>
+                    {ind ? <>
 
+                        {searchbar()}
+                        <div className='resbox'>
+                            <SearchListOut datas={students} inp={input2} gid={ngid} />
+                        </div>
+                    </> : <></>}
+
+                    <div className='row'>
+                        <div className='col-10'>
+                            <h4 className='text-center mt-3'>Outside Chats</h4>
+                            {outconversations?.length > 0 ? <>
+
+                                {outconversations.map((m, i) => (
+                                    <div onClick={(e) => setcurrentchat(m)}>
+                                        <Conversations conversation={m} curentuserid={user._id} type={5} ind={ind} />
+                                    </div>
+                                ))}
+
+                            </> : <>
+                                <h5 className='text-center mt-5'>No Outside Chats</h5>
+                            </>}
+                        </div>
+                    </div>
 
                 </div>
+
             </div>
 
 

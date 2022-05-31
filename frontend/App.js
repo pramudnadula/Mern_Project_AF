@@ -36,6 +36,9 @@ import AdminAddStudent from "./src/Components/Admin/AdminAddStudent";
 import AdminAddStaff from "./src/Components/Admin/AdminAddStaff";
 import AdminEditStudent from "./src/Components/Admin/AdminEditStudent";
 import AdminEditStaff from "./src/Components/Admin/AdminEditStaff";
+import AddSubmission from "./src/Components/SubmissionManagement/AddSubmission";
+import EditStudentSubmission from "./src/Components/SubmissionManagement/EditStudentSubmission";
+
 
 
 
@@ -69,6 +72,7 @@ function App() {
         <Route path="/userprofile" exact component={UserProfile} />
         <Route path="/update/:id" exact component={Update} />
         <Route path="/allusers" exact component={AllUsers} />
+
         <Route path="/allsupervisors" exact component={AllSupervisors} />
         <Route path="/editstudent/:id" exact component={AdminEditStudent} />
         <Route path="/editstaff/:id" exact component={AdminEditStaff} />
@@ -87,9 +91,11 @@ function App() {
         <Route path="/evaluate/view/:id" exact component={EvaluateResult} />
 
         <Route path="/UploadDocument" exact component={UploadDocument} />
+        <Route path="/AddSubmission/:id" exact component={AddSubmission} />
         <Route path="/CreateSubmission" exact component={CreateSubmission} />
         <Route path="/EditSubmission/:id" exact component={EditSubmission} />
         <Route path="/AllSubmission" exact component={AllSubmission} />
+        <Route path="/EditStudentSubmission/:id" exact component={EditStudentSubmission} />
 
         <Route path="/allocatedgroups" exact component={AllocatedGroups} />
 

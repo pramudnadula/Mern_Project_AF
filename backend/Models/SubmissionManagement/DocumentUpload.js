@@ -4,39 +4,34 @@ const ObjectId = require('bson').ObjectId;
 
 const DocumentSchema = new Schema({
 
-    submissionStartDate: {
-        type: String,
-        required: true
-    },
-    submissionEndDate: {
-        type: String,
-        required: true
-    },
+    
 
-    submissionType: {
-        type: String,
-        required: true
-    },
-
-    subject: {
-        type: String,
-        required: true
-
-    },
-
-    description: {
-        type: String,
-        required: true
-
-    },
-    staffID:{
+    submissionId: {
         type: ObjectId,
-        ref:"Supervisor",
-        required:true
+        ref:"SubmissionType",
+        required: true
+    },
+
+    groupId: {
+        type: ObjectId,
+        ref:"studentGroup",
+        required: true
+
+    },
+
+    documentName:[{
+        
+        type: String,
+        required: true
+    }],
+    
+    submissionDate:{
+        type: String,
+        required: true
     }
 
 })
 
-const Document = mongoose.model("Document", DocumentSchema);
+const DocumentUpload = mongoose.model("Document", DocumentSchema);
 
-module.exports = Document;
+module.exports = DocumentUpload;

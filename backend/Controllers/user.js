@@ -246,6 +246,19 @@ exports.add = async (req, res, next) => {
 };
 
 
+exports.getallusers = async (req, res) => {
+
+    await User.find().then((users) => {
+        res.json(users)
+    }).catch((error) => {
+        res.status(400).json({
+            error: String(err)
+
+        })
+    })
+
+}
+
 
 //update student profile by admin
 exports.edit = async (req, res, next) => {
@@ -261,7 +274,7 @@ exports.edit = async (req, res, next) => {
         username,
         password: hashedPw,
     };
-
+      
     const update = await User.findByIdAndUpdate(userID, updateUser)
         .then(() => {
             res.status(200).send({ status: 'User Updated' });

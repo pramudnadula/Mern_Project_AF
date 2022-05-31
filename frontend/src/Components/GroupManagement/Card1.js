@@ -8,6 +8,7 @@ import { Button, CardActionArea, CardActions } from '@mui/material';
 import { SendOutlined } from '@ant-design/icons';
 import SendIcon from '@mui/icons-material/Send';
 import { message } from 'antd';
+import defpic from '../../Assets/Images/user1.png'
 import axios from 'axios';
 import { GET, POST } from '../../Helper/httpHelper'
 const gid = localStorage.getItem("gid")
@@ -70,12 +71,13 @@ function Card1({ supervisor, type, group }) {
                 <CardMedia
                     component="img"
                     height="140"
-                    image="https://www.looper.com/img/gallery/why-the-professor-from-money-heist-looks-so-familiar/intro-1587390568.jpg"
-                    alt="green iguana"
+                    image={supervisor.image ? ("http://localhost:8070/" + supervisor.image) : defpic}
+                    alt="staff Image"
                 />
+
                 <CardContent>
                     <Typography gutterBottom variant="h5" component="div">
-                        {supervisor.name}
+                        {supervisor?.fname}
                     </Typography>
                     <Typography variant="body2" color="text.secondary">
                         {supervisor.email}<br />

@@ -52,7 +52,7 @@ function Conversations({ conversation, curentuserid, type, ind }) {
     // }, [conversation, curentuserid])
     return (
         <div className='conversation'>
-            <img className='conversation_img' src={img1} />
+            <img className='conversation_img' src={conversation.img[rindex] ? ("http://localhost:8070/" + conversation.img[rindex]) : img1} />
             <span className='conversation_name'>
                 {conversation.names[rindex]}
             </span>

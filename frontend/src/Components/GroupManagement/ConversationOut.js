@@ -1,12 +1,12 @@
 import axios from 'axios';
-import { message } from 'antd';
+import { message, Tooltip } from 'antd';
 import React, { useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
 import defpic from '../../Assets/Images/user1.png';
 import { SendOutlined } from '@ant-design/icons';
 import { checkstudent } from '../../Actions/StudentActions';
 import { POST } from '../../Helper/httpHelper';
-function Conversation({ user, send, gid }) {
+function ConversationOut({ user, send, gid }) {
     // const [student, setStudent] = useState(null)
     // const dispatch = useDispatch()
 
@@ -16,17 +16,26 @@ function Conversation({ user, send, gid }) {
 
     //     }
     // }
+    const uid = localStorage.getItem("user")
 
-    const sendrequest = (id) => {
+    const sendrequest = async (id) => {
         const ob = {
-            group: gid,
-            reciever: id
+            sid: uid,
+            rid: id
         }
-        POST('api/request/', ob).then((data) => {
-            message.success("Request Send")
-        }).catch((err) => {
-            console.log(err)
-        })
+        const r = await POST("api/conversation/check", ob)
+        console.log(r)
+        if (r.resu) {
+            POST('api/conversation/createout', ob).then((data) => {
+                message.success("Message Send")
+
+            }).catch((err) => {
+                console.log(err)
+            })
+        } else {
+            message.error("Already send a Msg")
+        }
+
     }
 
 
@@ -39,11 +48,11 @@ function Conversation({ user, send, gid }) {
                 {user?.fname}
             </span>
             <div className='sb'>
-                {send ? (<button onClick={(e) => { sendrequest(user._id) }} className="btn btn-info btn-circle btn-circle-sm m-1"><i className="fa fa-paper-plane"></i></button>) : ''}
+                {send ? (<Tooltip title={"Say Hi to " + user.fname}><button onClick={(e) => { sendrequest(user._id) }} className="btn btn-primary btn-circle btn-circle-sm m-1"><i class="fa fa-commenting-o" aria-hidden="true"></i></button></Tooltip>) : ''}
             </div>
 
         </div>
     );
 }
 
-export default Conversation;
+export default ConversationOut;

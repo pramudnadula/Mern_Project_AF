@@ -9,7 +9,7 @@ import { getareas } from '../../Actions/ResearchAreaActions';
 
 function StaffRegister() {
 
-
+    const [addarea, setaddarea] = useState([])
     const [fname, setfname] = useState("")
     const [lname, setlname] = useState("")
     const [email, setemail] = useState("")
@@ -72,7 +72,7 @@ function StaffRegister() {
             email,
             isSupervisor: ty,
             groups: 0,
-            // area,
+            area: ida,
             username,
             password
         };
@@ -101,12 +101,13 @@ function StaffRegister() {
 
 
 
-
+    let arry = []
     ///////////////////////////////
     const handleFilters = (id) => {
 
         arry = id;
         setida(arry)
+
     }
 
 
