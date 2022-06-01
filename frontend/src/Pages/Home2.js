@@ -50,7 +50,7 @@ function Home2(props) {
                                             ))}
                                         </ul>
                                     </Descriptions.Item>
-                                    <Descriptions.Item label="Remark">empty</Descriptions.Item>
+
                                 </Descriptions>
                             </div>
                         </div>
