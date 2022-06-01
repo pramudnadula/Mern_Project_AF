@@ -5,6 +5,7 @@ import '../Assets/Styles/Layout1.css'
 import NavBar_DashBoard from '../Components/Home/NavBar_DashBoard';
 import { Link, useLocation } from 'react-router-dom'
 import Navbar_staff from '../Components/Home/Navbar_staff';
+import NavBar_Admin from '../Components/Home/NavBar_Admin';
 
 const { Header, Content, Footer, Sider } = Layout;
 const { SubMenu } = Menu;
@@ -98,7 +99,7 @@ function Layout1(props) {
             <div className="logo" />
             <Menu theme="light" defaultSelectedKeys={page} mode="inline" style={{ backgroundColor: "#9932CC" }}>
                 <Menu.Item key="1" icon={<PieChartOutlined />}>
-                    Option 1
+                    Option 3
                 </Menu.Item>
                 <Menu.Item key="2" icon={<DesktopOutlined />}>
                     Option 2
@@ -158,6 +159,7 @@ function Layout1(props) {
                     </Layout>
                 </Layout>
             </> : <></>}
+
             {localStorage.getItem("staff") ? <>
 
 
@@ -165,6 +167,28 @@ function Layout1(props) {
                 <Layout style={{ minHeight: 'calc(100vh - 3.37rem) ' }} className={(location.pathname === '/') || (location.pathname === '/adminlogin') || (location.pathname === '/login') || (location.pathname === '/register') || (location.pathname === '/staffregister') ? "block" : ""}>
 
                     {slider2()}
+                    <Layout className="site-layout">
+
+
+                        {/* {breadcrumb()} */}
+
+                        {props.children}
+
+
+
+                    </Layout>
+                </Layout>
+            </> : <></>}
+
+
+
+            {localStorage.getItem("admin-token") ? <>
+
+
+                <NavBar_Admin />
+                <Layout style={{ minHeight: 'calc(100vh - 3.37rem) ' }} className={(location.pathname === '/') || (location.pathname === '/adminlogin') || (location.pathname === '/login') || (location.pathname === '/register') || (location.pathname === '/staffregister') ? "block" : ""}>
+
+                    {slider3()}
                     <Layout className="site-layout">
 
 

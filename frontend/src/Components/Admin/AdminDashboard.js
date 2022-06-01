@@ -1,21 +1,11 @@
-function AdminDashboard() {
+import React from 'react';
 
-    return (<div>
-
-
-
-
-        <h1>hi</h1>
-
-
-
-
-
-    </div>)
-
-
-
-
+function AdminDashboard(props) {
+    return (
+        <div>
+            <h1>ddd</h1>
+        </div>
+    );
 }
 
 export default AdminDashboard;
