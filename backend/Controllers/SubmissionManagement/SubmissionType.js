@@ -35,17 +35,18 @@ exports.UploadFileMultiple = async (req, res) => {//pass route in middlware  //!
             const fileNameArray = req.files.map((file) => {
                 return file.path;
             })
+            console.log("fileNameAfghfghjghjhgfjhgjhgjhgjghjghjhgjhgjrray")
+
             console.log(fileNameArray)
-            const doc = new SubmissionType()
-            doc.submissionStartDate = req.body.submissionStartDate
-            doc.submissionEndDate = req.body.submissionEndDat
-            doc.submissionType = req.body.submissionType
-            doc.subject = req.body.subject
-            doc.description = req.body.description
-            doc.staffID = req.body.staffID
-            if (req.files.length > 0) {
-                doc.documentName = fileNameArray
-            }
+            const doc = new SubmissionType({
+                submissionStartDate : req.body.submissionStartDate,
+                submissionEndDate : req.body.submissionEndDate,
+                submissionType : req.body.submissionType,
+                subject : req.body.subject,
+                description : req.body.description,
+                staffID : req.body.staffID,
+                documentName : fileNameArray,  
+            })
 
             await doc.save();
             res.send("Single File Upload Success")

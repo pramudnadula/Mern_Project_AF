@@ -151,7 +151,7 @@ function EditSubmission(props) {
                                     <>
                                     {documents.map((doc, key) => (
                                         < >
-                                        <p key={key}>{doc}  : <a  href={"http://localhost:8070/" + doc} download="abc" >Download </a></p><br/>
+                                        <p key={key}>{doc.split("--")[1]}  : <a  href={"http://localhost:8070/" + doc} download="abc" >Download </a></p><br/>
                                         </>
                                     ))}
                                     </>

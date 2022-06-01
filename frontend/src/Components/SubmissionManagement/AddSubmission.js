@@ -100,7 +100,7 @@ function AddSubmission(props) {
                             <form onSubmit={onSubmitHandler}>
                                 <div className="form-group pt-3">
                                     {checkDoc?<>
-                                    <p>{checkOneDoc?.documentName[0]} : <a href={"http://localhost:8070/" + checkOneDoc?.documentName[0]} download="Documents\2022-05-30T16-49-52.057Z--wallpaperflare.com_wallpaper (8).jpg" >View </a></p><br/>
+                                    <p>{checkOneDoc?.documentName[0].split("--")[1]} : <a href={"http://localhost:8070/" + checkOneDoc?.documentName[0]} download="Documents\2022-05-30T16-49-52.057Z--wallpaperflare.com_wallpaper (8).jpg" >View </a></p><br/>
 
                                     <Link to={"/EditStudentSubmission/"+ checkOneDoc._id}><button className="form-control btn btn-warning mt-3" type="button" value="create" >Edit</button></Link>
                                     </>:<>

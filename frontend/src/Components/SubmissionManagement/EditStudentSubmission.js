@@ -84,8 +84,7 @@ function EditStudentSubmission(props) {
                             <form onSubmit={onSubmitHandler}>
                                 <div className="form-group pt-3">
                                    
-                                    <p>{checkOneDoc[0]} : <a href={"http://localhost:8070/" + checkOneDoc[0]} download="d" > Download </a><br/></p>
-
+                                    <p>{checkOneDoc[0]?.split("--")[1]} : <a href={"http://localhost:8070/" + checkOneDoc[0]} download="d" > Download </a><br/></p>
                                     {/* <Link to={"/EditStudentSubmission/"+ checkOneDoc._id}><button className="form-control btn btn-warning mt-3" type="button" value="create" >Edit</button></Link>
                                      */}
                                     <input className="form-control" type="file" name="image" onChange={fileChangeHandler} id="inputGroupFile04" required />
