@@ -43,7 +43,7 @@ function UserProfile({ setTest }) {
         data.append("uid", userId)
         data.append('proimage', profileDate)
 
-      
+
         POST(`user/profileimage`, data).then(() => {
 
             console.log("File Sent Successfull")
@@ -61,7 +61,7 @@ function UserProfile({ setTest }) {
 
                 <div className="col-md-3 border-right">
                     <div className="d-flex flex-column align-items-center text-center p-3 py-5">
-                        <img className="rounded-circle mt-5" src={"http://localhost:8070/" + currentUser.image} /><span className="font-weight-bold">Amelly</span><span className="text-black-50">amelly12@bbb.com</span><span> </span>
+                        <img className="rounded-circle mt-5" src={"http://localhost:8070/" + currentUser.image} /><span className="font-weight-bold" value={currentUser.fname} ></span><span className="text-black-50" value={currentUser.fname}></span><span> </span>
                         <form onSubmit={onSubmitHandler}>
                             <div className="field has-addons m-3 pt-3">
                                 <div className="control is-expanded">
@@ -93,7 +93,7 @@ function UserProfile({ setTest }) {
                             <h4 className="text-right">Profile Settings</h4>
                         </div>
                         <div className="row mt-2">
-                            <div className="col-md-6"><label className="labels">First Name</label><input type="text" className="form-control" placeholder="first name" value={currentUser.fname} readOnly /></div>
+                            <div className="col-md-6"><label className="labels">First Name</label><input type="text" className="form-control " placeholder="first name" value={currentUser.fname} readOnly /></div>
                             <div className="col-md-6"><label className="labels">Last Name</label><input type="text" className="form-control" value={currentUser.lname} placeholder="last name" readOnly /></div>
                         </div>
                         <div className="row mt-3">

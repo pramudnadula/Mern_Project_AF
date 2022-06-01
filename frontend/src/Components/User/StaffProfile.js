@@ -87,7 +87,7 @@ function StaffProfile({ setTest }) {
                         </form>
 
                         {/* <div className="mt-5 text-center"><button className="btn btn-primary profile-button" type="button">Upload New Picture </button></div> */}
-                        <div className="mt-5 text-center"><button className="btn btn-primary profile-button" type="button">Remove</button></div>
+                        {/* <div className="mt-5 text-center"><button className="btn btn-primary profile-button" type="button">Remove</button></div> */}
 
 
 

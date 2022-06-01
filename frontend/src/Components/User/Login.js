@@ -60,7 +60,7 @@ function Login() {
 
 
         <div className="content">
-            <div className="container rounded bg-white">
+            <div className="container rounded bg-white mt-5 mb-5">
                 <div className="row">
                     <div className="col-md-6">
                         <br></br>
@@ -107,9 +107,9 @@ function Login() {
                                         <input type="password" className="form-control" id="password" onChange={(e) => { setpassword(e.target.value) }} required />
                                     </div>
 
-                                    <input type="submit" value="Log In" className="btn btn-block btn-primary" />
+                                    <input type="submit" value="Log In" className="btn btn-success form-control" />
 
-                                    <Link to="/forgot-password" style={{ alignSelf: "flex-start" }}>
+                                    <Link to="/forgetpassword" style={{ alignSelf: "flex-start" }}>
                                         <p style={{ padding: "0 15px" }} >Forgot Password?</p>
                                     </Link>
 
