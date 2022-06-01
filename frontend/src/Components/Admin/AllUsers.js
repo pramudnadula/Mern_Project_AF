@@ -33,23 +33,6 @@ function AllUsers() {
     }
 
 
-
-
-    // const [supervisor, setSupervisor] = useState([])
-
-    // useEffect(() => {
-
-
-    //     GET(`api/supervisors/all`).then((dat) => {
-    //         setSupervisor(dat)
-    //         console.log(dat)
-    //     }).catch((err) => {
-    //         console.log(err)
-    //     })
-    // }, [])
-
-
-
     return (
         <div>
             <div className='title is-2 has-text-black has-text-centered'>All Users</div><br />
@@ -91,35 +74,6 @@ function AllUsers() {
                 </div>
             </div>
 
-
-
-
-            {/* <h2 className='title is-4 has-text-centered'>Supervisors</h2>
-            < Link to="/staffregister"><button className="btn btn-success " type="submit">Add New Supervisor</button></Link>
-            <div className='card mt-2'>
-                <div className="row d-flex justify-content-center ">
-                    <div className="col">
-                        <table className='table table-bordered'>
-                            <thead>
-                                <tr>
-                                    <th>First Name</th>
-                                    <th>Last Name</th>
-                                    <th>Email</th>
-                                    <th>Group</th>
-                                    <th style={{ width: '173px' }}>Action</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <td>kamal</td>
-                                <td>perera</td>
-                                <td>kamal123@gmail.com</td>
-                                <td>2</td>
-                                <td><a className='button is-danger' ><i class="fa fa-trash-o" aria-hidden="true"></i></a></td>
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
-            </div> */}
         </div>
 
     )

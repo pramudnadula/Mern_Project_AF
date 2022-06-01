@@ -38,6 +38,8 @@ import AdminEditStudent from "./src/Components/Admin/AdminEditStudent";
 import AdminEditStaff from "./src/Components/Admin/AdminEditStaff";
 import AddSubmission from "./src/Components/SubmissionManagement/AddSubmission";
 import EditStudentSubmission from "./src/Components/SubmissionManagement/EditStudentSubmission";
+import ForgetPassword from "./src/Components/User/ForgetPassword";
+import ResetPassword from "./src/Components/User/ResetPassword";
 
 
 
@@ -61,6 +63,8 @@ function App() {
       <Route path="/staffregister" exact component={StaffRegister} />
       <Route path="/addstudent" exact component={AdminAddStudent} />
       <Route path="/addstaff" exact component={AdminAddStaff} />
+      <Route path="/forgetpassword" exact component={ForgetPassword} />
+      <Route path="/resetpassword" exact component={ResetPassword} />
 
 
 
