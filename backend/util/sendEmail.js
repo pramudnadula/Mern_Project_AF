@@ -428,7 +428,7 @@ const sendMail = function (email, token) {
                                     <tr>
                                       <td>
                                         <a
-                                          href="http://localhost:1234/resetpassword${token}"
+                                          href="http://localhost:1234/resetpassword/${token}"
                                           target="_blank"
                                           >Click Here</a
                                         >

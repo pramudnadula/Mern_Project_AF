@@ -46,15 +46,10 @@ import GroupList from "./src/Components/GroupManagement/GroupList";
 import Help from "./src/Components/GroupManagement/Help";
 
 function App() {
-  const user = localStorage.getItem("user");
-  console.log(user);
-  const [test, setTest] = useState("");
-  console.log(test);
 
   return (
     <BrowserRouter>
       <Route path="/" exact component={Home} />
-
       <Route path="/login" exact component={Login} />
       <Route path="/register" exact component={Register} />
       <Route path="/adminlogin" exact component={AdminLogin} />
@@ -62,7 +57,7 @@ function App() {
       <Route path="/addstudent" exact component={AdminAddStudent} />
       <Route path="/addstaff" exact component={AdminAddStaff} />
       <Route path="/forgetpassword" exact component={ForgetPassword} />
-      <Route path="/resetpassword" exact component={ResetPassword} />
+      <Route path="/resetpassword/:token" exact component={ResetPassword} />
 
       <Layout1>
         <Route path="/admindashboard" exact component={AdminDashboard} />
@@ -71,52 +66,27 @@ function App() {
         <Route path="/userprofile" exact component={UserProfile} />
         <Route path="/update/:id" exact component={Update} />
         <Route path="/allusers" exact component={AllUsers} />
-
         <Route path="/allsupervisors" exact component={AllSupervisors} />
         <Route path="/editstudent/:id" exact component={AdminEditStudent} />
         <Route path="/editstaff/:id" exact component={AdminEditStaff} />
-
         <Route path="/home" exact component={Home2} />
         <Route path="/group" exact component={StudentGroup} />
-        <Route
-          path="/req"
-          exact
-          component={() => (
-            <RequestSupervisor isSupervisor={true} stype="Supervisors" />
-          )}
-        />
-        <Route
-          path="/creq"
-          exact
-          component={() => (
-            <RequestSupervisor isSupervisor={false} stype="Co-Supervisors" />
-          )}
-        />
+        <Route path="/req" exact component={() => (<RequestSupervisor isSupervisor={true} stype="Supervisors" />)} />
+        <Route path="/creq" exact component={() => (<RequestSupervisor isSupervisor={false} stype="Co-Supervisors" />)} />
         <Route path="/msg" exact component={Chat} />
-
         <Route path="/markingscheme/add" exact component={AddMarkingScheme} />
         <Route path="/markingscheme/" exact component={ViewAllMarkingSchemes} />
-        <Route
-          path="/markingscheme/view/:id"
-          exact
-          component={ViewMarkingScheme}
-        />
+        <Route path="/markingscheme/view/:id" exact component={ViewMarkingScheme} />
         <Route path="/evaluate/" exact component={Evaluate} />
         <Route path="/evaluate/view/:id" exact component={EvaluateResult} />
         <Route path="/evaluate/view/group/:id" exact component={EvaluateView} />
         <Route path="/evaluate/all" exact component={ViewAllEvaluateResult} />
-
         <Route path="/UploadDocument" exact component={UploadDocument} />
         <Route path="/AddSubmission/:id" exact component={AddSubmission} />
         <Route path="/CreateSubmission" exact component={CreateSubmission} />
         <Route path="/EditSubmission/:id" exact component={EditSubmission} />
         <Route path="/AllSubmission" exact component={AllSubmission} />
-        <Route
-          path="/EditStudentSubmission/:id"
-          exact
-          component={EditStudentSubmission}
-        />
-
+        <Route path="/EditStudentSubmission/:id" exact component={EditStudentSubmission} />
         <Route path="/allocatedgroups" exact component={AllocatedGroups} />
         <Route path="/grouplist" exact component={GroupList} />
         <Route path="/help" exact component={Help} />
