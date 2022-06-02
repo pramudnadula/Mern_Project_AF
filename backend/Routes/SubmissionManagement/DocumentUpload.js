@@ -1,4 +1,4 @@
-const { UploadFileSingle, UploadFileMultiple, GetOneDocument, GetOneDocumentID } = require('../../Controllers/SubmissionManagement/DocumentUpload');
+const { UploadFileSingle, UploadFileMultiple, GetOneDocument, GetOneDocumentID, DeleteSubmission } = require('../../Controllers/SubmissionManagement/DocumentUpload');
 const isAuth = require("../../middleware/auth");//pass the middleware
 
 const router = require('express').Router();
@@ -22,6 +22,7 @@ router.post("/single", upload.single('image'), isAuth, UploadFileSingle) //singl
 router.post("/multiple",upload.array('images', 5), isAuth, UploadFileMultiple) //multiple file uploading
 router.post("/documentOne", isAuth, GetOneDocument) //multiple file uploading
 router.get("/documentOne/one/:id", isAuth, GetOneDocumentID) //multiple file uploading
+router.delete("/documentOne/delete/:id", isAuth, DeleteSubmission) //multiple file uploading
 
 
 module.exports = router;

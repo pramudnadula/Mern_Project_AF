@@ -89,7 +89,7 @@ exports.GetAllSubmission = (req, res) => {
     })
 }
 
-//! Delete One
+//! Delete One submission in supervisor side (remove part)
 exports.DeleteSubmissionType = async (req, res) => {
     let delid = req.params.id;
     try {
@@ -129,17 +129,17 @@ exports.GetOneSubmission = (req, res) => {
     })
 }
 
-//!Update One 
-exports.UpdateOneSubmissionType = async (req, res) => {
-    let sid = req.params.id;
-    const { submissionStartDate, submissionEndDate, submissionType, subject, description } = req.body;
-    try {
-        await SubmissionType.findOneAndUpdate({ _id: sid }, { submissionStartDate, submissionEndDate, submissionType, subject, description }).then(data => {
-            res.send({ status: "Submission updated" })
-        }).catch(err => {
+// //!Update One 
+// exports.UpdateOneSubmissionType = async (req, res) => {
+//     let sid = req.params.id;
+//     const { submissionStartDate, submissionEndDate, submissionType, subject, description } = req.body;
+//     try {
+//         await SubmissionType.findOneAndUpdate({ _id: sid }, { submissionStartDate, submissionEndDate, submissionType, subject, description }).then(data => {
+//             res.send({ status: "Submission updated" })
+//         }).catch(err => {
 
-        })
-    } catch (error) {
-        res.status(500).send({ status: "error in updating data", error: error.message });
-    }
-}
+//         })
+//     } catch (error) {
+//         res.status(500).send({ status: "error in updating data", error: error.message });
+//     }
+// }

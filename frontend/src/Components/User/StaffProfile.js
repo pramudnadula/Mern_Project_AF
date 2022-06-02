@@ -67,14 +67,14 @@ function StaffProfile({ setTest }) {
         <div className="container rounded bg-white mt-5 mb-5">
             <div className="row">
 
-                <div className="col-md-3 border-right">
+                <div className="col-md-4 border-right">
                     <div className="d-flex flex-column align-items-center text-center p-3 py-5">
-                        <img className="rounded-circle mt-5" src={"http://localhost:8070/" + currentUser.image} /><span className="font-weight-bold">Amelly</span><span className="text-black-50">amelly12@bbb.com</span><span> </span>
+                        <img className="rounded-circle mt-5" style={{ width: '180px' , height:'180px'}} src={"http://localhost:8070/" + currentUser.image} /><span className="font-weight-bold">Amelly</span><span className="text-black-50">amelly12@bbb.com</span><span> </span>
                         <form onSubmit={onSubmitHandler}>
                             <div className="field has-addons m-3 pt-3">
                                 <div className="control is-expanded">
                                     <div className="is-fullwidth">
-                                        <input className="input" type="file" name="supimage" onChange={fileChangeHandler} />
+                                        <input className="form-control" type="file" name="supimage" onChange={fileChangeHandler} />
                                     </div>
                                 </div>
 
@@ -85,17 +85,11 @@ function StaffProfile({ setTest }) {
                                 </div>
                             </div>
                         </form>
-
-                        {/* <div className="mt-5 text-center"><button className="btn btn-primary profile-button" type="button">Upload New Picture </button></div> */}
-                        {/* <div className="mt-5 text-center"><button className="btn btn-primary profile-button" type="button">Remove</button></div> */}
-
-
-
                     </div>
                 </div>
 
 
-                <div className="col-md-5 border-right">
+                <div className="col-md-8 border-right">
                     <div className="p-3 py-5">
                         <div className="d-flex justify-content-between align-items-center mb-3">
                             <h4 className="text-right">Profile Settings</h4>

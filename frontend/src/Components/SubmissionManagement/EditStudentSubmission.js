@@ -87,7 +87,7 @@ function EditStudentSubmission(props) {
                                     <p>{checkOneDoc[0]?.split("--")[1]} : <a href={"http://localhost:8070/" + checkOneDoc[0]} download="d" > Download </a><br/></p>
                                     {/* <Link to={"/EditStudentSubmission/"+ checkOneDoc._id}><button className="form-control btn btn-warning mt-3" type="button" value="create" >Edit</button></Link>
                                      */}
-                                    <input className="form-control" type="file" name="image" onChange={fileChangeHandler} id="inputGroupFile04" required />
+                                    <input className="form-control" type="file" name="image" onChange={fileChangeHandler} accept = "application/pdf,.csv,.doc,.docx, application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/vnd.ms-excel"  required />
                                     <button className="form-control btn btn-success mt-3" type="submit" value="create" >Upload</button>
                                    
                                 </div>

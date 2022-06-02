@@ -80,7 +80,10 @@ function CreateSubmission() {
         const yyyy = today.getFullYear();
         return yyyy + "-" + mm + "-" + dd;
     }
-
+    if (localStorage.getItem("staff-token") === null) {
+                window.location = "/";
+                return <></>
+    }   
     return (
         <>
             {/* <form onSubmit={onSubmitHandler}>
@@ -143,7 +146,7 @@ function CreateSubmission() {
                                 <div className="form-group">
                                     <i className="fa fa-calendar"></i>
                                     Description
-                                    <input className="form-control" type="file" name="images" onChange={fileChangeHandler} id="inputGroupFile04" required multiple />
+                                    <input className="form-control" type="file" name="images" onChange={fileChangeHandler} accept = "application/pdf,.csv,.doc,.docx, application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/vnd.ms-excel" required multiple />
                                 </div>
                                 <div className="">
                                     <button className="btn btn-danger" type="submit" value="create" >Create</button>
