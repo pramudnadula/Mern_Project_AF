@@ -1,19 +1,15 @@
-import axios from 'axios';
-import React, { useEffect, useState } from 'react';
-
+import React, { useEffect, useState } from "react";
+import { GET } from "../../Helper/httpHelper";
 
 function EvaluateResult(props) {
   const [markingScheme, setMarkingScheme] = useState();
   const [studentGroup, setStudentGroup] = useState();
   const [markingMarkingScheme, setMarkingMarkingScheme] = useState();
 
-
   useEffect(() => {
-
-    axios
-      .get(`http://localhost:8070/api/evoluate/view/${props.match.params.id}`)
+    GET(`api/evoluate/view/${props.match.params.id}`)
       .then((res) => {
-        setMarkingMarkingScheme(res.data);
+        setMarkingMarkingScheme(res);
       })
       .catch((err) => {
         console.log(err);
@@ -21,21 +17,17 @@ function EvaluateResult(props) {
   }, []);
 
   if (markingMarkingScheme) {
-    axios
-      .get(
-        `http://localhost:8070/api/markingscheme/view/${markingMarkingScheme?.markingSchemeId}`
-      )
+    GET(`api/markingscheme/view/${markingMarkingScheme?.markingSchemeId}`)
       .then((res) => {
-        setMarkingScheme(res.data);
+        setMarkingScheme(res);
       })
       .catch((err) => {
         console.log(err);
       });
 
-    axios
-      .get(`http://localhost:8070/api/studentGroups/${markingMarkingScheme?.groupId}`)
+    GET(`api/studentGroups/${markingMarkingScheme?.groupId}`)
       .then((res) => {
-        setStudentGroup(res.data);
+        setStudentGroup(res);
       })
       .catch((err) => {
         console.log(err);
@@ -47,7 +39,9 @@ function EvaluateResult(props) {
       <table class="table table-secondary table-bordered">
         <thead>
           <tr>
-            <th colSpan="3"><h2>{markingScheme?.name}</h2></th>
+            <th colSpan="3">
+              <h2>{markingScheme?.name}</h2>
+            </th>
           </tr>
           <tr>
             <th>Group Name: </th>
@@ -61,16 +55,14 @@ function EvaluateResult(props) {
             <th>Feature</th>
             <th>Allocated Mark</th>
             <th>Given Mark</th>
-
           </tr>
         </thead>
         <tbody>
-
           {markingMarkingScheme?.criteriaMarks.map((element, index) => (
             <tr key={index}>
-              <td >{element.criterion}</td>
-              <td >{element.allocatedMark}</td>
-              <td >{element.givenMark}</td>
+              <td>{element.criterion}</td>
+              <td>{element.allocatedMark}</td>
+              <td>{element.givenMark}</td>
             </tr>
           ))}
         </tbody>
@@ -89,7 +81,7 @@ function EvaluateResult(props) {
           </tr>
         </tfoot>
       </table>
-    </div >
+    </div>
   );
 }
 
