@@ -73,3 +73,15 @@ exports.GetOneDocumentID = (req, res) => {
     })
 
 }
+
+//! Delete One submission in supervisor side (remove part)
+exports.DeleteSubmission = async (req, res) => {
+    let delid = req.params.id;
+    try {
+        await DocumentUpload.findByIdAndDelete(delid);
+        res.status(200).json({ message: "Deleted success" });
+        console.log("deleted")
+    } catch (err) {
+        res.status(500).send({ status: "error in deleting data", error: err.message });
+    }
+}

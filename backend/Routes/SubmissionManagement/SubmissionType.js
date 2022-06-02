@@ -1,4 +1,4 @@
-const { GetAllSubmissionType, DeleteSubmissionType, GetOneSubmissionType, UpdateOneSubmissionType, GetAllSubmission, GetOneSubmission, UploadFileMultiple } = require('../../Controllers/SubmissionManagement/SubmissionType');//get create submission in SubmissionType controller
+const { GetAllSubmissionType, DeleteSubmissionType, GetOneSubmissionType, GetAllSubmission, GetOneSubmission, UploadFileMultiple } = require('../../Controllers/SubmissionManagement/SubmissionType');//get create submission in SubmissionType controller
 const isAuth = require("../../middleware/auth");//pass the middleware
 const router = require('express').Router();
 
@@ -23,7 +23,7 @@ router.post("/multiple",upload.array('images', 5), isAuth, UploadFileMultiple) /
 router.get('/', isAuth, GetAllSubmissionType)// get all submission type  
 router.delete('/one/:id', isAuth, DeleteSubmissionType)// delete one submission type  
 router.get('/one/:id', isAuth, GetOneSubmissionType)// get one submission type  
-router.put('/one/:id', isAuth, UpdateOneSubmissionType)// update one submission type  
+// router.put('/one/:id', isAuth, UpdateOneSubmissionType)// update one submission type  
 
 //! routes student
 router.get('/all', isAuth, GetAllSubmission)// get all submission type  

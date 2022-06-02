@@ -1,0 +1,15 @@
+exports.DeleteOneSubmission = async (req, res) => {
+    let delid = req.params.id;
+
+    try {
+        await SubmissionType.findByIdAndDelete(delid);
+        res.send("deleted")
+    } catch (err) {
+        res.status(500).send({ status: "error in deleting data", error: err.message });
+    }
+}
+
+.split("--")[1]
+
+
+accept = "application/pdf,.csv,.doc,.docx, application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/vnd.ms-excel" 
