@@ -30,6 +30,7 @@ const RequestRouter = require('./Routes/Request')
 const DocumentUpload = require('./Routes/SubmissionManagement/DocumentUpload')
 const SubmissionType = require('./Routes/SubmissionManagement/SubmissionType')
 const adminRouter = require('./Routes/admins.js');
+const admincontact = require('./Routes/AdminContact')
 
 
 
@@ -54,6 +55,7 @@ app.use("/api/groupconversation", GroupConversation);
 app.use("/api/message", Message);
 app.use("/api/stages", Stage);
 app.use("/api/trequest", Trequest);
+app.use("/api/admincontact", admincontact);
 
 app.use("/api/markingscheme", MarkingScheme);
 app.use("/api/evoluate", MarkingMarkingScheme);

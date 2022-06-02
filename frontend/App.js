@@ -42,6 +42,8 @@ import ForgetPassword from "./src/Components/User/ForgetPassword";
 import ResetPassword from "./src/Components/User/ResetPassword";
 import EvaluateView from "./src/Components/MarkingScheme/EvaluateView";
 import ViewAllEvaluateResult from "./src/Components/MarkingScheme/ViewAllEvaluateResult";
+import GroupList from "./src/Components/GroupManagement/GroupList";
+import Help from "./src/Components/GroupManagement/Help";
 
 function App() {
   const user = localStorage.getItem("user");
@@ -116,6 +118,8 @@ function App() {
         />
 
         <Route path="/allocatedgroups" exact component={AllocatedGroups} />
+        <Route path="/grouplist" exact component={GroupList} />
+        <Route path="/help" exact component={Help} />
       </Layout1>
     </BrowserRouter>
   );
