@@ -66,8 +66,8 @@ function AdminAddStudent() {
 
 
                     <div className="col-md-3 border-right">
-                        <div className="d-flex flex-column align-items-center text-center p-3 py-5"><img className="rounded-circle mt-5" src="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcQF2psCzfbB611rnUhxgMi-lc2oB78ykqDGYb4v83xQ1pAbhPiB&usqp=CAU" /><span className="font-weight-bold">Amelly</span><span className="text-black-50">amelly12@bbb.com</span><span> </span>
-                        </div>
+                        {/* <div className="d-flex flex-column align-items-center text-center p-3 py-5"><img className="rounded-circle mt-5" src="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcQF2psCzfbB611rnUhxgMi-lc2oB78ykqDGYb4v83xQ1pAbhPiB&usqp=CAU" /><span className="font-weight-bold">Amelly</span><span className="text-black-50">amelly12@bbb.com</span><span> </span>
+                        </div> */}
                     </div>
 
 
@@ -111,7 +111,7 @@ function AdminAddStudent() {
                                 />
 
                                 <div className="text-center ">
-                                    <input type="submit" value="Update" className="btn btn-success form-control" />
+                                    <input type="submit" value="Add Student" className="btn btn-success form-control" />
                                 </div>
 
                                 <div className="mt-5 text-center">

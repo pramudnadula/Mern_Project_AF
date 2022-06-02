@@ -123,6 +123,10 @@ function Layout1(props) {
                 <Menu.Item key="11" icon={<WechatOutlined />}>
                     <Link to='/msg' className='links'> Chat</Link>
                 </Menu.Item>
+                <SubMenu key="sub4" icon={<TeamOutlined />} title="Users">
+                    <Menu.Item key="12"><Link to='/allusers' className='links'>All Students</Link></Menu.Item>
+                    <Menu.Item key="13"><Link to='/allsupervisors' className='links'>Staff</Link></Menu.Item>
+                </SubMenu>
 
             </Menu>
         </Sider>

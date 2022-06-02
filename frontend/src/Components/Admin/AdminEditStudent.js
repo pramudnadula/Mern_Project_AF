@@ -125,10 +125,10 @@ function AdminEditStudent(props) {
                                 <div className="text-center ">
                                     <input type="submit" value="Update" className="btn btn-success form-control" />
                                 </div>
-
-                                <div className="mt-5 text-center">
-                                    < Link to="/userprofile"><button className="btn btn-primary form-control" type="submit" value="Save Profile">Cancel</button></Link>
-                                </div>
+                                <br></br>
+                                {/* <div className="mt-5 text-center"> */}
+                                < Link to="/userprofile"><button className="btn btn-primary form-control" type="submit" value="Save Profile">Cancel</button></Link>
+                                {/* </div> */}
 
                             </form>
 
