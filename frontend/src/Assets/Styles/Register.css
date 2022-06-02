@@ -33,11 +33,11 @@ p {
     font-size: 14px
 }
 
-.myform {
+/* .myform {
     padding: 0 25px 0 33px
-}
+} */
 
-.fc {
+/* .fc {
     border: 1px solid #57557A;
     border-radius: 3px;
     background: #fff;
@@ -54,15 +54,15 @@ p {
     background: none;
     color: #000000;
     letter-spacing: 1px
-}
+} */
 
-.bn {
+/* .bn {
     text-decoration: underline
 }
 
 .bn:hover {
     cursor: pointer
-}
+} */
 
 .form-check-input {
     margin-top: 8px !important

@@ -1,5 +1,7 @@
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
+const sendMail = require("../util/sendEmail");
+// import sendMail from "../util/sendEmail";
 
 const User = require("../Models/User");
 
@@ -66,6 +68,40 @@ exports.update = async (req, res, next) => {
                 .status(500)
                 .send({ status: 'Error with updating data', error: message });
         });
+};
+
+//reset password
+exports.passowrdReset = async (req, res, next) => {
+
+    let email = req.params.email;
+
+    console.log(email);
+    const token = "aaaaaaaaaaaaaaaaaaaaaaaaaaaa";
+    const test = await sendMail(email, token);
+
+    return test;
+    // const { fname, lname, email, type, username, password } = req.body;
+    // const hashedPw = await bcrypt.hash(password, 12);
+
+    // const updateUser = {
+    //     fname,
+    //     lname,
+    //     email,
+    //     type,
+    //     username,
+    //     password: hashedPw,
+    // };
+
+    // const update = await User.findByIdAndUpdate(userID, updateUser)
+    //     .then(() => {
+    //         res.status(200).send({ status: 'User Updated' });
+    //     })
+    //     .catch((err) => {
+    //         console.log(err);
+    //         res
+    //             .status(500)
+    //             .send({ status: 'Error with updating data', error: message });
+    //     });
 };
 
 //get one user 
@@ -274,7 +310,7 @@ exports.edit = async (req, res, next) => {
         username,
         password: hashedPw,
     };
-      
+
     const update = await User.findByIdAndUpdate(userID, updateUser)
         .then(() => {
             res.status(200).send({ status: 'User Updated' });
