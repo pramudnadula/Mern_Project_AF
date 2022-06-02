@@ -35,11 +35,8 @@ function NavBar_Admin(props) {
                             </Dropdown.Toggle>
 
                             <Dropdown.Menu>
-
-                                <Dropdown.Item href="/staffprofile"> <i className="fa fa-user mr-2"></i>My Account</Dropdown.Item>
-
                                 <NavDropdown.Divider />
-                                <Dropdown.Item><b> Sign Out </b></Dropdown.Item>
+                                <Dropdown.Item onClick={(e) => { localStorage.clear(); window.location.href = "/" }}><b> Sign Out </b></Dropdown.Item>
                             </Dropdown.Menu>
                         </Dropdown>
                     </Nav>

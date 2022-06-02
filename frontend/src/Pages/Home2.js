@@ -36,11 +36,11 @@ function Home2(props) {
                         <div className='row'>
 
                             <div className='col-5'>
-                                <img src={bestgroup?("http://localhost:8070/" + bestgroup[0]?.groupId.image):("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSsBUQsExvP7LIJSc41iC-M8ildHxtq8hgAXw&usqp=CAU")} className='img-fluid d-block' />
+                                <img src={bestgroup?.length > 0 ? ("http://localhost:8070/" + bestgroup[0]?.groupId.image) : ("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSsBUQsExvP7LIJSc41iC-M8ildHxtq8hgAXw&usqp=CAU")} className='img-fluid d-block' />
                             </div>
                             <div className='col-6 m-4 bg-light'>
                                 <Descriptions title="Group Information" layout="vertical">
-                                    <Descriptions.Item label="Group Name"><h3>{bestgroup? (bestgroup[0]?.groupId.groupName):("")}</h3></Descriptions.Item>
+                                    <Descriptions.Item label="Group Name"><h3>{bestgroup ? (bestgroup[0]?.groupId.groupName) : ("")}</h3></Descriptions.Item>
 
                                     <Descriptions.Item label="Live">Hangzhou, Zhejiang</Descriptions.Item>
                                     <Descriptions.Item label="Members" span={2}>
