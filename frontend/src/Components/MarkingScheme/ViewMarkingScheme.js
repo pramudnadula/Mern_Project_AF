@@ -1,16 +1,13 @@
-import axios from "axios";
 import React, { useEffect, useState } from "react";
+import { GET } from "../../Helper/httpHelper";
 
 function ViewMarkingScheme(props) {
   const [markingScheme, setMarkingScheme] = useState();
   useEffect(() => {
-    axios
-      .get(
-        `http://localhost:8070/api/markingscheme/view/${props.match.params.id}`
-      )
+    GET(`api/markingscheme/view/${props.match.params.id}`)
       .then((res) => {
-        setMarkingScheme(res.data);
-        console.log(res.data);
+        setMarkingScheme(res);
+        console.log(res);
       })
       .catch((err) => {
         console.log(err);
@@ -21,11 +18,14 @@ function ViewMarkingScheme(props) {
       <table class="table table-secondary table-bordered">
         <thead>
           <tr>
-            <th colSpan="2"><h2>{markingScheme?.name}</h2></th>
-
+            <th colSpan="2">
+              <h2>{markingScheme?.name}</h2>
+            </th>
           </tr>
           <tr>
-            <th colSpan="2">Submission Type: </th>
+            <th colSpan="2">
+              Submission Type:{markingScheme?.submissionType}{" "}
+            </th>
           </tr>
           <tr>
             <th>Feature</th>
