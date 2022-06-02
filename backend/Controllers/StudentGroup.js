@@ -4,7 +4,8 @@ const Stage = require('../Models/Groupstage')
 const MMschema = require('../Models/MarkingMarkingScheme')
 const User = require('../Models/User')
 const Areas = require('../Models/ResearchArea');
-const { populate } = require('../Models/StudentGroup');
+
+
 //create new student group
 exports.creategroup = async (req, res) => {
 
@@ -142,4 +143,24 @@ exports.getMaxmarkGroup = async (req, res) => {
         res.status(500).send({ status: "error in fetching", error: error.message });
     }
 
+}
+
+exports.getallstudentGroups = async (req, res) => {
+    try {
+        const groups = await studentGroup.find().populate("supervisor").populate("cosupervisor").populate("area")
+        let ob = []
+        for (let i = 0; i < groups.length; i++) {
+            const stu = await User.find({ groupid: groups[i]._id })
+            const newob = {
+                grp: groups[i],
+                stu: stu
+            }
+            ob.push(newob)
+        }
+
+        res.send(ob)
+
+    } catch (error) {
+        res.status(505).send({ status: "error in fetching", error: error.message });
+    }
 }

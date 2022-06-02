@@ -40,6 +40,8 @@ import AddSubmission from "./src/Components/SubmissionManagement/AddSubmission";
 import EditStudentSubmission from "./src/Components/SubmissionManagement/EditStudentSubmission";
 import ForgetPassword from "./src/Components/User/ForgetPassword";
 import ResetPassword from "./src/Components/User/ResetPassword";
+import GroupList from "./src/Components/GroupManagement/GroupList";
+import Help from "./src/Components/GroupManagement/Help";
 
 
 
@@ -102,6 +104,8 @@ function App() {
         <Route path="/EditStudentSubmission/:id" exact component={EditStudentSubmission} />
 
         <Route path="/allocatedgroups" exact component={AllocatedGroups} />
+        <Route path="/grouplist" exact component={GroupList} />
+        <Route path="/help" exact component={Help} />
 
 
 

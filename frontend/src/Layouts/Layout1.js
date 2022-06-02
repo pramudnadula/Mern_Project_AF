@@ -53,6 +53,9 @@ function Layout1(props) {
                 <Menu.Item key="11" icon={<WechatOutlined />}>
                     <Link to='/msg' className='links'> Chat</Link>
                 </Menu.Item>
+                <Menu.Item key="12" icon={<WechatOutlined />}>
+                    <Link to='/help' className='links'> Help</Link>
+                </Menu.Item>
             </Menu>
         </Sider>
     )
@@ -118,10 +121,10 @@ function Layout1(props) {
                     <Menu.Item key="9"><Link to='/UploadDocument' className='links'>Document</Link></Menu.Item>
                 </SubMenu>
                 <Menu.Item key="10" icon={<TeamOutlined />}>
-                    <Link to='/allocatedgroups' className='links'> Group</Link>
+                    <Link to='/grouplist' className='links'> Group</Link>
                 </Menu.Item>
                 <Menu.Item key="11" icon={<WechatOutlined />}>
-                    <Link to='/msg' className='links'> Chat</Link>
+                    <Link to='/' className='links'> Chat</Link>
                 </Menu.Item>
 
             </Menu>
