@@ -18,7 +18,8 @@ function ContactAdmin(props) {
             email: values.email,
             subject: values.subject,
             question: values.question,
-            utype: type
+            utype: type,
+            reply: ""
         }
         POST('api/admincontact/create', ob).then((data) => {
             form.resetFields()
@@ -29,7 +30,7 @@ function ContactAdmin(props) {
     }
     return (
 
-        <div className='col-5 mt-5'>
+        <div className='col-4 mt-5'>
             <Form layout='vertical' className='bs1 p-3' onFinish={onfinish} form={form}>
                 <h3 className='text-center'>Contact Admin</h3>
                 <Form.Item name='name' label="Name" rules={[{ required: true }]}>

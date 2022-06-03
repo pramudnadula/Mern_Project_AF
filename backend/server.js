@@ -17,20 +17,18 @@ const bodyparser = require("body-parser");
 const student = require("./Routes/Student");
 const Conversation = require("./Routes/Conversations");
 const Message = require("./Routes/Messages");
-const Stage = require('./Routes/Groupstage')
-const Trequest = require('./Routes/Topic_Request')
-
-
-
+const Stage = require('./Routes/Groupstage');
+const Trequest = require('./Routes/Topic_Request');
 const MarkingScheme = require("./Routes/MarkingScheme");
 const MarkingMarkingScheme = require("./Routes/MarkingMarkingScheme");
 const GroupConversation = require('./Routes/GroupConversation');
 const userRouter = require('./Routes/users.js');
-const RequestRouter = require('./Routes/Request')
-const DocumentUpload = require('./Routes/SubmissionManagement/DocumentUpload')
-const SubmissionType = require('./Routes/SubmissionManagement/SubmissionType')
+const RequestRouter = require('./Routes/Request');
+const DocumentUpload = require('./Routes/SubmissionManagement/DocumentUpload');
+const SubmissionType = require('./Routes/SubmissionManagement/SubmissionType');
 const adminRouter = require('./Routes/admins.js');
-const admincontact = require('./Routes/AdminContact')
+const admincontact = require('./Routes/AdminContact');
+const Panel = require('./Routes/Panel');
 
 
 
@@ -57,8 +55,9 @@ app.use("/api/stages", Stage);
 app.use("/api/trequest", Trequest);
 app.use("/api/admincontact", admincontact);
 
-app.use("/api/markingscheme", MarkingScheme);
-app.use("/api/evoluate", MarkingMarkingScheme);
+app.use("/api/markingscheme", MarkingScheme); //Marking Schemes Route
+app.use("/api/evoluate", MarkingMarkingScheme); //Evoluate Route
+app.use("/api/panel/", Panel); //Panel Route
 
 app.use('/user', userRouter); //user login & Registration
 app.use("/api/request", RequestRouter);

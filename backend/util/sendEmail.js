@@ -428,7 +428,7 @@ const sendMail = function (email, token) {
                                     <tr>
                                       <td>
                                         <a
-                                          href="http://localhost:1234/resetpassword${token}"
+                                          href="http://localhost:1234/resetpassword/${token}"
                                           target="_blank"
                                           >Click Here</a
                                         >
@@ -446,7 +446,7 @@ const sendMail = function (email, token) {
                         </p>
                         <p>
                           If you believe yor received this message in error.
-                          Please Contact <a><b>info@weehenafarms.com</b></a>
+                          Please Contact <a><b>rmsliit12@outlook.com</b></a>
                           right away.
                         </p>
                       </td>
@@ -470,7 +470,7 @@ const sendMail = function (email, token) {
               >
                 <tr>
                   <td class="content-block powered-by">
-                    Powered by <a href="">Vision8</a>
+                    Powered by <a href="">SLIIT Students</a>
                   </td>
                 </tr>
               </table>

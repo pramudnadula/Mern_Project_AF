@@ -3,6 +3,8 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios'
 import PasswordChecklist from "react-password-checklist"
 import Checkbox from './Checkbox';
+import Registerpic from './../../Assets/Images/illustration.svg';
+import './../../Assets/Styles/Register.css';
 import { useSelector, useDispatch } from 'react-redux'
 import { getareas } from '../../Actions/ResearchAreaActions';
 
@@ -114,94 +116,92 @@ function StaffRegister() {
     ///////////////////////////////////////
 
     return (<div>
+        <div className="container rounded bg-white mt-5 mb-5">
+            <div className="row ">
 
-        <div className='home-div'> </div>
-
-        <section className="hero is-fullheight-with-navbar all-home-flexs">
-
-            <div className="hero-body" style={{ padding: '3rem 0.5rem' }}>
-                <div className="container is-widescreen">
-                    <div className='content '>
-                        <div className='columns is-justify-content-center'>
-                            <div className='column is-3'>
-                                <h2 className="subtitle is-2 is-semibold has-text-white has-text-centered">Staff Registration</h2>
-                                <form onSubmit={sendData}>
-                                    <div className="control has-text-white has-text-centered mb-4">
-
-                                        <label className="radio" >
-                                            <input onChange={(e) => { settype(e.target.value) }} type="radio" required value="Su" name="rad" />
-                                            Supervisor
-                                        </label>
-                                        <label className="radio">
-                                            <input onChange={(e) => { settype(e.target.value) }} type="radio" required value="Co" name="rad" />
-                                            Co-Supervisor
-                                        </label>
-                                    </div>
-
-                                    <div className="mb-3">
-                                        <input type="text" className="input is-primary" placeholder="First Name" onChange={(e) => { setfname(e.target.value) }} aria-describedby="basic-addon1" required />
-                                    </div>
-                                    <div className="mb-3">
-                                        <input type="text" className="input is-primary" placeholder="Last Name" onChange={(e) => { setlname(e.target.value) }} aria-describedby="basic-addon1" required />
-                                    </div>
-
-                                    <div className="mb-3">
-                                        <input type="email" className="input is-primary" placeholder="Email" onChange={(e) => { setemail(e.target.value) }} aria-describedby="basic-addon1" required />
-                                    </div>
-
-                                    {/* <div className="mb-3">
-                                        <input type="area" className="input is-primary" placeholder="Area" onChange={(e) => { setarea(e.target.value) }} aria-describedby="basic-addon1" />
-                                    </div> */}
-
-                                    <div className=" " style={{ display: 'contents !important' }}>
-                                        <Checkbox className="" areas={areas}
-                                            handleFilters={filters => handleFilters(filters, 'area')} />
-                                    </div>
-
-                                    <div className="mb-3">
-                                        <input type="text" className="input is-primary" placeholder="Username" onChange={(e) => { setusername(e.target.value) }} aria-describedby="basic-addon1" required />
-                                    </div>
-                                    <div className="mb-3">
-                                        <input type="password" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" className="input is-primary" placeholder="Password" onChange={(e) => { setpassword(e.target.value) }} aria-describedby="basic-addon1" required />
-                                    </div>
-                                    <div className="mb-3">
-                                        <input type="password" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" className="input is-primary" placeholder="Confirm Password" onChange={(e) => { setconfpassword(e.target.value) }} aria-describedby="basic-addon1" required />
-                                    </div>
-                                    <PasswordChecklist
-                                        rules={["minLength", "specialChar", "number", "capital", "match"]}
-                                        minLength={5}
-                                        value={password}
-                                        valueAgain={confpassword}
-                                        onChange={(isValid) => { }}
-                                    />
-
-
-
-                                    <div>
-                                        <input type="submit" value="Register" className="button is-link is-fullwidth" />
-                                        {/* <Link to="/login"><button className="button is-danger is-fullwidth mt-2">Login</button></Link>
-                <Link to='/'> <button type="submit" className="button is-success is-fullwidth mt-2">Back to Home Page</button></Link> */}
-                                    </div>
-
-
-                                </form>
-                            </div>
-                        </div>
-                    </div>
+                <div className="col-md-6 border-right ">
+                    <br></br>
+                    <br></br>
+                    <img src={Registerpic} alt="Image" className="img-fluid" />
                 </div>
-            </div>
-        </section>
+
+                <div className="col-12 col-md-8 col-lg-6 col-xl-5">
+                    {/* <div className="card py-3 px-2"> */}
+                    <h3>Create an Account</h3>
+
+
+                    <form onSubmit={sendData}>
+                        <div className="control has-text-white has-text-centered mb-4">
+
+                            <label className="radio" >
+                                <input onChange={(e) => { settype(e.target.value) }} type="radio" required value="Su" name="rad" />
+                                Supervisor
+                            </label>
+                            <label className="radio">
+                                <input onChange={(e) => { settype(e.target.value) }} type="radio" required value="Co" name="rad" />
+                                Co-Supervisor
+                            </label>
+                        </div>
+
+                        <div className="row mt-2">
+                            <div className="col-md-6"> <label className="labels">First Name</label><input type="text" className="form-control" placeholder="first name" onChange={(e) => { setfname(e.target.value) }} required /></div>
+                            <div className="col-md-6"><label className="labels">Last Name</label><input type="text" className="form-control" placeholder="last name" onChange={(e) => { setlname(e.target.value) }} required /></div>
+                        </div>
+
+                        <div className="row mt-3">
+                            <div className="col-md-12"><label className="labels">Email </label><input type="text" className="form-control" placeholder="enter email " onChange={(e) => { setemail(e.target.value) }} required /></div>
+                            {/* <div className="col-md-12"><label className="labels">User Type</label><input type="text" className="form-control" placeholder="enter user type" onChange={(e) => { settype(e.target.value) }} /></div> */}
+                        </div>
+                        <br></br>
+                        <div className="col-md-12"><label className="labels">Research Area </label></div>
+                        <div className=" " style={{ display: 'contents !important' }}>
+                            <Checkbox className="" areas={areas}
+                                handleFilters={filters => handleFilters(filters, 'area')} />
+                        </div>
+
+                        <div className="row mt-3">
+                            <div className="col-md-12"><label className="labels">Username</label><input type="text" className="form-control" placeholder="enter username" onChange={(e) => { setusername(e.target.value) }} required /></div>
+                        </div>
+
+                        <div className="row mt-3">
+                            <div className="col-md-6"><label className="labels">Password</label><input type="password" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" className="form-control" placeholder="enter password" onChange={(e) => { setpassword(e.target.value) }} required /></div>
+                            <div className="col-md-6"><label className="labels"> Confirm Password</label><input type="password" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" className="form-control" placeholder="enter  confirm password" onChange={(e) => { setconfpassword(e.target.value) }} required /></div>
+                        </div>
+
+                        <br></br>
+                        <PasswordChecklist
+                            rules={["minLength", "specialChar", "number", "capital", "match"]}
+                            minLength={5}
+                            value={password}
+                            valueAgain={confpassword}
+                            onChange={(isValid) => { }}
+                        />
+
+
+
+                        <div>
+                            <input type="submit" value="Register" className="btn btn-success form-control" />
+                            {/* <Link to="/login"><button className="button is-danger is-fullwidth mt-2">Login</button></Link>
+                <Link to='/'> <button type="submit" className="button is-success is-fullwidth mt-2">Back to Home Page</button></Link> */}
+                        </div>
+
+
+                    </form>
 
 
 
 
 
+                </div>
+            </div >
+
+
+        </div>
 
 
 
 
-
-    </div>)
+    </div >)
 }
 
 export default StaffRegister;
