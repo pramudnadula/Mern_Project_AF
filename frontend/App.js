@@ -2,7 +2,6 @@ import "./src/Assets/Styles/App.css";
 import "antd/dist/antd.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { BrowserRouter, Route } from "react-router-dom";
-
 import Home from "./src/Pages/Home";
 import Home2 from "./src/Pages/Home2";
 import RequestSupervisor from "./src/Components/GroupManagement/RequestSupervisor";
@@ -83,14 +82,7 @@ function App() {
         <Route path="/home" exact component={Home2} />
         <Route path="/group" exact component={StudentGroup} />
 
-        <Route path="/req" exact component={() => (
-          <RequestSupervisor isSupervisor={true} stype="Supervisors" />
-        )}
-        />
-        <Route path="/creq" exact component={() => (
-          <RequestSupervisor isSupervisor={false} stype="Co-Supervisors" />
-        )}
-        />
+
 
         <Route path="/req" exact component={() => (<RequestSupervisor isSupervisor={true} stype="Supervisors" />)} />
         <Route path="/creq" exact component={() => (<RequestSupervisor isSupervisor={false} stype="Co-Supervisors" />)} />
