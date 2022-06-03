@@ -17,40 +17,13 @@ function ViewAllEvaluateResult(props) {
       markingMarkingScheme?.map((element, index) => {
         let arr = {
           key: index,
-          groupId: element.groupId,
+          groupId: element.groupId.groupName,
           marker: element.marker,
-          markingSchemeId: element.markingSchemeId,
+          markingSchemeId: element.markingSchemeId.submissionType,
         };
         data.push(arr);
       });
   }
-
-  // const data = [
-  //   {
-  //     key: "1",
-  //     name: "John Brown",
-  //     age: 32,
-  //     address: "New York No. 1 Lake Park",
-  //   },
-  //   {
-  //     key: "2",
-  //     name: "Joe Black",
-  //     age: 42,
-  //     address: "London No. 1 Lake Park",
-  //   },
-  //   {
-  //     key: "3",
-  //     name: "Jim Green",
-  //     age: 32,
-  //     address: "Sidney No. 1 Lake Park",
-  //   },
-  //   {
-  //     key: "4",
-  //     name: "Jim Red",
-  //     age: 32,
-  //     address: "London No. 2 Lake Park",
-  //   },
-  // ];
 
   useEffect(() => {
     GET(`api/evoluate/views/`)
@@ -168,7 +141,7 @@ function ViewAllEvaluateResult(props) {
 
   const columns = [
     {
-      title: "GroupID",
+      title: "Group Name",
       dataIndex: "groupId",
       key: "groupId",
       width: "30%",
@@ -182,7 +155,7 @@ function ViewAllEvaluateResult(props) {
       ...getColumnSearchProps("marker"),
     },
     {
-      title: "MarkingSchemeID",
+      title: "Submission Type",
       dataIndex: "markingSchemeId",
       key: "markingSchemeId",
       ...getColumnSearchProps("markingSchemeId"),

@@ -7,40 +7,55 @@ function Evaluate(props) {
   const [marker, setMarker] = useState();
   const [markingScheme, setMarkingScheme] = useState();
   const [criteriaMarks, setCriteriaMarks] = useState([]);
+  const [submission, setSubmission] = useState();
+
 
   useEffect(() => {
-    GET(`api/markingscheme/view/6298761f68cc6cbdd3eafdea`)
-      .then((res) => {
-        console.log(res);
-        setMarkingScheme(res);
-        var arr = [];
-        for (let i = 0; i < res.features.length; i++) {
-          let newArray = { criterion: "", allocatedMark: "", givenMark: "" };
 
-          console.log(res.features[i].criterion);
-          console.log(res.features[i].allocatedMark);
+    GET(`api/evoluate/submission/upload/${props.match.params.id}`).then((res) => {
+      setSubmission(res);
+      console.log(res);
 
-          newArray.criterion = res.features[i].criterion;
-          newArray.allocatedMark = res.features[i].allocatedMark;
-          newArray.givenMark = "";
-          console.log(newArray);
+    }).catch((err) => {
+      console.log(err);
+    })
 
-          arr.push(newArray);
-        }
-        console.log(criteriaMarks);
-        setCriteriaMarks(arr);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
+    if (submission) {
 
-    GET(`api/studentGroups/6298450f5ab932858fbd7346`)
-      .then((res) => {
-        setStudentGroup(res);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
+      console.log(ob);
+      // GET(`api/markingscheme/view/submission/${ob?.submissionId?.submissionType}`)
+      //   .then((res) => {
+      //     console.log(res);
+      //     setMarkingScheme(res);
+      //     var arr = [];
+      //     for (let i = 0; i < res.features.length; i++) {
+      //       let newArray = { criterion: "", allocatedMark: "", givenMark: "" };
+
+      //       console.log(res.features[i].criterion);
+      //       console.log(res.features[i].allocatedMark);
+
+      //       newArray.criterion = res.features[i].criterion;
+      //       newArray.allocatedMark = res.features[i].allocatedMark;
+      //       newArray.givenMark = "";
+      //       console.log(newArray);
+
+      //       arr.push(newArray);
+      //     }
+      //     console.log(criteriaMarks);
+      //     setCriteriaMarks(arr);
+      //   })
+      //   .catch((err) => {
+      //     console.log(err);
+      //   });
+
+      GET(`api/markingscheme/group/${ob?.groupId?._id}`)
+        .then((res) => {
+          setStudentGroup(res);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    }
   }, []);
 
   const submit = (e) => {
