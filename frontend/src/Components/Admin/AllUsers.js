@@ -35,8 +35,9 @@ function AllUsers() {
 
     return (
         <div>
-            <div className='title is-2 has-text-black has-text-centered'>All Users</div><br />
-            <h2 className='title is-4 has-text-centered'>Students</h2>
+            {/* <div className='title is-2 has-text-black has-text-centered'>All Users</div><br /> */}
+            <center><h2 className='title is-4 has-text-centered'> All Students</h2></center>
+
             < Link to="/addstudent"><button className="btn btn-success " type="submit">Add New Student</button></Link>
 
             <div className='card mt-2'>

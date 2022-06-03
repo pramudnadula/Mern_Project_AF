@@ -1,8 +1,8 @@
 import "./src/Assets/Styles/App.css";
 import "antd/dist/antd.css";
-
 import "bootstrap/dist/css/bootstrap.min.css";
 import { BrowserRouter, Route } from "react-router-dom";
+
 import Home from "./src/Pages/Home";
 import Home2 from "./src/Pages/Home2";
 import RequestSupervisor from "./src/Components/GroupManagement/RequestSupervisor";
@@ -45,6 +45,16 @@ import ViewAllEvaluateResult from "./src/Components/MarkingScheme/ViewAllEvaluat
 import GroupList from "./src/Components/GroupManagement/GroupList";
 import Help from "./src/Components/GroupManagement/Help";
 import ContactQuestions from "./src/Components/Admin/ContactQuestions";
+import CreatePanel from "./src/Components/Panel/CreatePanel";
+import ViewAllPanels from "./src/Components/Panel/ViewAllPanels";
+import AddPanel from "./src/Components/Panel/AddPanel";
+import AddPanelToGroup from "./src/Components/Panel/AddPanelToGroup";
+import ViewPanelAndBlindReviewer from "./src/Components/Panel/ViewPanelAndBlindReviwer";
+import StaffAllocatedPanels from "./src/Components/Panel/StaffAllocatedPanels";
+import ViewPanel from "./src/Components/Panel/ViewPanel";
+import ViewAllSubmissions from "./src/Components/MarkingScheme/ViewAllSubmissions";
+import ViewAllocatedSubmissions from "./src/Components/MarkingScheme/ViewAllocatedSubmissions";
+
 
 function App() {
 
@@ -55,12 +65,12 @@ function App() {
       <Route path="/register" exact component={Register} />
       <Route path="/adminlogin" exact component={AdminLogin} />
       <Route path="/staffregister" exact component={StaffRegister} />
-      <Route path="/addstudent" exact component={AdminAddStudent} />
-      <Route path="/addstaff" exact component={AdminAddStaff} />
       <Route path="/forgetpassword" exact component={ForgetPassword} />
       <Route path="/resetpassword/:token" exact component={ResetPassword} />
 
       <Layout1>
+        <Route path="/addstudent" exact component={AdminAddStudent} />
+        <Route path="/addstaff" exact component={AdminAddStaff} />
         <Route path="/admindashboard" exact component={AdminDashboard} />
         <Route path="/staffprofile" exact component={StaffProfile} />
         <Route path="/staffupdate/:id" exact component={StaffUpdate} />
@@ -72,22 +82,51 @@ function App() {
         <Route path="/editstaff/:id" exact component={AdminEditStaff} />
         <Route path="/home" exact component={Home2} />
         <Route path="/group" exact component={StudentGroup} />
+
+        <Route path="/req" exact component={() => (
+          <RequestSupervisor isSupervisor={true} stype="Supervisors" />
+        )}
+        />
+        <Route path="/creq" exact component={() => (
+          <RequestSupervisor isSupervisor={false} stype="Co-Supervisors" />
+        )}
+        />
+
         <Route path="/req" exact component={() => (<RequestSupervisor isSupervisor={true} stype="Supervisors" />)} />
         <Route path="/creq" exact component={() => (<RequestSupervisor isSupervisor={false} stype="Co-Supervisors" />)} />
+
         <Route path="/msg" exact component={Chat} />
         <Route path="/markingscheme/add" exact component={AddMarkingScheme} />
         <Route path="/markingscheme/" exact component={ViewAllMarkingSchemes} />
         <Route path="/markingscheme/view/:id" exact component={ViewMarkingScheme} />
+
+        <Route path="/panel/add" exact component={CreatePanel} />
+        <Route path="/panels/" exact component={ViewAllPanels} />
+        <Route path="/panels/add" exact component={AddPanel} />
+        <Route path="/panels/add/group/:id" exact component={AddPanelToGroup} />
+        <Route path="/evaluate/all" exact component={ViewAllEvaluateResult} />
+        <Route path="/panels/view/all" exact component={ViewPanelAndBlindReviewer} />
+        <Route path="/panels/submissions/all" exact component={ViewAllSubmissions} />
+        <Route path="/panels/view/users/:id" exact component={StaffAllocatedPanels} />
+        <Route path="/panels/view/panel/:id" exact component={ViewPanel} />
+
+        <Route path="/panels/submissions/user/:id" exact component={ViewAllocatedSubmissions} />
+        <Route path="/evaluate/submission/:id" exact component={Evaluate} />
+        <Route path="/evaluate/view/:id" exact component={EvaluateResult} />
+        <Route path="/evaluate/view/group/:id" exact component={EvaluateView} />
+
         <Route path="/evaluate/" exact component={Evaluate} />
         <Route path="/evaluate/view/:id" exact component={EvaluateResult} />
         <Route path="/evaluate/view/group/:id" exact component={EvaluateView} />
         <Route path="/evaluate/all" exact component={ViewAllEvaluateResult} />
+
         <Route path="/UploadDocument" exact component={UploadDocument} />
         <Route path="/AddSubmission/:id" exact component={AddSubmission} />
         <Route path="/CreateSubmission" exact component={CreateSubmission} />
         <Route path="/EditSubmission/:id" exact component={EditSubmission} />
         <Route path="/AllSubmission" exact component={AllSubmission} />
         <Route path="/EditStudentSubmission/:id" exact component={EditStudentSubmission} />
+
         <Route path="/allocatedgroups" exact component={AllocatedGroups} />
         <Route path="/grouplist" exact component={GroupList} />
         <Route path="/help" exact component={Help} />

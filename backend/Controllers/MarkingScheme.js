@@ -1,4 +1,5 @@
 const MarkingScheme = require("../Models/MarkingScheme");
+const StudentGroup = require("../Models/StudentGroup");
 
 exports.createMarkingScheme = (req, res) => {
   const markingScheme = new MarkingScheme(req.body);
@@ -29,6 +30,28 @@ exports.getMarkingScheme = async (req, res) => {
       _id: req.params.id,
     });
     res.status(200).json(markingScheme);
+  } catch (err) {
+    res.status(500).json(err);
+  }
+};
+
+exports.getMarkingSchemeBySubmissionType = async (req, res) => {
+  try {
+    const markingScheme = await MarkingScheme.findById({
+      submissionType: req.params.id,
+    });
+    res.status(200).json(markingScheme);
+  } catch (err) {
+    res.status(500).json(err);
+  }
+};
+
+exports.getStudentGroupById = async (req, res) => {
+  try {
+    const group = await StudentGroup.findById({
+      _id: req.params.id,
+    });
+    res.status(200).json(group);
   } catch (err) {
     res.status(500).json(err);
   }
