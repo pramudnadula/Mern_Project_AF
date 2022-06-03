@@ -319,7 +319,7 @@ exports.edit = async (req, res, next) => {
     let userID = req.params.userId;
     const { fname, lname, email, type, username, password } = req.body;
     const hashedPw = await bcrypt.hash(password, 12);
-
+    console.log(userID)
     const updateUser = {
         fname,
         lname,
