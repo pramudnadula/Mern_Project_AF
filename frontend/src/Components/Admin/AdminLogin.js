@@ -34,7 +34,7 @@ function AdminLogin() {
                 setUserId(res.data.userId)
                 setTest(!test)
 
-                window.location.href = '/admindashboard'
+                window.location.href = '/home';
 
             })
             .catch((err) => {

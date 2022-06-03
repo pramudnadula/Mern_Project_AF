@@ -50,18 +50,20 @@ function GroupList(props) {
                             </thead>
 
                             <tbody>
-                                {groups.map((m, i) => (
+                                {groups?.map((m, i) => (
                                     <tr key={i}>
                                         <td>{(i + 1)}</td>
                                         <td>{m?.grp.groupName}</td>
-                                        <td>{m?.grp.topic}</td>
-                                        <td>{m?.grp.area.name}</td>
+                                        <td>{m?.grp.topic ? <>{m.grp.topic}</> : <><div className='badge bg-danger'>Not Allocated</div></>}</td>
+                                        <td>{m?.grp.area ? <>{m.grp.area.name}</> : <><div className='badge bg-danger'>Not Allocated</div></>}</td>
                                         <Popover placement="bottomRight" title="Members" content={content(m.stu)} trigger="click">
                                             <td><div className='badge bg-warning bdg' style={{ cursor: "pointer" }}>{m.grp.members}</div></td>
                                         </Popover>
 
-                                        <td>{m.grp.supervisor.fname}</td>
-                                        <td>{m.grp.cosupervisor.fname}</td>
+                                        <td>{m?.grp.supervisor ? <>{m.grp.supervisor.fname}</> : <><div className='badge bg-danger'>Not Allocated</div></>}</td>
+
+                                        <td>{m?.grp.cosupervisor ? <>{m.grp.cosupervisor.fname}</> : <><div className='badge bg-danger'>Not Allocated</div></>}</td>
+
                                     </tr>
                                 ))}
                             </tbody>

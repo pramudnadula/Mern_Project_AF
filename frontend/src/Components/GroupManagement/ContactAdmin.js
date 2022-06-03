@@ -18,7 +18,8 @@ function ContactAdmin(props) {
             email: values.email,
             subject: values.subject,
             question: values.question,
-            utype: type
+            utype: type,
+            reply: ""
         }
         POST('api/admincontact/create', ob).then((data) => {
             form.resetFields()

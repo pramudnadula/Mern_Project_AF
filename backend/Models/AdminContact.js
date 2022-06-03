@@ -20,6 +20,9 @@ const AdminContactAreaSchema = new mongoose.Schema({
     },
     utype: {
         type: String
+    },
+    reply: {
+        type: String
     }
 
 

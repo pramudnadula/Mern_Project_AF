@@ -44,6 +44,7 @@ import EvaluateView from "./src/Components/MarkingScheme/EvaluateView";
 import ViewAllEvaluateResult from "./src/Components/MarkingScheme/ViewAllEvaluateResult";
 import GroupList from "./src/Components/GroupManagement/GroupList";
 import Help from "./src/Components/GroupManagement/Help";
+import ContactQuestions from "./src/Components/Admin/ContactQuestions";
 import CreatePanel from "./src/Components/Panel/CreatePanel";
 import ViewAllPanels from "./src/Components/Panel/ViewAllPanels";
 import AddPanel from "./src/Components/Panel/AddPanel";
@@ -53,6 +54,7 @@ import StaffAllocatedPanels from "./src/Components/Panel/StaffAllocatedPanels";
 import ViewPanel from "./src/Components/Panel/ViewPanel";
 import ViewAllSubmissions from "./src/Components/MarkingScheme/ViewAllSubmissions";
 import ViewAllocatedSubmissions from "./src/Components/MarkingScheme/ViewAllocatedSubmissions";
+
 
 function App() {
 
@@ -128,6 +130,7 @@ function App() {
         <Route path="/allocatedgroups" exact component={AllocatedGroups} />
         <Route path="/grouplist" exact component={GroupList} />
         <Route path="/help" exact component={Help} />
+        <Route path="/questions" exact component={ContactQuestions} />
       </Layout1>
     </BrowserRouter>
   );

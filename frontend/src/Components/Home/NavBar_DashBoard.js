@@ -29,7 +29,7 @@ function NavBar_DashBoard(props) {
         try {
             GET(`user/getuser/${userid}`).then(res => {
                 setcurrentUser(res.user)
-                console.log(res)
+
             })
         } catch (err) {
             throw err;

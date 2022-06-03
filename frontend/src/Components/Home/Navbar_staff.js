@@ -32,7 +32,7 @@ function Navbar_staff(props) {
         try {
             GET(`api/supervisors/${userid}`).then(res => {
                 setcurrentUser(res.user)
-                console.log(res.user)
+
             })
         } catch (err) {
             throw err;
@@ -124,7 +124,7 @@ function Navbar_staff(props) {
                 <Container fluid>
                     <Navbar.Brand href="#home">RMS</Navbar.Brand>
                     <Nav className="justify-content-end flex-grow-1 pe-3">
-                        <NavDropdown title={<img className="rounded-circle" style={{ width: '50px' , height:'50px'}} src={"http://localhost:8070/" + currentUser.image} />} >
+                        <NavDropdown title={<img className="rounded-circle" style={{ width: '50px', height: '50px' }} src={"http://localhost:8070/" + currentUser.image} />} >
                             <NavDropdown.Item href="/staffprofile"> <Link to="/staffprofile"><i className="fa fa-user mr-2"></i>My Account</Link></NavDropdown.Item>
                             <NavDropdown.Divider ></NavDropdown.Divider>
                             <NavDropdown.Item onClick={(e) => { localStorage.clear(); window.location.href = "/" }}><b> Sign Out </b></NavDropdown.Item>
@@ -132,10 +132,10 @@ function Navbar_staff(props) {
                         {/* <button className='btn btn-light login_home pt-2 pb-2 p-4' >Login</button> */}
                         {(request.length > 0) ? <>
                             <Badge count={request.length}>
-                                <button style={{ width: '50px' , height:'50px'}} className="mt-2 btn btn-warning btn-circle btn-circle-sm m-1 cbtn" onClick={(e) => { setmodalvisible(true) }}><i className="fa fa-bell"></i></button>
+                                <button style={{ width: '50px', height: '50px' }} className="mt-2 btn btn-warning btn-circle btn-circle-sm m-1 cbtn" onClick={(e) => { setmodalvisible(true) }}><i className="fa fa-bell"></i></button>
                             </Badge>
                         </> : <>
-                            <button style={{ width: '50px' , height:'50px'}} className="mt-2 btn btn-warning btn-circle btn-circle-sm m-1 cbtn" onClick={(e) => { setmodalvisible(true) }}><i className="fa fa-bell"></i></button>
+                            <button style={{ width: '50px', height: '50px' }} className="mt-2 btn btn-warning btn-circle btn-circle-sm m-1 cbtn" onClick={(e) => { setmodalvisible(true) }}><i className="fa fa-bell"></i></button>
                         </>}
                     </Nav>
                 </Container>
