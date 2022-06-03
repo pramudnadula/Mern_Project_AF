@@ -23,7 +23,8 @@ function Layout1(props) {
 
     const [collapsed, setcollapsed] = useState(true)
 
-    let staffId = localStorage.getItem("staff");
+    let staffId = localStorage?.getItem("staff");
+    let studentGroupId = localStorage?.getItem("gid");
     console.log(localStorage.getItem("staff"));
 
 
@@ -52,6 +53,15 @@ function Layout1(props) {
                 <Menu.Item key="7" icon={<QuestionOutlined />}>
                     <Link to='/help' className='links'> Help</Link>
                 </Menu.Item>
+                {studentGroupId ? (
+                    <>
+                        <Menu.Item key="8" icon={<QuestionOutlined />}>
+                            <Link to={`/evaluate/view/group/${studentGroupId}`} className='links'>Results</Link>
+                        </Menu.Item></>) :
+
+                    (<></>
+
+                    )}
             </Menu>
         </Sider>
     )
@@ -67,9 +77,12 @@ function Layout1(props) {
                     <Link to='/home'>Home</Link>
 
                 </Menu.Item>
-       
-        
-                <SubMenu key="sub2" icon={<PieChartOutlined />} title="Groups">
+
+
+                <SubMenu key="sub2" icon={<PieChartOutlined />} title="Allocated">
+                    <Link to={`/panels/submissions/user/${staffId}`} className='links'>
+                        <Menu.Item key="2">Allocated Submissions</Menu.Item>
+                    </Link>
                     <Link to='/panels/view/all' className='links'>
                         <Menu.Item key="2">All Groups</Menu.Item>
                     </Link>
@@ -97,7 +110,7 @@ function Layout1(props) {
                 <Menu.Item key="11" icon={<QuestionOutlined />}>
                     <Link to='/help' className='links'> Help</Link>
                 </Menu.Item>
-               
+
             </Menu>
         </Sider>
     )
@@ -111,7 +124,7 @@ function Layout1(props) {
                 <Menu.Item key="1" icon={<HomeOutlined />}>
                     <Link to='/home'>Home</Link>
                 </Menu.Item>
-               
+
                 <SubMenu key="sub1" icon={<PieChartOutlined />} title="Panels">
                     <Link to='/panel/add' className='links'><Menu.Item key="2">Create Panel</Menu.Item></Link>
                     <Link to='/panels/' className='links'><Menu.Item key="3">All Panels</Menu.Item></Link>
@@ -132,7 +145,7 @@ function Layout1(props) {
                 <Menu.Item key="10" icon={<TeamOutlined />}>
                     <Link to='/grouplist' className='links'> Group</Link>
                 </Menu.Item>
-             
+
                 <SubMenu key="sub4" icon={<TeamOutlined />} title="Users">
                     <Menu.Item key="11"><Link to='/allusers' className='links'>All Students</Link></Menu.Item>
                     <Menu.Item key="12"><Link to='/allsupervisors' className='links'>Staff</Link></Menu.Item>

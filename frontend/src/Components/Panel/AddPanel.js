@@ -17,7 +17,7 @@ function AddPanel(props) {
 
   return (
     <div>
-      <table class="table table-striped">
+      <table className="table table-striped">
         <thead>
           <tr>
             <th>Group Name</th>
@@ -31,7 +31,7 @@ function AddPanel(props) {
                 <td>{group.groupName}</td>
                 <td>
                   <Link to={`/panels/add/group/${group.groupId}`}>
-                    <button type="button" class="btn btn-secondary btn-sm">
+                    <button type="button" className="btn btn-secondary btn-sm">
                       Add
                     </button>
                   </Link>

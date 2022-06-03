@@ -37,7 +37,7 @@ exports.getMarkingScheme = async (req, res) => {
 
 exports.getMarkingSchemeBySubmissionType = async (req, res) => {
   try {
-    const markingScheme = await MarkingScheme.findById({
+    const markingScheme = await MarkingScheme.findOne({
       submissionType: req.params.id,
     });
     res.status(200).json(markingScheme);

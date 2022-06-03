@@ -327,9 +327,9 @@ function Wall({ group, uid }) {
                                     <option key={i} value={m._id}>{m?.name}</option>
                                 ))}
                             </select><br /><br />
-                            <div class="input-group mb-3">
-                                <div class="input-group-prepend">
-                                    <span class="input-group-text" id="basic-addon1">Topic Name</span>
+                            <div className="input-group mb-3">
+                                <div className="input-group-prepend">
+                                    <span className="input-group-text" id="basic-addon1">Topic Name</span>
                                 </div>
                                 <input type="text" onChange={(e) => { setname(e.target.value) }} required className="form-control" placeholder="Username" aria-label="Username" aria-describedby="basic-addon1" />
 
@@ -338,7 +338,7 @@ function Wall({ group, uid }) {
                             <div className="input-group mb-3">
                                 <input type="text" id='link' className="form-control" placeholder="Add a Link" aria-label="Recipient's username" aria-describedby="basic-addon2" />
                                 <div className="input-group-append">
-                                    <button type='button' onClick={(e) => { addlink() }} className="btn "><i class="fa fa-plus-circle" aria-hidden="true"></i></button>
+                                    <button type='button' onClick={(e) => { addlink() }} className="btn "><i className="fa fa-plus-circle" aria-hidden="true"></i></button>
                                 </div>
                             </div>
 
@@ -361,7 +361,7 @@ function Wall({ group, uid }) {
                                     <tr key={i}>
                                         <td>{(i + 1)}</td>
                                         <td><a href={m}>{m}</a></td>
-                                        <td colSpan="2"><i class="fa fa-times-circle-o" aria-hidden="true" style={{ color: "red", cursor: "pointer" }} onClick={(e) => { removeLink(i) }}></i></td>
+                                        <td colSpan="2"><i className="fa fa-times-circle-o" aria-hidden="true" style={{ color: "red", cursor: "pointer" }} onClick={(e) => { removeLink(i) }}></i></td>
                                     </tr>
                                 ))}
                             </tbody>

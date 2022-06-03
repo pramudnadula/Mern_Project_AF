@@ -17,7 +17,7 @@ function ViewAllocatedSubmissions(props) {
   return (
     <div>
       <h1>All Allocated Submissions</h1>
-      <table class="table table-striped">
+      <table className="table table-striped">
         <thead>
           <tr>
             <th>Submission Type</th>
@@ -39,12 +39,12 @@ function ViewAllocatedSubmissions(props) {
                 <td>{ob?.submissionDate}</td>
                 <td>
                   <Link to="">
-                    <button type="button" class="btn btn-secondary btn-sm">View</button>
+                    <button type="button" className="btn btn-secondary btn-sm">View</button>
                   </Link>
                 </td>
                 <td>
                   <Link to={`/evaluate/submission/${ob._id}`}>
-                    <button type="button" class="btn btn-secondary btn-sm">Evaluate</button>
+                    <button type="button" className="btn btn-secondary btn-sm">Evaluate</button>
                   </Link>
                 </td>
 

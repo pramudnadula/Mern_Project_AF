@@ -15,7 +15,7 @@ function ViewMarkingScheme(props) {
   }, []);
   return (
     <div>
-      <table class="table table-secondary table-bordered">
+      <table className="table table-secondary table-bordered">
         <thead>
           <tr>
             <th colSpan="2">

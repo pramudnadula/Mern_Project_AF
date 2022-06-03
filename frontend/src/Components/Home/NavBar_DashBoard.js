@@ -95,13 +95,13 @@ function NavBar_DashBoard(props) {
                                         <div className='col-3 mt-2'>
                                             <div className='row justify-content-center'>
                                                 <div className='col-10'>
-                                                    <button className='btn btn-success' onClick={(e) => { sendresponse(true, re.group._id, re.reciever, re._id) }}><i class="fa fa-check" aria-hidden="true"></i></button>
+                                                    <button className='btn btn-success' onClick={(e) => { sendresponse(true, re.group._id, re.reciever, re._id) }}><i className="fa fa-check" aria-hidden="true"></i></button>
                                                 </div>
                                             </div>
 
                                             <div className='row mt-2 justify-content-center'>
                                                 <div className='col-10'>
-                                                    <button className='btn btn-danger' onClick={(e) => { sendresponse(false, re.group._id, re.reciever, re._id) }}><i class="fa fa-times" aria-hidden="true"></i></button>
+                                                    <button className='btn btn-danger' onClick={(e) => { sendresponse(false, re.group._id, re.reciever, re._id) }}><i className="fa fa-times" aria-hidden="true"></i></button>
                                                 </div>
                                             </div>
                                         </div>
