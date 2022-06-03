@@ -48,7 +48,7 @@ function ConversationOut({ user, send, gid }) {
                 {user?.fname}
             </span>
             <div className='sb'>
-                {send ? (<Tooltip title={"Say Hi to " + user.fname}><button onClick={(e) => { sendrequest(user._id) }} className="btn btn-primary btn-circle btn-circle-sm m-1"><i class="fa fa-commenting-o" aria-hidden="true"></i></button></Tooltip>) : ''}
+                {send ? (<Tooltip title={"Say Hi to " + user.fname}><button onClick={(e) => { sendrequest(user._id) }} className="btn btn-primary btn-circle btn-circle-sm m-1"><i className="fa fa-commenting-o" aria-hidden="true"></i></button></Tooltip>) : ''}
             </div>
 
         </div>

@@ -74,6 +74,7 @@ exports.getDocumentUploadByUserId = async (req, res) => {
   try {
     let id = req.params.id;
     const ob = [];
+    const obj = [];
     const groups = await StudentGroup.find()
     for (let i = 0; i < groups.length; i++) {
       if (groups[i].supervisor == id) {
@@ -86,14 +87,15 @@ exports.getDocumentUploadByUserId = async (req, res) => {
       let documents = await DocumentUpload.find(
         { groupId: ob[i] }
       ).populate("submissionId").populate("groupId")
-      if (documents.evoluated) {
+      if (documents.evoluated == true) {
 
       } else {
-
+        for (let i = 0; i < documents.length; i++) {
+          obj.push(documents[i]);
+        }
       }
-
     }
-    res.json(documents);
+    res.json(obj);
 
   } catch (err) {
     res.status(505).send({ status: "error in fetching", error: err.message });

@@ -48,7 +48,7 @@ function MyContacts(props) {
                                 <td>{m.subject}</td>
                                 <td>{m.question}</td>
                                 <td>{m.reply == "" ? <><div className='badge bg-warning'>No reply</div></> : <>{m.reply}</>}</td>
-                                <td><button onClick={(er) => { deletecontact(m._id) }} className='btn btn-danger'><i class="fa fa-trash" aria-hidden="true"></i></button></td>
+                                <td><button onClick={(er) => { deletecontact(m._id) }} className='btn btn-danger'><i className="fa fa-trash" aria-hidden="true"></i></button></td>
                             </tr>
 
                         ))}

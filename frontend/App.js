@@ -88,10 +88,10 @@ function App() {
         <Route path="/creq" exact component={() => (<RequestSupervisor isSupervisor={false} stype="Co-Supervisors" />)} />
 
         <Route path="/msg" exact component={Chat} />
+
         <Route path="/markingscheme/add" exact component={AddMarkingScheme} />
         <Route path="/markingscheme/" exact component={ViewAllMarkingSchemes} />
         <Route path="/markingscheme/view/:id" exact component={ViewMarkingScheme} />
-
         <Route path="/panel/add" exact component={CreatePanel} />
         <Route path="/panels/" exact component={ViewAllPanels} />
         <Route path="/panels/add" exact component={AddPanel} />
@@ -101,16 +101,12 @@ function App() {
         <Route path="/panels/submissions/all" exact component={ViewAllSubmissions} />
         <Route path="/panels/view/users/:id" exact component={StaffAllocatedPanels} />
         <Route path="/panels/view/panel/:id" exact component={ViewPanel} />
-
+        <Route path="/evaluate/view/:id" exact component={EvaluateResult} />
+        <Route path="/evaluate/view/group/:id" exact component={EvaluateView} />
         <Route path="/panels/submissions/user/:id" exact component={ViewAllocatedSubmissions} />
         <Route path="/evaluate/submission/:id" exact component={Evaluate} />
-        <Route path="/evaluate/view/:id" exact component={EvaluateResult} />
-        <Route path="/evaluate/view/group/:id" exact component={EvaluateView} />
 
-        <Route path="/evaluate/" exact component={Evaluate} />
-        <Route path="/evaluate/view/:id" exact component={EvaluateResult} />
-        <Route path="/evaluate/view/group/:id" exact component={EvaluateView} />
-        <Route path="/evaluate/all" exact component={ViewAllEvaluateResult} />
+
 
         <Route path="/UploadDocument" exact component={UploadDocument} />
         <Route path="/AddSubmission/:id" exact component={AddSubmission} />

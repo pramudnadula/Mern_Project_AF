@@ -30,21 +30,21 @@ function EvaluateView(props) {
       {console.log(markingMarkingSchemes)}
       {markingMarkingSchemes &&
         markingMarkingSchemes?.map((element, index) => (
-          <div class="card text-center" key={index}>
-            <div class="card-header">
+          <div className="card text-center" key={index}>
+            <div className="card-header">
               {element?.markingSchemeId.submissionType}
             </div>
-            <div class="card-body">
-              <h5 class="card-title">Total Marks: {element?.totalMarks}</h5>
-              <p class="card-text">Remark: {element?.remark}</p>
+            <div className="card-body">
+              <h5 className="card-title">Total Marks: {element?.totalMarks}</h5>
+              <p className="card-text">Remark: {element?.remark}</p>
               <a
                 href={`http://localhost:1234/evaluate/view/${element._id}`}
-                class="btn btn-primary"
+                className="btn btn-primary"
               >
                 View
               </a>
             </div>
-            <div class="card-footer text-muted">
+            <div className="card-footer text-muted">
               <p>Marked By: {element?.marker}</p>
             </div>
           </div>

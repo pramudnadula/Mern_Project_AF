@@ -164,7 +164,7 @@ function AllocatedGroups(props) {
                                             <div className='col-x1-1 col-lg-1 col-md-2 col-2 m-1 m-md-2 m-sm-2'><button onClick={(e) => { displaymilestones(m._id) }} className="btn btn-warning "><i className="fa fa-trophy"></i></button></div>
 
                                             <div className='col-x1-1 col-lg-1 col-md-2 col-2 m-1 m-md-2 m-sm-2'><button onClick={(e) => { displaychart(m._id) }} className="btn btn-info "><i className="fa fa-line-chart" aria-hidden="true"></i></button></div>
-                                            <div className='col-x1-1 col-lg-1 col-md-2 col-2 m-1 m-md-2 m-sm-2'><button onClick={(e) => { deisplayDetails(m._id, m) }} className="btn btn-secondary "><i class="fa fa-info-circle" aria-hidden="true"></i></button></div>
+                                            <div className='col-x1-1 col-lg-1 col-md-2 col-2 m-1 m-md-2 m-sm-2'><button onClick={(e) => { deisplayDetails(m._id, m) }} className="btn btn-secondary "><i className="fa fa-info-circle" aria-hidden="true"></i></button></div>
 
                                         </div>
                                     </div>

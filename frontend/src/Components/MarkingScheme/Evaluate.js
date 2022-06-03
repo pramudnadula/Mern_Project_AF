@@ -7,56 +7,57 @@ function Evaluate(props) {
   const [marker, setMarker] = useState();
   const [markingScheme, setMarkingScheme] = useState();
   const [criteriaMarks, setCriteriaMarks] = useState([]);
-  const [submission, setSubmission] = useState();
+  const [groupId, setgroupId] = useState();
+  const [submissionId, setSubmissionId] = useState();
+
 
 
   useEffect(() => {
 
-    GET(`api/evoluate/submission/upload/${props.match.params.id}`).then((res) => {
-      setSubmission(res);
-      console.log(res);
+    GET(`api/evoluate/submission/upload/${props.match.params.id}`)
+      .then((res) => {
+        console.log(res);
+        GET(`api/markingscheme/group/${res.groupId._id}`)
+          .then((res) => {
+            setStudentGroup(res);
+          })
+          .catch((err) => {
+            console.log(err);
+          });
+        GET(`api/markingscheme/view/submission/${res.submissionId.submissionType}`)
+          .then((res) => {
+            console.log(res);
+            setMarkingScheme(res);
+            var arr = [];
+            for (let i = 0; i < res.features.length; i++) {
+              let newArray = { criterion: "", allocatedMark: "", givenMark: "" };
 
-    }).catch((err) => {
-      console.log(err);
-    })
+              console.log(res.features[i].criterion);
+              console.log(res.features[i].allocatedMark);
 
-    if (submission) {
+              newArray.criterion = res.features[i].criterion;
+              newArray.allocatedMark = res.features[i].allocatedMark;
+              newArray.givenMark = "";
+              console.log(newArray);
 
-      console.log(ob);
-      // GET(`api/markingscheme/view/submission/${ob?.submissionId?.submissionType}`)
-      //   .then((res) => {
-      //     console.log(res);
-      //     setMarkingScheme(res);
-      //     var arr = [];
-      //     for (let i = 0; i < res.features.length; i++) {
-      //       let newArray = { criterion: "", allocatedMark: "", givenMark: "" };
+              arr.push(newArray);
+            }
+            console.log(criteriaMarks);
+            setCriteriaMarks(arr);
+          })
+          .catch((err) => {
+            console.log(err);
+          });
 
-      //       console.log(res.features[i].criterion);
-      //       console.log(res.features[i].allocatedMark);
-
-      //       newArray.criterion = res.features[i].criterion;
-      //       newArray.allocatedMark = res.features[i].allocatedMark;
-      //       newArray.givenMark = "";
-      //       console.log(newArray);
-
-      //       arr.push(newArray);
-      //     }
-      //     console.log(criteriaMarks);
-      //     setCriteriaMarks(arr);
-      //   })
-      //   .catch((err) => {
-      //     console.log(err);
-      //   });
-
-      GET(`api/markingscheme/group/${ob?.groupId?._id}`)
-        .then((res) => {
-          setStudentGroup(res);
-        })
-        .catch((err) => {
-          console.log(err);
-        });
-    }
+      }).catch((err) => {
+        console.log(err);
+      })
   }, []);
+
+
+
+
+
 
   const submit = (e) => {
     let total = 0;
@@ -85,7 +86,8 @@ function Evaluate(props) {
 
   return (
     <div>
-      <table class="table table-secondary table-bordered">
+
+      <table className="table table-secondary table-bordered">
         <thead>
           <tr>
             <th colSpan="3">
@@ -157,7 +159,7 @@ function Evaluate(props) {
       </table>
       <button
         type="button"
-        class="btn btn-secondary btn-sm"
+        className="btn btn-secondary btn-sm"
         onClick={(e) => {
           submit();
         }}
