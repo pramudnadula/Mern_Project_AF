@@ -31,7 +31,7 @@ const SubmissionSchema = new Schema({
     },
     staffID:{
         type: ObjectId,
-        ref:"Supervisor",
+        ref:"Admin",
         required:true
     },
     documentName:[{

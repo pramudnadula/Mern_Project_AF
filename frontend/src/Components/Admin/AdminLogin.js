@@ -27,7 +27,7 @@ function AdminLogin() {
                     console.log(res)
 
                 }
-                localStorage.setItem("admin", JSON.stringify(res.data.userId))
+                localStorage.setItem("admin", (res.data.userId))
                 localStorage.setItem("admin-token", res.data.token)
 
                 console.log(res.data.token)

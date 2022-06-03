@@ -29,7 +29,7 @@ function Layout1(props) {
             <div className="logo" />
             <Menu theme="light" defaultSelectedKeys={page} mode="inline" style={{ backgroundColor: "#0157a8" }}>
                 <Menu.Item key="1" icon={<PieChartOutlined />}>
-                    <Link to='/home'>Option 1</Link>
+                    <Link to='/home'>Home</Link>
                 </Menu.Item>
                 <Menu.Item key="2" icon={<DesktopOutlined />}>
                     Option 2
@@ -43,10 +43,9 @@ function Layout1(props) {
                     <Menu.Item key="6"><Link to='/req' className='links'>Supervisor</Link></Menu.Item>
                     <Menu.Item key="7"><Link to='/creq' className='links'>Co-supervisor</Link></Menu.Item>
                 </SubMenu>
-                <SubMenu key="sub3" icon={<FilePdfOutlined />} title="Documentation">
-                    <Menu.Item key="8"><Link to='/AllSubmission' className='links'>Submissions</Link></Menu.Item>
-                    <Menu.Item key="9"><Link to='/UploadDocument' className='links'>Document</Link></Menu.Item>
-                </SubMenu>
+                <Menu.Item key="8" icon={<FilePdfOutlined />}>
+                    <Link to='/AllSubmission' >Submissions</Link>
+                </Menu.Item>
                 <Menu.Item key="10" icon={<TeamOutlined />}>
                     <Link to='/group' className='links'> Group</Link>
                 </Menu.Item>
@@ -81,10 +80,9 @@ function Layout1(props) {
                     <Menu.Item key="6"><Link to='/req' className='links'>Supervisor</Link></Menu.Item>
                     <Menu.Item key="7"><Link to='/creq' className='links'>Co-supervisor</Link></Menu.Item>
                 </SubMenu>
-                <SubMenu key="sub3" icon={<FilePdfOutlined />} title="Documentation">
-                    <Menu.Item key="8"><Link to='/CreateSubmission' className='links'>Create Submission</Link></Menu.Item>
-                    <Menu.Item key="9"><Link to='/UploadDocument' className='links'>Document</Link></Menu.Item>
-                </SubMenu>
+                <Menu.Item key="8" icon={<FilePdfOutlined />}>
+                    <Link to='/CreateSubmission' className='links'>Created Submission</Link>
+                </Menu.Item>
                 <Menu.Item key="10" icon={<TeamOutlined />}>
                     <Link to='/allocatedgroups' className='links'> Group</Link>
                 </Menu.Item>
@@ -116,10 +114,9 @@ function Layout1(props) {
                     <Menu.Item key="6"><Link to='/req' className='links'>Supervisor</Link></Menu.Item>
                     <Menu.Item key="7"><Link to='/creq' className='links'>Co-supervisor</Link></Menu.Item>
                 </SubMenu>
-                <SubMenu key="sub3" icon={<FilePdfOutlined />} title="Documentation">
-                    <Menu.Item key="8"><Link to='/CreateSubmission' className='links'>Create Submission</Link></Menu.Item>
-                    <Menu.Item key="9"><Link to='/UploadDocument' className='links'>Document</Link></Menu.Item>
-                </SubMenu>
+                <Menu.Item key="8" icon={<FilePdfOutlined />}>
+                    <Link to='/CreateSubmission' className='links'>Create Submission</Link>
+                </Menu.Item>
                 <Menu.Item key="10" icon={<TeamOutlined />}>
                     <Link to='/grouplist' className='links'> Group</Link>
                 </Menu.Item>

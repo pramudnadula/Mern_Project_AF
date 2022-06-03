@@ -390,7 +390,7 @@ const sendMail = function (email, token) {
                   >
                     <tr>
                       <td>
-                        <img src=${`https://storage.googleapis.com/weehena-storage-bucket1/logo/logo.png`} alt="logo" style="display: block;
+                        <img src=${`https://static.sliit.lk/wp-content/uploads/2021/10/24070027/SLIIT.png`} alt="logo" style="display: block;
                           margin-top: -20px;
                           margin-bottom: -30px;
                           margin-left: auto;

@@ -9,7 +9,7 @@ function EditSubmission(props) {
     const [subject, setSubject] = useState("")
     const [description, setDescription] = useState("")
     const [documents, setDocuments] = useState([])
-    const staffID = localStorage.getItem("staff")//get staff ID in localStorage
+    const staffID = localStorage.getItem("admin")//get staff ID in localStorage
     useEffect(() => {
         GetAllSubmissionType();
     }, [])
@@ -26,16 +26,15 @@ function EditSubmission(props) {
 
         //Handle File Data from the state Before Sending
         const data = new FormData();
-        data.append('ssid', props.match.params.id) 
+        data.append('ssid', props.match.params.id)
         data.append('staffID', staffID)
         data.append('submissionStartDate', submissionStartDate)
         data.append('submissionEndDate', submissionEndDate)
         data.append('submissionType', submissionType)
         data.append('subject', subject)
         data.append('description', description)
-        
-        for(let i = 0; i<fileDate?.length; i++)
-        {            
+
+        for (let i = 0; i < fileDate?.length; i++) {
             data.append('images', fileDate[i])
         }
 
@@ -97,68 +96,107 @@ function EditSubmission(props) {
         const yyyy = today.getFullYear();
         return yyyy + "-" + mm + "-" + dd;
     }
+    if ((localStorage.getItem("admin-token") || localStorage.getItem("staff-token")) === null) {
+        localStorage.clear()
+        window.location = "/";
+        return <></>
+    }
     return (
         <div className='container'>
             <div className='card mt-2'>
                 <div className="row d-flex justify-content-center ">
                     <div className="col-6">
-                        <form onSubmit={onSubmitHandler} >
-                            {/* <input type="date" className="input" onChange={(e) => { setdate(e.target.value) }} required /> */}
-                            <div className="form-group">
-                                <i className="fa fa-calendar"></i>
-                                Submission Start date
-                                <input type="date" min={disableDates()} value={submissionStartDate} onChange={(e) => { setSubmissionStartDate(e.target.value) }} className="form-control" required />
-                            </div>
-                            <div className="form-group">
-                                <i className="fa fa-calendar"></i>
-                                Submission End date
-                                <input type="date" min={disableDates()} value={submissionEndDate} onChange={(e) => { setSubmissionEndDate(e.target.value) }} className="form-control" required />
-                            </div>
-                            <div className="form-group">
-                                <i className="fa fa-calendar"></i>
-                                Submission Type
-                                <select value={submissionType} onChange={(e) => { setSubmissionType(e.target.value) }} className="form-control" name="cars" id="cars">
-                                    <option value="volvo">Volvo</option>
-                                    <option value="saab">Saab</option>
-                                    <option value="mercedes">Mercedes</option>
-                                    <option value="audi">Audi</option>
-                                </select>
+                        {localStorage.getItem("admin-token") ? (
+                            <form onSubmit={onSubmitHandler} >
+                                {/* <input type="date" className="input" onChange={(e) => { setdate(e.target.value) }} required /> */}
+                                <div className="form-group">
+                                    <i className="fa fa-calendar"></i>
+                                    Submission Start date
+                                    <input type="date" min={disableDates()} value={submissionStartDate} onChange={(e) => { setSubmissionStartDate(e.target.value) }} className="form-control" required />
+                                </div>
+                                <div className="form-group">
+                                    <i className="fa fa-calendar"></i>
+                                    Submission End date
+                                    <input type="date" min={disableDates()} value={submissionEndDate} onChange={(e) => { setSubmissionEndDate(e.target.value) }} className="form-control" required />
+                                </div>
+                                <div className="form-group">
+                                    <i className="fa fa-calendar"></i>
+                                    Submission Type
+                                    <input type="text" value={submissionType} onChange={(e) => { setSubmissionType(e.target.value) }} className="form-control" required />
 
-                            </div>
-                            <div className="form-group">
-                                <i className="fa fa-calendar"></i>
-                                Subject
-                                <input type="text" value={subject} onChange={(e) => { setSubject(e.target.value) }} className="form-control" required />
-                            </div>
-                            <div className="form-group">
-                                <i className="fa fa-calendar"></i>
-                                Description
-                                <textarea type="text" value={description} onChange={(e) => { setDescription(e.target.value) }} className="form-control" required />
-                            </div>
-                            <div className="form-group">
+
+                                </div>
+                                <div className="form-group">
+                                    <i className="fa fa-calendar"></i>
+                                    Subject
+                                    <input type="text" value={subject} onChange={(e) => { setSubject(e.target.value) }} className="form-control" required />
+                                </div>
+                                <div className="form-group">
                                     <i className="fa fa-calendar"></i>
                                     Description
-                                <input className="form-control" type="file" name="images" onChange={fileChangeHandler} id="inputGroupFile04"  multiple />
-                            </div>
-                            <div className="">
-                                <button className="btn btn-danger" type="submit" value="create" >Update</button>
-                            </div>
-                        </form>
-                            <div className="form-group">
-                                <i className="fa fa-file"></i>
-                                Uploaded Document
-                                {documents?(
-                                    <>
+                                    <textarea type="text" value={description} onChange={(e) => { setDescription(e.target.value) }} className="form-control" required />
+                                </div>
+                                <div className="form-group">
+                                    <i className="fa fa-calendar"></i>
+                                    Description
+                                    <input className="form-control" type="file" name="images" onChange={fileChangeHandler} accept="application/pdf,.csv,.doc,.docx, application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/vnd.ms-excel" multiple />
+                                </div>
+                                <div className="">
+                                    <button className="btn btn-danger" type="submit" value="create" >Update</button>
+                                </div>
+                            </form>
+                        ) : (
+                            <></>
+                        )}
+
+                        {localStorage.getItem("staff-token") ? (
+                            <form  >
+
+                                <div className="form-group">
+                                    <i className="fa fa-calendar"></i>
+                                    Submission Start date
+                                    <input type="date" value={submissionStartDate} className="form-control" readOnly />
+                                </div>
+                                <div className="form-group">
+                                    <i className="fa fa-calendar"></i>
+                                    Submission End date
+                                    <input type="date" value={submissionEndDate} className="form-control" readOnly />
+                                </div>
+                                <div className="form-group">
+                                    <i className="fa fa-calendar"></i>
+                                    Submission Type
+                                    <input type="text" value={submissionType} className="form-control" readOnly />
+                                </div>
+                                <div className="form-group">
+                                    <i className="fa fa-calendar"></i>
+                                    Subject
+                                    <input type="text" value={subject} className="form-control" readOnly />
+                                </div>
+                                <div className="form-group">
+                                    <i className="fa fa-calendar"></i>
+                                    Description
+                                    <textarea type="text" value={description} className="form-control" readOnly />
+                                </div>
+                            </form>
+                        ) : (
+                            <></>
+                        )}
+                        <br/>
+                        <div className="form-group">
+                            <i className="fa fa-file"></i>
+                            Uploaded Template Document
+                            {documents ? (
+                                <>
                                     {documents.map((doc, key) => (
                                         < >
-                                        <p key={key}>{doc.split("--")[1]}  : <a  href={"http://localhost:8070/" + doc} download="abc" >Download </a></p><br/>
+                                            <p key={key}>{doc.split("--")[1]}  : <a href={"http://localhost:8070/" + doc} download="abc" >Download </a></p>
                                         </>
                                     ))}
-                                    </>
-                                ):(
-                                    <></>
-                                )}
-                            </div>
+                                </>
+                            ) : (
+                                <></>
+                            )}
+                        </div>
                     </div>
                 </div>
             </div>
