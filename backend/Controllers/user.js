@@ -1,7 +1,10 @@
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
+const sendMail = require("../util/sendEmail");
+// import sendMail from "../util/sendEmail";
 
 const User = require("../Models/User");
+const supervisor = require('../Models/Supervisor')
 
 //add student
 exports.signup = async (req, res, next) => {
@@ -64,8 +67,58 @@ exports.update = async (req, res, next) => {
             console.log(err);
             res
                 .status(500)
-                .send({ status: 'Error with updating data', error: message });
+                .send({ status: 'Error with updating data' });
         });
+};
+
+//reset password
+exports.passowrdReset = async (req, res, next) => {
+
+    let email = req.body.email;
+    let user = await User.findOne({ email })
+    console.log(user)
+    if (!user) {
+        user = await supervisor.findOne({ email })
+        if (!user) {
+            res.send({ sta: false });
+        }
+        else {
+            console.log(email);
+            const token = user._id.toString();
+            const test = sendMail(email, token);
+
+            res.send({ sta: true })
+        }
+    } else {
+        console.log(email);
+        const token = user._id.toString();
+        const test = sendMail(email, token);
+
+        res.send({ sta: true })
+    }
+
+    // const { fname, lname, email, type, username, password } = req.body;
+    // const hashedPw = await bcrypt.hash(password, 12);
+
+    // const updateUser = {
+    //     fname,
+    //     lname,
+    //     email,
+    //     type,
+    //     username,
+    //     password: hashedPw,
+    // };
+
+    // const update = await User.findByIdAndUpdate(userID, updateUser)
+    //     .then(() => {
+    //         res.status(200).send({ status: 'User Updated' });
+    //     })
+    //     .catch((err) => {
+    //         console.log(err);
+    //         res
+    //             .status(500)
+    //             .send({ status: 'Error with updating data', error: message });
+    //     });
 };
 
 //get one user 
@@ -274,7 +327,7 @@ exports.edit = async (req, res, next) => {
         username,
         password: hashedPw,
     };
-      
+
     const update = await User.findByIdAndUpdate(userID, updateUser)
         .then(() => {
             res.status(200).send({ status: 'User Updated' });
@@ -283,6 +336,31 @@ exports.edit = async (req, res, next) => {
             console.log(err);
             res
                 .status(500)
-                .send({ status: 'Error with updating data', error: message });
+                .send({ status: 'Error with updating data' });
         });
 };
+
+exports.changePassword = async (req, res) => {
+    try {
+        const { uid, password } = req.body
+        let user = await User.findById({ _id: uid })
+        if (!user) {
+            user = await supervisor.findById({ _id: uid })
+            const hashedPw = await bcrypt.hash(password, 12);
+            user.password = hashedPw
+            await user.save()
+        }
+        else {
+            const hashedPw = await bcrypt.hash(password, 12);
+            user.password = hashedPw
+            await user.save()
+        }
+        res.send({ stat: true })
+
+    } catch (error) {
+        res.status(400).json({
+            error: String(error)
+
+        })
+    }
+}

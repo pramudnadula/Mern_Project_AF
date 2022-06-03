@@ -202,7 +202,7 @@ exports.updateSupervisor = async (req, res, next) => {
             console.log(err);
             res
                 .status(500)
-                .send({ status: 'Error with updating data', error: message });
+                .send({ status: 'Error with updating data' });
         });
 };
 
@@ -288,7 +288,7 @@ exports.editSupervisor = async (req, res, next) => {
             console.log(err);
             res
                 .status(500)
-                .send({ status: 'Error with updating data', error: message });
+                .send({ status: 'Error with updating data' });
         });
 };
 

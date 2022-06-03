@@ -48,36 +48,29 @@ function AdminLogin() {
 
 
     return (<>
-        <div className='home-div'> </div>
 
-        <section className="hero is-fullheight-with-navbar all-home-flexs">
+        <div className="container rounded bg-white mt-5 mb-5" style={{ width: '500px' }} >
+            <h4>Admin Login</h4>
 
-            <div className="hero-body" style={{ padding: '3rem 0.5rem' }}>
-                <div className="container is-widescreen">
-                    <div className='content'>
-                        <div className="columns is-justify-content-center">
-                            <div className="column is-3">
-                                <h2 className="subtitle is-2 is-semibold has-text-white has-text-centered">Admin Login</h2>
-                                <form onSubmit={sendData}>
+            <form onSubmit={sendData}>
 
 
-                                    <div className="mb-3">
-                                        <input type="email" className="input is-primary" placeholder="Email Address" onChange={(e) => { setemail(e.target.value) }} aria-label="Username" aria-describedby="basic-addon1" required />
-                                    </div>
-                                    <div className="mb-3">
-                                        <input type="password" className="input is-primary" placeholder="Password" onChange={(e) => { setpassword(e.target.value) }} aria-label="Password" aria-describedby="basic-addon1" required />
-                                    </div>
-                                    <div className="">
-                                        <button type="submit" className="button is-link is-fullwidth">Login</button>
-                                        {/* <Link to='/'> <button type="submit" className="button is-success is-fullwidth mt-2">Back to Home Page</button></Link> */}
-                                    </div>
-                                </form>
-                            </div>
-                        </div>
-                    </div>
+                <div className="row mt-3" style={{ width: '208%' }}>
+                    <div className="col-md-6"><input type="email" className="form-control" placeholder="Email Address" onChange={(e) => { setemail(e.target.value) }} required /></div>
                 </div>
-            </div>
-        </section>
+                <div className="row mt-3" style={{ width: '208%' }}>
+                    <div className="col-md-6"> <input type="password" className="form-control" placeholder="Password" onChange={(e) => { setpassword(e.target.value) }} required /></div>
+                </div>
+                <br></br>
+                {/* <div className="mt-5 text-center"> */}
+                <button type="submit" className="btn btn-success form-control">Login</button>
+                <br></br>
+                <div></div>
+
+            </form>
+
+        </div>
+
     </>
     );
 }

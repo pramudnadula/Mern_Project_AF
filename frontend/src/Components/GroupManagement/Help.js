@@ -9,7 +9,7 @@ function Help(props) {
 
     return (
         <div className='container-fluid'>
-            <div className='row'>
+            <div className='row justify-content-center'>
                 <Help_step />
                 <ContactAdmin />
             </div>

@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios'
-
+import { Link } from 'react-router-dom';
 import Registerpic from './../../Assets/Images/illustration.svg';
 import './../../Assets/Styles/Register.css';
 // import './../../Assets/Styles/UserProfile.css';
@@ -73,8 +73,8 @@ function Register() {
 
         <div className="container rounded bg-white mt-5 mb-5">
             <div className="row ">
-                <div className="col-md-6">
-                    <br></br>
+
+                <div className="col-md-6 border-right ">
                     <br></br>
                     <br></br>
                     <img src={Registerpic} alt="Image" className="img-fluid" />
@@ -84,39 +84,32 @@ function Register() {
                     <h3>Create an Account</h3>
 
 
-                    <form onSubmit={sendData} className="myform">
-                        <div className="form-group">
-                            <input type="fname" className="form-control fc" placeholder="First Name" onChange={(e) => { setfname(e.target.value) }} required />
+                    <form onSubmit={sendData} >
+
+                        <div className="row mt-2">
+                            <div className="col-md-6"> <label className="labels">First Name</label><input type="text" className="form-control" placeholder="first name" onChange={(e) => { setfname(e.target.value) }} required /></div>
+                            <div className="col-md-6"><label className="labels">Last Name</label><input type="text" className="form-control" placeholder="last name" onChange={(e) => { setlname(e.target.value) }} required /></div>
                         </div>
 
-
-                        <div className="form-group">
-                            <input type="lname" className="form-control fc" placeholder="Last Name" onChange={(e) => { setlname(e.target.value) }} required />
+                        <div className="row mt-3">
+                            <div className="col-md-12"><label className="labels">Email </label><input type="text" className="form-control" placeholder="enter email " onChange={(e) => { setemail(e.target.value) }} required /></div>
+                            {/* <div className="col-md-12"><label className="labels">User Type</label><input type="text" className="form-control" placeholder="enter user type" onChange={(e) => { settype(e.target.value) }} /></div> */}
                         </div>
 
-
-                        <div className="form-group">
-                            <input type="email" className="form-control fc" placeholder="Email" onChange={(e) => { setemail(e.target.value) }} required />
+                        <div className="row mt-3">
+                            <div className="col-md-12"><label className="labels">User Type</label><input type="text" className="form-control" placeholder="enter user type" onChange={(e) => { settype(e.target.value) }} /></div>
                         </div>
 
-                        <div className="form-group">
-                            <input type="type" className="form-control fc" placeholder="User Type" onChange={(e) => { settype(e.target.value) }} required />
+                        <div className="row mt-3">
+                            <div className="col-md-12"><label className="labels">Username</label><input type="text" className="form-control" placeholder="enter username" onChange={(e) => { setusername(e.target.value) }} required /></div>
                         </div>
 
-
-                        <div className="form-group">
-                            <input type="username" className="form-control fc" placeholder="User Name" onChange={(e) => { setusername(e.target.value) }} required />
+                        <div className="row mt-3">
+                            <div className="col-md-6"><label className="labels">Password</label><input type="password" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" className="form-control" placeholder="enter password" onChange={(e) => { setpassword(e.target.value) }} required /></div>
+                            <div className="col-md-6"><label className="labels"> Confirm Password</label><input type="password" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" className="form-control" placeholder="enter  confirm password" onChange={(e) => { setconfpassword(e.target.value) }} required /></div>
                         </div>
 
-
-                        <div className="form-group">
-                            <input type="password" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" className="form-control fc" placeholder="Password" onChange={(e) => { setpassword(e.target.value) }} required />
-                        </div>
-
-                        <div className="form-group">
-                            <input type="password" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" className="form-control fc" placeholder=" Confirm Password" onChange={(e) => { setconfpassword(e.target.value) }} required />
-                        </div>
-
+                        <br></br>
                         <PasswordChecklist
                             rules={["minLength", "specialChar", "number", "capital", "match"]}
                             minLength={5}
@@ -125,11 +118,9 @@ function Register() {
                             onChange={(isValid) => { }}
                         />
 
-                        <div className="form-group mt-3"> <button type="submit" className="btn btn-block btn-primary btn-lg"><small>Create Your Account</small></button> </div>
-
-                        <div className="row">
-                            <div className="col-md-6 col-12"> Already you have an account</div><div className="col-md-6 col-12 bn">Login</div>
-                        </div>
+                        <div className="text-center"> <button type="submit" className="btn btn-success form-control"><small>Create Your Account</small></button> </div>
+                        <br></br>
+                        < Link to="/"><button className="btn btn-primary form-control" type="submit" value=" ">Back To Home</button></Link>
 
                     </form>
                     {/* </div> */}

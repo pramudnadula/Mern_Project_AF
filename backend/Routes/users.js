@@ -11,6 +11,8 @@ const fs = require('fs')
 router.post("/login", authController.login);
 router.post("/signup", authController.signup);
 router.put("/update/:userId", isAuth, authController.update);
+router.post("/resetpassword", authController.passowrdReset);
+router.post("/changepassword", authController.changePassword);
 router.post("/add", authController.add);
 router.put("/edit/:userId", isAuth, authController.edit);
 

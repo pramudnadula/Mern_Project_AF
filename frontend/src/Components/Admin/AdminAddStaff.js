@@ -71,7 +71,7 @@ function AdminAddStaff() {
                 setusername('');
                 setpassword('');
                 setconfpassword('');
-                window.location.href = '/login';
+                window.location.href = '/allsupervisors';
             })
             .catch((err) => {
                 alert("Email Already Exists");
@@ -94,8 +94,8 @@ function AdminAddStaff() {
                 <div className="row">
 
                     <div className="col-md-3 border-right">
-                        <div className="d-flex flex-column align-items-center text-center p-3 py-5"><img className="rounded-circle mt-5" src="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcQF2psCzfbB611rnUhxgMi-lc2oB78ykqDGYb4v83xQ1pAbhPiB&usqp=CAU" /><span className="font-weight-bold">Amelly</span><span className="text-black-50">amelly12@bbb.com</span><span> </span>
-                        </div>
+                        {/* <div className="d-flex flex-column align-items-center text-center p-3 py-5"><img className="rounded-circle mt-5" src="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcQF2psCzfbB611rnUhxgMi-lc2oB78ykqDGYb4v83xQ1pAbhPiB&usqp=CAU" /><span className="font-weight-bold">Amelly</span><span className="text-black-50">amelly12@bbb.com</span><span> </span>
+                        </div> */}
                     </div>
 
 
@@ -133,7 +133,7 @@ function AdminAddStaff() {
                                 {/* <div className="mb-3">
                                         <input type="area" className="input is-primary" placeholder="Area" onChange={(e) => { setarea(e.target.value) }} aria-describedby="basic-addon1" />
                                     </div> */}
-
+                                <div className="col-md-12"><label className="labels">Research Area </label></div>
                                 <div className=" " style={{ display: 'contents !important' }}>
                                     <Checkbox className="" areas={areas}
                                         handleFilters={filters => handleFilters(filters, 'area')} />

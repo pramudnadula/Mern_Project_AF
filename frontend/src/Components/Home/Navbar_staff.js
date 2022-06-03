@@ -13,6 +13,7 @@ function Navbar_staff(props) {
     const [modalvisible, setmodalvisible] = useState(false)
     const [request, setrequest] = useState([])
     const location = useLocation();
+    const [currentUser, setcurrentUser] = useState([])
 
 
     useEffect(() => {
@@ -23,10 +24,20 @@ function Navbar_staff(props) {
                 console.log(err)
             })
         }
-
+        Getoneuser();
 
     }, [request])
-
+    //get user to change profile
+    const Getoneuser = () => {
+        try {
+            GET(`api/supervisors/${userid}`).then(res => {
+                setcurrentUser(res.user)
+                console.log(res.user)
+            })
+        } catch (err) {
+            throw err;
+        }
+    }
 
     const setmodal = (res) => {
         setmodalvisible(res)
@@ -112,39 +123,20 @@ function Navbar_staff(props) {
 
                 <Container fluid>
                     <Navbar.Brand href="#home">RMS</Navbar.Brand>
-                    {/* <Nav className="me-auto">
-                        <Nav.Link href="#home">Home</Nav.Link>
-                        <Nav.Link href="#features">Features</Nav.Link>
-                        <Nav.Link href="#pricing">Pricing</Nav.Link>
-                    </Nav> */}
-
-
-
-
                     <Nav className="justify-content-end flex-grow-1 pe-3">
-
+                        <NavDropdown title={<img className="rounded-circle" style={{ width: '50px' , height:'50px'}} src={"http://localhost:8070/" + currentUser.image} />} >
+                            <NavDropdown.Item href="/staffprofile"> <Link to="/staffprofile"><i className="fa fa-user mr-2"></i>My Account</Link></NavDropdown.Item>
+                            <NavDropdown.Divider ></NavDropdown.Divider>
+                            <NavDropdown.Item onClick={(e) => { localStorage.clear(); window.location.href = "/" }}><b> Sign Out </b></NavDropdown.Item>
+                        </NavDropdown>
                         {/* <button className='btn btn-light login_home pt-2 pb-2 p-4' >Login</button> */}
                         {(request.length > 0) ? <>
                             <Badge count={request.length}>
-                                <button className="btn btn-warning btn-circle btn-circle-sm m-1 cbtn" onClick={(e) => { setmodalvisible(true) }}><i className="fa fa-bell"></i></button>
+                                <button style={{ width: '50px' , height:'50px'}} className="mt-2 btn btn-warning btn-circle btn-circle-sm m-1 cbtn" onClick={(e) => { setmodalvisible(true) }}><i className="fa fa-bell"></i></button>
                             </Badge>
                         </> : <>
-                            <button className="btn btn-warning btn-circle btn-circle-sm m-1 cbtn" onClick={(e) => { setmodalvisible(true) }}><i className="fa fa-bell"></i></button>
+                            <button style={{ width: '50px' , height:'50px'}} className="mt-2 btn btn-warning btn-circle btn-circle-sm m-1 cbtn" onClick={(e) => { setmodalvisible(true) }}><i className="fa fa-bell"></i></button>
                         </>}
-
-                        <Dropdown className="d-flex m-2">
-                            <Dropdown.Toggle variant="success" id="dropdown-basic">
-                                Profile
-                            </Dropdown.Toggle>
-
-                            <Dropdown.Menu>
-                                {(localStorage.getItem('staff-token')) && (
-                                    <Link to="/staffprofile"><Dropdown.Item href="/staffprofile"> <i className="fa fa-user mr-2"></i>My Account</Dropdown.Item></Link>
-                                )}
-                                <NavDropdown.Divider />
-                                <Dropdown.Item onClick={(e) => { localStorage.clear(); window.location.href = "/" }}><b> Sign Out </b></Dropdown.Item>
-                            </Dropdown.Menu>
-                        </Dropdown>
                     </Nav>
                 </Container>
             </Navbar>

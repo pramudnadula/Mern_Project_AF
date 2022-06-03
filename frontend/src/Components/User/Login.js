@@ -88,13 +88,6 @@ function Login() {
                                         </label>
                                     </div>
 
-
-
-                                    {/* <div className="form-group first">
-                                        <label for="username">Username</label>
-                                        <input type="text" className="form-control" id="username" />
-                                    </div> */}
-
                                     <div className="form-group first">
                                         <label htmlFor="username">Email</label>
                                         <input type="email" className="form-control" id="email" onChange={(e) => { setemail(e.target.value) }} required />
@@ -108,26 +101,16 @@ function Login() {
                                     </div>
 
                                     <input type="submit" value="Log In" className="btn btn-success form-control" />
-
+                                    <br></br>
+                                    <br></br>
                                     <Link to="/forgetpassword" style={{ alignSelf: "flex-start" }}>
                                         <p style={{ padding: "0 15px" }} >Forgot Password?</p>
                                     </Link>
 
 
-                                    {/* <div className="d-flex mb-5 align-items-center">
-                                        <label className="control control--checkbox mb-0"><span className="caption">Remember me</span>
-                                            <input type="checkbox" checked="checked" />
-                                            <div className="control__indicator"></div>
-                                        </label>
+                                    {/* 
                                         <span className="ml-auto"><a href="#" className="forgot-pass">Forgot Password</a></span>
-                                    </div>
-
-                                    <input type="submit" value="Log In" className="btn btn-block btn-primary" />
-
-                                    <span className="d-block text-left my-4 text-muted">&mdash; or login with &mdash;</span>
-
-                                    
-
+                                    </div>                                                                     
                                     <div className="row">
                                         <span className="d-block text-left my-4 text-muted"> Don't Have an Account?  </span >
                                         <span className="ml-auto"><a href="#" className="create-one">Create One</a></span>
