@@ -126,7 +126,7 @@
 }
 
 .chatboxtop {
-    height: 100%;
+    height: calc(100vh - 11.5rem);
     overflow-y: scroll;
     padding-right: 10px;
 }

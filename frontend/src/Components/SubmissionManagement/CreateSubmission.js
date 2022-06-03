@@ -127,13 +127,7 @@ function CreateSubmission() {
                                 <div className="form-group">
                                     <i className="fa fa-calendar"></i>
                                     Submission Type
-                                    <select onChange={(e) => { setSubmissionType(e.target.value) }} className="form-control" name="cars" id="cars">
-                                        <option value="volvo">Volvo</option>
-                                        <option value="saab">Saab</option>
-                                        <option value="mercedes">Mercedes</option>
-                                        <option value="audi">Audi</option>
-                                    </select>
-
+                                    <input type="text" value={submissionType} onChange={(e) => { setSubmissionType(e.target.value) }} className="form-control" required />
                                 </div>
                                 <div className="form-group">
                                     <i className="fa fa-calendar"></i>
@@ -160,6 +154,7 @@ function CreateSubmission() {
                 ):(
                 <></>
                 )}
+                <div>All Submissions</div>
                 <div className='card mt-2'>
                     <div className="row d-flex justify-content-center ">
                         <div className="col">

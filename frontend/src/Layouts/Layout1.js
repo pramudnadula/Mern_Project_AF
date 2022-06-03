@@ -85,16 +85,15 @@ function Layout1(props) {
                 </SubMenu>
                 <SubMenu key="sub5" icon={<FilePdfOutlined />} title="Documentation">
                     <Menu.Item key="6"><Link to='/CreateSubmission' className='links'>Created Submission</Link></Menu.Item>
-                    <Menu.Item key="7"><Link to='/UploadDocument' className='links'>Document</Link></Menu.Item>
-                    <Menu.Item key="8"><Link to='/panels/submissions/all' className='links'>All Submissions</Link></Menu.Item>
+                    <Menu.Item key="7"><Link to='/panels/submissions/all' className='links'>All Submissions</Link></Menu.Item>
                 </SubMenu>
-                <Menu.Item key="9" icon={<TeamOutlined />}>
+                <Menu.Item key="8" icon={<TeamOutlined />}>
                     <Link to='/allocatedgroups' className='links'> Group</Link>
                 </Menu.Item>
-                <Menu.Item key="10" icon={<WechatOutlined />}>
+                <Menu.Item key="9" icon={<WechatOutlined />}>
                     <Link to='/msg' className='links'> Chat</Link>
                 </Menu.Item>
-                <Menu.Item key="11" icon={<QuestionOutlined />}>
+                <Menu.Item key="10" icon={<QuestionOutlined />}>
                     <Link to='/help' className='links'> Help</Link>
                 </Menu.Item>
                
@@ -165,33 +164,20 @@ function Layout1(props) {
 
                     {slider()}
                     <Layout className="site-layout" >
-
-
                         {/* {breadcrumb()} */}
-
                         {props.children}
-
-
-
                     </Layout>
                 </Layout>
             </> : <></>}
 
             {localStorage.getItem("staff") ? <>
-
-
                 <Navbar_staff />
                 <Layout style={{ minHeight: 'calc(100vh - 3.37rem) ' }} className={(location.pathname === '/') || (location.pathname === '/adminlogin') || (location.pathname === '/login') || (location.pathname === '/register') || (location.pathname === '/staffregister') ? "block" : ""}>
 
                     {slider2()}
                     <Layout className="site-layout">
-
-
                         {/* {breadcrumb()} */}
-
                         {props.children}
-
-
 
                     </Layout>
                 </Layout>
@@ -208,12 +194,9 @@ function Layout1(props) {
                     {slider3()}
                     <Layout className="site-layout">
 
-
                         {/* {breadcrumb()} */}
 
                         {props.children}
-
-
 
                     </Layout>
                 </Layout>
