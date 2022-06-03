@@ -10,10 +10,20 @@ function EditSubmission(props) {
     const [description, setDescription] = useState("")
     const [documents, setDocuments] = useState([])
     const staffID = localStorage.getItem("admin")//get staff ID in localStorage
+    const [submissions, setSubmissions] = useState([]);
     useEffect(() => {
         GetAllSubmissionType();
+        getDocumentSubmission();
     }, [])
-
+    //get document in each submission type
+    const getDocumentSubmission = () => {
+     GET(`api/evoluate/submission/all`).then((res) => {
+      console.log(res);
+      setSubmissions(res);
+     }).catch((err) => {
+      console.log(err);
+     })
+    }
     const [fileDate, setFileDate] = useState()
 
     const fileChangeHandler = (e) => {
@@ -196,6 +206,27 @@ function EditSubmission(props) {
                             ) : (
                                 <></>
                             )}
+                        </div>
+                    </div>
+                    <div className='col-6'>
+                        <div className='card'>
+                            Studet Submissions in {subject}
+                            <div className='card'>
+                                {submissions.map((document, key)=>(
+                                    <>
+                                    {/* {console.log(document.submissionId?._id)} */}
+                                    {(document.submissionId?._id == props.match.params.id)?(
+                                    <>
+                                    {/* {console.log(props.match.params.id)} */}
+                                        <p key={key}>{document?.documentName[0]?.split("--")[1]} : <a href={"http://localhost:8070/" + document?.documentName[0]} download="abc" >Download </a></p>
+                                    </>
+                                    ):(
+                                    <></>
+                                    )}
+                                    </>
+                                ))}
+
+                            </div>
                         </div>
                     </div>
                 </div>
