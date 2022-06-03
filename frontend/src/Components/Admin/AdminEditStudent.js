@@ -55,7 +55,7 @@ function AdminEditStudent(props) {
             password
         };
 
-        PUT(`user/edit/${userId}`, newUser)
+        PUT(`user/edit/${props.match.params.id}`, newUser)
             .then(() => {
                 alert('User Updated, Click ok');
                 window.location.href = '/allusers';
