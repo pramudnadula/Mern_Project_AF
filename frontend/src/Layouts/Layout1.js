@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Layout, Menu, Breadcrumb } from 'antd';
-import { DesktopOutlined, PieChartOutlined, WechatOutlined, TeamOutlined, UserOutlined, FilePdfOutlined, } from '@ant-design/icons';
+import { DesktopOutlined, PieChartOutlined, WechatOutlined, TeamOutlined, UserOutlined, FilePdfOutlined, HomeOutlined, QuestionOutlined, } from '@ant-design/icons';
 import '../Assets/Styles/Layout1.css'
 import NavBar_DashBoard from '../Components/Home/NavBar_DashBoard';
 import { Link, useLocation } from 'react-router-dom'
@@ -28,32 +28,25 @@ function Layout1(props) {
         <Sider collapsible collapsed={collapsed} onCollapse={onCollapse} style={{ backgroundColor: "#0157a8" }}>
             <div className="logo" />
             <Menu theme="light" defaultSelectedKeys={page} mode="inline" style={{ backgroundColor: "#0157a8" }}>
-                <Menu.Item key="1" icon={<PieChartOutlined />}>
-                    <Link to='/home'>Option 1</Link>
+                <Menu.Item key="1" icon={<HomeOutlined />}>
+                    <Link to='/home'>Home</Link>
                 </Menu.Item>
-                <Menu.Item key="2" icon={<DesktopOutlined />}>
-                    Option 2
-                </Menu.Item>
-                <SubMenu key="sub1" icon={<UserOutlined />} title="User">
-                    <Menu.Item key="3">Tom</Menu.Item>
-                    <Menu.Item key="4">Bill</Menu.Item>
-                    <Menu.Item key="5">Alex</Menu.Item>
-                </SubMenu>
+
                 <SubMenu key="sub2" icon={<UserOutlined />} title="Supervisors">
-                    <Menu.Item key="6"><Link to='/req' className='links'>Supervisor</Link></Menu.Item>
-                    <Menu.Item key="7"><Link to='/creq' className='links'>Co-supervisor</Link></Menu.Item>
+                    <Menu.Item key="2"><Link to='/req' className='links'>Supervisor</Link></Menu.Item>
+                    <Menu.Item key="3"><Link to='/creq' className='links'>Co-supervisor</Link></Menu.Item>
                 </SubMenu>
                 <SubMenu key="sub3" icon={<FilePdfOutlined />} title="Documentation">
-                    <Menu.Item key="8"><Link to='/AllSubmission' className='links'>Submissions</Link></Menu.Item>
-                    <Menu.Item key="9"><Link to='/UploadDocument' className='links'>Document</Link></Menu.Item>
+                    <Menu.Item key="4"><Link to='/AllSubmission' className='links'>Submissions</Link></Menu.Item>
+                    <Menu.Item key="5"><Link to='/UploadDocument' className='links'>Document</Link></Menu.Item>
                 </SubMenu>
-                <Menu.Item key="10" icon={<TeamOutlined />}>
+                <Menu.Item key="6" icon={<TeamOutlined />}>
                     <Link to='/group' className='links'> Group</Link>
                 </Menu.Item>
-                <Menu.Item key="11" icon={<WechatOutlined />}>
+                <Menu.Item key="7" icon={<WechatOutlined />}>
                     <Link to='/msg' className='links'> Chat</Link>
                 </Menu.Item>
-                <Menu.Item key="12" icon={<WechatOutlined />}>
+                <Menu.Item key="8" icon={<QuestionOutlined />}>
                     <Link to='/help' className='links'> Help</Link>
                 </Menu.Item>
             </Menu>
@@ -66,8 +59,9 @@ function Layout1(props) {
         <Sider collapsible collapsed={collapsed} onCollapse={onCollapse} style={{ backgroundColor: "rgb(231, 55, 55)" }}>
             <div className="logo" />
             <Menu theme="light" defaultSelectedKeys={page} mode="inline" style={{ backgroundColor: "rgb(231, 55, 55)" }}>
-                <Menu.Item key="1" icon={<PieChartOutlined />}>
-                    Option 1
+                <Menu.Item key="1" icon={<HomeOutlined />}>
+                    <Link to='/home'>Home</Link>
+
                 </Menu.Item>
                 <Menu.Item key="2" icon={<DesktopOutlined />}>
                     Option 2
@@ -91,6 +85,10 @@ function Layout1(props) {
                 <Menu.Item key="11" icon={<WechatOutlined />}>
                     <Link to='/msg' className='links'> Chat</Link>
                 </Menu.Item>
+                <Menu.Item key="12" icon={<QuestionOutlined />}>
+                    <Link to='/help' className='links'> Help</Link>
+                </Menu.Item>
+
 
             </Menu>
         </Sider>
@@ -101,8 +99,9 @@ function Layout1(props) {
         <Sider collapsible collapsed={collapsed} onCollapse={onCollapse} style={{ backgroundColor: "#9932CC" }}>
             <div className="logo" />
             <Menu theme="light" defaultSelectedKeys={page} mode="inline" style={{ backgroundColor: "#9932CC" }}>
-                <Menu.Item key="1" icon={<PieChartOutlined />}>
-                    Option 3
+                <Menu.Item key="1" icon={<HomeOutlined />}>
+                    <Link to='/home'>Home</Link>
+
                 </Menu.Item>
                 <Menu.Item key="2" icon={<DesktopOutlined />}>
                     Option 2
@@ -124,12 +123,15 @@ function Layout1(props) {
                     <Link to='/grouplist' className='links'> Group</Link>
                 </Menu.Item>
                 <Menu.Item key="11" icon={<WechatOutlined />}>
-                    <Link to='/' className='links'> Chat</Link>
+                    <Link to='/home' className='links'> Chat</Link>
                 </Menu.Item>
                 <SubMenu key="sub4" icon={<TeamOutlined />} title="Users">
                     <Menu.Item key="12"><Link to='/allusers' className='links'>All Students</Link></Menu.Item>
                     <Menu.Item key="13"><Link to='/allsupervisors' className='links'>Staff</Link></Menu.Item>
                 </SubMenu>
+                <Menu.Item key="14" icon={<WechatOutlined />}>
+                    <Link to='/questions' className='links'> Questions</Link>
+                </Menu.Item>
 
             </Menu>
         </Sider>

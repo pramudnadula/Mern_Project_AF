@@ -44,6 +44,7 @@ import EvaluateView from "./src/Components/MarkingScheme/EvaluateView";
 import ViewAllEvaluateResult from "./src/Components/MarkingScheme/ViewAllEvaluateResult";
 import GroupList from "./src/Components/GroupManagement/GroupList";
 import Help from "./src/Components/GroupManagement/Help";
+import ContactQuestions from "./src/Components/Admin/ContactQuestions";
 
 function App() {
 
@@ -90,6 +91,7 @@ function App() {
         <Route path="/allocatedgroups" exact component={AllocatedGroups} />
         <Route path="/grouplist" exact component={GroupList} />
         <Route path="/help" exact component={Help} />
+        <Route path="/questions" exact component={ContactQuestions} />
       </Layout1>
     </BrowserRouter>
   );
