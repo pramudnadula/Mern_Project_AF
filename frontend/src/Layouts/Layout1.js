@@ -23,6 +23,9 @@ function Layout1(props) {
 
     const [collapsed, setcollapsed] = useState(true)
 
+    let staffId = localStorage.getItem("staff");
+    console.log(localStorage.getItem("staff"));
+
 
     const slider = () => (
         <Sider collapsible collapsed={collapsed} onCollapse={onCollapse} style={{ backgroundColor: "#0157a8" }}>
@@ -66,29 +69,34 @@ function Layout1(props) {
         <Sider collapsible collapsed={collapsed} onCollapse={onCollapse} style={{ backgroundColor: "rgb(231, 55, 55)" }}>
             <div className="logo" />
             <Menu theme="light" defaultSelectedKeys={page} mode="inline" style={{ backgroundColor: "rgb(231, 55, 55)" }}>
-                <Menu.Item key="1" icon={<PieChartOutlined />}>
-                    Option 1
-                </Menu.Item>
-                <Menu.Item key="2" icon={<DesktopOutlined />}>
-                    Option 2
-                </Menu.Item>
-                <SubMenu key="sub1" icon={<UserOutlined />} title="User">
-                    <Menu.Item key="3">Tom</Menu.Item>
-                    <Menu.Item key="4">Bill</Menu.Item>
-                    <Menu.Item key="5">Alex</Menu.Item>
+                <SubMenu key="sub1" icon={<PieChartOutlined />} title="Evaluate">
+                    <Link to='/evaluate/all' className='links'>
+                        <Menu.Item key="1">All Evaluates</Menu.Item>
+                    </Link>
                 </SubMenu>
-                <SubMenu key="sub2" icon={<UserOutlined />} title="Supervisors">
-                    <Menu.Item key="6"><Link to='/req' className='links'>Supervisor</Link></Menu.Item>
-                    <Menu.Item key="7"><Link to='/creq' className='links'>Co-supervisor</Link></Menu.Item>
+                <SubMenu key="sub2" icon={<PieChartOutlined />} title="Groups">
+                    <Link to='/panels/view/all' className='links'>
+                        <Menu.Item key="2">All Groups</Menu.Item>
+                    </Link>
                 </SubMenu>
-                <SubMenu key="sub3" icon={<FilePdfOutlined />} title="Documentation">
-                    <Menu.Item key="8"><Link to='/CreateSubmission' className='links'>Create Submission</Link></Menu.Item>
-                    <Menu.Item key="9"><Link to='/UploadDocument' className='links'>Document</Link></Menu.Item>
+                <SubMenu key="sub3" icon={<UserOutlined />} title="Panels">
+                    <Link to={`/panels/view/users/${staffId}`} className='links'>
+                        <Menu.Item key="3">My Panels</Menu.Item>
+                    </Link>
                 </SubMenu>
-                <Menu.Item key="10" icon={<TeamOutlined />}>
+                <SubMenu key="sub4" icon={<UserOutlined />} title="Supervisors">
+                    <Menu.Item key="4"><Link to='/req' className='links'>Supervisor</Link></Menu.Item>
+                    <Menu.Item key="5"><Link to='/creq' className='links'>Co-supervisor</Link></Menu.Item>
+                </SubMenu>
+                <SubMenu key="sub5" icon={<FilePdfOutlined />} title="Documentation">
+                    <Menu.Item key="6"><Link to='/CreateSubmission' className='links'>Create Submission</Link></Menu.Item>
+                    <Menu.Item key="7"><Link to='/UploadDocument' className='links'>Document</Link></Menu.Item>
+                    <Menu.Item key="8"><Link to='/panels/submissions/all' className='links'>All Submissions</Link></Menu.Item>
+                </SubMenu>
+                <Menu.Item key="9" icon={<TeamOutlined />}>
                     <Link to='/allocatedgroups' className='links'> Group</Link>
                 </Menu.Item>
-                <Menu.Item key="11" icon={<WechatOutlined />}>
+                <Menu.Item key="10" icon={<WechatOutlined />}>
                     <Link to='/msg' className='links'> Chat</Link>
                 </Menu.Item>
 
@@ -101,29 +109,42 @@ function Layout1(props) {
         <Sider collapsible collapsed={collapsed} onCollapse={onCollapse} style={{ backgroundColor: "#9932CC" }}>
             <div className="logo" />
             <Menu theme="light" defaultSelectedKeys={page} mode="inline" style={{ backgroundColor: "#9932CC" }}>
-                <Menu.Item key="1" icon={<PieChartOutlined />}>
-                    Option 3
-                </Menu.Item>
-                <Menu.Item key="2" icon={<DesktopOutlined />}>
-                    Option 2
-                </Menu.Item>
-                <SubMenu key="sub1" icon={<UserOutlined />} title="User">
-                    <Menu.Item key="3">Tom</Menu.Item>
-                    <Menu.Item key="4">Bill</Menu.Item>
-                    <Menu.Item key="5">Alex</Menu.Item>
+                <SubMenu key="sub1" icon={<PieChartOutlined />} title="Panels">
+                    <Link to='/panel/add' className='links'>
+                        <Menu.Item key="1">Create Panel</Menu.Item>
+                    </Link>
+                    <Link to='/panels/' className='links'>
+                        <Menu.Item key="2">All Panels</Menu.Item>
+                    </Link>
+                    <Link to='/panels/add' className='links'>
+                        <Menu.Item key="3">Add Panel</Menu.Item>
+                    </Link>
                 </SubMenu>
-                <SubMenu key="sub2" icon={<UserOutlined />} title="Supervisors">
-                    <Menu.Item key="6"><Link to='/req' className='links'>Supervisor</Link></Menu.Item>
-                    <Menu.Item key="7"><Link to='/creq' className='links'>Co-supervisor</Link></Menu.Item>
+                <SubMenu key="sub2" icon={<PieChartOutlined />} title="Marking Schemes">
+                    <Link to='/markingscheme/add' className='links'>
+                        <Menu.Item key="4">Create Marking Scheme</Menu.Item>
+                    </Link>
+                    <Link to='/markingscheme/' className='links'>
+                        <Menu.Item key="5">All Marking Schemes</Menu.Item>
+                    </Link>
                 </SubMenu>
-                <SubMenu key="sub3" icon={<FilePdfOutlined />} title="Documentation">
-                    <Menu.Item key="8"><Link to='/CreateSubmission' className='links'>Create Submission</Link></Menu.Item>
-                    <Menu.Item key="9"><Link to='/UploadDocument' className='links'>Document</Link></Menu.Item>
+                <SubMenu key="sub3" icon={<UserOutlined />} title="User">
+                    <Menu.Item key="6">Tom</Menu.Item>
+                    <Menu.Item key="7">Bill</Menu.Item>
+                    <Menu.Item key="8">Alex</Menu.Item>
                 </SubMenu>
-                <Menu.Item key="10" icon={<TeamOutlined />}>
+                <SubMenu key="sub4" icon={<UserOutlined />} title="Supervisors">
+                    <Menu.Item key="9"><Link to='/req' className='links'>Supervisor</Link></Menu.Item>
+                    <Menu.Item key="10"><Link to='/creq' className='links'>Co-supervisor</Link></Menu.Item>
+                </SubMenu>
+                <SubMenu key="sub5" icon={<FilePdfOutlined />} title="Documentation">
+                    <Menu.Item key="11"><Link to='/CreateSubmission' className='links'>Create Submission</Link></Menu.Item>
+                    <Menu.Item key="12"><Link to='/UploadDocument' className='links'>Document</Link></Menu.Item>
+                </SubMenu>
+                <Menu.Item key="13" icon={<TeamOutlined />}>
                     <Link to='/grouplist' className='links'> Group</Link>
                 </Menu.Item>
-                <Menu.Item key="11" icon={<WechatOutlined />}>
+                <Menu.Item key="14" icon={<WechatOutlined />}>
                     <Link to='/' className='links'> Chat</Link>
                 </Menu.Item>
 

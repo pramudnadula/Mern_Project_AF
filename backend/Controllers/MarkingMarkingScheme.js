@@ -1,5 +1,7 @@
 const MarkingMarkingScheme = require("../Models/MarkingMarkingScheme");
 const StudentGroup = require("../Models/StudentGroup");
+const DocumentUpload = require('../Models/SubmissionManagement/DocumentUpload');
+
 
 exports.createMarkingMarkingScheme = (req, res) => {
   const markingMarkingScheme = new MarkingMarkingScheme(req.body);
@@ -47,7 +49,7 @@ exports.getGroupByGroupId = async (req, res) => {
   }
 };
 exports.getAllMarkingMarkingSchemes = (req, res) => {
-  MarkingMarkingScheme.find().exec((err, result) => {
+  MarkingMarkingScheme.find().populate("markingSchemeId").populate("groupId").exec((err, result) => {
     if (err) {
       return res.status(400).json({
         error: String(err),
@@ -55,13 +57,58 @@ exports.getAllMarkingMarkingSchemes = (req, res) => {
     }
     res.json(result);
   });
-  // try {
-  //   const markingMarkingScheme = await MarkingMarkingScheme.findById({
-  //     _id: "6298777d68cc6cbdd3eb042a",
-  //   });
+}
 
-  //   res.status(200).json(markingMarkingScheme);
-  // } catch (error) {
-  //   res.status(500).json(error);
-  // }
-};
+exports.getAllDocumentUpload = (req, res) => {
+  DocumentUpload.find().populate("submissionId").populate("groupId").exec((err, result) => {
+    if (err) {
+      return res.status(400).json({
+        error: String(err),
+      });
+    }
+    res.json(result);
+  });
+}
+
+exports.getDocumentUploadByUserId = async (req, res) => {
+  try {
+    let id = req.params.id;
+    const ob = [];
+    const groups = await StudentGroup.find()
+    for (let i = 0; i < groups.length; i++) {
+      if (groups[i].supervisor == id) {
+        ob.push(groups[i]._id);
+      } else if (groups[i].cosupervisor == id) {
+        ob.push(groups[i]._id);
+      }
+    }
+    for (let i = 0; i < ob.length; i++) {
+      let documents = await DocumentUpload.find(
+        { groupId: ob[i] }
+      ).populate("submissionId").populate("groupId")
+      if (documents.evoluated) {
+
+      } else {
+
+      }
+
+    }
+    res.json(documents);
+
+  } catch (err) {
+    res.status(505).send({ status: "error in fetching", error: err.message });
+  }
+}
+
+exports.getSubmissionById = (req, res) => {
+  DocumentUpload.findById({
+    _id: req.params.id
+  }).populate("submissionId").populate("groupId").exec((err, result) => {
+    if (err) {
+      return res.status(400).json({
+        error: String(err),
+      });
+    }
+    res.json(result);
+  });
+}

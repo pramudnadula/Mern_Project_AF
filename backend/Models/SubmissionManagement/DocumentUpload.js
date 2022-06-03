@@ -4,31 +4,34 @@ const ObjectId = require('bson').ObjectId;
 
 const DocumentSchema = new Schema({
 
-    
+
 
     submissionId: {
         type: ObjectId,
-        ref:"SubmissionType",
+        ref: "SubmissionType",
         required: true
     },
 
     groupId: {
         type: ObjectId,
-        ref:"studentGroup",
+        ref: "studentGroup",
         required: true
 
     },
 
-    documentName:[{
-        
+    documentName: [{
+
         type: String,
         required: true
     }],
-    
-    submissionDate:{
+
+    submissionDate: {
         type: String,
         required: true
-    }
+    },
+    evoluated: {
+        type: Boolean,
+    },
 
 })
 
