@@ -58,7 +58,7 @@ function AdminEditStudent(props) {
         PUT(`user/edit/${userId}`, newUser)
             .then(() => {
                 alert('User Updated, Click ok');
-                window.location.href = '/userprofile';
+                window.location.href = '/allusers';
 
 
             })
@@ -127,7 +127,7 @@ function AdminEditStudent(props) {
                                 </div>
                                 <br></br>
                                 {/* <div className="mt-5 text-center"> */}
-                                < Link to="/userprofile"><button className="btn btn-primary form-control" type="submit" value="Save Profile">Cancel</button></Link>
+                                < Link to="/allusers"><button className="btn btn-primary form-control" type="submit" value="Save Profile">Cancel</button></Link>
                                 {/* </div> */}
 
                             </form>
