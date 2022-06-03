@@ -54,12 +54,12 @@ function App() {
       <Route path="/register" exact component={Register} />
       <Route path="/adminlogin" exact component={AdminLogin} />
       <Route path="/staffregister" exact component={StaffRegister} />
-      <Route path="/addstudent" exact component={AdminAddStudent} />
-      <Route path="/addstaff" exact component={AdminAddStaff} />
       <Route path="/forgetpassword" exact component={ForgetPassword} />
       <Route path="/resetpassword/:token" exact component={ResetPassword} />
 
       <Layout1>
+        <Route path="/addstudent" exact component={AdminAddStudent} />
+        <Route path="/addstaff" exact component={AdminAddStaff} />
         <Route path="/admindashboard" exact component={AdminDashboard} />
         <Route path="/staffprofile" exact component={StaffProfile} />
         <Route path="/staffupdate/:id" exact component={StaffUpdate} />

@@ -67,7 +67,7 @@ exports.update = async (req, res, next) => {
             console.log(err);
             res
                 .status(500)
-                .send({ status: 'Error with updating data', error: message });
+                .send({ status: 'Error with updating data' });
         });
 };
 
@@ -336,7 +336,7 @@ exports.edit = async (req, res, next) => {
             console.log(err);
             res
                 .status(500)
-                .send({ status: 'Error with updating data', error: message });
+                .send({ status: 'Error with updating data' });
         });
 };
 
