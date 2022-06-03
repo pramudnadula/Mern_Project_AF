@@ -25,7 +25,7 @@ function AllSubmission() {
       <div className='card mt-2'>
         <div className="row d-flex justify-content-center ">
           <div className="col">
-            <table className='table table-bordered'>
+            {/* <table className='table table-bordered'>
               <thead>
                 <tr>
                   <th>Start date</th>
@@ -44,14 +44,40 @@ function AllSubmission() {
                     <td>{n.submissionType}</td>
                     <td>{n.subject}</td>
                     <td>{n.description}</td>
-                    <td>                                  
-                      <Link to={'/AddSubmission/' + n._id}><button className="ml-3 btn btn-success">Add Submission</button></Link>                   
+                    <td>
+                    <Link to={'/AddSubmission/' + n._id}><button className="ml-3 btn btn-success">Add Submission</button></Link>
                     </td>
                   </tr>
                 ))}
 
               </tbody>
-            </table>
+            </table> */}
+            <div className="container">
+              <div className="row">
+                {allSubmission.map((n, i) => (
+
+                  <div key={i} className="col-sm-4">
+                    
+                      <div className="card bg-light mb-3" style={{textDecoration:'none !important'}}>
+                        <div className="card-header" style={{textDecoration:'none !important'}}>
+                          <div style={{textDecoration:'none !important'}}><b>Start date :</b> {n.submissionStartDate}</div>
+                          <div style={{textDecoration:'none !important'}}><b>End date :</b> {n.submissionEndDate}</div>
+                        </div>
+                        <div className="card-body" style={{textDecoration:'none !important'}}>
+                          <h5 className="card-title" style={{textDecoration:'none !important'}}><b>Subject :</b> {n.subject}</h5>
+                          <div className="card-text" style={{textDecoration:'none !important'}}>
+                              <b>Type :</b> {n.submissionType}<br/>
+                              <b>Description :</b> {n.description}
+                          </div>
+                        <Link to={'/AddSubmission/' + n._id}><button className="ml-3 btn btn-success">Add Submission</button></Link>
+                        </div>
+                      </div>
+
+                    
+                  </div>
+                ))}
+              </div>
+            </div>
           </div>
         </div>
       </div>

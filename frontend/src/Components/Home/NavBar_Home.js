@@ -11,28 +11,11 @@ function NavBar_Home(props) {
             <Navbar className='headerNavBar_home'>
                 <Container>
                     <Navbar.Brand className='nav_icon' href="#home">RMS</Navbar.Brand>
-                    <Nav className="me-auto">
-                        <Nav.Link className='home_nav' href="#home">Home</Nav.Link>
-                        <Nav.Link className='home_nav' href="#features">Features</Nav.Link>
-                        <Nav.Link className='home_nav' href="#pricing">Pricing</Nav.Link>
-
-
-
-
-                    </Nav>
-
-                    <Form className="d-flex m-2">
-                        <FormControl
-                            type="search"
-                            placeholder="Search"
-                            className="me-2"
-                            aria-label="Search"
-                        />
-                        <Button variant="outline-success">Search</Button>
-
-                    </Form>
-                    {/* <button className='btn btn-light login_home pt-2 pb-2 p-4' >Login</button> */}
-                    < Link to="/login"><button className="btn btn-light login_home pt-2 pb-2 p-4" type="submit" value="">Login</button></Link>
+                    <div style={{ float: 'right'}}>
+                    < Link to="/login"><button className="btn btn-light login_home m-2 pt-2 pb-2 p-4" type="submit" value="">Login</button></Link>
+                    < Link to="/register"><button className="btn btn-light login_home m-2 pt-2 pb-2 p-4" type="submit" value="">Student Register</button></Link>
+                    < Link to="/staffregister"><button className="btn btn-light login_home m-2 mr-2 pt-2 pb-2 p-4" type="submit" value="">Supervisor Register</button></Link>
+                    </div>
                 </Container>
             </Navbar>
 

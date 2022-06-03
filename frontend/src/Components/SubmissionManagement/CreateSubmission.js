@@ -9,7 +9,7 @@ function CreateSubmission() {
     const [subject, setSubject] = useState("")
     const [description, setDescription] = useState("")
     const [allSubmission, setAllSubmission] = useState([])
-    const staffID = localStorage.getItem("staff")//get staff ID in localStorage
+    const staffID = localStorage.getItem("admin")//get staff ID in localStorage
 
     useEffect(() => {
         GetAllSubmissionType();
@@ -80,7 +80,8 @@ function CreateSubmission() {
         const yyyy = today.getFullYear();
         return yyyy + "-" + mm + "-" + dd;
     }
-    if (localStorage.getItem("staff-token") === null) {
+    if ((localStorage.getItem("admin-token")||localStorage.getItem("staff-token")) === null) {
+        localStorage.clear()
                 window.location = "/";
                 return <></>
     }   
@@ -107,6 +108,7 @@ function CreateSubmission() {
                 </div>
             </form> */}
             <div className='container'>
+                {localStorage.getItem("admin-token")?(
                 <div className='card mt-2'>
                     <div className="row d-flex justify-content-center ">
                         <div className="col-6">
@@ -155,6 +157,9 @@ function CreateSubmission() {
                         </div>
                     </div>
                 </div>
+                ):(
+                <></>
+                )}
                 <div className='card mt-2'>
                     <div className="row d-flex justify-content-center ">
                         <div className="col">
@@ -182,7 +187,7 @@ function CreateSubmission() {
                                                     <button className="btn btn-danger" style={{ marginRight: '.5rem' }} onClick={() => { if (window.confirm('Are you sure you wish to delete this Submission?')) DeleteSubmissionType(n._id) }} disabled={staffID !== n.staffID._id} > Remove</button>
                                                     <Link to={'/editSubmission/' + n._id}><button className="ml-3 btn btn-info" disabled={staffID !== n.staffID?._id} > edit</button></Link>
                                                 </>) : (<>
-                                                    <button className="ml-3 btn btn-success" disabled  > Other Supervisor </button>
+                                                    <Link to={'/editSubmission/' + n._id}><button className="ml-3 btn btn-info" > View</button></Link>
                                                 </>)
                                                 }
                                             </td>
