@@ -79,34 +79,30 @@ function Layout1(props) {
                 </Menu.Item>
 
 
-                <SubMenu key="sub2" icon={<PieChartOutlined />} title="Allocated">
-                    <Link to={`/panels/submissions/user/${staffId}`} className='links'>
-                        <Menu.Item key="2">Allocated Submissions</Menu.Item>
-                    </Link>
-                    <Link to='/panels/view/all' className='links'>
-                        <Menu.Item key="2">All Groups</Menu.Item>
-                    </Link>
+                <SubMenu key="sub1" icon={<PieChartOutlined />} title="Allocated">
+                    <Menu.Item key="2"><Link to={`/panels/submissions/user/${staffId}`} className='links'>Allocated Submissions</Link></Menu.Item>
+                    <Menu.Item key="3"><Link to='/panels/view/all' className='links'>All Groups</Link>
+                    </Menu.Item>
                 </SubMenu>
-                <SubMenu key="sub3" icon={<UserOutlined />} title="Panels">
-                    <Link to={`/panels/view/users/${staffId}`} className='links'>
-                        <Menu.Item key="3">My Panels</Menu.Item>
-                    </Link>
+                <SubMenu key="sub2" icon={<UserOutlined />} title="Panels">
+                    <Menu.Item key="4"><Link to={`/panels/view/users/${staffId}`} className='links'>My Panels</Link></Menu.Item>
+                    <Menu.Item key="5"><Link to='/evaluate/all' className='links'>All Evaluated Submissions</Link></Menu.Item>
                 </SubMenu>
-                <SubMenu key="sub4" icon={<UserOutlined />} title="Supervisors">
-                    <Menu.Item key="4"><Link to='/req' className='links'>Supervisor</Link></Menu.Item>
-                    <Menu.Item key="5"><Link to='/creq' className='links'>Co-supervisor</Link></Menu.Item>
+                <SubMenu key="sub3" icon={<UserOutlined />} title="Supervisors">
+                    <Menu.Item key="6"><Link to='/req' className='links'>Supervisor</Link></Menu.Item>
+                    <Menu.Item key="7"><Link to='/creq' className='links'>Co-supervisor</Link></Menu.Item>
                 </SubMenu>
-                <SubMenu key="sub5" icon={<FilePdfOutlined />} title="Documentation">
-                    <Menu.Item key="6"><Link to='/CreateSubmission' className='links'>Created Submission</Link></Menu.Item>
-                    <Menu.Item key="7"><Link to='/panels/submissions/all' className='links'>All Submissions</Link></Menu.Item>
+                <SubMenu key="sub4" icon={<FilePdfOutlined />} title="Documentation">
+                    <Menu.Item key="8"><Link to='/CreateSubmission' className='links'>Created Submission</Link></Menu.Item>
+                    <Menu.Item key="9"><Link to='/panels/submissions/all' className='links'>All Submissions</Link></Menu.Item>
                 </SubMenu>
-                <Menu.Item key="8" icon={<TeamOutlined />}>
+                <Menu.Item key="10" icon={<TeamOutlined />}>
                     <Link to='/allocatedgroups' className='links'> Group</Link>
                 </Menu.Item>
-                <Menu.Item key="9" icon={<WechatOutlined />}>
+                <Menu.Item key="11" icon={<WechatOutlined />}>
                     <Link to='/msg' className='links'> Chat</Link>
                 </Menu.Item>
-                <Menu.Item key="10" icon={<QuestionOutlined />}>
+                <Menu.Item key="12" icon={<QuestionOutlined />}>
                     <Link to='/help' className='links'> Help</Link>
                 </Menu.Item>
 
@@ -125,13 +121,14 @@ function Layout1(props) {
                 </Menu.Item>
 
                 <SubMenu key="sub1" icon={<PieChartOutlined />} title="Panels">
-                   <Menu.Item key="2"> <Link to='/panel/add' className='links'>Create Panel</Link></Menu.Item>
-                    <Menu.Item key="3"><Link to='/panels/' className='links'>All Panels</Link></Menu.Item>
-                    <Menu.Item key="4"><Link to='/panels/add' className='links'>Add Panel</Link></Menu.Item>
+                    <Menu.Item key="2"><Link to='/panel/add' className='links'>Create Panel</Link></Menu.Item>
+                    <Menu.Item key="3"> <Link to='/panels/' className='links'>All Panels</Link></Menu.Item>
+                    <Menu.Item key="4"><Link to='/panels/add' className='links'>Add Panel To Group</Link></Menu.Item>
                 </SubMenu>
                 <SubMenu key="sub2" icon={<PieChartOutlined />} title="Marking Schemes">
                     <Menu.Item key="5"><Link to='/markingscheme/add' className='links'>Create Marking Scheme</Link></Menu.Item>
-                    <Menu.Item key="6"><Link to='/markingscheme/' className='links'>All Marking Schemes </Link></Menu.Item>
+                    <Menu.Item key="6"><Link to='/markingscheme/' className='links'>All Marking Schemes</Link></Menu.Item>
+
                 </SubMenu>
 
                 <SubMenu key="sub3" icon={<UserOutlined />} title="Supervisors">
@@ -145,7 +142,7 @@ function Layout1(props) {
                     <Link to='/grouplist' className='links'> Group</Link>
                 </Menu.Item>
 
-                <SubMenu key="sub4" icon={<TeamOutlined />} title="Users">
+                <SubMenu key="sub5" icon={<TeamOutlined />} title="Users">
                     <Menu.Item key="11"><Link to='/allusers' className='links'>All Students</Link></Menu.Item>
                     <Menu.Item key="12"><Link to='/allsupervisors' className='links'>Staff</Link></Menu.Item>
                 </SubMenu>

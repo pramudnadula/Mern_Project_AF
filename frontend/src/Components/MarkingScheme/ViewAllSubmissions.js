@@ -14,10 +14,12 @@ function ViewAllSubmissions(props) {
     })
   }, [])
   return (
-    <div>
-      <h1>All Submissions</h1>
-      <table className="table table-striped">
-        <thead>
+    <div className="container">
+      <br />
+      <h1 class="text-center">All Submissions</h1>
+      <br />
+      <table className="table table-bordered table-secondary table-striped table-hover">
+        <thead class="text-center">
           <tr>
             <th>Submission Type</th>
             <th>Group Id</th>
@@ -32,7 +34,7 @@ function ViewAllSubmissions(props) {
                 <td>{ob.submissionId?.submissionType}</td>
                 <td>{ob.groupId?.groupName}</td>
                 <td>{ob?.submissionDate}</td>
-                <td>
+                <td class="text-center">
                   <Link to="">
                     <button type="button" className="btn btn-secondary btn-sm">View</button>
                   </Link>

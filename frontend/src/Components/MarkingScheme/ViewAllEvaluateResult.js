@@ -162,7 +162,19 @@ function ViewAllEvaluateResult(props) {
     },
   ];
 
-  return <Table columns={columns} dataSource={data} />;
+  return (
+    <div className="container">
+      <br />
+      <h1 class="text-center">View All Results</h1>
+      <br />
+      <div className="row justify-content-center">
+        <div className="col-8">
+          <Table columns={columns} dataSource={data} />
+        </div>
+      </div>
+
+    </div>
+  )
 }
 
 export default ViewAllEvaluateResult;
