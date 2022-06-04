@@ -163,7 +163,7 @@ function RequestSupervisor({ isSupervisor, stype }) {
                     <div className='col-xl-8 col-lg-8 col-md-8 col-sm-10 col-12'>
                         <div className='row justify-content-center'>
                             {filterResults ? (filterResults.map((supervisor, i) => (
-                                <div className='col-xl-4 col-lg-5 col-md-6 col-sm-8 col-8 mb-4'>
+                                <div key={i} className='col-xl-4 col-lg-5 col-md-6 col-sm-8 col-8 mb-4'>
                                     <Card1 supervisor={supervisor} type={isSupervisor} group={dgroup ? dgroup : ""} />
                                 </div>
 

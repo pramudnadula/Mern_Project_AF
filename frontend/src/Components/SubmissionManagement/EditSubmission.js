@@ -18,7 +18,7 @@ function EditSubmission(props) {
     //get document in each submission type
     const getDocumentSubmission = () => {
      GET(`api/evoluate/submission/all`).then((res) => {
-      console.log(res);
+      //console.log(res);
       setSubmissions(res);
      }).catch((err) => {
       console.log(err);
@@ -62,7 +62,7 @@ function EditSubmission(props) {
     //! Implement Get All Submission Function 
     const GetAllSubmissionType = () => {
         GET(`api/submissiontype/one/${props.match.params.id}`).then((data) => {
-            console.log(data)
+            //console.log(data)
             //set data 
             setSubmissionStartDate(data.submissionStartDate)
             setSubmissionEndDate(data.submissionEndDate)
@@ -75,27 +75,6 @@ function EditSubmission(props) {
         })
     }
 
-    // 
-    // const UpdateOneSubmission = (e) => {
-    //     e.preventDefault()
-
-    //     const submission = {//set object , get all passing data in to one object
-    //         submissionStartDate,
-    //         submissionEndDate,
-    //         submissionType,
-    //         subject,
-    //         description
-    //     }
-
-    //     PUT(`api/submissiontype/one/${props.match.params.id}`, submission).then((da) => {
-    //         alert("Movie Updated")
-    //         window.location.href = "/CreateSubmission"
-
-    //     }).catch((err) => {
-    //         console.log(err)
-    //     })
-
-    // }
 
     //! disable past dates input type date 
     const disableDates = () => {
@@ -113,9 +92,9 @@ function EditSubmission(props) {
     }
     return (
         <div className='container'>
-            <div className='card mt-2'>
+            <div className='mt-2'>
                 <div className="row d-flex justify-content-center ">
-                    <div className="col-6">
+                    <div className="col-6 card">
                         {localStorage.getItem("admin-token") ? (
                             <form onSubmit={onSubmitHandler} >
                                 {/* <input type="date" className="input" onChange={(e) => { setdate(e.target.value) }} required /> */}
@@ -197,9 +176,9 @@ function EditSubmission(props) {
                             Uploaded Template Document
                             {documents ? (
                                 <>
-                                    {documents.map((doc, key) => (
+                                    {documents.map((doc, i) => (
                                         < >
-                                            <p key={key}>{doc.split("--")[1]}  : <a href={"http://localhost:8070/" + doc} download="abc" >Download </a></p>
+                                            <p key={i}>{doc.split("--")[1]}  : <a href={"http://localhost:8070/" + doc} download="abc" >Download </a></p>
                                         </>
                                     ))}
                                 </>
@@ -208,17 +187,17 @@ function EditSubmission(props) {
                             )}
                         </div>
                     </div>
-                    <div className='col-6'>
-                        <div className='card'>
+                    <div className='col-6 card'>
+                        <div className=' m-1'>
                             Studet Submissions in {subject}
                             <div className='card'>
-                                {submissions.map((document, key)=>(
+                                {submissions.map((document, i)=>(
                                     <>
                                     {/* {console.log(document.submissionId?._id)} */}
                                     {(document.submissionId?._id == props.match.params.id)?(
                                     <>
                                     {/* {console.log(props.match.params.id)} */}
-                                        <p key={key}>{document?.documentName[0]?.split("--")[1]} : <a href={"http://localhost:8070/" + document?.documentName[0]} download="abc" >Download </a></p>
+                                        <p key={i}>{document?.documentName[0]?.split("--")[1]} : <a href={"http://localhost:8070/" + document?.documentName[0]} download="abc" >Download </a></p>
                                     </>
                                     ):(
                                     <></>

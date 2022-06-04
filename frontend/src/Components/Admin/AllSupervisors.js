@@ -31,9 +31,9 @@ function AllSupervisors() {
     }
 
     return (
-        <div className='container'>
-            <h2 className='title is-4 has-text-centered'>Supervisors</h2>
-            < Link to="/addstaff"><button className="btn btn-success " type="submit">Add New Supervisor</button></Link>
+        <div className='container-fluid'>
+            <h2 style={{textAlign: 'center'}}><b>Supervisors</b></h2>
+            < Link to="/addstaff"><button className="btn btn-success text-center" type="submit">Add New Supervisor</button></Link>
             <div className='card mt-2'>
                 <div className="row d-flex justify-content-center ">
                     <div className="col">

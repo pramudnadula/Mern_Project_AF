@@ -35,7 +35,7 @@ function GroupList(props) {
                 <div className='row'>
                     <h2 className='text-center'>Student Groups</h2>
                     <div className='col-12'>
-                        <table className=' table table-bordered'>
+                        <table className=' table table-bordered bg-light'>
                             <thead>
                                 <tr>
                                     <th>No:</th>

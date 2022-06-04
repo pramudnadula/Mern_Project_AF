@@ -185,7 +185,7 @@ function Layout1(props) {
                 <Layout style={{ minHeight: 'calc(100vh - 3.37rem) ' }} className={(location.pathname === '/') || (location.pathname === '/adminlogin') || (location.pathname === '/login') || (location.pathname === '/register') || (location.pathname === '/staffregister') ? "block" : ""}>
 
                     {slider2()}
-                    <Layout className="site-layout">
+                    <Layout className="site-layout" style={{backgroundImage:'url("https://freerangestock.com/sample/140409/abstract-colorful-geometric-background--abstract-background.jpg")', backgroundSize:'cover'}}>
                         {/* {breadcrumb()} */}
                         {props.children}
 
@@ -202,7 +202,7 @@ function Layout1(props) {
                 <Layout style={{ minHeight: 'calc(100vh - 3.37rem) ' }} className={(location.pathname === '/') || (location.pathname === '/adminlogin') || (location.pathname === '/login') || (location.pathname === '/register') || (location.pathname === '/staffregister') ? "block" : ""}>
 
                     {slider3()}
-                    <Layout className="site-layout">
+                    <Layout className="site-layout" style={{backgroundImage:'url("https://img.freepik.com/free-vector/abstract-blue-geometric-shapes-background_1035-17545.jpg?w=2000")'}}>
 
                         {/* {breadcrumb()} */}
 
