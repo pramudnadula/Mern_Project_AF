@@ -34,8 +34,8 @@ function ContactQuestions(props) {
         <div className='container-fluid'>
             <div className='row justify-content-center'>
                 <h3 className='text-center mt-5 mb-4'>User Questions</h3>
-                <div className='col-10'>
-                    <table className='table table-bordered'>
+                <div className='col-12'>
+                    <table className='table table-bordered bg-light'>
                         <thead>
                             <tr>
                                 <th>No:</th>

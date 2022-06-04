@@ -87,31 +87,12 @@ function CreateSubmission() {
     }   
     return (
         <>
-            {/* <form onSubmit={onSubmitHandler}>
-                <div className="field has-addons m-3 pt-3">
-                    <div className="control is-expanded">
-                        <div className="is-fullwidth">
-                            <input className="input" type="file" name="images" onChange={fileChangeHandler} id="inputGroupFile04" required multiple />
-                        </div>
-                    </div>
-                    <div className="button control is-static">
-                        <span className="icon is-left">
-                            <i className="fas fa-upload"></i>
-                        </span>
-                        <div type="submit" className=" is-primary is-static mr-3 pr-1">Choose a file…</div>
-                    </div>
-                </div>
-                <div className=" ">
-                    <div className="">
-                        <button className="button is-danger  " type="submit" value="create" >Upload</button>
-                    </div>
-                </div>
-            </form> */}
-            <div className='container'>
+           
+            <div className='container-fluid'>
                 {localStorage.getItem("admin-token")?(
-                <div className='card mt-2'>
+                <div className=' mt-2'>
                     <div className="row d-flex justify-content-center ">
-                        <div className="col-6">
+                        <div className="col-6 card">
                             <form onSubmit={onSubmitHandler}>
                                 {/* <input type="date" className="input" onChange={(e) => { setdate(e.target.value) }} required /> */}
                                 <div className="form-group">
@@ -154,7 +135,8 @@ function CreateSubmission() {
                 ):(
                 <></>
                 )}
-                <div>All Submissions</div>
+                <h3 className='text-center'>All Submissions</h3>
+
                 <div className='card mt-2'>
                     <div className="row d-flex justify-content-center ">
                         <div className="col">
