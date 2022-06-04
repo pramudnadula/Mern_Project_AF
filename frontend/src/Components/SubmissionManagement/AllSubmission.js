@@ -21,8 +21,8 @@ function AllSubmission() {
 
 
   return (
-    <div className='container'>
-      <div className='card mt-2'>
+    <div className='container-fluid '>
+      <div className='card m-2'>
         <div className="row d-flex justify-content-center ">
           <div className="col">
 
@@ -32,19 +32,19 @@ function AllSubmission() {
 
                   <div key={i} className="col-sm-4">
                     
-                      <div className="card bg-light mb-3" style={{textDecoration:'none !important'}}>
-                        <div className="card-header" style={{textDecoration:'none !important'}}>
-                          <div style={{textDecoration:'none !important'}}><b>Start date :</b> {n.submissionStartDate}</div>
-                          <div style={{textDecoration:'none !important'}}><b>End date :</b> {n.submissionEndDate}</div>
+                      <div className="card bg-light " style={{ height:'100%'}}>
+                        <div className="card-header" >
+                          <div ><b>Start date :</b> {n.submissionStartDate}</div>
+                          <div ><b>End date :</b> {n.submissionEndDate}</div>
                         </div>
-                        <div className="card-body" style={{textDecoration:'none !important'}}>
-                          <h5 className="card-title" style={{textDecoration:'none !important'}}><b>Subject :</b> {n.subject}</h5>
-                          <div className="card-text" style={{textDecoration:'none !important'}}>
+                        <div className="card-body" >
+                          <h5 className="card-title" ><b>Subject :</b> {n.subject}</h5>
+                          <div className="card-text" >
                               <b>Type :</b> {n.submissionType}<br/>
                               <b>Description :</b> {n.description}
                           </div>
-                        <Link to={'/AddSubmission/' + n._id}><button className="ml-3 btn btn-success">Add Submission</button></Link>
                         </div>
+                        <Link to={'/AddSubmission/' + n._id}><button className="m-2 btn btn-success">Add Submission</button></Link>
                       </div>
 
                     
