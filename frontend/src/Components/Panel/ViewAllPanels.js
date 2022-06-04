@@ -25,7 +25,7 @@ function ViewAllPanels(props) {
         <div className="col-4">
           <h1>All Panels</h1>
         </div>
-    
+
         <table className="table table-striped table-bordered table-primary table-hover">
           <thead style={{ textAlign: 'center' }}>
             <tr>
@@ -36,13 +36,13 @@ function ViewAllPanels(props) {
           </thead>
           <tbody>
             {panels &&
-              panels.map((panel, index) => (
+              panels?.map((panel, index) => (
                 <tr key={index}>
-                  <td>{panel.panelName}</td>
-                  <td>{panel.panelHead.email}</td>
-                  <td>{panel.firstPanelMember.email}</td>
-                  <td>{panel.secondPanelMember.email}</td>
-                  <td>{panel.thirdPanelMember.email}</td>
+                  <td>{panel?.panelName}</td>
+                  <td>{panel?.panelHead?.email}</td>
+                  <td>{panel?.firstPanelMember?.email}</td>
+                  <td>{panel?.secondPanelMember?.email}</td>
+                  <td>{panel?.thirdPanelMember?.email}</td>
                 </tr>
               ))}
           </tbody>
