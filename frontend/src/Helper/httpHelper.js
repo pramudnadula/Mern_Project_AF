@@ -12,7 +12,7 @@ export const GET = async (path) => {
         return response.data;
     }
     catch (error) {
-        if (error.response.status === 401 || error.response.status === 502) {
+        if (error.response.status === 401) {
             TokenExpired();
         } else {
             console.log(error);
@@ -32,7 +32,7 @@ export const POST = async (path, data) => {
         return response.data;
     }
     catch (error) {
-        if (error.response.status === 401 || error.response.status === 502) {
+        if (error.response.status === 401 ) {
             TokenExpired();
         } else {
             console.log(error);
@@ -53,7 +53,7 @@ export const DELETE = async (path, data) => {
         return response.data;
     }
     catch (error) {
-        if (error.response.status === 401 || error.response.status === 502) {
+        if (error.response.status === 401) {
             TokenExpired();
         } else {
             console.log(error);
@@ -74,7 +74,7 @@ export const PUT = async (path, data) => {
     }
     catch (error) {
 
-        if (error.response.status === 401 || error.response.status === 502) {
+        if (error.response.status === 401) {
             TokenExpired();
 
         } else {
@@ -84,10 +84,3 @@ export const PUT = async (path, data) => {
     }
 };
 
-// export const IsLoggedIn = async () => {
-//     const res = await this.POST("auth/validate-token", null);
-//     if (res.status === 200) {
-//         return true;
-//     }
-//     return false;
-// }
