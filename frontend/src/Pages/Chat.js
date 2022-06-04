@@ -364,23 +364,25 @@ function Chat(props) {
                             <SearchListOut datas={students} inp={input2} gid={ngid} />
                         </div>
                     </> : <></>}
+                    {localStorage.getItem("user") ? <>
+                        <div className='row'>
+                            <div className='col-10'>
+                                <h4 className='text-center mt-3'>Outside Chats</h4>
+                                {outconversations?.length > 0 ? <>
 
-                    <div className='row'>
-                        <div className='col-10'>
-                            <h4 className='text-center mt-3'>Outside Chats</h4>
-                            {outconversations?.length > 0 ? <>
+                                    {outconversations.map((m, i) => (
+                                        <div onClick={(e) => setcurrentchat(m)}>
+                                            <Conversations conversation={m} curentuserid={user._id} type={5} ind={ind} />
+                                        </div>
+                                    ))}
 
-                                {outconversations.map((m, i) => (
-                                    <div onClick={(e) => setcurrentchat(m)}>
-                                        <Conversations conversation={m} curentuserid={user._id} type={5} ind={ind} />
-                                    </div>
-                                ))}
-
-                            </> : <>
-                                <h5 className='text-center mt-5'>No Outside Chats</h5>
-                            </>}
+                                </> : <>
+                                    <h5 className='text-center mt-5'>No Outside Chats</h5>
+                                </>}
+                            </div>
                         </div>
-                    </div>
+                    </> : <></>}
+
 
                 </div>
 

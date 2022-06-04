@@ -18,7 +18,7 @@ exports.creategroup = async (req, res) => {
             stage: 1
         }
         await nstage.save()
-        res.json({ data })
+        res.json({ nstage })
     } catch (err) {
         res.status(500).send({ status: "error in fetching", error: err.message });
     }
@@ -99,7 +99,7 @@ exports.getgroupstage = async (req, res) => {
 exports.getmarksforGraph = async (req, res) => {
     let { gid } = req.body
     try {
-        const schemas = await MMschema.find({ groupId: gid })
+        const schemas = await MMschema.find({ groupId: gid }).populate("markingSchemeId")
         res.send(schemas)
     } catch (err) {
         res.status(500).send({ status: "error in fetching", error: err.message });
