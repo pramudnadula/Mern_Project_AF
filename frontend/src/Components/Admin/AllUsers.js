@@ -34,7 +34,7 @@ function AllUsers() {
 
 
     return (
-        <div>
+        <div className='container'>
             {/* <div className='title is-2 has-text-black has-text-centered'>All Users</div><br /> */}
             <center><h2 className='title is-4 has-text-centered'> All Students</h2></center>
 
@@ -49,7 +49,6 @@ function AllUsers() {
                                     <th>First Name</th>
                                     <th>Last Name</th>
                                     <th>Email</th>
-                                    <th>Group</th>
                                     <th style={{ width: '173px' }}>Action</th>
                                 </tr>
                             </thead>
@@ -58,14 +57,11 @@ function AllUsers() {
                                     <tr key={key}>
                                         <td>{person.fname}</td>
                                         <td>{person.lname}</td>
-                                        <td>{person.email}</td>
-                                        <td>{person.type}</td>
+                                        <td>{person.email}</td> 
                                         <td>
 
-                                            <button className="btn btn-danger" style={{ marginRight: '.5rem' }} onClick={() => { if (window.confirm('Are you sure  delete a student?')) DeleteStudent(person._id) }} > Remove </button>
-                                            <Link to={"/editstudent/" + person._id}> <button className="ml-3 btn btn-info" type="submit"> edit</button></Link>
-
-
+                                            <button className="btn btn-danger" style={{ marginRight: '.5rem' }} onClick={() => { if (window.confirm('Are you sure  delete a student?')) DeleteStudent(person._id) }} > Remove</button>
+                                            <Link to={"/editstudent/" + person._id}> <button className="ml-3 btn btn-info" type="submit">edit</button></Link>
                                         </td>
                                     </tr>
                                 )}
