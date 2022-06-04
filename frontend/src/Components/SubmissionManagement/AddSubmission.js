@@ -132,8 +132,8 @@ function AddSubmission(props) {
                         <div className="col">
                             <h3 > Presentation Templates </h3>
 
-                            <div >{document.map((doc, key) => (
-                                <p>{doc?.split("--")[1]} :  <a href={"http://localhost:8070/" + doc} download="abc" >Download </a></p>
+                            <div >{document.map((doc, i) => (
+                                <p key={i}>{doc?.split("--")[1]} :  <a href={"http://localhost:8070/" + doc} download="abc" className='btn btn-info'>Download </a></p>
 
                             ))}
                             </div>

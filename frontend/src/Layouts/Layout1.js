@@ -186,7 +186,7 @@ function Layout1(props) {
                 <Layout style={{ minHeight: 'calc(100vh - 3.37rem) ' }} className={(location.pathname === '/') || (location.pathname === '/adminlogin') || (location.pathname === '/login') || (location.pathname === '/register') || (location.pathname === '/staffregister') ? "block" : ""}>
 
                     {slider2()}
-                    <Layout className="site-layout" style={{backgroundImage:'url("https://freerangestock.com/sample/140409/abstract-colorful-geometric-background--abstract-background.jpg")', backgroundSize:'cover'}}>
+                    <Layout className="site-layout" style={{backgroundImage:'url("https://static.vecteezy.com/system/resources/thumbnails/001/427/248/small_2x/blue-watercolor-background-free-vector.jpg")', backgroundSize:'cover'}}>
                         {/* {breadcrumb()} */}
                         {props.children}
 

@@ -176,9 +176,9 @@ function EditSubmission(props) {
                             Uploaded Template Document
                             {documents ? (
                                 <>
-                                    {documents.map((doc, i) => (
+                                    {documents.map((doc, f) => (
                                         < >
-                                            <p key={i}>{doc.split("--")[1]}  : <a href={"http://localhost:8070/" + doc} download="abc" >Download </a></p>
+                                            <p key={f}>{doc.split("--")[1]}  : <a href={"http://localhost:8070/" + doc} download="abc" className='btn btn-danger'>Download </a></p>
                                         </>
                                     ))}
                                 </>
@@ -197,7 +197,7 @@ function EditSubmission(props) {
                                     {(document.submissionId?._id == props.match.params.id)?(
                                     <>
                                     {/* {console.log(props.match.params.id)} */}
-                                        <p key={i}>{document?.documentName[0]?.split("--")[1]} : <a href={"http://localhost:8070/" + document?.documentName[0]} download="abc" >Download </a></p>
+                                        <p key={i}>{document?.documentName[0]?.split("--")[1]} : <a href={"http://localhost:8070/" + document?.documentName[0]} download="abc">Download </a></p>
                                     </>
                                     ):(
                                     <></>
