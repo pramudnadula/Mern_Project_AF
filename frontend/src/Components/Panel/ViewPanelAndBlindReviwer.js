@@ -15,7 +15,7 @@ function ViewPanelAndBlindReviewer(props) {
   }, [])
 
   return (
-    <div className="container">
+    <div className="container-fluid">
       <br />
       <h1 class="text-center">
         Group Allocated Panel and Blind Reviwer

@@ -28,10 +28,10 @@ function ViewPanel(props) {
       </h1>
       <br />
       <div className="row justify-content-center">
-        <div className="border col-6 ">
+        <div className="border col-6 bg-light">
           <br />
 
-          <div className="col-8">
+          <div className="col-8 ">
             <div>Panel Name : <span style={{ color: 'red' }}> {panel?.panelName}</span></div>
             <div>Panel Head :<span style={{ color: 'red' }}> {panel?.panelHead?.email}</span></div>
             <div>Panel First Member :<span style={{ color: 'red' }}> {panel?.firstPanelMember?.email}</span></div>
@@ -47,8 +47,8 @@ function ViewPanel(props) {
       <h1 class="text-center">Groups Allocated To {panel.panelName}</h1>
       <br />
       <div className="row justify-content-center">
-        <div className="col-4">
-          <table className="table table-bordered table-secondary table-striped table-hover">
+        <div className="col-4 ">
+          <table className="table table-bordered table-secondary table-striped table-hover bg-light">
             <thead class="text-center">
               <tr>
                 <th>Group Names</th>

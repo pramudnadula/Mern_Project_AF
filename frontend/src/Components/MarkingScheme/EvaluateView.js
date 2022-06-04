@@ -31,12 +31,12 @@ function EvaluateView(props) {
       <br />
       <h2 class="text-center" style={{ color: 'red' }}>{group.groupName} </h2>
       <div className="row justify-content-center">
-        <div className="col-12 text-center">
+        <div className="col-6 text-center">
           {console.log(markingMarkingSchemes)}
           {markingMarkingSchemes &&
             markingMarkingSchemes?.map((element, index) => (
 
-              <div className="card w-50 text-center" key={index}>
+              <div className="card w-100 text-center mt-2" key={index}>
                 <div className="card-header">
                   {element?.markingSchemeId.submissionType}
                 </div>

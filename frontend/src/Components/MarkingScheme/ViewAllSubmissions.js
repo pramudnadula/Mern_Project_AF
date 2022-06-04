@@ -14,7 +14,7 @@ function ViewAllSubmissions(props) {
     })
   }, [])
   return (
-    <div className="container">
+    <div className="container-fluid">
       <br />
       <h1 class="text-center">All Submissions</h1>
       <br />
@@ -22,9 +22,10 @@ function ViewAllSubmissions(props) {
         <thead class="text-center">
           <tr>
             <th>Submission Type</th>
-            <th>Group Id</th>
+            <th>Group Name</th>
             <th>Submission Date</th>
-            <th>View</th>
+            <th>Document Name</th>
+            <th>Action</th>
           </tr>
         </thead>
         <tbody>
@@ -34,10 +35,9 @@ function ViewAllSubmissions(props) {
                 <td>{ob.submissionId?.submissionType}</td>
                 <td>{ob.groupId?.groupName}</td>
                 <td>{ob?.submissionDate}</td>
+                <td>{ob?.documentName[0]?.split("--")[1]}</td>
                 <td class="text-center">
-                  <Link to="">
-                    <button type="button" className="btn btn-secondary btn-sm">View</button>
-                  </Link>
+                <a className='btn btn-info' href={"http://localhost:8070/" + ob?.documentName[0]} download="abc" >Download </a>    
                 </td>
 
               </tr>
