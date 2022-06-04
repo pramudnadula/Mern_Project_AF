@@ -34,10 +34,10 @@ function Home2(props) {
                     <h1 className='text-center'>Wall of Fame</h1>
                     <h6 className='text-center'>Highest Mark gruop</h6>
                     <div className='col-12'>
-                        <div className='row'>
+                        <div className='row justify-content-center'>
 
-                            <div className='col-5 bg-info' style={{ borderRadius: '30px', marginLeft:'2rem'}}>
-                                <img style={{ height: '250px'}} src={bestgroup?.length > 0 ? ("http://localhost:8070/" + bestgroup[0]?.groupId.image) : ("https://img.freepik.com/free-vector/gradient-network-connection-background_23-2148865392.jpg")} className='img-fluid d-block' />
+                            <div className='col-4 ' style={{  borderRadius: '30px', marginLeft:'2rem'}}>
+                                <img style={{borderRadius: '30px', height: '250px'}} src={bestgroup?.length > 0 ? ("http://localhost:8070/" + bestgroup[0]?.groupId.image) : ("https://s3.amazonaws.com/cdn.sliit.lk/wp-content/uploads/default-user-image.png")} className='img-fluid d-block' />
                             </div>
                             <div className='col-6 m-4 bg-info' style={{ borderRadius: '30px', paddingTop:'2rem'}}>
                                 <Descriptions title="Group Information" layout="vertical">
