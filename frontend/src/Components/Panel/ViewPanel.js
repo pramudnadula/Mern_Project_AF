@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { GET } from '../../Helper/httpHelper';
+import '../../Assets/Styles/PanelForm.css';
 
 function ViewPanel(props) {
   const [groups, setGroups] = useState([]);
@@ -20,45 +21,50 @@ function ViewPanel(props) {
     })
   }, [])
   return (
-    <div>
-      <h1>
+    <div className="container">
+      <br />
+      <h1 class="text-center">
         Panel Details
       </h1>
-      Panel Name: {panel?.panelName}
       <br />
-      Panel Head: {panel?.panelHead?.email}
+      <div className="row justify-content-center">
+        <div className="border col-6 ">
+          <br />
+
+          <div className="col-8">
+            <div>Panel Name : <span style={{ color: 'red' }}> {panel?.panelName}</span></div>
+            <div>Panel Head :<span style={{ color: 'red' }}> {panel?.panelHead?.email}</span></div>
+            <div>Panel First Member :<span style={{ color: 'red' }}> {panel?.firstPanelMember?.email}</span></div>
+            <div>Panel Second Member :<span style={{ color: 'red' }}> {panel?.secondPanelMember?.email}</span></div>
+            <div>Panel Third Member :<span style={{ color: 'red' }}> {panel?.thirdPanelMember?.email}</span></div>
+          </div>
+          <br />
+        </div>
+      </div>
+      <br />
       <br />
 
-      Panel First Member: {panel?.firstPanelMember?.email}
+      <h1 class="text-center">Groups Allocated To {panel.panelName}</h1>
       <br />
-
-      Panel Second Member: {panel?.secondPanelMember?.email}
-      <br />
-
-      Panel Third Member: {panel?.thirdPanelMember?.email}
-      <br />
-      <br />
-
-      <br />
-      <br />
-      <br />
-
-      <h1>Groups Allocated To {panel.panelName}</h1>
-      <table className="table table-striped">
-        <thead>
-          <tr>
-            <th>Group Names</th>
-          </tr>
-        </thead>
-        <tbody>
-          {groups &&
-            groups.map((group, index) => (
-              <tr key={index}>
-                <td>{group.groupId.groupName}</td>
+      <div className="row justify-content-center">
+        <div className="col-4">
+          <table className="table table-bordered table-secondary table-striped table-hover">
+            <thead class="text-center">
+              <tr>
+                <th>Group Names</th>
               </tr>
-            ))}
-        </tbody>
-      </table>
+            </thead>
+            <tbody>
+              {groups &&
+                groups.map((group, index) => (
+                  <tr key={index}>
+                    <td>{group.groupId.groupName}</td>
+                  </tr>
+                ))}
+            </tbody>
+          </table>
+        </div>
+      </div>
     </div>
   )
 }

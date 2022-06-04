@@ -85,87 +85,95 @@ function Evaluate(props) {
   };
 
   return (
-    <div>
+    <div className="container">
+      <br />
+      <h1 class="text-center">Allocate Marks</h1>
+      <br />
+      <div className="row justify-content-center">
+        <div className='col-8'>
+          <table className="table table-primary table-bordered">
+            <thead class="text-center">
+              <tr>
+                <th colSpan="3">
+                  <h2 style={{ color: 'red' }}>{markingScheme?.name}</h2>
+                </th>
+              </tr>
+              <tr>
+                <th colSpan="3">
+                  <h3 style={{ color: 'red' }}>{studentGroup?.groupName}</h3>
+                </th>
+              </tr>
+              <tr>
+                <th>Feature</th>
+                <th>Allocated Mark</th>
+                <th>Given Marks</th>
+              </tr>
+            </thead>
+            <tbody>
+              {criteriaMarks &&
+                criteriaMarks?.map((featuresElement, index) => (
+                  <tr key={index}>
+                    <td>{featuresElement?.criterion}</td>
+                    <td>{featuresElement?.allocatedMark}</td>
+                    <td class="text-center">
+                      <input
+                        required
+                        type="number"
+                        name="givenMark"
+                        min={0}
+                        max={featuresElement?.allocatedMark}
+                        onChange={(e) => {
+                          featuresElement.givenMark = e.target.value;
+                        }}
+                      />
+                    </td>
+                  </tr>
+                ))}
+            </tbody>
+            <tfoot>
+              <tr>
+                <th>Remark</th>
 
-      <table className="table table-secondary table-bordered">
-        <thead>
-          <tr>
-            <th colSpan="3">
-              <h2>{markingScheme?.name}</h2>
-            </th>
-          </tr>
-          <tr>
-            <th colSpan="3">
-              <h3>Student Group: {studentGroup?.groupName}</h3>
-            </th>
-          </tr>
-          <tr>
-            <th>Feature</th>
-            <th>Allocated Mark</th>
-            <th>Given Marks</th>
-          </tr>
-        </thead>
-        <tbody>
-          {criteriaMarks &&
-            criteriaMarks?.map((featuresElement, index) => (
-              <tr key={index}>
-                <td>{featuresElement?.criterion}</td>
-                <td>{featuresElement?.allocatedMark}</td>
-                <td>
+                <td colSpan="2">
                   <input
+                    name="remark"
+                    placeholder="Remark"
                     required
-                    type="number"
-                    name="givenMark"
-                    min={0}
-                    max={featuresElement?.allocatedMark}
                     onChange={(e) => {
-                      featuresElement.givenMark = e.target.value;
+                      setRemark(e.target.value);
                     }}
                   />
                 </td>
               </tr>
-            ))}
-        </tbody>
-        <tfoot>
-          <tr>
-            <th>Remark</th>
+              <tr>
+                <th>Marked By:</th>
 
-            <td colSpan="2">
-              <input
-                name="remark"
-                placeholder="Remark"
-                required
-                onChange={(e) => {
-                  setRemark(e.target.value);
-                }}
-              />
-            </td>
-          </tr>
-          <tr>
-            <th>Marked By:</th>
-
-            <td colSpan="2">
-              <input
-                name="marker"
-                placeholder="Marked By"
-                required
-                onChange={(e) => {
-                  setMarker(e.target.value);
-                }}
-              />
-            </td>
-          </tr>
-        </tfoot>
-      </table>
-      <button
-        type="button"
-        className="btn btn-secondary btn-sm"
-        onClick={(e) => {
-          submit();
-        }}
-      >
-        Save
-      </button>
+                <td colSpan="2">
+                  <input
+                    name="marker"
+                    placeholder="Marked By"
+                    required
+                    onChange={(e) => {
+                      setMarker(e.target.value);
+                    }}
+                  />
+                </td>
+              </tr>
+            </tfoot>
+          </table>
+          <div class="text-center">
+            <button
+              type="button"
+              className="btn btn-secondary btn-sm"
+              onClick={(e) => {
+                submit();
+              }}
+            >
+              Save
+            </button>
+          </div>
+        </div>
+      </div>
     </div>
   );
 }

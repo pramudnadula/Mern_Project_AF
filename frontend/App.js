@@ -106,8 +106,6 @@ function App() {
         <Route path="/panels/submissions/user/:id" exact component={ViewAllocatedSubmissions} />
         <Route path="/evaluate/submission/:id" exact component={Evaluate} />
 
-
-
         <Route path="/UploadDocument" exact component={UploadDocument} />
         <Route path="/AddSubmission/:id" exact component={AddSubmission} />
         <Route path="/CreateSubmission" exact component={CreateSubmission} />
