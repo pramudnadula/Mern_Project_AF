@@ -19,7 +19,7 @@ function Chart({ gid }) {
                 for (let i = 0; i < data?.length; i++) {
                     let mar = Object.assign({}, display)
 
-                    mar.name = data[i]?.remark
+                    mar.name = data[i]?.markingSchemeId.submissionType
                     mar.mark = data[i]?.totalMarks
                     arr.push(mar)
                 }

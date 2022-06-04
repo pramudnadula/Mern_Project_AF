@@ -20,7 +20,13 @@ exports.createarea = (req, res) => {
             })
         }
         else {
-            res.json({ data })
+            res.status(200).json({ data })
         }
+    })
+}
+
+exports.sample = (req, res, next) => {
+    return res.status(400).send({
+        error: 'dd'
     })
 }

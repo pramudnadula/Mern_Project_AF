@@ -53,6 +53,7 @@ import StaffAllocatedPanels from "./src/Components/Panel/StaffAllocatedPanels";
 import ViewPanel from "./src/Components/Panel/ViewPanel";
 import ViewAllSubmissions from "./src/Components/MarkingScheme/ViewAllSubmissions";
 import ViewAllocatedSubmissions from "./src/Components/MarkingScheme/ViewAllocatedSubmissions";
+import QuestionForum from "./src/Components/GroupManagement/QuestionForum";
 
 
 function App() {
@@ -117,6 +118,7 @@ function App() {
         <Route path="/grouplist" exact component={GroupList} />
         <Route path="/help" exact component={Help} />
         <Route path="/questions" exact component={ContactQuestions} />
+        <Route path="/questionform" exact component={QuestionForum} />
       </Layout1>
     </BrowserRouter>
   );

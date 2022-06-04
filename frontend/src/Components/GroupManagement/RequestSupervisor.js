@@ -22,7 +22,7 @@ import { GET } from '../../Helper/httpHelper';
 
 function RequestSupervisor({ isSupervisor, stype }) {
 
-    const [limit, setlimit] = useState(6)
+    const [limit, setlimit] = useState(18)
     const [skip, setskip] = useState(0)
     const [type, settype] = useState(false);
     const [size, setsize] = useState(0)
@@ -140,7 +140,7 @@ function RequestSupervisor({ isSupervisor, stype }) {
         <>
             <div className='container-fluid'>
                 <div className='row justify-content-center'>
-                    <div className='col-12'><div className='row justify-content-center mt-5 mb-5'><h1 className='col-4 main_txt'>{stype}</h1><div className='col-xl-5 col-lg-5 col-md-6 col-sm-8 col-12'>{searchbar()}</div></div></div>
+                    <div className='col-12'><div className='row justify-content-center mt-5 mb-5'><h1 className='col-4 main_txt'>{stype}</h1></div></div>
                     <div className='col-xl-3 col-lg-3 col-md-4 col-sm-6 col-12 brand mb-5'>
                         <div className='row justify-content-center'>
                             <div className='col-xl-8 col-lg-8 col-md-8 col-sm-8 col-6'>
@@ -172,7 +172,7 @@ function RequestSupervisor({ isSupervisor, stype }) {
                         </div>
                     </div>
                 </div>
-                {loadmorebutton()}
+                {/* {loadmorebutton()} */}
             </div>
         </>
     );

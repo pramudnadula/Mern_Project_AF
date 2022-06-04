@@ -2,7 +2,8 @@
 const express = require("express");
 const mongoose = require("mongoose");
 const dotenv = require("dotenv");
-const app = express();
+const Createserver = require('./Createserver')
+const app = Createserver()
 require("dotenv").config();
 const PORT = process.env.PORT || 8070;
 const URL = process.env.MONGODB_URL;
@@ -29,12 +30,12 @@ const SubmissionType = require('./Routes/SubmissionManagement/SubmissionType');
 const adminRouter = require('./Routes/admins.js');
 const admincontact = require('./Routes/AdminContact');
 const Panel = require('./Routes/Panel');
+const Question = require('./Routes/Question')
 
 
 
 
-app.use(cors());
-app.use(bodyparser.json());
+
 
 ////connect to mongoDB
 mongoose.connect(URL, (err) => {
@@ -54,6 +55,7 @@ app.use("/api/message", Message);
 app.use("/api/stages", Stage);
 app.use("/api/trequest", Trequest);
 app.use("/api/admincontact", admincontact);
+app.use("/api/question", Question);
 
 app.use("/api/markingscheme", MarkingScheme); //Marking Schemes Route
 app.use("/api/evoluate", MarkingMarkingScheme); //Evoluate Route
@@ -74,3 +76,5 @@ app.use("/api/submissiontype", SubmissionType);//Document Upload Route
 app.listen(PORT, () => {
   console.log(`service is up and running on port ${PORT}`);
 });
+
+module.exports = app;
