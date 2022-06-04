@@ -20,8 +20,15 @@ function ViewAllPanels(props) {
   }, [])
 
   return (
-    <div>
-      <h1>All Panels</h1>
+    <div className="container">
+      <div className="row justify-content-center">
+        <div className="col-4">
+          <h1>All Panels</h1>
+
+        </div>
+      </div>
+
+
       <table className="table table-striped">
         <thead>
           <tr>
