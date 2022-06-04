@@ -63,14 +63,6 @@ function AdminAddStaff() {
             .post('http://localhost:8070/api/supervisors/add', newUser)
             .then(() => {
                 alert('User Create Successfully ');
-                setemail('');
-                setfname('');
-                setlname('');
-                setisSupervisor('');
-                setarea('');
-                setusername('');
-                setpassword('');
-                setconfpassword('');
                 window.location.href = '/allsupervisors';
             })
             .catch((err) => {

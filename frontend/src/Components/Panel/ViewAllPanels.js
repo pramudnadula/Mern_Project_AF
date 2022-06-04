@@ -25,9 +25,7 @@ function ViewAllPanels(props) {
         <div className="col-4">
           <h1>All Panels</h1>
         </div>
-
-
-
+    
         <table className="table table-striped table-bordered table-primary table-hover">
           <thead style={{ textAlign: 'center' }}>
             <tr>
@@ -60,6 +58,7 @@ function ViewAllPanels(props) {
         </div>
       </div>
     </div >
+
   )
 }
 

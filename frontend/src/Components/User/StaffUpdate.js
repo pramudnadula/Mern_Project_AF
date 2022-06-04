@@ -95,7 +95,7 @@ function StaffUpdate(props) {
 
                             <div className="row mt-3">
 
-                                <div className="col-md-12"><label className="labels">Email </label><input type="text" className="form-control" placeholder="enter email " value={email} onChange={(e) => { setemail(e.target.value) }} /></div>
+                                <div className="col-md-12"><label className="labels">Email </label><input type="email" className="form-control" placeholder="enter email " value={email} onChange={(e) => { setemail(e.target.value) }} /></div>
                                 {/* <div className="col-md-12"><label className="labels">User Type</label><input type="text" className="form-control" placeholder="enter user type" value={type} onChange={(e) => { settype(e.target.value) }} /></div> */}
                             </div>
 

@@ -32,3 +32,8 @@ html {
     margin-left: 0;
     display: inline-block;
 }
+
+a {
+    
+    text-decoration: none !important;
+}

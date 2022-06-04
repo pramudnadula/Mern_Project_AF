@@ -74,7 +74,7 @@ function StaffProfile({ setTest }) {
                             <div className="field has-addons m-3 pt-3">
                                 <div className="control is-expanded">
                                     <div className="is-fullwidth">
-                                        <input className="form-control" type="file" name="supimage" onChange={fileChangeHandler} />
+                                        <input className="form-control" type="file" name="supimage" accept = "application/.png,.jpg,.jpeg,.jfif"  onChange={fileChangeHandler} />
                                     </div>
                                 </div>
 
@@ -102,7 +102,7 @@ function StaffProfile({ setTest }) {
                         <div className="row mt-3">
                             {/* <div className="col-md-12"><label className="labels">PhoneNumber</label><input type="text" className="form-control" placeholder="enter phone number" value="" /></div>
                             <div className="col-md-12"><label className="labels">Address</label><input type="text" className="form-control" placeholder="enter address" value="" /></div> */}
-                            <div className="col-md-12"><label className="labels">Email </label><input type="text" className="form-control" placeholder="enter email " value={currentUser.email} readOnly /></div>
+                            <div className="col-md-12"><label className="labels">Email </label><input type="email" className="form-control" placeholder="enter email " value={currentUser.email} readOnly /></div>
                             {/* <div className="col-md-12"><label className="labels">Area</label><input type="text" className="form-control" placeholder="enter user type" readOnly /></div> */}
                         </div>
                         <div className="row mt-3">

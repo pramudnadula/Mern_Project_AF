@@ -41,12 +41,6 @@ function AdminAddStudent() {
             .post('http://localhost:8070/user/add', newUser)
             .then(() => {
                 alert('User Create Successfully ');
-                setemail('');
-                setfname('');
-                setlname('');
-                setusername('');
-                setpassword('');
-                setconfpassword('');
                 window.location.href = '/login';
             })
             .catch((err) => {
@@ -87,7 +81,7 @@ function AdminAddStudent() {
 
                                 <div className="row mt-3">
 
-                                    <div className="col-md-12"><label className="labels">Email </label><input type="text" className="form-control" placeholder="enter email " onChange={(e) => { setemail(e.target.value) }} /></div>
+                                    <div className="col-md-12"><label className="labels">Email </label><input type="email" className="form-control" placeholder="enter email " onChange={(e) => { setemail(e.target.value) }} /></div>
                                     {/* <div className="col-md-12"><label className="labels">User Type</label><input type="text" className="form-control" placeholder="enter user type" onChange={(e) => { settype(e.target.value) }} /></div> */}
                                 </div>
 

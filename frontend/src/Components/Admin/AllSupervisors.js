@@ -31,7 +31,7 @@ function AllSupervisors() {
     }
 
     return (
-        <div>
+        <div className='container'>
             <h2 className='title is-4 has-text-centered'>Supervisors</h2>
             < Link to="/addstaff"><button className="btn btn-success " type="submit">Add New Supervisor</button></Link>
             <div className='card mt-2'>

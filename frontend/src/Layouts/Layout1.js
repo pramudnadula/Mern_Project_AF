@@ -128,9 +128,10 @@ function Layout1(props) {
                 <SubMenu key="sub2" icon={<PieChartOutlined />} title="Marking Schemes">
                     <Menu.Item key="5"><Link to='/markingscheme/add' className='links'>Create Marking Scheme</Link></Menu.Item>
                     <Menu.Item key="6"><Link to='/markingscheme/' className='links'>All Marking Schemes</Link></Menu.Item>
+
                 </SubMenu>
 
-                <SubMenu key="sub4" icon={<UserOutlined />} title="Supervisors">
+                <SubMenu key="sub3" icon={<UserOutlined />} title="Supervisors">
                     <Menu.Item key="7"><Link to='/req' className='links'>Supervisor</Link></Menu.Item>
                     <Menu.Item key="8"><Link to='/creq' className='links'>Co-supervisor</Link></Menu.Item>
                 </SubMenu>
