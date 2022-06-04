@@ -1,3 +1,4 @@
+import { message } from 'antd';
 import axios from 'axios';
 import React, { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom';
@@ -60,7 +61,7 @@ function EditStudentSubmission(props) {
 
         POST("api/document/single", data).then(() => {
             GetAllSubmission();
-            alert("Submission added");
+            message.success('Submission Updates Successfull');
             window.location.href = `/AddSubmission/${sid._id}`
             console.log("File Sent Successfull")
         }).catch((err) => {

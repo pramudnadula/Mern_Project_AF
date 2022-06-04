@@ -1,3 +1,4 @@
+import { message } from 'antd'
 import axios from 'axios'
 import React, { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
@@ -41,7 +42,7 @@ function CreateSubmission() {
 
         console.log(fileDate)
         POST("api/submissiontype/multiple", data).then(() => {
-            alert("Files added");
+            message.success('Submission Create Successfull');
             GetAllSubmissionType();
             console.log("File Sent Successfull")
         }).catch((err) => {
@@ -63,7 +64,7 @@ function CreateSubmission() {
     const DeleteSubmissionType = (id) => {
         DELETE(`api/submissiontype/one/${id}`).then((dat) => {
             GetAllSubmissionType();//call fuction again
-            alert("submission Deleted");
+            message.success('Submission Deleted Successfull');
         }).catch((err) => {
             console.log(err)
         })

@@ -1,3 +1,4 @@
+import { message } from 'antd'
 import axios from 'axios'
 import React, { useEffect, useState } from 'react'
 import { GET, POST, PUT } from '../../Helper/httpHelper'
@@ -52,7 +53,7 @@ function EditSubmission(props) {
         console.log(fileDate)
         POST("api/submissiontype/multiple", data).then(() => {
             GetAllSubmissionType()
-            alert("Files added");
+            message.success('Submission Edit Successfull');
             console.log("File Sent Successfull")
         }).catch((err) => {
             alert(err);
@@ -189,7 +190,7 @@ function EditSubmission(props) {
                     </div>
                     <div className='col-6 card'>
                         <div className=' m-1'>
-                            Studet Submissions in {subject}
+                            Student Submissions in {subject}
                             <div className='card'>
                                 {submissions.map((document, i)=>(
                                     <>

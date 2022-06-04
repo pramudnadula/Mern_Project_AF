@@ -1,3 +1,4 @@
+import { message } from 'antd';
 import axios from 'axios';
 import React, { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom';
@@ -80,7 +81,7 @@ function AddSubmission(props) {
 
         POST("api/document/single", data).then(() => {
             GetAllSubmission();
-            alert("Submission added");
+            message.success('Submission Added Successfull');
             console.log("File Sent Successfull")
         }).catch((err) => {
             alert(err);
@@ -91,7 +92,7 @@ function AddSubmission(props) {
     const DeleteSubmissionType = (id) => {
         DELETE(`api/document/documentOne/delete/${id}`).then((dat) => {
             GetAllSubmission();//call fuction again
-            alert("submission Deleted");
+            message.success('Submission Deleted Successfull');
         }).catch((err) => {
             console.log(err)
         })
