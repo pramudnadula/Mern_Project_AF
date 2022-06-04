@@ -73,8 +73,8 @@ app.use("/api/submissiontype", SubmissionType);//Document Upload Route
 
 
 ////create server with port numebr
-app.listen(PORT, () => {
-  console.log(`service is up and running on port ${PORT}`);
+app.listen(process.env.PORT || PORT, () => {
+  console.log(`service is up and running on port`);
 });
 
 module.exports = app;
