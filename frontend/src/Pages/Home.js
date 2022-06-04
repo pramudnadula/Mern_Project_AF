@@ -19,12 +19,13 @@ function Home(props) {
             <div className='container-fluid home1'>
                 <NavBar_Home />
 
-                <div className='row justify-content-center align-items-center' style={{marginTop:'12%'}}>
+                <div className='row justify-content-center align-items-center' style={{marginTop:'7%'}}>
                     <div className='col-xl-6 col-sm-6'>
                         <div className='row justify-content-center'>
                             <h1 className='text-center m-5 home_h1 col-10'>Research Management System</h1>
-                            <div className='col-10'>
+                            <div className='col-8'>
                                 <p className='home_text'>A research management system (RMS), is a place to discover, store, annotate and share research files</p>
+                                <p className='home_text'>This research management system developed with the purpose of ease the research project process by providing different type of services for both students and lecturers in Sri Lanka institute of information technology</p>
                             </div>
 
                         </div>
