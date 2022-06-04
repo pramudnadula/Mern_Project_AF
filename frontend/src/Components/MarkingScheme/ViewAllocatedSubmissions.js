@@ -23,10 +23,10 @@ function ViewAllocatedSubmissions(props) {
         <thead class="text-center">
           <tr>
             <th>Submission Type</th>
-            <th>Group Id</th>
+            <th>Group Name</th>
             <th>Submission Date</th>
-            <th>View</th>
-            <th>Evaluate</th>
+            <th>Document Name</th>
+            <th colSpan="2">Action</th>
 
           </tr>
         </thead>
@@ -39,10 +39,9 @@ function ViewAllocatedSubmissions(props) {
                 <td>{ob.submissionId?.submissionType}</td>
                 <td>{ob.groupId?.groupName}</td>
                 <td>{ob?.submissionDate}</td>
+                <td>{ob?.documentName[0]?.split("--")[1]}</td>
                 <td class="text-center">
-                  <Link to="">
-                    <button type="button" className="btn btn-secondary btn-sm">View</button>
-                  </Link>
+                <a className='btn btn-secondary btn-sm' href={"http://localhost:8070/" + ob?.documentName[0]} download="abc" >Download </a>    
                 </td>
                 <td class="text-center">
                   <Link to={`/evaluate/submission/${ob._id}`}>

@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Layout, Menu, Breadcrumb } from 'antd';
-import { DesktopOutlined, PieChartOutlined, WechatOutlined, TeamOutlined, UserOutlined, FilePdfOutlined, HomeOutlined, QuestionOutlined, } from '@ant-design/icons';
+import { DesktopOutlined, PieChartOutlined, WechatOutlined, TeamOutlined, UserOutlined, FilePdfOutlined, HomeOutlined, QuestionOutlined, FilePdfTwoTone, } from '@ant-design/icons';
 import '../Assets/Styles/Layout1.css'
 import NavBar_DashBoard from '../Components/Home/NavBar_DashBoard';
 import { Link, useLocation } from 'react-router-dom'
@@ -55,7 +55,7 @@ function Layout1(props) {
                 </Menu.Item>
                 {studentGroupId ? (
                     <>
-                        <Menu.Item key="8" icon={<QuestionOutlined />}>
+                        <Menu.Item key="8" icon={<FilePdfTwoTone />}>
                             <Link to={`/evaluate/view/group/${studentGroupId}`} className='links'>Results</Link>
                         </Menu.Item></>) :
 
@@ -174,7 +174,7 @@ function Layout1(props) {
                 <Layout style={{ minHeight: 'calc(100vh - 3.37rem) ', backgroundColor: "green" }} className={(location.pathname === '/') || (location.pathname === '/login') || (location.pathname === '/register') || (location.pathname === '/staffregister') ? "block" : ""}>
 
                     {slider()}
-                    <Layout className="site-layout" >
+                    <Layout className="site-layout" style={{backgroundImage:'url("https://media.istockphoto.com/photos/light-blue-watercolor-background-picture-id1301156172?b=1&k=20&m=1301156172&s=170667a&w=0&h=Ag7FeKGlohIwsKuJqTU180CL01lSGQieqEWv6mKK4n4=")', backgroundSize:'cover'}}>
                         {/* {breadcrumb()} */}
                         {props.children}
                     </Layout>
@@ -203,7 +203,7 @@ function Layout1(props) {
                 <Layout style={{ minHeight: 'calc(100vh - 3.37rem) ' }} className={(location.pathname === '/') || (location.pathname === '/adminlogin') || (location.pathname === '/login') || (location.pathname === '/register') || (location.pathname === '/staffregister') ? "block" : ""}>
 
                     {slider3()}
-                    <Layout className="site-layout" style={{backgroundImage:'url("https://img.freepik.com/free-vector/abstract-blue-geometric-shapes-background_1035-17545.jpg?w=2000")'}}>
+                    <Layout className="site-layout" style={{backgroundImage:'url("https://img.freepik.com/free-vector/abstract-blue-geometric-shapes-background_1035-17545.jpg?w=2000")' , backgroundSize:'cover'}}>
 
                         {/* {breadcrumb()} */}
 
