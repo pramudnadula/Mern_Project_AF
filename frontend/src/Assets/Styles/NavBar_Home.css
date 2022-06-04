@@ -5,7 +5,7 @@
 
 .home1 {
     background-image: url('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQSEZUQYPBOhAWV-rQ-u4cNWQ0RxJ9SHj-g9Q&usqp=CAU');
-    height: 100vh;
+    min-height: 100vh;
     width: 100vw;
     background-size: cover;
 }
