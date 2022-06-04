@@ -9,14 +9,14 @@ function NavBar_Home(props) {
     return (
         <>
             <Navbar className='headerNavBar_home'>
-                <Container>
+                <div className='container-fluid'>
                     <Navbar.Brand className='nav_icon' href="#home">RMS</Navbar.Brand>
                     <div style={{ float: 'right'}}>
                     < Link to="/login"><button className="btn btn-light login_home m-2 pt-2 pb-2 p-4" type="submit" value="">Login</button></Link>
                     < Link to="/register"><button className="btn btn-light login_home m-2 pt-2 pb-2 p-4" type="submit" value="">Student Register</button></Link>
                     < Link to="/staffregister"><button className="btn btn-light login_home m-2 mr-2 pt-2 pb-2 p-4" type="submit" value="">Supervisor Register</button></Link>
                     </div>
-                </Container>
+                </div>
             </Navbar>
 
         </>

@@ -4,9 +4,10 @@
 }
 
 .home1 {
-    background-image: url('../../Assets/Images/test.png');
+    background-image: url('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQSEZUQYPBOhAWV-rQ-u4cNWQ0RxJ9SHj-g9Q&usqp=CAU');
     height: 100vh;
     width: 100vw;
+    background-size: cover;
 }
 
 .headerNavBar_home {
@@ -14,9 +15,8 @@
 }
 
 .pic_container {
-    background-image: url('../../Assets/Images/blob1.svg');
+    background-image: url('../../Assets/Images/blob.svg');
     background-repeat: no-repeat;
-    background-size: cover;
     padding-bottom: 60px;
 
 }
@@ -32,7 +32,7 @@
     font-family: 'Lato',
         sans-serif;
     font-size: 50px;
-    color: #FBA81F !important;
+    color: #376ad0  !important;
 }
 
 .home_h1 {
@@ -46,7 +46,7 @@
 }
 
 .login_home {
-    background-color: #FBA81F !important;
+    background-color: #376ad0 !important;
     border: none;
     border-radius: 20px !important;
     color: white !important;
