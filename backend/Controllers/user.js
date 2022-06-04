@@ -13,7 +13,7 @@ exports.signup = async (req, res, next) => {
     const username = req.body.username;
     const fname = req.body.fname;
     const lname = req.body.lname;
-    const type = req.body.type;
+    //const type = req.body.type;
     const password = req.body.password;
     try {
         const checkuser = await User.findOne({ email: email });
@@ -29,7 +29,7 @@ exports.signup = async (req, res, next) => {
             username: username,
             fname: fname,
             lname: lname,
-            type: type,
+            //type: type,
         });
         const result = await user.save();
         res.status(201).json({ message: "User created!", userId: result._id });
@@ -47,14 +47,14 @@ exports.signup = async (req, res, next) => {
 exports.update = async (req, res, next) => {
 
     let userID = req.params.userId;
-    const { fname, lname, email, type, username, password } = req.body;
+    const { fname, lname, email, username, password } = req.body;
     const hashedPw = await bcrypt.hash(password, 12);
 
     const updateUser = {
         fname,
         lname,
         email,
-        type,
+        //type,
         username,
         password: hashedPw,
     };
@@ -173,7 +173,7 @@ exports.login = async (req, res, next) => {
                 email: user.email,
                 fname: user.fname,
                 lname: user.lname,
-                type: user.type,
+                //type: user.type,
                 userId: user._id.toString(),
             },
             "somesupersecretsecret",

@@ -10,7 +10,7 @@ function Update(props) {
 	const [fname, setfname] = useState("")
 	const [lname, setlname] = useState("")
 	const [email, setemail] = useState("")
-	const [type, settype] = useState("")
+	//const [type, settype] = useState("")
 	const [username, setusername] = useState("")
 	const [password, setpassword] = useState("")
 	const [confpassword, setconfpassword] = useState("")
@@ -28,7 +28,7 @@ function Update(props) {
 				setfname(res.user.fname)
 				setlname(res.user.lname)
 				setemail(res.user.email)
-				settype(res.user.type)
+				//settype(res.user.type)
 				setusername(res.user.username)
 				setpassword(res.user.password)
 				setconfpassword(res.user.password)
@@ -51,7 +51,7 @@ function Update(props) {
 			fname,
 			lname,
 			email,
-			type,
+			//type,
 			username,
 			password
 		};
@@ -99,8 +99,8 @@ function Update(props) {
 
 							<div className="row mt-3">
 
-								<div className="col-md-12"><label className="labels">Email </label><input type="text" className="form-control" placeholder="enter email " value={email} onChange={(e) => { setemail(e.target.value) }} /></div>
-								<div className="col-md-12"><label className="labels">User Type</label><input type="text" className="form-control" placeholder="enter user type" value={type} onChange={(e) => { settype(e.target.value) }} /></div>
+								<div className="col-md-12"><label className="labels">Email </label><input type="email" className="form-control" placeholder="enter email " value={email} onChange={(e) => { setemail(e.target.value) }} /></div>
+								{/* <div className="col-md-12"><label className="labels">User Type</label><input type="text" className="form-control" placeholder="enter user type" value={type} onChange={(e) => { settype(e.target.value) }} /></div> */}
 							</div>
 
 							<div className="row mt-3">

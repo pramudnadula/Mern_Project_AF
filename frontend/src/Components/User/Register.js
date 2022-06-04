@@ -12,7 +12,7 @@ function Register() {
     const [fname, setfname] = useState("")
     const [lname, setlname] = useState("")
     const [email, setemail] = useState("")
-    const [type, settype] = useState("")
+    //const [type, settype] = useState("")
     const [username, setusername] = useState("")
     const [password, setpassword] = useState("")
     const [confpassword, setconfpassword] = useState("")
@@ -37,7 +37,7 @@ function Register() {
             fname,
             lname,
             email,
-            type,
+            //type,
             username,
             password
         };
@@ -45,14 +45,7 @@ function Register() {
         axios
             .post('http://localhost:8070/user/signup', newUser)
             .then(() => {
-                alert('User Create Successfully ');
-                setemail('');
-                setfname('');
-                setlname('');
-                settype('');
-                setusername('');
-                setpassword('');
-                setconfpassword('');
+                alert('User Create Successfully ');    
                 window.location.href = '/login';
             })
             .catch((err) => {
@@ -92,13 +85,13 @@ function Register() {
                         </div>
 
                         <div className="row mt-3">
-                            <div className="col-md-12"><label className="labels">Email </label><input type="text" className="form-control" placeholder="enter email " onChange={(e) => { setemail(e.target.value) }} required /></div>
+                            <div className="col-md-12"><label className="labels">Email </label><input type="email" className="form-control" placeholder="enter email " onChange={(e) => { setemail(e.target.value) }} required /></div>
                             {/* <div className="col-md-12"><label className="labels">User Type</label><input type="text" className="form-control" placeholder="enter user type" onChange={(e) => { settype(e.target.value) }} /></div> */}
                         </div>
 
-                        <div className="row mt-3">
+                        {/* <div className="row mt-3">
                             <div className="col-md-12"><label className="labels">User Type</label><input type="text" className="form-control" placeholder="enter user type" onChange={(e) => { settype(e.target.value) }} /></div>
-                        </div>
+                        </div> */}
 
                         <div className="row mt-3">
                             <div className="col-md-12"><label className="labels">Username</label><input type="text" className="form-control" placeholder="enter username" onChange={(e) => { setusername(e.target.value) }} required /></div>
