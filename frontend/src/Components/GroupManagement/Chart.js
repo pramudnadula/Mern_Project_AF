@@ -75,7 +75,9 @@ function Chart({ gid }) {
         <div>
             {marks?.length > 0 ? <>
                 {DemoLine(marks)}
-            </> : <></>}
+            </> : <>
+                <h4 style={{ color: "grey" }} className="mt-5 text-center">No Submission Added for marking</h4>
+            </>}
 
         </div>
     );
